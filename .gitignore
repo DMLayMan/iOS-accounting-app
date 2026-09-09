@@ -1,0 +1,23 @@
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+DerivedData/
+
+# Fastlane / others
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output

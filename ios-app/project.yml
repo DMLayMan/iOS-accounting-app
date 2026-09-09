@@ -1,0 +1,51 @@
+# XcodeGen 工程声明。在 Mac 上执行：
+#   brew install xcodegen && cd ios-app && xcodegen generate
+# 然后打开 Yuji.xcodeproj，选择 iOS 模拟器或真机运行。
+# YujiCore 为本地 Swift Package（仓库根目录），其领域逻辑可在任意平台 `swift test`。
+name: Yuji
+options:
+  bundleIdPrefix: com.yuji
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+packages:
+  YujiCore:
+    path: ..
+
+targets:
+  Yuji:
+    type: application
+    platform: iOS
+    sources:
+      - path: Yuji
+        excludes:
+          - "Info.plist"
+    resources:
+      - path: Yuji/Assets.xcassets
+    info:
+      path: Yuji/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yuji.app
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.7"
+    dependencies:
+      - package: YujiCore
+
+schemes:
+  Yuji:
+    build:
+      targets:
+        Yuji: all
+    run:
+      config: Debug
+    test:
+      config: Debug
