@@ -129,8 +129,12 @@
     "manifest": "assets/current/manifest.json"
   },
   "ci": {
-    "status": "pending_pull_request",
-    "workflow": ".github/workflows/ci.yml"
+    "status": "success",
+    "workflow": ".github/workflows/ci.yml",
+    "verifiedSourceCommit": "ff4b9c460a38b1e7ad92f0c76e987c93ebf08d29",
+    "url": "https://github.com/DMLayMan/iOS-accounting-app/actions/runs/34558035244",
+    "receipt": "verification/github-ci.json",
+    "note": "This records the implementation commit. Later documentation-only commits have separate PR Checks."
   },
   "notes": [
     "pro-final xcresult passed 65/65; shell wrapper failed after native completion because its script was edited during execution. Script syntax and subsequent run exits were verified.",
