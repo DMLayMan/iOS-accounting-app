@@ -46,6 +46,8 @@ Pro 全量批次原生结果为 65/65 通过，但收尾 shell 返回错误：�
 
 最终 Debug 构建用于最后两台设备补充验收。它与已通过 Release 构建的业务代码一致，差异仅为测试滚动辅助方法和源码空行。源码和二进制哈希均列在机器清单，测试原始产物不随仓库公开。
 
+CI 首次成功运行提示 checkout 的 Node 20 运行时弃用。后续配置固定到 [checkout v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) 的提交 SHA，并关闭凭证持久化；最后提交的运行状态以 [PR Checks](https://github.com/DMLayMan/iOS-accounting-app/pull/1/checks) 为准，前述运行链接明确对应实现提交。
+
 ## 3. 场景覆盖矩阵
 
 | 用户场景 | 数据与异常断言 | 原生路径 |
