@@ -1,0 +1,7695 @@
+{
+  "today": {
+    "year": 2026,
+    "month": 9,
+    "day": 10
+  },
+  "totalRecords": 500,
+  "activeMain": 470,
+  "trash": 20,
+  "otherLedger": 10,
+  "from": "2022-01-01",
+  "to": "2026-09-10",
+  "total": {
+    "from": "2022-01-01",
+    "to": "2026-09-10",
+    "expense": 28240494,
+    "refund": 1924112,
+    "netExpense": 26316382,
+    "income": 75427621,
+    "surplus": 49111239
+  },
+  "months": [
+    {
+      "year": 2022,
+      "month": 1,
+      "summary": {
+        "from": "2022-01-01",
+        "to": "2022-01-31",
+        "expense": 706106,
+        "refund": 0,
+        "netExpense": 706106,
+        "income": 979488,
+        "surplus": 273382
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 114289,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-001",
+            "tx-297"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 189691,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-004",
+            "tx-077"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 135053,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-120"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 11008,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-111"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 71601,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-189"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 61387,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-192"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 123077,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-107"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 979488,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-389",
+            "tx-415"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 303980,
+          "refund": 0,
+          "count": 4,
+          "transactionIDs": [
+            "tx-001",
+            "tx-004",
+            "tx-077",
+            "tx-297"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 135053,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-120"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 82609,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-111",
+            "tx-189"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 184464,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-107",
+            "tx-192"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-01-01",
+        "to": "2022-01-31",
+        "baseFrom": "2021-12-01",
+        "baseTo": "2021-12-31",
+        "current": 706106,
+        "base": 0,
+        "delta": 706106,
+        "percent": null,
+        "status": "baseNotCovered"
+      },
+      "yoy": {
+        "from": "2022-01-01",
+        "to": "2022-01-31",
+        "baseFrom": "2021-01-01",
+        "baseTo": "2021-01-31",
+        "current": 706106,
+        "base": 0,
+        "delta": 706106,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 2,
+      "summary": {
+        "from": "2022-02-01",
+        "to": "2022-02-28",
+        "expense": 359551,
+        "refund": 21287,
+        "netExpense": 338264,
+        "income": 2359298,
+        "surplus": 2021034
+      },
+      "expense": [
+        {
+          "id": "stress-food-2",
+          "expense": 42575,
+          "refund": 21287,
+          "count": 1,
+          "transactionIDs": [
+            "tx-005",
+            "tx-471"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 39929,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-265"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 175079,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-196"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 84881,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-273"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 17087,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-131"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 1205237,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-402"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1154061,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-383"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 42575,
+          "refund": 21287,
+          "count": 1,
+          "transactionIDs": [
+            "tx-005",
+            "tx-471"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 39929,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-265"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 175079,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-196"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 84881,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-273"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 17087,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-131"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-02-01",
+        "to": "2022-02-28",
+        "baseFrom": "2022-01-01",
+        "baseTo": "2022-01-31",
+        "current": 338264,
+        "base": 706106,
+        "delta": -367842,
+        "percent": -52.09444474342379,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-02-01",
+        "to": "2022-02-28",
+        "baseFrom": "2021-02-01",
+        "baseTo": "2021-02-28",
+        "current": 338264,
+        "base": 0,
+        "delta": 338264,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 3,
+      "summary": {
+        "from": "2022-03-01",
+        "to": "2022-03-31",
+        "expense": 174691,
+        "refund": 52658,
+        "netExpense": 122033,
+        "income": 0,
+        "surplus": -122033
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 52658,
+          "refund": 52658,
+          "count": 1,
+          "transactionIDs": [
+            "tx-006",
+            "tx-472"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 2112,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-090"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 119921,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-241"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 52658,
+          "refund": 52658,
+          "count": 1,
+          "transactionIDs": [
+            "tx-006",
+            "tx-472"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 122033,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-090",
+            "tx-241"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-03-01",
+        "to": "2022-03-31",
+        "baseFrom": "2022-02-01",
+        "baseTo": "2022-02-28",
+        "current": 122033,
+        "base": 338264,
+        "delta": -216231,
+        "percent": -63.92374003736726,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-03-01",
+        "to": "2022-03-31",
+        "baseFrom": "2021-03-01",
+        "baseTo": "2021-03-31",
+        "current": 122033,
+        "base": 0,
+        "delta": 122033,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 4,
+      "summary": {
+        "from": "2022-04-01",
+        "to": "2022-04-30",
+        "expense": 575175,
+        "refund": 8692,
+        "netExpense": 566483,
+        "income": 843543,
+        "surplus": 277060
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 129908,
+          "refund": 8692,
+          "count": 2,
+          "transactionIDs": [
+            "tx-007",
+            "tx-213",
+            "tx-473"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 15662,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-144"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 92454,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-299"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 59104,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-268"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 32602,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-163",
+            "tx-307"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 143266,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-203"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 102179,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-263"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 843543,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-376"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 145570,
+          "refund": 8692,
+          "count": 3,
+          "transactionIDs": [
+            "tx-007",
+            "tx-144",
+            "tx-213",
+            "tx-473"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 92454,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-299"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 59104,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-268"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 32602,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-163",
+            "tx-307"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 143266,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-203"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 102179,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-263"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-04-01",
+        "to": "2022-04-30",
+        "baseFrom": "2022-03-01",
+        "baseTo": "2022-03-31",
+        "current": 566483,
+        "base": 122033,
+        "delta": 444450,
+        "percent": 364.20476428507044,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-04-01",
+        "to": "2022-04-30",
+        "baseFrom": "2021-04-01",
+        "baseTo": "2021-04-30",
+        "current": 566483,
+        "base": 0,
+        "delta": 566483,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 5,
+      "summary": {
+        "from": "2022-05-01",
+        "to": "2022-05-31",
+        "expense": 473118,
+        "refund": 0,
+        "netExpense": 473118,
+        "income": 2999911,
+        "surplus": 2526793
+      },
+      "expense": [
+        {
+          "id": "stress-food-2",
+          "expense": 34868,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-008"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 167960,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-244"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 137361,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-315"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 67835,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-093"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 65094,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-121"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 731972,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-420"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 2267939,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-365",
+            "tx-385"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 34868,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-008"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 167960,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-244"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 137361,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-315"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 132929,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-093",
+            "tx-121"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-05-01",
+        "to": "2022-05-31",
+        "baseFrom": "2022-04-01",
+        "baseTo": "2022-04-30",
+        "current": 473118,
+        "base": 566483,
+        "delta": -93365,
+        "percent": -16.481518421558988,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-05-01",
+        "to": "2022-05-31",
+        "baseFrom": "2021-05-01",
+        "baseTo": "2021-05-31",
+        "current": 473118,
+        "base": 0,
+        "delta": 473118,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 6,
+      "summary": {
+        "from": "2022-06-01",
+        "to": "2022-06-30",
+        "expense": 836394,
+        "refund": 34868,
+        "netExpense": 801526,
+        "income": 922953,
+        "surplus": 121427
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 40147,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-009"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 0,
+          "refund": 34868,
+          "count": 0,
+          "transactionIDs": [
+            "tx-474"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 143227,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-239"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 179702,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-104",
+            "tx-301"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 255670,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-122",
+            "tx-169"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 217648,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-141",
+            "tx-180"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 922953,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-412"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 40147,
+          "refund": 34868,
+          "count": 1,
+          "transactionIDs": [
+            "tx-009",
+            "tx-474"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 143227,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-239"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 435372,
+          "refund": 0,
+          "count": 4,
+          "transactionIDs": [
+            "tx-104",
+            "tx-122",
+            "tx-169",
+            "tx-301"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 217648,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-141",
+            "tx-180"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-06-01",
+        "to": "2022-06-30",
+        "baseFrom": "2022-05-01",
+        "baseTo": "2022-05-31",
+        "current": 801526,
+        "base": 473118,
+        "delta": 328408,
+        "percent": 69.41355010800689,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-06-01",
+        "to": "2022-06-30",
+        "baseFrom": "2021-06-01",
+        "baseTo": "2021-06-30",
+        "current": 801526,
+        "base": 0,
+        "delta": 801526,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 7,
+      "summary": {
+        "from": "2022-07-01",
+        "to": "2022-07-31",
+        "expense": 677812,
+        "refund": 20073,
+        "netExpense": 657739,
+        "income": 427874,
+        "surplus": -229865
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 0,
+          "refund": 20073,
+          "count": 0,
+          "transactionIDs": [
+            "tx-475"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 147887,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-010",
+            "tx-108"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 156718,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-312"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 216610,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-168",
+            "tx-293"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 99592,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-166"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 57005,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-245"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 427874,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-419"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 304605,
+          "refund": 20073,
+          "count": 3,
+          "transactionIDs": [
+            "tx-010",
+            "tx-108",
+            "tx-312",
+            "tx-475"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 216610,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-168",
+            "tx-293"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 156597,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-166",
+            "tx-245"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-07-01",
+        "to": "2022-07-31",
+        "baseFrom": "2022-06-01",
+        "baseTo": "2022-06-30",
+        "current": 657739,
+        "base": 801526,
+        "delta": -143787,
+        "percent": -17.9391560598159,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-07-01",
+        "to": "2022-07-31",
+        "baseFrom": "2021-07-01",
+        "baseTo": "2021-07-31",
+        "current": 657739,
+        "base": 0,
+        "delta": 657739,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 8,
+      "summary": {
+        "from": "2022-08-01",
+        "to": "2022-08-31",
+        "expense": 155239,
+        "refund": 49590,
+        "netExpense": 105649,
+        "income": 3015184,
+        "surplus": 2909535
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 0,
+          "refund": 49590,
+          "count": 0,
+          "transactionIDs": [
+            "tx-476"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 35901,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-011"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 119338,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-075",
+            "tx-348"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 1692315,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-378"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1322869,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-387"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 35901,
+          "refund": 49590,
+          "count": 1,
+          "transactionIDs": [
+            "tx-011",
+            "tx-476"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 119338,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-075",
+            "tx-348"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-08-01",
+        "to": "2022-08-31",
+        "baseFrom": "2022-07-01",
+        "baseTo": "2022-07-31",
+        "current": 105649,
+        "base": 657739,
+        "delta": -552090,
+        "percent": -83.93754969676422,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-08-01",
+        "to": "2022-08-31",
+        "baseFrom": "2021-08-01",
+        "baseTo": "2021-08-31",
+        "current": 105649,
+        "base": 0,
+        "delta": 105649,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 9,
+      "summary": {
+        "from": "2022-09-01",
+        "to": "2022-09-30",
+        "expense": 594399,
+        "refund": 17950,
+        "netExpense": 576449,
+        "income": 3080389,
+        "surplus": 2503940
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 165268,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-012",
+            "tx-162"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 145975,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-149"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 42208,
+          "refund": 17950,
+          "count": 1,
+          "transactionIDs": [
+            "tx-310",
+            "tx-477"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 123619,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-221"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 117329,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-294"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 1749950,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-372",
+            "tx-388"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1330439,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-375",
+            "tx-423"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 353451,
+          "refund": 17950,
+          "count": 4,
+          "transactionIDs": [
+            "tx-012",
+            "tx-149",
+            "tx-162",
+            "tx-310",
+            "tx-477"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 240948,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-221",
+            "tx-294"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-09-01",
+        "to": "2022-09-30",
+        "baseFrom": "2022-08-01",
+        "baseTo": "2022-08-31",
+        "current": 576449,
+        "base": 105649,
+        "delta": 470800,
+        "percent": 445.626555859497,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-09-01",
+        "to": "2022-09-30",
+        "baseFrom": "2021-09-01",
+        "baseTo": "2021-09-30",
+        "current": 576449,
+        "base": 0,
+        "delta": 576449,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 10,
+      "summary": {
+        "from": "2022-10-01",
+        "to": "2022-10-31",
+        "expense": 485121,
+        "refund": 11992,
+        "netExpense": 473129,
+        "income": 1812226,
+        "surplus": 1339097
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 33868,
+          "refund": 11992,
+          "count": 1,
+          "transactionIDs": [
+            "tx-314",
+            "tx-478"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 93342,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-013",
+            "tx-217"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 126927,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-073"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 74543,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-209"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 156441,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-181"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 599986,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-396"
+          ]
+        },
+        {
+          "id": "stress-work-0",
+          "expense": 1212240,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-434"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 127210,
+          "refund": 11992,
+          "count": 3,
+          "transactionIDs": [
+            "tx-013",
+            "tx-217",
+            "tx-314",
+            "tx-478"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 126927,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-073"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 74543,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-209"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 156441,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-181"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-10-01",
+        "to": "2022-10-31",
+        "baseFrom": "2022-09-01",
+        "baseTo": "2022-09-30",
+        "current": 473129,
+        "base": 576449,
+        "delta": -103320,
+        "percent": -17.923528360704935,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-10-01",
+        "to": "2022-10-31",
+        "baseFrom": "2021-10-01",
+        "baseTo": "2021-10-31",
+        "current": 473129,
+        "base": 0,
+        "delta": 473129,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 11,
+      "summary": {
+        "from": "2022-11-01",
+        "to": "2022-11-30",
+        "expense": 296210,
+        "refund": 1307,
+        "netExpense": 294903,
+        "income": 352438,
+        "surplus": 57535
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 0,
+          "refund": 1307,
+          "count": 0,
+          "transactionIDs": [
+            "tx-479"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 7530,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-014"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 31753,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-281"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 163870,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-160"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 93057,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-289"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 352438,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-421"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 7530,
+          "refund": 1307,
+          "count": 1,
+          "transactionIDs": [
+            "tx-014",
+            "tx-479"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 31753,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-281"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 256927,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-160",
+            "tx-289"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-11-01",
+        "to": "2022-11-30",
+        "baseFrom": "2022-10-01",
+        "baseTo": "2022-10-31",
+        "current": 294903,
+        "base": 473129,
+        "delta": -178226,
+        "percent": -37.66964189470525,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-11-01",
+        "to": "2022-11-30",
+        "baseFrom": "2021-11-01",
+        "baseTo": "2021-11-30",
+        "current": 294903,
+        "base": 0,
+        "delta": 294903,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2022,
+      "month": 12,
+      "summary": {
+        "from": "2022-12-01",
+        "to": "2022-12-31",
+        "expense": 1604476,
+        "refund": 7530,
+        "netExpense": 1596946,
+        "income": 2557642,
+        "surplus": 960696
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 35297,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-015"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 65631,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-225"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 0,
+          "refund": 7530,
+          "count": 0,
+          "transactionIDs": [
+            "tx-480"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 98477,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-277"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 174376,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-197"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 1230695,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-000",
+            "tx-165"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 1454298,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-400"
+          ]
+        },
+        {
+          "id": "stress-work-0",
+          "expense": 1103344,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-386",
+            "tx-410"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 100928,
+          "refund": 7530,
+          "count": 2,
+          "transactionIDs": [
+            "tx-015",
+            "tx-225",
+            "tx-480"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 98477,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-277"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 1405071,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-000",
+            "tx-165",
+            "tx-197"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2022-12-01",
+        "to": "2022-12-31",
+        "baseFrom": "2022-11-01",
+        "baseTo": "2022-11-30",
+        "current": 1596946,
+        "base": 294903,
+        "delta": 1302043,
+        "percent": 441.5156848183979,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2022-12-01",
+        "to": "2022-12-31",
+        "baseFrom": "2021-12-01",
+        "baseTo": "2021-12-31",
+        "current": 1596946,
+        "base": 0,
+        "delta": 1596946,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 1,
+      "summary": {
+        "from": "2023-01-01",
+        "to": "2023-01-31",
+        "expense": 0,
+        "refund": 1200000,
+        "netExpense": -1200000,
+        "income": 0,
+        "surplus": 1200000
+      },
+      "expense": [
+        {
+          "id": "stress-shop-1",
+          "expense": 0,
+          "refund": 1200000,
+          "count": 0,
+          "transactionIDs": [
+            "tx-470"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-shop",
+          "expense": 0,
+          "refund": 1200000,
+          "count": 0,
+          "transactionIDs": [
+            "tx-470"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-01-01",
+        "to": "2023-01-31",
+        "baseFrom": "2022-12-01",
+        "baseTo": "2022-12-31",
+        "current": -1200000,
+        "base": 1596946,
+        "delta": -2796946,
+        "percent": -175.1434300220546,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-01-01",
+        "to": "2023-01-31",
+        "baseFrom": "2022-01-01",
+        "baseTo": "2022-01-31",
+        "current": -1200000,
+        "base": 706106,
+        "delta": -1906106,
+        "percent": -269.9461553930996,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "summary": {
+        "from": "2023-02-01",
+        "to": "2023-02-28",
+        "expense": 0,
+        "refund": 0,
+        "netExpense": 0,
+        "income": 0,
+        "surplus": 0
+      },
+      "expense": [],
+      "income": [],
+      "parents": [],
+      "mom": {
+        "from": "2023-02-01",
+        "to": "2023-02-28",
+        "baseFrom": "2023-01-01",
+        "baseTo": "2023-01-31",
+        "current": 0,
+        "base": -1200000,
+        "delta": 1200000,
+        "percent": null,
+        "status": "baseNegative"
+      },
+      "yoy": {
+        "from": "2023-02-01",
+        "to": "2023-02-28",
+        "baseFrom": "2022-02-01",
+        "baseTo": "2022-02-28",
+        "current": 0,
+        "base": 338264,
+        "delta": -338264,
+        "percent": -100,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "summary": {
+        "from": "2023-03-01",
+        "to": "2023-03-31",
+        "expense": 0,
+        "refund": 0,
+        "netExpense": 0,
+        "income": 0,
+        "surplus": 0
+      },
+      "expense": [],
+      "income": [],
+      "parents": [],
+      "mom": {
+        "from": "2023-03-01",
+        "to": "2023-03-31",
+        "baseFrom": "2023-02-01",
+        "baseTo": "2023-02-28",
+        "current": 0,
+        "base": 0,
+        "delta": 0,
+        "percent": null,
+        "status": "baseZero"
+      },
+      "yoy": {
+        "from": "2023-03-01",
+        "to": "2023-03-31",
+        "baseFrom": "2022-03-01",
+        "baseTo": "2022-03-31",
+        "current": 0,
+        "base": 122033,
+        "delta": -122033,
+        "percent": -100,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "summary": {
+        "from": "2023-04-01",
+        "to": "2023-04-30",
+        "expense": 625248,
+        "refund": 17648,
+        "netExpense": 607600,
+        "income": 898091,
+        "surplus": 290491
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 0,
+          "refund": 17648,
+          "count": 0,
+          "transactionIDs": [
+            "tx-481"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 41491,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-016",
+            "tx-296"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 177820,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-288"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 135160,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-318"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 151980,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-223",
+            "tx-226"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 118797,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-319"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 898091,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-401"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 219311,
+          "refund": 17648,
+          "count": 3,
+          "transactionIDs": [
+            "tx-016",
+            "tx-288",
+            "tx-296",
+            "tx-481"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 135160,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-318"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 151980,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-223",
+            "tx-226"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 118797,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-319"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-04-01",
+        "to": "2023-04-30",
+        "baseFrom": "2023-03-01",
+        "baseTo": "2023-03-31",
+        "current": 607600,
+        "base": 0,
+        "delta": 607600,
+        "percent": null,
+        "status": "baseZero"
+      },
+      "yoy": {
+        "from": "2023-04-01",
+        "to": "2023-04-30",
+        "baseFrom": "2022-04-01",
+        "baseTo": "2022-04-30",
+        "current": 607600,
+        "base": 566483,
+        "delta": 41117,
+        "percent": 7.258293717551983,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "summary": {
+        "from": "2023-05-01",
+        "to": "2023-05-31",
+        "expense": 841644,
+        "refund": 12124,
+        "netExpense": 829520,
+        "income": 0,
+        "surplus": -829520
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 0,
+          "refund": 12124,
+          "count": 0,
+          "transactionIDs": [
+            "tx-482"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 163167,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-017",
+            "tx-343"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 146935,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-243"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 158432,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-184"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 140503,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-317"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 12622,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-186"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 16196,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-123"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 127204,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-102"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 76585,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-302"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 163167,
+          "refund": 12124,
+          "count": 2,
+          "transactionIDs": [
+            "tx-017",
+            "tx-343",
+            "tx-482"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 146935,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-243"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 158432,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-184"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 153125,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-186",
+            "tx-317"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 16196,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-123"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 203789,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-102",
+            "tx-302"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-05-01",
+        "to": "2023-05-31",
+        "baseFrom": "2023-04-01",
+        "baseTo": "2023-04-30",
+        "current": 829520,
+        "base": 607600,
+        "delta": 221920,
+        "percent": 36.52402896642528,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-05-01",
+        "to": "2023-05-31",
+        "baseFrom": "2022-05-01",
+        "baseTo": "2022-05-31",
+        "current": 829520,
+        "base": 473118,
+        "delta": 356402,
+        "percent": 75.33046724073064,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "summary": {
+        "from": "2023-06-01",
+        "to": "2023-06-30",
+        "expense": 219983,
+        "refund": 16765,
+        "netExpense": 203218,
+        "income": 0,
+        "surplus": -203218
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 40638,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-018"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 0,
+          "refund": 16765,
+          "count": 0,
+          "transactionIDs": [
+            "tx-483"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 8308,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-065"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 171037,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-219"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 40638,
+          "refund": 16765,
+          "count": 1,
+          "transactionIDs": [
+            "tx-018",
+            "tx-483"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 8308,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-065"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 171037,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-219"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-06-01",
+        "to": "2023-06-30",
+        "baseFrom": "2023-05-01",
+        "baseTo": "2023-05-31",
+        "current": 203218,
+        "base": 829520,
+        "delta": -626302,
+        "percent": -75.50173594367827,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-06-01",
+        "to": "2023-06-30",
+        "baseFrom": "2022-06-01",
+        "baseTo": "2022-06-30",
+        "current": 203218,
+        "base": 801526,
+        "delta": -598308,
+        "percent": -74.64611254032933,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "summary": {
+        "from": "2023-07-01",
+        "to": "2023-07-31",
+        "expense": 520871,
+        "refund": 0,
+        "netExpense": 520871,
+        "income": 639934,
+        "surplus": 119063
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 51797,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-019"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 149860,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-154"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 137525,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-185"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 168427,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-140"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 13262,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-151",
+            "tx-215"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 639934,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-394"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 201657,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-019",
+            "tx-154"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 137525,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-185"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 168427,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-140"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 13262,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-151",
+            "tx-215"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-07-01",
+        "to": "2023-07-31",
+        "baseFrom": "2023-06-01",
+        "baseTo": "2023-06-30",
+        "current": 520871,
+        "base": 203218,
+        "delta": 317653,
+        "percent": 156.31144878898522,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-07-01",
+        "to": "2023-07-31",
+        "baseFrom": "2022-07-01",
+        "baseTo": "2022-07-31",
+        "current": 520871,
+        "base": 657739,
+        "delta": -136868,
+        "percent": -20.80886187378276,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "summary": {
+        "from": "2023-08-01",
+        "to": "2023-08-31",
+        "expense": 486911,
+        "refund": 40638,
+        "netExpense": 446273,
+        "income": 2923310,
+        "surplus": 2477037
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 0,
+          "refund": 40638,
+          "count": 0,
+          "transactionIDs": [
+            "tx-484"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 14953,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-207"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 69664,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-020"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 88294,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-278"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 39596,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-240"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 274404,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-066",
+            "tx-161"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 1240243,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-374"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1683067,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-409"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 84617,
+          "refund": 40638,
+          "count": 2,
+          "transactionIDs": [
+            "tx-020",
+            "tx-207",
+            "tx-484"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 88294,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-278"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 314000,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-066",
+            "tx-161",
+            "tx-240"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-08-01",
+        "to": "2023-08-31",
+        "baseFrom": "2023-07-01",
+        "baseTo": "2023-07-31",
+        "current": 446273,
+        "base": 520871,
+        "delta": -74598,
+        "percent": -14.321780248852402,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-08-01",
+        "to": "2023-08-31",
+        "baseFrom": "2022-08-01",
+        "baseTo": "2022-08-31",
+        "current": 446273,
+        "base": 105649,
+        "delta": 340624,
+        "percent": 322.4110024704446,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "summary": {
+        "from": "2023-09-01",
+        "to": "2023-09-30",
+        "expense": 487502,
+        "refund": 25898,
+        "netExpense": 461604,
+        "income": 469759,
+        "surplus": 8155
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 49135,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-021"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 0,
+          "refund": 25898,
+          "count": 0,
+          "transactionIDs": [
+            "tx-485"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 186292,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-132",
+            "tx-264"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 140260,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-086",
+            "tx-158"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 29327,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-105"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 82488,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-150"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 469759,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-411"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 235427,
+          "refund": 25898,
+          "count": 3,
+          "transactionIDs": [
+            "tx-021",
+            "tx-132",
+            "tx-264",
+            "tx-485"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 140260,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-086",
+            "tx-158"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 29327,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-105"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 82488,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-150"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-09-01",
+        "to": "2023-09-30",
+        "baseFrom": "2023-08-01",
+        "baseTo": "2023-08-31",
+        "current": 461604,
+        "base": 446273,
+        "delta": 15331,
+        "percent": 3.4353411476831446,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-09-01",
+        "to": "2023-09-30",
+        "baseFrom": "2022-09-01",
+        "baseTo": "2022-09-30",
+        "current": 461604,
+        "base": 576449,
+        "delta": -114845,
+        "percent": -19.92283792668562,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "summary": {
+        "from": "2023-10-01",
+        "to": "2023-10-31",
+        "expense": 55365,
+        "refund": 69664,
+        "netExpense": -14299,
+        "income": 308640,
+        "surplus": 322939
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 4082,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-022"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 0,
+          "refund": 69664,
+          "count": 0,
+          "transactionIDs": [
+            "tx-486"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 51283,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-069"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 308640,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-395"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 4082,
+          "refund": 69664,
+          "count": 1,
+          "transactionIDs": [
+            "tx-022",
+            "tx-486"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 51283,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-069"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-10-01",
+        "to": "2023-10-31",
+        "baseFrom": "2023-09-01",
+        "baseTo": "2023-09-30",
+        "current": -14299,
+        "base": 461604,
+        "delta": -475903,
+        "percent": -103.09767679656156,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-10-01",
+        "to": "2023-10-31",
+        "baseFrom": "2022-10-01",
+        "baseTo": "2022-10-31",
+        "current": -14299,
+        "base": 473129,
+        "delta": -487428,
+        "percent": -103.02222015560238,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "summary": {
+        "from": "2023-11-01",
+        "to": "2023-11-30",
+        "expense": 443763,
+        "refund": 24567,
+        "netExpense": 419196,
+        "income": 2585244,
+        "surplus": 2166048
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 0,
+          "refund": 24567,
+          "count": 0,
+          "transactionIDs": [
+            "tx-487"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 47417,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-023"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 122277,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-285"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 22117,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-138"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 251952,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-103",
+            "tx-259"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 2585244,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-363",
+            "tx-391",
+            "tx-429"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 47417,
+          "refund": 24567,
+          "count": 1,
+          "transactionIDs": [
+            "tx-023",
+            "tx-487"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 122277,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-285"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 22117,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-138"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 251952,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-103",
+            "tx-259"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-11-01",
+        "to": "2023-11-30",
+        "baseFrom": "2023-10-01",
+        "baseTo": "2023-10-31",
+        "current": 419196,
+        "base": -14299,
+        "delta": 433495,
+        "percent": null,
+        "status": "baseNegative"
+      },
+      "yoy": {
+        "from": "2023-11-01",
+        "to": "2023-11-30",
+        "baseFrom": "2022-11-01",
+        "baseTo": "2022-11-30",
+        "current": 419196,
+        "base": 294903,
+        "delta": 124293,
+        "percent": 42.14707887000132,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "summary": {
+        "from": "2023-12-01",
+        "to": "2023-12-31",
+        "expense": 451175,
+        "refund": 4082,
+        "netExpense": 447093,
+        "income": 1560945,
+        "surplus": 1113852
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 172338,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-024",
+            "tx-284",
+            "tx-349"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 0,
+          "refund": 4082,
+          "count": 0,
+          "transactionIDs": [
+            "tx-488"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 113394,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-345"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 27532,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-272"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 1953,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-142"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 135958,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-220"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 1227251,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-390"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 333694,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-425"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 285732,
+          "refund": 4082,
+          "count": 4,
+          "transactionIDs": [
+            "tx-024",
+            "tx-284",
+            "tx-345",
+            "tx-349",
+            "tx-488"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 29485,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-142",
+            "tx-272"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 135958,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-220"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2023-12-01",
+        "to": "2023-12-31",
+        "baseFrom": "2023-11-01",
+        "baseTo": "2023-11-30",
+        "current": 447093,
+        "base": 419196,
+        "delta": 27897,
+        "percent": 6.6548822030744565,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2023-12-01",
+        "to": "2023-12-31",
+        "baseFrom": "2022-12-01",
+        "baseTo": "2022-12-31",
+        "current": 447093,
+        "base": 1596946,
+        "delta": -1149853,
+        "percent": -72.00324870095795,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "summary": {
+        "from": "2024-01-01",
+        "to": "2024-01-31",
+        "expense": 768933,
+        "refund": 23708,
+        "netExpense": 745225,
+        "income": 1710221,
+        "surplus": 964996
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 160002,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-266"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 11683,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-025"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 0,
+          "refund": 23708,
+          "count": 0,
+          "transactionIDs": [
+            "tx-489"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 84364,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-188"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 210380,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-110",
+            "tx-340"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 142713,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-129"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 159791,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-126"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 1710221,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-414"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 171685,
+          "refund": 23708,
+          "count": 2,
+          "transactionIDs": [
+            "tx-025",
+            "tx-266",
+            "tx-489"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 84364,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-188"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 210380,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-110",
+            "tx-340"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 302504,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-126",
+            "tx-129"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-01-01",
+        "to": "2024-01-31",
+        "baseFrom": "2023-12-01",
+        "baseTo": "2023-12-31",
+        "current": 745225,
+        "base": 447093,
+        "delta": 298132,
+        "percent": 66.68232336449016,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-01-01",
+        "to": "2024-01-31",
+        "baseFrom": "2023-01-01",
+        "baseTo": "2023-01-31",
+        "current": 745225,
+        "base": -1200000,
+        "delta": 1945225,
+        "percent": null,
+        "status": "baseNegative"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "summary": {
+        "from": "2024-02-01",
+        "to": "2024-02-29",
+        "expense": 521115,
+        "refund": 4164,
+        "netExpense": 516951,
+        "income": 0,
+        "surplus": -516951
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 0,
+          "refund": 4164,
+          "count": 0,
+          "transactionIDs": [
+            "tx-490"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 37926,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-026"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 191782,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-060",
+            "tx-082",
+            "tx-295"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 1378,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-067"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 290029,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-002"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 37926,
+          "refund": 4164,
+          "count": 1,
+          "transactionIDs": [
+            "tx-026",
+            "tx-490"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 191782,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-060",
+            "tx-082",
+            "tx-295"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 1378,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-067"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 290029,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-002"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-02-01",
+        "to": "2024-02-29",
+        "baseFrom": "2024-01-01",
+        "baseTo": "2024-01-31",
+        "current": 516951,
+        "base": 745225,
+        "delta": -228274,
+        "percent": -30.63155422858868,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-02-01",
+        "to": "2024-02-29",
+        "baseFrom": "2023-02-01",
+        "baseTo": "2023-02-28",
+        "current": 516951,
+        "base": 0,
+        "delta": 516951,
+        "percent": null,
+        "status": "baseZero"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "summary": {
+        "from": "2024-03-01",
+        "to": "2024-03-31",
+        "expense": 861262,
+        "refund": 5841,
+        "netExpense": 855421,
+        "income": 421603,
+        "surplus": -433818
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 192617,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-027",
+            "tx-094"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 17435,
+          "refund": 5841,
+          "count": 1,
+          "transactionIDs": [
+            "tx-271",
+            "tx-491"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 87898,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-316"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 104373,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-112"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 13847,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-191"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 168262,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-079",
+            "tx-253"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 175529,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-124"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 101301,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-143"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 421603,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-382"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 297950,
+          "refund": 5841,
+          "count": 4,
+          "transactionIDs": [
+            "tx-027",
+            "tx-094",
+            "tx-271",
+            "tx-316",
+            "tx-491"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 104373,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-112"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 13847,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-191"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 168262,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-079",
+            "tx-253"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 175529,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-124"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 101301,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-143"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-03-01",
+        "to": "2024-03-31",
+        "baseFrom": "2024-02-01",
+        "baseTo": "2024-02-29",
+        "current": 855421,
+        "base": 516951,
+        "delta": 338470,
+        "percent": 65.47429060007622,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-03-01",
+        "to": "2024-03-31",
+        "baseFrom": "2023-03-01",
+        "baseTo": "2023-03-31",
+        "current": 855421,
+        "base": 0,
+        "delta": 855421,
+        "percent": null,
+        "status": "baseZero"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "summary": {
+        "from": "2024-04-01",
+        "to": "2024-04-30",
+        "expense": 406490,
+        "refund": 37926,
+        "netExpense": 368564,
+        "income": 1139530,
+        "surplus": 770966
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 84388,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-206"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 157995,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-028",
+            "tx-300"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 34858,
+          "refund": 37926,
+          "count": 1,
+          "transactionIDs": [
+            "tx-258",
+            "tx-492"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 12624,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-106"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 100706,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-109"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 15919,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-346"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 1139530,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-361"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 277241,
+          "refund": 37926,
+          "count": 4,
+          "transactionIDs": [
+            "tx-028",
+            "tx-206",
+            "tx-258",
+            "tx-300",
+            "tx-492"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 12624,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-106"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 100706,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-109"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 15919,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-346"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-04-01",
+        "to": "2024-04-30",
+        "baseFrom": "2024-03-01",
+        "baseTo": "2024-03-31",
+        "current": 368564,
+        "base": 855421,
+        "delta": -486857,
+        "percent": -56.91431470585829,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-04-01",
+        "to": "2024-04-30",
+        "baseFrom": "2023-04-01",
+        "baseTo": "2023-04-30",
+        "current": 368564,
+        "base": 607600,
+        "delta": -239036,
+        "percent": -39.34101382488479,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "summary": {
+        "from": "2024-05-01",
+        "to": "2024-05-31",
+        "expense": 104394,
+        "refund": 33598,
+        "netExpense": 70796,
+        "income": 2371508,
+        "surplus": 2300712
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 0,
+          "refund": 33598,
+          "count": 0,
+          "transactionIDs": [
+            "tx-493"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 12167,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-029"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 12891,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-292"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 79336,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-228"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 2371508,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-366",
+            "tx-426"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 12167,
+          "refund": 33598,
+          "count": 1,
+          "transactionIDs": [
+            "tx-029",
+            "tx-493"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 12891,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-292"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 79336,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-228"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-05-01",
+        "to": "2024-05-31",
+        "baseFrom": "2024-04-01",
+        "baseTo": "2024-04-30",
+        "current": 70796,
+        "base": 368564,
+        "delta": -297768,
+        "percent": -80.79139579557418,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-05-01",
+        "to": "2024-05-31",
+        "baseFrom": "2023-05-01",
+        "baseTo": "2023-05-31",
+        "current": 70796,
+        "base": 829520,
+        "delta": -758724,
+        "percent": -91.46542578840776,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "summary": {
+        "from": "2024-06-01",
+        "to": "2024-06-30",
+        "expense": 445412,
+        "refund": 0,
+        "netExpense": 445412,
+        "income": 0,
+        "surplus": -445412
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 35738,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-030"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 129843,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-279"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 133786,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-190"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 146045,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-167"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 165581,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-030",
+            "tx-279"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 133786,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-190"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 146045,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-167"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-06-01",
+        "to": "2024-06-30",
+        "baseFrom": "2024-05-01",
+        "baseTo": "2024-05-31",
+        "current": 445412,
+        "base": 70796,
+        "delta": 374616,
+        "percent": 529.1485394655065,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-06-01",
+        "to": "2024-06-30",
+        "baseFrom": "2023-06-01",
+        "baseTo": "2023-06-30",
+        "current": 445412,
+        "base": 203218,
+        "delta": 242194,
+        "percent": 119.17940339930517,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "summary": {
+        "from": "2024-07-01",
+        "to": "2024-07-31",
+        "expense": 351253,
+        "refund": 62424,
+        "netExpense": 288829,
+        "income": 2378396,
+        "surplus": 2089567
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 65057,
+          "refund": 62424,
+          "count": 1,
+          "transactionIDs": [
+            "tx-031",
+            "tx-494"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 175280,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-210"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 110916,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-070"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 1493937,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-416"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 884459,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-417"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 65057,
+          "refund": 62424,
+          "count": 1,
+          "transactionIDs": [
+            "tx-031",
+            "tx-494"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 175280,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-210"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 110916,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-070"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-07-01",
+        "to": "2024-07-31",
+        "baseFrom": "2024-06-01",
+        "baseTo": "2024-06-30",
+        "current": 288829,
+        "base": 445412,
+        "delta": -156583,
+        "percent": -35.15464334144567,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-07-01",
+        "to": "2024-07-31",
+        "baseFrom": "2023-07-01",
+        "baseTo": "2023-07-31",
+        "current": 288829,
+        "base": 520871,
+        "delta": -232042,
+        "percent": -44.54884222773009,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "summary": {
+        "from": "2024-08-01",
+        "to": "2024-08-31",
+        "expense": 856924,
+        "refund": 6083,
+        "netExpense": 850841,
+        "income": 1285303,
+        "surplus": 434462
+      },
+      "expense": [
+        {
+          "id": "stress-food-2",
+          "expense": 44108,
+          "refund": 6083,
+          "count": 1,
+          "transactionIDs": [
+            "tx-032",
+            "tx-495"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 150876,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-078"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 26213,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-159"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 86958,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-238"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 192302,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-136",
+            "tx-235"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 64174,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-270"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 45379,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-179"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 246914,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-276",
+            "tx-353"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 647788,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-424"
+          ]
+        },
+        {
+          "id": "stress-work-0",
+          "expense": 637515,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-370"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 44108,
+          "refund": 6083,
+          "count": 1,
+          "transactionIDs": [
+            "tx-032",
+            "tx-495"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 177089,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-078",
+            "tx-159"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 86958,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-238"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 256476,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-136",
+            "tx-235",
+            "tx-270"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 292293,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-179",
+            "tx-276",
+            "tx-353"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-08-01",
+        "to": "2024-08-31",
+        "baseFrom": "2024-07-01",
+        "baseTo": "2024-07-31",
+        "current": 850841,
+        "base": 288829,
+        "delta": 562012,
+        "percent": 194.58295392775656,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-08-01",
+        "to": "2024-08-31",
+        "baseFrom": "2023-08-01",
+        "baseTo": "2023-08-31",
+        "current": 850841,
+        "base": 446273,
+        "delta": 404568,
+        "percent": 90.65482339285595,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "summary": {
+        "from": "2024-09-01",
+        "to": "2024-09-30",
+        "expense": 366601,
+        "refund": 35738,
+        "netExpense": 330863,
+        "income": 0,
+        "surplus": -330863
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 1323,
+          "refund": 35738,
+          "count": 1,
+          "transactionIDs": [
+            "tx-033",
+            "tx-496"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 160626,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-072"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 102069,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-269"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 102583,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-275"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 1323,
+          "refund": 35738,
+          "count": 1,
+          "transactionIDs": [
+            "tx-033",
+            "tx-496"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 160626,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-072"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 102069,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-269"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 102583,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-275"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-09-01",
+        "to": "2024-09-30",
+        "baseFrom": "2024-08-01",
+        "baseTo": "2024-08-31",
+        "current": 330863,
+        "base": 850841,
+        "delta": -519978,
+        "percent": -61.11341602014947,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-09-01",
+        "to": "2024-09-30",
+        "baseFrom": "2023-09-01",
+        "baseTo": "2023-09-30",
+        "current": 330863,
+        "base": 461604,
+        "delta": -130741,
+        "percent": -28.3231947730089,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "summary": {
+        "from": "2024-10-01",
+        "to": "2024-10-31",
+        "expense": 691152,
+        "refund": 32528,
+        "netExpense": 658624,
+        "income": 322138,
+        "surplus": -336486
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 44753,
+          "refund": 32528,
+          "count": 2,
+          "transactionIDs": [
+            "tx-034",
+            "tx-247",
+            "tx-497"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 91830,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-084"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 88520,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-260"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 23206,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-058"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 166723,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-231"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 276120,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-222",
+            "tx-250",
+            "tx-303"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 322138,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-431"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 136583,
+          "refund": 32528,
+          "count": 3,
+          "transactionIDs": [
+            "tx-034",
+            "tx-084",
+            "tx-247",
+            "tx-497"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 88520,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-260"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 23206,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-058"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 166723,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-231"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 276120,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-222",
+            "tx-250",
+            "tx-303"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-10-01",
+        "to": "2024-10-31",
+        "baseFrom": "2024-09-01",
+        "baseTo": "2024-09-30",
+        "current": 658624,
+        "base": 330863,
+        "delta": 327761,
+        "percent": 99.06245183051595,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-10-01",
+        "to": "2024-10-31",
+        "baseFrom": "2023-10-01",
+        "baseTo": "2023-10-31",
+        "current": 658624,
+        "base": -14299,
+        "delta": 672923,
+        "percent": null,
+        "status": "baseNegative"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "summary": {
+        "from": "2024-11-01",
+        "to": "2024-11-30",
+        "expense": 687470,
+        "refund": 44108,
+        "netExpense": 643362,
+        "income": 2619930,
+        "surplus": 1976568
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 290176,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-116",
+            "tx-283"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 37397,
+          "refund": 44108,
+          "count": 1,
+          "transactionIDs": [
+            "tx-035",
+            "tx-498"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 79305,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-155"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 394,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-164"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 280198,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-100",
+            "tx-224",
+            "tx-254"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 944978,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-406",
+            "tx-418"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1674952,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-399"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 327573,
+          "refund": 44108,
+          "count": 3,
+          "transactionIDs": [
+            "tx-035",
+            "tx-116",
+            "tx-283",
+            "tx-498"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 79305,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-155"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 394,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-164"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 280198,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-100",
+            "tx-224",
+            "tx-254"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-11-01",
+        "to": "2024-11-30",
+        "baseFrom": "2024-10-01",
+        "baseTo": "2024-10-31",
+        "current": 643362,
+        "base": 658624,
+        "delta": -15262,
+        "percent": -2.3172553687688273,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-11-01",
+        "to": "2024-11-30",
+        "baseFrom": "2023-11-01",
+        "baseTo": "2023-11-30",
+        "current": 643362,
+        "base": 419196,
+        "delta": 224166,
+        "percent": 53.47522400022901,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "summary": {
+        "from": "2024-12-01",
+        "to": "2024-12-31",
+        "expense": 571573,
+        "refund": 661,
+        "netExpense": 570912,
+        "income": 1298543,
+        "surplus": 727631
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 68000,
+          "refund": 661,
+          "count": 1,
+          "transactionIDs": [
+            "tx-036",
+            "tx-499"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 150245,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-128"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 9303,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-118"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 93062,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-152"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 149532,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-081",
+            "tx-133"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 101431,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-097"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 1298543,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-403"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 218245,
+          "refund": 661,
+          "count": 2,
+          "transactionIDs": [
+            "tx-036",
+            "tx-128",
+            "tx-499"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 9303,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-118"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 93062,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-152"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 250963,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-081",
+            "tx-097",
+            "tx-133"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2024-12-01",
+        "to": "2024-12-31",
+        "baseFrom": "2024-11-01",
+        "baseTo": "2024-11-30",
+        "current": 570912,
+        "base": 643362,
+        "delta": -72450,
+        "percent": -11.261156238633927,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2024-12-01",
+        "to": "2024-12-31",
+        "baseFrom": "2023-12-01",
+        "baseTo": "2023-12-31",
+        "current": 570912,
+        "base": 447093,
+        "delta": 123819,
+        "percent": 27.694238111533842,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "summary": {
+        "from": "2025-01-01",
+        "to": "2025-01-31",
+        "expense": 602637,
+        "refund": 0,
+        "netExpense": 602637,
+        "income": 2105937,
+        "surplus": 1503300
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 30940,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-351"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 76400,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-037",
+            "tx-194"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 107994,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-173",
+            "tx-232"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 100669,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-261"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 53058,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-182"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 137043,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-153"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 96533,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-311"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 709866,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-392"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1396071,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-397",
+            "tx-405"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 107340,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-037",
+            "tx-194",
+            "tx-351"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 208663,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-173",
+            "tx-232",
+            "tx-261"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 53058,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-182"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 137043,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-153"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 96533,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-311"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-01-01",
+        "to": "2025-01-31",
+        "baseFrom": "2024-12-01",
+        "baseTo": "2024-12-31",
+        "current": 602637,
+        "base": 570912,
+        "delta": 31725,
+        "percent": 5.556898436186312,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-01-01",
+        "to": "2025-01-31",
+        "baseFrom": "2024-01-01",
+        "baseTo": "2024-01-31",
+        "current": 602637,
+        "base": 745225,
+        "delta": -142588,
+        "percent": -19.13355027005267,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "summary": {
+        "from": "2025-02-01",
+        "to": "2025-02-28",
+        "expense": 211746,
+        "refund": 0,
+        "netExpense": 211746,
+        "income": 706136,
+        "surplus": 494390
+      },
+      "expense": [
+        {
+          "id": "stress-food-2",
+          "expense": 40818,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-038"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 90474,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-080"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 80454,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-341"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 706136,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-360"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 40818,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-038"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 90474,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-080"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 80454,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-341"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-02-01",
+        "to": "2025-02-28",
+        "baseFrom": "2025-01-01",
+        "baseTo": "2025-01-31",
+        "current": 211746,
+        "base": 602637,
+        "delta": -390891,
+        "percent": -64.86342524604363,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-02-01",
+        "to": "2025-02-28",
+        "baseFrom": "2024-02-01",
+        "baseTo": "2024-02-29",
+        "current": 211746,
+        "base": 516951,
+        "delta": -305205,
+        "percent": -59.039444744279436,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "summary": {
+        "from": "2025-03-01",
+        "to": "2025-03-31",
+        "expense": 458505,
+        "refund": 0,
+        "netExpense": 458505,
+        "income": 1513311,
+        "surplus": 1054806
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 2985,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-039"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 75859,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-174"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 64824,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-176",
+            "tx-252"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 57980,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-214"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 153738,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-195"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 55570,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-125"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 47549,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-083"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 1513311,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-380"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 78844,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-039",
+            "tx-174"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 64824,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-176",
+            "tx-252"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 57980,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-214"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 153738,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-195"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 103119,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-083",
+            "tx-125"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-03-01",
+        "to": "2025-03-31",
+        "baseFrom": "2025-02-01",
+        "baseTo": "2025-02-28",
+        "current": 458505,
+        "base": 211746,
+        "delta": 246759,
+        "percent": 116.53537729166077,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-03-01",
+        "to": "2025-03-31",
+        "baseFrom": "2024-03-01",
+        "baseTo": "2024-03-31",
+        "current": 458505,
+        "base": 855421,
+        "delta": -396916,
+        "percent": -46.40007668738551,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "summary": {
+        "from": "2025-04-01",
+        "to": "2025-04-30",
+        "expense": 180397,
+        "refund": 0,
+        "netExpense": 180397,
+        "income": 954426,
+        "surplus": 774029
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 8660,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-040"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 43536,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-074"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 128201,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-344"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 954426,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-369"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 52196,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-040",
+            "tx-074"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 128201,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-344"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-04-01",
+        "to": "2025-04-30",
+        "baseFrom": "2025-03-01",
+        "baseTo": "2025-03-31",
+        "current": 180397,
+        "base": 458505,
+        "delta": -278108,
+        "percent": -60.65539088995758,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-04-01",
+        "to": "2025-04-30",
+        "baseFrom": "2024-04-01",
+        "baseTo": "2024-04-30",
+        "current": 180397,
+        "base": 368564,
+        "delta": -188167,
+        "percent": -51.054091012687074,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "summary": {
+        "from": "2025-05-01",
+        "to": "2025-05-31",
+        "expense": 831265,
+        "refund": 0,
+        "netExpense": 831265,
+        "income": 2797166,
+        "surplus": 1965901
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 191046,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-267",
+            "tx-354"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 24515,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-041"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 116228,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-227"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 206638,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-119",
+            "tx-230"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 24733,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-229"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 116011,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-350"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 152094,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-212"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 1790044,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-432"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1007122,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-427"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 215561,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-041",
+            "tx-267",
+            "tx-354"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 116228,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-227"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 231371,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-119",
+            "tx-229",
+            "tx-230"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 268105,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-212",
+            "tx-350"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-05-01",
+        "to": "2025-05-31",
+        "baseFrom": "2025-04-01",
+        "baseTo": "2025-04-30",
+        "current": 831265,
+        "base": 180397,
+        "delta": 650868,
+        "percent": 360.7975742390395,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-05-01",
+        "to": "2025-05-31",
+        "baseFrom": "2024-05-01",
+        "baseTo": "2024-05-31",
+        "current": 831265,
+        "base": 70796,
+        "delta": 760469,
+        "percent": 1074.1694446013898,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "summary": {
+        "from": "2025-06-01",
+        "to": "2025-06-30",
+        "expense": 348796,
+        "refund": 0,
+        "netExpense": 348796,
+        "income": 3125251,
+        "surplus": 2776455
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 15350,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-042"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 221416,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-175",
+            "tx-257"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 99359,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-068"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 12671,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-183"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 3125251,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-393",
+            "tx-407"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 236766,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-042",
+            "tx-175",
+            "tx-257"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 99359,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-068"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 12671,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-183"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-06-01",
+        "to": "2025-06-30",
+        "baseFrom": "2025-05-01",
+        "baseTo": "2025-05-31",
+        "current": 348796,
+        "base": 831265,
+        "delta": -482469,
+        "percent": -58.04033611423553,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-06-01",
+        "to": "2025-06-30",
+        "baseFrom": "2024-06-01",
+        "baseTo": "2024-06-30",
+        "current": 348796,
+        "base": 445412,
+        "delta": -96616,
+        "percent": -21.69137787037619,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "summary": {
+        "from": "2025-07-01",
+        "to": "2025-07-31",
+        "expense": 590744,
+        "refund": 0,
+        "netExpense": 590744,
+        "income": 1621472,
+        "surplus": 1030728
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 203608,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-043",
+            "tx-135"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 48675,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-305"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 163254,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-304"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 175207,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-291"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 1621472,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-364"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 203608,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-043",
+            "tx-135"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 48675,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-305"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 338461,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-291",
+            "tx-304"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-07-01",
+        "to": "2025-07-31",
+        "baseFrom": "2025-06-01",
+        "baseTo": "2025-06-30",
+        "current": 590744,
+        "base": 348796,
+        "delta": 241948,
+        "percent": 69.36662117684835,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-07-01",
+        "to": "2025-07-31",
+        "baseFrom": "2024-07-01",
+        "baseTo": "2024-07-31",
+        "current": 590744,
+        "base": 288829,
+        "delta": 301915,
+        "percent": 104.53070848148904,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "summary": {
+        "from": "2025-08-01",
+        "to": "2025-08-31",
+        "expense": 571701,
+        "refund": 0,
+        "netExpense": 571701,
+        "income": 384039,
+        "surplus": -187662
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 175392,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-146",
+            "tx-201"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 53992,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-044"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 158728,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-218"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 146800,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-137"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 36789,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-237"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 384039,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-384"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 229384,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-044",
+            "tx-146",
+            "tx-201"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 158728,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-218"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 183589,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-137",
+            "tx-237"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-08-01",
+        "to": "2025-08-31",
+        "baseFrom": "2025-07-01",
+        "baseTo": "2025-07-31",
+        "current": 571701,
+        "base": 590744,
+        "delta": -19043,
+        "percent": -3.2235621521335807,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-08-01",
+        "to": "2025-08-31",
+        "baseFrom": "2024-08-01",
+        "baseTo": "2024-08-31",
+        "current": 571701,
+        "base": 850841,
+        "delta": -279140,
+        "percent": -32.807539834117065,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "summary": {
+        "from": "2025-09-01",
+        "to": "2025-09-30",
+        "expense": 253927,
+        "refund": 0,
+        "netExpense": 253927,
+        "income": 1441334,
+        "surplus": 1187407
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 46919,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-045"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 125426,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-282"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 81582,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-134"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 864180,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-428"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 577154,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-435"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 46919,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-045"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 125426,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-282"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 81582,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-134"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-09-01",
+        "to": "2025-09-30",
+        "baseFrom": "2025-08-01",
+        "baseTo": "2025-08-31",
+        "current": 253927,
+        "base": 571701,
+        "delta": -317774,
+        "percent": -55.58395035166984,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-09-01",
+        "to": "2025-09-30",
+        "baseFrom": "2024-09-01",
+        "baseTo": "2024-09-30",
+        "current": 253927,
+        "base": 330863,
+        "delta": -76936,
+        "percent": -23.253128938563695,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "summary": {
+        "from": "2025-10-01",
+        "to": "2025-10-31",
+        "expense": 222087,
+        "refund": 0,
+        "netExpense": 222087,
+        "income": 4958378,
+        "surplus": 4736291
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 96071,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-046",
+            "tx-099"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 41474,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-308"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 84542,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-286"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 2096794,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-404",
+            "tx-408"
+          ]
+        },
+        {
+          "id": "stress-work-0",
+          "expense": 735404,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-362"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 2126180,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-377",
+            "tx-413"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 96071,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-046",
+            "tx-099"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 41474,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-308"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 84542,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-286"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-10-01",
+        "to": "2025-10-31",
+        "baseFrom": "2025-09-01",
+        "baseTo": "2025-09-30",
+        "current": 222087,
+        "base": 253927,
+        "delta": -31840,
+        "percent": -12.53903680979179,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-10-01",
+        "to": "2025-10-31",
+        "baseFrom": "2024-10-01",
+        "baseTo": "2024-10-31",
+        "current": 222087,
+        "base": 658624,
+        "delta": -436537,
+        "percent": -66.28015377514333,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "summary": {
+        "from": "2025-11-01",
+        "to": "2025-11-30",
+        "expense": 1088498,
+        "refund": 0,
+        "netExpense": 1088498,
+        "income": 0,
+        "surplus": -1088498
+      },
+      "expense": [
+        {
+          "id": "stress-food-2",
+          "expense": 108723,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-047",
+            "tx-156"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 66582,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-262"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 163475,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-059"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 168090,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-148"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 222782,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-063",
+            "tx-157"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 28841,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-249"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 167356,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-193"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 162649,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-233"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 108723,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-047",
+            "tx-156"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 230057,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-059",
+            "tx-262"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 390872,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-063",
+            "tx-148",
+            "tx-157"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 358846,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-193",
+            "tx-233",
+            "tx-249"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-11-01",
+        "to": "2025-11-30",
+        "baseFrom": "2025-10-01",
+        "baseTo": "2025-10-31",
+        "current": 1088498,
+        "base": 222087,
+        "delta": 866411,
+        "percent": 390.1223394435514,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-11-01",
+        "to": "2025-11-30",
+        "baseFrom": "2024-11-01",
+        "baseTo": "2024-11-30",
+        "current": 1088498,
+        "base": 643362,
+        "delta": 445136,
+        "percent": 69.1890413173299,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "summary": {
+        "from": "2025-12-01",
+        "to": "2025-12-31",
+        "expense": 499394,
+        "refund": 0,
+        "netExpense": 499394,
+        "income": 0,
+        "surplus": -499394
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 31164,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-048"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 164211,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-101"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 63558,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-246"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 150438,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-092",
+            "tx-098"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 43149,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-298"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 37787,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-187"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 9087,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-089"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 31164,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-048"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 164211,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-101"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 63558,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-246"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 193587,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-092",
+            "tx-098",
+            "tx-298"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 46874,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-089",
+            "tx-187"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2025-12-01",
+        "to": "2025-12-31",
+        "baseFrom": "2025-11-01",
+        "baseTo": "2025-11-30",
+        "current": 499394,
+        "base": 1088498,
+        "delta": -589104,
+        "percent": -54.120816023548045,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2025-12-01",
+        "to": "2025-12-31",
+        "baseFrom": "2024-12-01",
+        "baseTo": "2024-12-31",
+        "current": 499394,
+        "base": 570912,
+        "delta": -71518,
+        "percent": -12.526974384843898,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 1,
+      "summary": {
+        "from": "2026-01-01",
+        "to": "2026-01-31",
+        "expense": 535189,
+        "refund": 0,
+        "netExpense": 535189,
+        "income": 1423662,
+        "surplus": 888473
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 37952,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-236"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 91022,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-049",
+            "tx-200"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 114832,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-127"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 112730,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-096"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 178653,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-177"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 1423662,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-433"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 243806,
+          "refund": 0,
+          "count": 4,
+          "transactionIDs": [
+            "tx-049",
+            "tx-127",
+            "tx-200",
+            "tx-236"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 291383,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-096",
+            "tx-177"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-01-01",
+        "to": "2026-01-31",
+        "baseFrom": "2025-12-01",
+        "baseTo": "2025-12-31",
+        "current": 535189,
+        "base": 499394,
+        "delta": 35795,
+        "percent": 7.167687236931161,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-01-01",
+        "to": "2026-01-31",
+        "baseFrom": "2025-01-01",
+        "baseTo": "2025-01-31",
+        "current": 535189,
+        "base": 602637,
+        "delta": -67448,
+        "percent": -11.192143861063958,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 2,
+      "summary": {
+        "from": "2026-02-01",
+        "to": "2026-02-28",
+        "expense": 784022,
+        "refund": 0,
+        "netExpense": 784022,
+        "income": 3690357,
+        "surplus": 2906335
+      },
+      "expense": [
+        {
+          "id": "stress-food-2",
+          "expense": 146562,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-050",
+            "tx-280"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 345458,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-205",
+            "tx-309"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 292002,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-139",
+            "tx-248"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 1586052,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-436"
+          ]
+        },
+        {
+          "id": "stress-work-0",
+          "expense": 409304,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-422"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 1695001,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-373"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 146562,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-050",
+            "tx-280"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 345458,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-205",
+            "tx-309"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 292002,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-139",
+            "tx-248"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-02-01",
+        "to": "2026-02-28",
+        "baseFrom": "2026-01-01",
+        "baseTo": "2026-01-31",
+        "current": 784022,
+        "base": 535189,
+        "delta": 248833,
+        "percent": 46.494415991360064,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-02-01",
+        "to": "2026-02-28",
+        "baseFrom": "2025-02-01",
+        "baseTo": "2025-02-28",
+        "current": 784022,
+        "base": 211746,
+        "delta": 572276,
+        "percent": 270.26531788085725,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "summary": {
+        "from": "2026-03-01",
+        "to": "2026-03-31",
+        "expense": 677326,
+        "refund": 0,
+        "netExpense": 677326,
+        "income": 1564713,
+        "surplus": 887387
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 136767,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-051",
+            "tx-117"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 60334,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-113"
+          ]
+        },
+        {
+          "id": "stress-health-1",
+          "expense": 1829,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-211"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 184960,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-085",
+            "tx-198"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 85098,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-290"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 28806,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-145",
+            "tx-287"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 179532,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-115"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 1564713,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-381"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 136767,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-051",
+            "tx-117"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 62163,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-113",
+            "tx-211"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 270058,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-085",
+            "tx-198",
+            "tx-290"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 28806,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-145",
+            "tx-287"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 179532,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-115"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-03-01",
+        "to": "2026-03-31",
+        "baseFrom": "2026-02-01",
+        "baseTo": "2026-02-28",
+        "current": 677326,
+        "base": 784022,
+        "delta": -106696,
+        "percent": -13.608801793827213,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-03-01",
+        "to": "2026-03-31",
+        "baseFrom": "2025-03-01",
+        "baseTo": "2025-03-31",
+        "current": 677326,
+        "base": 458505,
+        "delta": 218821,
+        "percent": 47.72488849630866,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 4,
+      "summary": {
+        "from": "2026-04-01",
+        "to": "2026-04-30",
+        "expense": 238950,
+        "refund": 0,
+        "netExpense": 238950,
+        "income": 1709254,
+        "surplus": 1470304
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 75451,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-052",
+            "tx-313"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 24073,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-061"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 139426,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-234"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 1709254,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-367"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 75451,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-052",
+            "tx-313"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 24073,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-061"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 139426,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-234"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-04-01",
+        "to": "2026-04-30",
+        "baseFrom": "2026-03-01",
+        "baseTo": "2026-03-31",
+        "current": 238950,
+        "base": 677326,
+        "delta": -438376,
+        "percent": -64.72156686735782,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-04-01",
+        "to": "2026-04-30",
+        "baseFrom": "2025-04-01",
+        "baseTo": "2025-04-30",
+        "current": 238950,
+        "base": 180397,
+        "delta": 58553,
+        "percent": 32.45785683797402,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 5,
+      "summary": {
+        "from": "2026-05-01",
+        "to": "2026-05-31",
+        "expense": 751056,
+        "refund": 0,
+        "netExpense": 751056,
+        "income": 1574822,
+        "surplus": 823766
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 111294,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-076"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 52115,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-342"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 20185,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-053",
+            "tx-242"
+          ]
+        },
+        {
+          "id": "stress-fun-0",
+          "expense": 94754,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-088"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 173081,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-087"
+          ]
+        },
+        {
+          "id": "stress-health-0",
+          "expense": 116402,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-208"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 39523,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-064"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 143702,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-199"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 1574822,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-398"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 183594,
+          "refund": 0,
+          "count": 4,
+          "transactionIDs": [
+            "tx-053",
+            "tx-076",
+            "tx-242",
+            "tx-342"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 267835,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-087",
+            "tx-088"
+          ]
+        },
+        {
+          "id": "stress-health",
+          "expense": 116402,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-208"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 183225,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-064",
+            "tx-199"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-05-01",
+        "to": "2026-05-31",
+        "baseFrom": "2026-04-01",
+        "baseTo": "2026-04-30",
+        "current": 751056,
+        "base": 238950,
+        "delta": 512106,
+        "percent": 214.31512868801005,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-05-01",
+        "to": "2026-05-31",
+        "baseFrom": "2025-05-01",
+        "baseTo": "2025-05-31",
+        "current": 751056,
+        "base": 831265,
+        "delta": -80209,
+        "percent": -9.649028889704246,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 6,
+      "summary": {
+        "from": "2026-06-01",
+        "to": "2026-06-30",
+        "expense": 385656,
+        "refund": 0,
+        "netExpense": 385656,
+        "income": 1272840,
+        "surplus": 887184
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 9170,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-054"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 105174,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-178"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 27041,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-352"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 62032,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-347"
+          ]
+        },
+        {
+          "id": "stress-travel-1",
+          "expense": 138118,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-216",
+            "tx-256"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 44121,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-202"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-0",
+          "expense": 1272840,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-430"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 114344,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-054",
+            "tx-178"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 89073,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-347",
+            "tx-352"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 182239,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-202",
+            "tx-216",
+            "tx-256"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-06-01",
+        "to": "2026-06-30",
+        "baseFrom": "2026-05-01",
+        "baseTo": "2026-05-31",
+        "current": 385656,
+        "base": 751056,
+        "delta": -365400,
+        "percent": -48.6514986898447,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-06-01",
+        "to": "2026-06-30",
+        "baseFrom": "2025-06-01",
+        "baseTo": "2025-06-30",
+        "current": 385656,
+        "base": 348796,
+        "delta": 36860,
+        "percent": 10.567781740616292,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 7,
+      "summary": {
+        "from": "2026-07-01",
+        "to": "2026-07-31",
+        "expense": 497694,
+        "refund": 0,
+        "netExpense": 497694,
+        "income": 1066037,
+        "surplus": 568343
+      },
+      "expense": [
+        {
+          "id": "stress-food-1",
+          "expense": 112746,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-055",
+            "tx-147"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 160687,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-251"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 56148,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-306"
+          ]
+        },
+        {
+          "id": "stress-shop-0",
+          "expense": 115666,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-062"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 52447,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-204"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-work-1",
+          "expense": 1066037,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-371"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 112746,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-055",
+            "tx-147"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 160687,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-251"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 56148,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-306"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 115666,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-062"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 52447,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-204"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-07-01",
+        "to": "2026-07-31",
+        "baseFrom": "2026-06-01",
+        "baseTo": "2026-06-30",
+        "current": 497694,
+        "base": 385656,
+        "delta": 112038,
+        "percent": 29.05127885991661,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-07-01",
+        "to": "2026-07-31",
+        "baseFrom": "2025-07-01",
+        "baseTo": "2025-07-31",
+        "current": 497694,
+        "base": 590744,
+        "delta": -93050,
+        "percent": -15.751323754452013,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 8,
+      "summary": {
+        "from": "2026-08-01",
+        "to": "2026-08-31",
+        "expense": 757466,
+        "refund": 0,
+        "netExpense": 757466,
+        "income": 1234445,
+        "surplus": 476979
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 5626,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-274"
+          ]
+        },
+        {
+          "id": "stress-food-2",
+          "expense": 91750,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-056",
+            "tx-130"
+          ]
+        },
+        {
+          "id": "stress-fun-1",
+          "expense": 97097,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-071"
+          ]
+        },
+        {
+          "id": "stress-home-0",
+          "expense": 49421,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-172"
+          ]
+        },
+        {
+          "id": "stress-home-1",
+          "expense": 136632,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-171"
+          ]
+        },
+        {
+          "id": "stress-shop-1",
+          "expense": 171003,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-114"
+          ]
+        },
+        {
+          "id": "stress-travel-0",
+          "expense": 40817,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-095"
+          ]
+        },
+        {
+          "id": "stress-travel-2",
+          "expense": 165120,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-091",
+            "tx-255"
+          ]
+        }
+      ],
+      "income": [
+        {
+          "id": "stress-extra-0",
+          "expense": 889832,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-368"
+          ]
+        },
+        {
+          "id": "stress-work-1",
+          "expense": 344613,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-379"
+          ]
+        }
+      ],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 97376,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-056",
+            "tx-130",
+            "tx-274"
+          ]
+        },
+        {
+          "id": "stress-fun",
+          "expense": 97097,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-071"
+          ]
+        },
+        {
+          "id": "stress-home",
+          "expense": 186053,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-171",
+            "tx-172"
+          ]
+        },
+        {
+          "id": "stress-shop",
+          "expense": 171003,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-114"
+          ]
+        },
+        {
+          "id": "stress-travel",
+          "expense": 205937,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-091",
+            "tx-095",
+            "tx-255"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-08-01",
+        "to": "2026-08-31",
+        "baseFrom": "2026-07-01",
+        "baseTo": "2026-07-31",
+        "current": 757466,
+        "base": 497694,
+        "delta": 259772,
+        "percent": 52.19512391147975,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-08-01",
+        "to": "2026-08-31",
+        "baseFrom": "2025-08-01",
+        "baseTo": "2025-08-31",
+        "current": 757466,
+        "base": 571701,
+        "delta": 185765,
+        "percent": 32.49338377928323,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "summary": {
+        "from": "2026-09-01",
+        "to": "2026-09-10",
+        "expense": 50105,
+        "refund": 0,
+        "netExpense": 50105,
+        "income": 0,
+        "surplus": -50105
+      },
+      "expense": [
+        {
+          "id": "stress-food-0",
+          "expense": 36115,
+          "refund": 0,
+          "count": 1,
+          "transactionIDs": [
+            "tx-057"
+          ]
+        },
+        {
+          "id": "stress-food-1",
+          "expense": 13990,
+          "refund": 0,
+          "count": 2,
+          "transactionIDs": [
+            "tx-003",
+            "tx-170"
+          ]
+        }
+      ],
+      "income": [],
+      "parents": [
+        {
+          "id": "stress-food",
+          "expense": 50105,
+          "refund": 0,
+          "count": 3,
+          "transactionIDs": [
+            "tx-003",
+            "tx-057",
+            "tx-170"
+          ]
+        }
+      ],
+      "mom": {
+        "from": "2026-09-01",
+        "to": "2026-09-10",
+        "baseFrom": "2026-08-01",
+        "baseTo": "2026-08-10",
+        "current": 50105,
+        "base": 445587,
+        "delta": -395482,
+        "percent": -88.75528235787849,
+        "status": "ok"
+      },
+      "yoy": {
+        "from": "2026-09-01",
+        "to": "2026-09-10",
+        "baseFrom": "2025-09-01",
+        "baseTo": "2025-09-10",
+        "current": 50105,
+        "base": 172345,
+        "delta": -122240,
+        "percent": -70.92750007252894,
+        "status": "ok"
+      }
+    }
+  ],
+  "years": [
+    {
+      "year": 2022,
+      "summary": {
+        "from": "2022-01-01",
+        "to": "2022-12-31",
+        "expense": 6938292,
+        "refund": 225947,
+        "netExpense": 6712345,
+        "income": 19350946,
+        "surplus": 12638601
+      },
+      "yoy": {
+        "from": "2022-01-01",
+        "to": "2022-12-31",
+        "baseFrom": "2021-01-01",
+        "baseTo": "2021-12-31",
+        "current": 6712345,
+        "base": 0,
+        "delta": 6712345,
+        "percent": null,
+        "status": "baseNotCovered"
+      }
+    },
+    {
+      "year": 2023,
+      "summary": {
+        "from": "2023-01-01",
+        "to": "2023-12-31",
+        "expense": 4132462,
+        "refund": 1411386,
+        "netExpense": 2721076,
+        "income": 9385923,
+        "surplus": 6664847
+      },
+      "yoy": {
+        "from": "2023-01-01",
+        "to": "2023-12-31",
+        "baseFrom": "2022-01-01",
+        "baseTo": "2022-12-31",
+        "current": 2721076,
+        "base": 6712345,
+        "delta": -3991269,
+        "percent": -59.46161885302379,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2024,
+      "summary": {
+        "from": "2024-01-01",
+        "to": "2024-12-31",
+        "expense": 6632579,
+        "refund": 286779,
+        "netExpense": 6345800,
+        "income": 13547172,
+        "surplus": 7201372
+      },
+      "yoy": {
+        "from": "2024-01-01",
+        "to": "2024-12-31",
+        "baseFrom": "2023-01-01",
+        "baseTo": "2023-12-31",
+        "current": 6345800,
+        "base": 2721076,
+        "delta": 3624724,
+        "percent": 133.20921576611605,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2025,
+      "summary": {
+        "from": "2025-01-01",
+        "to": "2025-12-31",
+        "expense": 5859697,
+        "refund": 0,
+        "netExpense": 5859697,
+        "income": 19607450,
+        "surplus": 13747753
+      },
+      "yoy": {
+        "from": "2025-01-01",
+        "to": "2025-12-31",
+        "baseFrom": "2024-01-01",
+        "baseTo": "2024-12-31",
+        "current": 5859697,
+        "base": 6345800,
+        "delta": -486103,
+        "percent": -7.6602319644489265,
+        "status": "ok"
+      }
+    },
+    {
+      "year": 2026,
+      "summary": {
+        "from": "2026-01-01",
+        "to": "2026-09-10",
+        "expense": 4677464,
+        "refund": 0,
+        "netExpense": 4677464,
+        "income": 13536130,
+        "surplus": 8858666
+      },
+      "yoy": {
+        "from": "2026-01-01",
+        "to": "2026-09-10",
+        "baseFrom": "2025-01-01",
+        "baseTo": "2025-09-10",
+        "current": 4677464,
+        "base": 3968136,
+        "delta": 709328,
+        "percent": 17.875597005747785,
+        "status": "ok"
+      }
+    }
+  ],
+  "balances": [
+    {
+      "id": "stress-cash",
+      "cents": 26033224
+    },
+    {
+      "id": "stress-bank",
+      "cents": 23588015
+    },
+    {
+      "id": "other-cash",
+      "cents": 1319202
+    },
+    {
+      "id": "other-bank",
+      "cents": 2915924
+    }
+  ]
+}

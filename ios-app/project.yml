@@ -21,10 +21,21 @@ targets:
       - path: Yuji
         excludes:
           - "Info.plist"
+      - path: ../Fixtures/stats-500.json
+        buildPhase: resources
     resources:
       - path: Yuji/Assets.xcassets
     info:
       path: Yuji/Info.plist
+      properties:
+        CFBundleDisplayName: 余记
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        ITSAppUsesNonExemptEncryption: false
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.yuji.app
@@ -40,6 +51,30 @@ targets:
     dependencies:
       - package: YujiCore
 
+  YujiTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [YujiTests]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.yuji.tests
+    dependencies:
+      - target: Yuji
+      - package: YujiCore
+
+  YujiUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [YujiUITests]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.yuji.uitests
+        TEST_TARGET_NAME: Yuji
+    dependencies:
+      - target: Yuji
+
 schemes:
   Yuji:
     build:
@@ -49,3 +84,4 @@ schemes:
       config: Debug
     test:
       config: Debug
+      targets: [YujiTests, YujiUITests]

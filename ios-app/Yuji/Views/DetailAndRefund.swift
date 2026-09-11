@@ -9,6 +9,7 @@ struct TransactionDetailView: View {
     @State private var showEdit = false
     @State private var showRefund = false
     @State private var showDeleteConfirm = false
+    @State private var showPurgeConfirm = false
 
     var body: some View {
         Group {
@@ -32,17 +33,18 @@ struct TransactionDetailView: View {
     }
 
     @ViewBuilder
-    private func content(t: Transaction) -> some View {
+    private func content(t: YujiCore.Transaction) -> some View {
         List {
             Section {
                 VStack(spacing: 6) {
-                    Text(titleText(t))
-                        .font(.system(size: Design.captionSize)).foregroundColor(.secondary)
-                    AmountText(text: "¥\(Money(t.amountCents).yuanDescription)",
-                               size: 40, weight: .bold)
+                    Text(titleText(t) == t.kind.displayName ? titleText(t) : "\(t.kind.displayName) · \(titleText(t))")
+                        .font(.subheadline).foregroundColor(.secondary)
+                    AmountText(text: "\(t.kind == .expense ? "−" : t.kind == .transfer ? "" : "+")¥\(Money(t.amountCents).yuanDescription)",
+                               size: 40, weight: .bold, color: Design.money(t.kind))
+                        .accessibilityIdentifier("detail.amount")
                         .padding(.vertical, 4)
                     if !t.isActive {
-                        Text("已在回收站").foregroundColor(.red).font(.system(size: Design.captionSmall))
+                        Text("已在回收站").foregroundColor(.red).font(.caption)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -59,7 +61,7 @@ struct TransactionDetailView: View {
                     row("分类", categoryPath(cid))
                 }
                 if !t.tagIDs.isEmpty {
-                    row("标签", t.tagIDs.compactMap { state.store.tag($0)?.name }.joined(separator: "、"))
+                    row("历史附加信息", t.tagIDs.compactMap { state.store.tag($0)?.name }.joined(separator: "、"))
                 }
                 if !t.note.isEmpty { row("备注", t.note) }
                 if let expr = t.expression, !expr.isEmpty { row("计算式", expr) }
@@ -86,9 +88,9 @@ struct TransactionDetailView: View {
                                 TransactionDetailView(transactionID: r.id)
                             } label: {
                                 HStack {
-                                    Text("退款 · \(r.date.month)/\(r.date.day)")
+                                    Text("退款 · \(statsDayText(r.date))")
                                     Spacer()
-                                    Text("¥\(Money(r.amountCents).yuanDescription)").foregroundColor(Design.sage)
+                                    Text("¥\(Money(r.amountCents).yuanDescription)").foregroundStyle(.tint)
                                 }
                             }
                         }
@@ -101,7 +103,7 @@ struct TransactionDetailView: View {
                         TransactionDetailView(transactionID: origID)
                     } label: {
                         HStack {
-                            Text("原支出 · \(orig.date.month)/\(orig.date.day)")
+                            Text("原支出 · \(statsDayText(orig.date))")
                             Spacer()
                             Text("¥\(Money(orig.amountCents).yuanDescription)").foregroundColor(.secondary)
                         }
@@ -114,26 +116,31 @@ struct TransactionDetailView: View {
                     if t.kind == .expense || t.kind == .income {
                         Button { showEdit = true } label: { Label("编辑", systemImage: "pencil") }
                     }
-                    if t.kind != .refund {
-                        Button(role: .destructive) { showDeleteConfirm = true } label: {
-                            Label("删除", systemImage: "trash")
-                        }
+                    Button(role: .destructive) { showDeleteConfirm = true } label: {
+                        Label("删除", systemImage: "trash")
                     }
                 }
             } else {
                 Section {
                     Button { state.restore(t.id) } label: { Label("恢复", systemImage: "arrow.uturn.right") }
-                    Button(role: .destructive) { state.purge(t.id) } label: {
+                    Button(role: .destructive) { showPurgeConfirm = true } label: {
                         Label("永久删除", systemImage: "trash.fill")
                     }
                 }
             }
         }
         .navigationTitle(titleText(t))
-        .confirmationDialog("确认删除这条记录？", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
+        .alert("永久删除这条记录？", isPresented: $showPurgeConfirm) {
+            Button("永久删除", role: .destructive) {
+                state.purge(t.id)
+                if state.store.transaction(t.id) == nil { dismiss() }
+            }
+            Button("取消", role: .cancel) {}
+        } message: { Text("永久删除后无法恢复。") }
+        .alert("删除这条记录？", isPresented: $showDeleteConfirm) {
             Button("删除", role: .destructive) {
                 state.delete(t)
-                dismiss()
+                if state.store.transaction(t.id)?.isActive == false { dismiss() }
             }
             Button("取消", role: .cancel) {}
         } message: {
@@ -144,9 +151,12 @@ struct TransactionDetailView: View {
     }
 
     private func row(_ k: String, _ v: String) -> some View {
-        HStack { Text(k).foregroundColor(.secondary); Spacer(); Text(v).multilineTextAlignment(.trailing) }
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .top) { Text(k).foregroundStyle(.secondary); Spacer(); Text(v).multilineTextAlignment(.trailing) }
+            VStack(alignment: .leading, spacing: 8) { Text(k).foregroundStyle(.secondary); Text(v) }
+        }.padding(.vertical, 2)
     }
-    private func titleText(_ t: Transaction) -> String {
+    private func titleText(_ t: YujiCore.Transaction) -> String {
         switch t.kind {
         case .expense: return state.store.category(t.categoryID)?.name ?? "支出"
         case .income: return state.store.category(t.categoryID)?.name ?? "收入"
@@ -163,16 +173,18 @@ struct TransactionDetailView: View {
 
 /// P05 退款：原消费概要、已退/可退、此次金额、退款账户与日期。
 struct RefundView: View {
-    let original: Transaction
+    let original: YujiCore.Transaction
     @EnvironmentObject var state: AppState
     @Environment(\.dismiss) private var dismiss
     @State private var expression = ""
     @State private var date: Day
     @State private var accountID: EntityID?
     @State private var note = ""
+    @State private var exitRequested = false
     @State private var error: String?
+    @FocusState private var focused: Bool
 
-    init(original: Transaction) {
+    init(original: YujiCore.Transaction) {
         self.original = original
         _date = State(initialValue: Day(from: Date()))
     }
@@ -185,41 +197,49 @@ struct RefundView: View {
     private var ledgerID: EntityID { original.ledgerID }
     private var accounts: [Account] { state.store.accounts(in: ledgerID, includeArchived: false) }
 
+    private var hasChanges: Bool {
+        accountID != nil && (expression != Money(remaining).inputString || !note.isEmpty || accountID != original.accountID || date != state.today)
+    }
     var body: some View {
         NavigationStack {
             Form {
                 Section("原支出") {
                     HStack { Text("金额"); Spacer(); Text("¥\(Money(original.amountCents).yuanDescription)") }
                     HStack { Text("已退"); Spacer(); Text("¥\(Money(original.amountCents - remaining).yuanDescription)") }
-                    HStack { Text("剩余可退"); Spacer(); Text("¥\(Money(remaining).yuanDescription)").foregroundColor(Design.sage) }
+                    HStack { Text("剩余可退"); Spacer(); Text("¥\(Money(remaining).yuanDescription)").foregroundStyle(.tint) }
                 }
                 Section("此次退款") {
-                    TextField("退款金额（可算式）", text: $expression)
-                        .keyboardType(.numbersAndPunctuation)
+                    TextField("退款金额（可算式）", text: $expression).focused($focused)
+                        .keyboardType(.numbersAndPunctuation).accessibilityIdentifier("refund.amount")
                         .font(.system(size: 22, weight: .semibold))
                     if let r = result {
                         Text("将记录 ¥\(r.roundedDisplay)").foregroundColor(.secondary)
                     }
-                    if let e = error { Text(e).foregroundColor(.red).font(.system(size: Design.captionSmall)) }
+                    if let cents, cents > remaining {
+                        Text("超过剩余可退金额 ¥\(Money(remaining).yuanDescription)")
+                            .font(.subheadline).foregroundStyle(.red).accessibilityIdentifier("refund.limitError")
+                    }
+                    if let e = error { Text(e).foregroundColor(.red).font(.caption) }
                     DatePicker("退款日期", selection: Binding(get: { date.date() },
                         set: { date = Day(from: $0) }), displayedComponents: .date)
                     Picker("退款到账账户", selection: Binding(get: { accountID ?? original.accountID },
                         set: { accountID = $0 })) {
                         ForEach(accounts) { Text($0.name).tag($0.id) }
                     }
-                    TextField("说明（可选）", text: $note)
+                    TextField("说明（可选）", text: $note).focused($focused)
                 }
             }
             .navigationTitle("退款")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
+                ToolbarItem(placement: .cancellationAction) { Button("取消") { focused = false; if hasChanges { exitRequested = true } else { dismiss() } } }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("保存") { save() }.bold().disabled(cents == nil || cents! <= 0)
+                    Button(result?.saveActionTitle ?? "保存") { save() }.bold().disabled(cents == nil || cents! <= 0 || cents! > remaining).accessibilityIdentifier("refund.save")
                 }
             }
-            .onAppear { accountID = original.accountID; expression = Money(remaining).yuanDescription }
-        }
+            .scrollDismissesKeyboard(.interactively)
+            .onAppear { if accountID == nil { date = state.today; accountID = original.accountID; expression = Money(remaining).inputString } }
+        }.presentationDetents([.fraction(0.7), .large]).presentationDragIndicator(.visible).modifier(CleanSheetSurface()).modifier(FormExitGuard(isDirty: hasChanges, requested: $exitRequested))
     }
 
     private func save() {
@@ -229,6 +249,6 @@ struct RefundView: View {
         if c > remaining { error = "退款超出剩余可退额度"; return }
         let ok = state.addRefund(amountCents: c, date: date, accountID: acc, original: original.id,
                                  note: note, ledgerID: ledgerID)
-        if ok { dismiss() }
+        if ok { dismiss() } else { error = state.alertError }
     }
 }

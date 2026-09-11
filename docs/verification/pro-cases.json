@@ -1,0 +1,253 @@
+{
+  "expected": 49,
+  "passed": 49,
+  "missing": [],
+  "failed": [],
+  "cases": {
+    "BudgetEntryUITests.testCenterActionAndLastRecordStayReachable": {
+      "status": "passed",
+      "seconds": 22.878,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "BudgetEntryUITests.testCreateBudgetsDraftPreviewSaveAndAnnualBalance": {
+      "status": "passed",
+      "seconds": 45.329,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "BudgetEntryUITests.testDarkBudgetAndEntry": {
+      "status": "passed",
+      "seconds": 29.003,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "BudgetEntryUITests.testExistingBudgetInvalidInputClearAndLedgerIsolation": {
+      "status": "passed",
+      "seconds": 49.83,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "BudgetEntryUITests.testLargestTextBudgetEditorAndFloatingAction": {
+      "status": "passed",
+      "seconds": 36.453,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "CategoryBudgetUITests.testDarkCategoryBudgetAndEditor": {
+      "status": "passed",
+      "seconds": 30.812,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "CategoryBudgetUITests.testLargestTextCategoryBudgetAndEditor": {
+      "status": "passed",
+      "seconds": 48.318,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "CategoryBudgetUITests.testOverrunsFoldAndEntryPreview": {
+      "status": "passed",
+      "seconds": 38.768,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "CategoryBudgetUITests.testRuleCRUDDuplicateAndPersistence": {
+      "status": "passed",
+      "seconds": 102.511,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "DesignQualityUITests.testBackupReviewCancelAndRecoverableRestore": {
+      "status": "passed",
+      "seconds": 23.458,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "DesignQualityUITests.testCategoryIconSheetCreateCancelAndPersistence": {
+      "status": "passed",
+      "seconds": 28.762,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "DesignQualityUITests.testDarkCategorySheetAndEverySymbolAvailable": {
+      "status": "passed",
+      "seconds": 15.59,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "DesignQualityUITests.testEntryPickersSearchAndChangedCategoryCancel": {
+      "status": "passed",
+      "seconds": 26.717,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "DesignQualityUITests.testEverySupportPageTourAndAccountValidation": {
+      "status": "passed",
+      "seconds": 49.204,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "DesignQualityUITests.testLargeTypeCategoryAndSupportPages": {
+      "status": "passed",
+      "seconds": 23.003,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "ICostTimeUITests.testBothTabsShareHeaderGeometryAndModeTransitions": {
+      "status": "passed",
+      "seconds": 26.546,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "ICostTimeUITests.testDarkAndLargestTypeKeepControlsReachable": {
+      "status": "passed",
+      "seconds": 28.45,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "ICostTimeUITests.testRangeCancelAllEmptyAndFutureDoNotChangeMeaning": {
+      "status": "passed",
+      "seconds": 34.151,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "ICostTimeUITests.testVisiblePreviousNextAndSharedMonthYear": {
+      "status": "passed",
+      "seconds": 27.934,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "InlineCategoryUITests.testLongPressReorderUndoAndPersistence": {
+      "status": "passed",
+      "seconds": 18.748,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "InlineCategoryUITests.testParentReorderAndCrossPageDrag": {
+      "status": "passed",
+      "seconds": 20.14,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "InlineCategoryUITests.testRowMajorLayoutSingleRowAndQuickCreate": {
+      "status": "passed",
+      "seconds": 13.868,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "InlineCategoryUITests.testSearchLocatesSecondPage": {
+      "status": "passed",
+      "seconds": 10.453,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "LedgerFeedUITests.testCumulativeOverviewCreateSwitchAndRelaunch": {
+      "status": "passed",
+      "seconds": 27.688,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "LedgerFeedUITests.testDarkBookAndTimePicker": {
+      "status": "passed",
+      "seconds": 14.015,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "LedgerFeedUITests.testLargestTextHasReachableBookAndDateActions": {
+      "status": "passed",
+      "seconds": 19.441,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "LedgerFeedUITests.testMonthJumpRangeAndSearchKeepContext": {
+      "status": "passed",
+      "seconds": 32.585,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "LedgerFeedUITests.testMonthNavigationEmptyRecoveryAndSwitcherCreation": {
+      "status": "passed",
+      "seconds": 48.624,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "LifecycleUITests.testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger": {
+      "status": "passed",
+      "seconds": 26.014,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "LifecycleUITests.testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose": {
+      "status": "passed",
+      "seconds": 9.877,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "LifecycleUITests.testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger": {
+      "status": "passed",
+      "seconds": 7.353,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "StatsStressUITests.testDonutSelectionAndEditingRefresh": {
+      "status": "passed",
+      "seconds": 36.237,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "StatsStressUITests.testEditCancelUsesInlineDecisionAndProtectsOtherDraft": {
+      "status": "passed",
+      "seconds": 54.87,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "StatsStressUITests.testFeedSearchPreservesQueryAndEmptyFilterCanBeCleared": {
+      "status": "passed",
+      "seconds": 33.894,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "StatsStressUITests.testFiveYearDateJumpNegativeRefundAndEmptyMonth": {
+      "status": "passed",
+      "seconds": 43.428,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "StatsStressUITests.testInlineFiltersLinkTotalsWithoutModalAndKeepContext": {
+      "status": "passed",
+      "seconds": 26.077,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "StatsStressUITests.testLargeTextDarkAppearanceAndReachableRanking": {
+      "status": "passed",
+      "seconds": 56.735,
+      "log": "evidence/full-regression-2026-09-11/pro-acceptance/native.log"
+    },
+    "StatsStressUITests.testNewDraftClosesWithoutPopupAndRestoresAfterRelaunch": {
+      "status": "passed",
+      "seconds": 28.016,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "StatsStressUITests.testRankingDrilldownSortingAndBackPreservesContext": {
+      "status": "passed",
+      "seconds": 41.353,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "StatsStressUITests.testRefundDeletionCancelAndUndoRestoreAmount": {
+      "status": "passed",
+      "seconds": 27.033,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "StatsStressUITests.testYearChartComparisonAndIncome": {
+      "status": "passed",
+      "seconds": 44.398,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "ThemeUITests.testCustomEditorAppliesOnlyWhenFinished": {
+      "status": "passed",
+      "seconds": 35.428,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "ThemeUITests.testDarkThemeAndLargestText": {
+      "status": "passed",
+      "seconds": 36.839,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "ThemeUITests.testSheetExitDecisionKeepsSelectedTheme": {
+      "status": "passed",
+      "seconds": 20.983,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "ThemeUITests.testThemeAcrossPagesEntryAndRelaunch": {
+      "status": "passed",
+      "seconds": 29.577,
+      "log": "evidence/full-regression-2026-09-11/pro-hardened/native.log"
+    },
+    "TimeNavigationUITests.testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave": {
+      "status": "passed",
+      "seconds": 41.385,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "TimeNavigationUITests.testDarkAppearanceAndLargestTypeHaveReachableDateAndEntry": {
+      "status": "passed",
+      "seconds": 24.226,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "TimeNavigationUITests.testMonthJumpSharesRangeAndCancelLeavesAppliedDate": {
+      "status": "passed",
+      "seconds": 29.431,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    },
+    "TimeNavigationUITests.testYearCustomFutureAndComparisonFlow": {
+      "status": "passed",
+      "seconds": 30.656,
+      "log": "evidence/full-regression-2026-09-11/pro-final/native.log"
+    }
+  }
+}

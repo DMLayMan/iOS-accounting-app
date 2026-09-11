@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>余记 · 分类留在记账页</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main class="stage">
+  <aside class="intro">
+    <div class="wordmark"><span class="brand-mark">余</span> 余记 <span class="version">交互 DEMO / 05</span></div>
+    <h1>分类就在<br>手边。</h1>
+    <p class="lead">一级一行，二级最多两行。<br>选完，接着记。</p>
+    <div class="walkthrough">
+      <p><span>01</span> 切换一级分类，横划寻找二级</p>
+      <p><span>02</span> 长按拖动，按习惯排列分类</p>
+      <p><span>03</span> 点「全部分类」，快速搜索</p>
+    </div>
+    <p class="small">先排满上行，再排下行。<br>长按分类可拖动，右侧 ＋ 随时新增。</p>
+    <button class="reset" id="resetDemo">重置演示 <span>↺</span></button>
+    <p class="disclaimer">示例数据 · 仅演示交互<br>不会写入真实账本，刷新后重置。</p>
+  </aside>
+
+  <section class="device" aria-label="余记记账交互演示">
+    <div class="statusbar"><span>9:41</span><div class="island"></div><div class="status-icons"><span>▮▮▮</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9a15 15 0 0 1 18 0M6 12a10 10 0 0 1 12 0M9 15a5 5 0 0 1 6 0"/><circle cx="12" cy="18" r=".8"/></svg><i></i></div></div>
+    <div class="app-main" id="appMain">
+      <header class="navbar"><button class="icon-button" id="closeEntry" aria-label="清空这笔录入"><svg><use href="#i-close"/></svg></button><h2>记一笔</h2><span class="nav-spacer"></span></header>
+      <div class="entry-content">
+        <div class="entry-head">
+          <div class="types" aria-label="收支类型"><button data-kind="expense" class="active" aria-pressed="true">支出</button><button data-kind="income" aria-pressed="false">收入</button></div>
+          <button class="amount" id="amountButton" aria-label="编辑金额"><span class="currency">¥</span><span id="amount">36.00</span><span class="amount-caret"></span></button>
+          <div class="metadata"><button id="accountButton"><svg><use href="#i-wallet"/></svg><span id="accountName">微信</span><svg class="chevron"><use href="#i-down"/></svg></button><span class="meta-divider"></span><button id="dateButton"><svg><use href="#i-calendar"/></svg><span id="dateName">今天</span><svg class="chevron"><use href="#i-down"/></svg></button></div>
+        </div>
+        <section class="category-section" aria-label="选择分类">
+          <div class="category-heading"><h3 id="categoryHeading">分类</h3><div><button id="editToggle"><svg><use href="#i-edit"/></svg><span>编辑</span></button><button id="allCategories"><svg><use href="#i-search"/></svg>全部分类</button></div></div>
+          <div class="parent-wrap"><div id="parents" class="parents" aria-label="一级分类"></div><div class="parent-fade"></div></div>
+          <div class="children-wrap"><div id="children" class="children" aria-label="二级分类，先左后右，先上后下"></div><div class="category-tools"><button class="child add" id="addChild" aria-label="新增二级分类"><svg><use href="#i-plus"/></svg><span>新增</span></button><button id="nextChildren" class="edge-next" aria-label="向右查看更多二级分类"><svg><use href="#i-right"/></svg></button></div></div>
+          <div class="category-footer"><span id="selectionPath">餐饮 · 咖啡茶饮</span><div class="scroll-track" aria-hidden="true"><i id="scrollThumb"></i></div></div>
+        </section>
+        <div class="note-row"><svg><use href="#i-note"/></svg><input id="note" placeholder="备注（可选）" aria-label="备注" autocomplete="off"><button id="noteDone" hidden>完成</button></div>
+      </div>
+      <div id="keypad" class="keypad" aria-label="金额键盘">
+        <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button><button data-key="back" aria-label="删除一位" class="key-secondary"><svg><use href="#i-back"/></svg></button>
+        <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button><button data-key="+" class="key-secondary">+</button>
+        <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button><button id="saveEntry" class="save"><svg><use href="#i-check"/></svg><span>保存</span></button>
+        <button data-key=".">.</button><button data-key="0">0</button><button data-key="-" class="key-secondary">−</button>
+      </div>
+      <div class="home-indicator"><i></i></div>
+    </div>
+    <div class="overlay" id="overlay" hidden><div class="scrim" id="scrim"></div><section id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"><div class="handle"></div><header class="sheet-header"><button id="sheetCancel">取消</button><h2 id="sheetTitle"></h2><span></span></header><div id="sheetContent" class="sheet-content"></div></section></div>
+    <span id="reorderStatus" class="visually-hidden" role="status" aria-live="polite"></span><div id="toast" class="toast" role="status" aria-live="polite" hidden><span id="toastText"></span><button id="undo" hidden>撤销</button></div>
+  </section>
+</main>
+<svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l1-5L16 4a2.8 2.8 0 0 1 4 4L9 19Z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+<symbol id="i-right" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M3 9h18M16 13h5v4h-5Z"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v5M17 3v5M3 11h18M7 15h2M12 15h2M7 18h2"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h10M4 18h6"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="m9 5-7 7 7 7h12V5ZM12 9l6 6M18 9l-6 6"/></symbol>
+<symbol id="i-coffee" viewBox="0 0 24 24"><path d="M4 8h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5ZM16 9h2a3 3 0 0 1 0 6h-2M3 22h16M7 3v2M12 2v3"/></symbol>
+<symbol id="i-meal" viewBox="0 0 24 24"><path d="M4 3v6a3 3 0 0 0 6 0V3M7 3v19M19 3c-4 2-5 5-5 9h5M19 3v19"/></symbol>
+<symbol id="i-bread" viewBox="0 0 24 24"><path d="M5 11C0 10 3 4 8 4h8c5 0 8 6 3 7v9H5Z"/><path d="M9 9v6M15 9v6"/></symbol>
+<symbol id="i-cake" viewBox="0 0 24 24"><path d="M3 12h18v9H3ZM3 15c3 4 4-3 7 0s4-3 7 0 4 0 4 0M12 5v7M12 2v1"/></symbol>
+<symbol id="i-bowl" viewBox="0 0 24 24"><path d="M2 11h20c-1 6-4 9-10 9S3 17 2 11ZM8 22h8M7 3v4M12 2v5M17 3v4"/></symbol>
+<symbol id="i-fruit" viewBox="0 0 24 24"><path d="M12 8C6 2 1 9 5 17s8 3 8 3 5 4 7-4-3-12-8-8ZM12 8V4c3 0 4-3 4-3"/></symbol>
+<symbol id="i-drink" viewBox="0 0 24 24"><path d="M5 7h14l-2 15H7ZM12 7l2-5h5M4 7h16M7 13h10"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M4 8h16l1 14H3ZM8 9V6a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-train" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="17" rx="4"/><path d="M5 11h14M8 15h1M15 15h1M8 19l-3 4M16 19l3 4M9 5h6"/></symbol>
+<symbol id="i-car" viewBox="0 0 24 24"><path d="M3 18v-7l3-7h12l3 7v7ZM3 11h18M6 18v3M18 18v3M6 14h2M16 14h2"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m2 11 10-9 10 9M5 9v13h14V9M9 22v-8h6v8"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21 3 12C-2 4 8-2 12 6c4-8 14-2 9 6Z"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><path d="M3 11h18v11H3ZM2 7h20v4H2ZM12 7v15M12 7C2 8 3-1 8 3ZM12 7c10 1 9-8 4-4Z"/></symbol>
+<symbol id="i-screen" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M12 17v5M7 22h10"/></symbol>
+<symbol id="i-money" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M5 12h1M18 12h1"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+</defs></svg>
+<script src="app.js"></script>
+</body></html>

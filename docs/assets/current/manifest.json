@@ -1,0 +1,741 @@
+{
+  "generatedAt": "2026-09-11T03:16:23.793Z",
+  "screenshots": [
+    {
+      "file": "pro-01-ledger-cumulative.png",
+      "title": "账本累计",
+      "device": "iPhone 17 Pro",
+      "test": "LedgerFeedUITests/testCumulativeOverviewCreateSwitchAndRelaunch()",
+      "capturedAt": "2026-09-11T02:48:14.271Z",
+      "sha256": "29fd9ecd4dddb46dd92fa3dcc22060a3beb2beacab8e075f59e7d4ae36052ea1"
+    },
+    {
+      "file": "pro-02-ledger-accounts-summary.png",
+      "title": "账户余额汇总",
+      "device": "iPhone 17 Pro",
+      "test": "LedgerFeedUITests/testCumulativeOverviewCreateSwitchAndRelaunch()",
+      "capturedAt": "2026-09-11T02:48:14.866Z",
+      "sha256": "29fd9ecd4dddb46dd92fa3dcc22060a3beb2beacab8e075f59e7d4ae36052ea1"
+    },
+    {
+      "file": "pro-03-new-ledger-form.png",
+      "title": "创建账本",
+      "device": "iPhone 17 Pro",
+      "test": "LedgerFeedUITests/testCumulativeOverviewCreateSwitchAndRelaunch()",
+      "capturedAt": "2026-09-11T02:48:17.752Z",
+      "sha256": "64c01b707f30a900be50235fa7317095a87fb6a1418e5c2dc46176dfab8dfb3f"
+    },
+    {
+      "file": "pro-05-switch-with-create.png",
+      "title": "切换与新建账本",
+      "device": "iPhone 17 Pro",
+      "test": "LedgerFeedUITests/testCumulativeOverviewCreateSwitchAndRelaunch()",
+      "capturedAt": "2026-09-11T02:48:29.651Z",
+      "sha256": "f419207419d99572e1b00471a5e4828c68f6b80e843c0044167a4378d5810480"
+    },
+    {
+      "file": "pro-10-feed-current-month.png",
+      "title": "本月流水",
+      "device": "iPhone 17 Pro",
+      "test": "LedgerFeedUITests/testMonthJumpRangeAndSearchKeepContext()",
+      "capturedAt": "2026-09-11T02:49:15.144Z",
+      "sha256": "d4d8b5a536cccd78ee5a12b7f2e5c5ba2caf5bc8596d99f19dc2f02e06ee3f79"
+    },
+    {
+      "file": "pro-12-feed-leap-month.png",
+      "title": "历史闰月流水",
+      "device": "iPhone 17 Pro",
+      "test": "LedgerFeedUITests/testMonthJumpRangeAndSearchKeepContext()",
+      "capturedAt": "2026-09-11T02:49:27.290Z",
+      "sha256": "043aa1dc0f145dd7d514e005ec152b95a78292b3907bd5edbf6324db0ef11e29"
+    },
+    {
+      "file": "pro-70-unified-statistics.png",
+      "title": "统计时间组件",
+      "device": "iPhone 17 Pro",
+      "test": "ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+      "capturedAt": "2026-09-11T02:45:12.436Z",
+      "sha256": "3b79cdec9dad47f93540285f403ef17fc92ecb59cdaf60c6c85aeede76fccf61"
+    },
+    {
+      "file": "pro-71-unified-feed.png",
+      "title": "流水同一时间组件",
+      "device": "iPhone 17 Pro",
+      "test": "ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+      "capturedAt": "2026-09-11T02:45:15.654Z",
+      "sha256": "5a4c84d9cc56318ab23f5860bb2f8b188fc66f9cf9064ff22d791822ca53c79e"
+    },
+    {
+      "file": "pro-02-month-picker.png",
+      "title": "月份面板",
+      "device": "iPhone 17 Pro",
+      "test": "TimeNavigationUITests/testMonthJumpSharesRangeAndCancelLeavesAppliedDate()",
+      "capturedAt": "2026-09-11T03:00:02.610Z",
+      "sha256": "03d6fd5a02c94be0133c01b91ef8be05ec28050646b382faeafaf912c97f41cf"
+    },
+    {
+      "file": "pro-11-year-statistics.png",
+      "title": "年度统计",
+      "device": "iPhone 17 Pro",
+      "test": "TimeNavigationUITests/testYearCustomFutureAndComparisonFlow()",
+      "capturedAt": "2026-09-11T03:00:34.547Z",
+      "sha256": "675ef8f3dca114afb4fb1b8289781a4ec7c351ef850ed1abb303106be38a2fe2"
+    },
+    {
+      "file": "pro-12-custom-range.png",
+      "title": "自定义时间",
+      "device": "iPhone 17 Pro",
+      "test": "TimeNavigationUITests/testYearCustomFutureAndComparisonFlow()",
+      "capturedAt": "2026-09-11T03:00:38.967Z",
+      "sha256": "27dfc7fda7a4827b138096f5982010cd8b97a6cb89ccb081277493333c3d0ebb"
+    },
+    {
+      "file": "pro-13-future-range.png",
+      "title": "未来期间说明",
+      "device": "iPhone 17 Pro",
+      "test": "TimeNavigationUITests/testYearCustomFutureAndComparisonFlow()",
+      "capturedAt": "2026-09-11T03:00:51.441Z",
+      "sha256": "5ae61fc57ced864a2a7b01c82c4d02f5b5f7e56b6c504317b64c69081bbe844d"
+    },
+    {
+      "file": "pro-13-pie-selection-inline.png",
+      "title": "饼图同页筛选",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+      "capturedAt": "2026-09-11T02:51:02.237Z",
+      "sha256": "85e03381ba80a85de5ee6c04f2fd564d40729ceaff05793a995a88a7ef936924"
+    },
+    {
+      "file": "se-13-pie-selection-inline.png",
+      "title": "饼图同页筛选",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+      "capturedAt": "2026-09-11T02:59:51.267Z",
+      "sha256": "072888295f2aa7dd1899fea37f0c28ee5f7d43fd63d83ef6f463df3729d9337c"
+    },
+    {
+      "file": "pro-26-inline-leaf-transactions.png",
+      "title": "二级分类明细",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-09-11T03:05:13.303Z",
+      "sha256": "1c5e5d86cf957a031f48f5947f45604dc2166d90e5fac9b711e68696bfa9eaf7"
+    },
+    {
+      "file": "se-26-inline-leaf-transactions.png",
+      "title": "二级分类明细",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-09-11T03:02:59.272Z",
+      "sha256": "9eb4a3bfe8eed3890264a8d93a171f3d68890cf972a95deb5b4b6774a6d74bbb"
+    },
+    {
+      "file": "pro-27-inline-comparison.png",
+      "title": "同期分析",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-09-11T03:05:22.894Z",
+      "sha256": "b5b466e34a9764d59682d7ecf1d144b040bb984ed21e71f351e7fde000b04aef"
+    },
+    {
+      "file": "se-27-inline-comparison.png",
+      "title": "同期分析",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-09-11T03:03:12.299Z",
+      "sha256": "fddab4aa12a9b4e3fb38c5602cb3c2e30837878b3083047849ff4ccabaed7c32"
+    },
+    {
+      "file": "pro-28-inline-base-period.png",
+      "title": "基期明细",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-09-11T03:05:24.566Z",
+      "sha256": "9feeb3999f6de5cd02c67b948ad80e162fb03edbd3263eb1d95e4873e528910f"
+    },
+    {
+      "file": "se-28-inline-base-period.png",
+      "title": "基期明细",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-09-11T03:03:14.045Z",
+      "sha256": "f0c0403b9b28b5b3f49455088af97e3c6e061b551d056b15203a35d3573d00a8"
+    },
+    {
+      "file": "pro-22-entry-amount-keypad.png",
+      "title": "记账金额键盘",
+      "device": "iPhone 17 Pro",
+      "test": "TimeNavigationUITests/testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave()",
+      "capturedAt": "2026-09-11T02:59:27.184Z",
+      "sha256": "ed0025c1800e8c3e2a955a502b7fce380749c727d270fd5338c5af8b02b5b5fa"
+    },
+    {
+      "file": "pro-21-entry-keyboard-exclusive.png",
+      "title": "备注键盘互斥",
+      "device": "iPhone 17 Pro",
+      "test": "TimeNavigationUITests/testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave()",
+      "capturedAt": "2026-09-11T02:59:25.369Z",
+      "sha256": "88c503acd6fb339494574974e69b9a91eec5279eb045cff5c3b908af3e1673b8"
+    },
+    {
+      "file": "pro-23-edit-cancel-inline.png",
+      "title": "编辑退出确认",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testEditCancelUsesInlineDecisionAndProtectsOtherDraft()",
+      "capturedAt": "2026-09-11T02:51:59.331Z",
+      "sha256": "31177a415f253d0cfc317ff0c13250c2d5365e83c747d2b0af36ba926b12b96d"
+    },
+    {
+      "file": "se-23-edit-cancel-inline.png",
+      "title": "编辑退出确认",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testEditCancelUsesInlineDecisionAndProtectsOtherDraft()",
+      "capturedAt": "2026-09-11T03:00:59.760Z",
+      "sha256": "fcfc15759af671f8d898ea9f3ffffafb479e8380fc4baf11164a06697741a705"
+    },
+    {
+      "file": "pro-30-category-create-sheet.png",
+      "title": "新增分类图标表单",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+      "capturedAt": "2026-09-11T02:42:54.497Z",
+      "sha256": "a12bd9813e5f1a1d2ee12829b35ea6dd073eeba231df29ea6faa12fe26585644"
+    },
+    {
+      "file": "se-30-category-create-sheet.png",
+      "title": "新增分类图标表单",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+      "capturedAt": "2026-09-11T02:55:38.942Z",
+      "sha256": "789206ac158b4f7f2e45130f73a70401b38c3f6fc8068c1f2bd4ceb4411cc0eb"
+    },
+    {
+      "file": "pro-32-category-created-selected.png",
+      "title": "创建后选中新分类",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+      "capturedAt": "2026-09-11T02:42:59.701Z",
+      "sha256": "1c3c6109052a5624445e498e3c1db633e7d7ced4fef1811e4c8b04d5a0dad6ad"
+    },
+    {
+      "file": "se-32-category-created-selected.png",
+      "title": "创建后选中新分类",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+      "capturedAt": "2026-09-11T02:55:44.628Z",
+      "sha256": "13492e397031e89007e5b2fdf9ae01fee13e7f051234a724739db7b041f674ed"
+    },
+    {
+      "file": "pro-01-entertainment-single-row.png",
+      "title": "少量二级分类单行",
+      "device": "iPhone 17 Pro",
+      "test": "InlineCategoryUITests/testRowMajorLayoutSingleRowAndQuickCreate()",
+      "capturedAt": "2026-09-11T03:03:59.768Z",
+      "sha256": "f614be35558fae8d154beced3b85fbaf11ca24377afa5b3fee8143555818f7d2"
+    },
+    {
+      "file": "se-01-entertainment-single-row.png",
+      "title": "少量二级分类单行",
+      "device": "iPhone SE 3",
+      "test": "InlineCategoryUITests/testRowMajorLayoutSingleRowAndQuickCreate()",
+      "capturedAt": "2026-09-11T03:11:35.512Z",
+      "sha256": "39c0e642b2a6b3eda6223ba389999c6ce34ca601c054137c1ce9ec9ed21802b0"
+    },
+    {
+      "file": "pro-03-native-long-press-reordered.png",
+      "title": "长按挪位",
+      "device": "iPhone 17 Pro",
+      "test": "InlineCategoryUITests/testLongPressReorderUndoAndPersistence()",
+      "capturedAt": "2026-09-11T03:03:24.128Z",
+      "sha256": "34ee8202320e49462efa31fca34e0a57b2cc69e12c65236b2a5165232e9fb27b"
+    },
+    {
+      "file": "se-03-native-long-press-reordered.png",
+      "title": "长按挪位",
+      "device": "iPhone SE 3",
+      "test": "InlineCategoryUITests/testLongPressReorderUndoAndPersistence()",
+      "capturedAt": "2026-09-11T03:10:56.479Z",
+      "sha256": "49ad69d9798212b4deb3f8638dd50cf4158df45b51d55cdad7df603afce057fe"
+    },
+    {
+      "file": "pro-05-search-locates-next-page.png",
+      "title": "分类查找定位",
+      "device": "iPhone 17 Pro",
+      "test": "InlineCategoryUITests/testSearchLocatesSecondPage()",
+      "capturedAt": "2026-09-11T03:04:17.842Z",
+      "sha256": "defd029a982e6f4f761c9ca21b91b605beb694877edccda059669b4a8bf99ffa"
+    },
+    {
+      "file": "se-05-search-locates-next-page.png",
+      "title": "分类查找定位",
+      "device": "iPhone SE 3",
+      "test": "InlineCategoryUITests/testSearchLocatesSecondPage()",
+      "capturedAt": "2026-09-11T03:11:55.372Z",
+      "sha256": "cf7fdaf18895f1f7ba021001f48c5b67bd2c87e6c4fdf31af8132bf1b8c046fb"
+    },
+    {
+      "file": "pro-02-rule-management.png",
+      "title": "分类预算管理",
+      "device": "iPhone 17 Pro",
+      "test": "CategoryBudgetUITests/testRuleCRUDDuplicateAndPersistence()",
+      "capturedAt": "2026-09-11T02:41:57.647Z",
+      "sha256": "f6b74fcbd8e18491a8cf31337e1baae67f5447d5a04191f8adc66444c2e77d53"
+    },
+    {
+      "file": "se-02-rule-management.png",
+      "title": "分类预算管理",
+      "device": "iPhone SE 3",
+      "test": "CategoryBudgetUITests/testRuleCRUDDuplicateAndPersistence()",
+      "capturedAt": "2026-09-11T02:54:39.794Z",
+      "sha256": "dd99b512f56412273ab93ad276daa6adc269c01017db972c225530292d2f0036"
+    },
+    {
+      "file": "pro-10-two-overruns-collapsed.png",
+      "title": "超额默认折叠",
+      "device": "iPhone 17 Pro",
+      "test": "CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+      "capturedAt": "2026-09-11T02:40:08.201Z",
+      "sha256": "e772e856286cb15e4a6610bc5b97c5ceadac65c5343c1b4143fddf60422fa392"
+    },
+    {
+      "file": "se-10-two-overruns-collapsed.png",
+      "title": "超额默认折叠",
+      "device": "iPhone SE 3",
+      "test": "CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+      "capturedAt": "2026-09-11T02:52:23.577Z",
+      "sha256": "c1302849c02aab2055e0124e8bd565fff34f6ffeff40098a23461aa379e8ffef"
+    },
+    {
+      "file": "pro-11-expanded-all-rules.png",
+      "title": "展开全部预算规则",
+      "device": "iPhone 17 Pro",
+      "test": "CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+      "capturedAt": "2026-09-11T02:40:10.826Z",
+      "sha256": "4482a1a47e5e24fbd783f44181995d39b817384069ddf7521f3967a9a0513e6f"
+    },
+    {
+      "file": "se-11-expanded-all-rules.png",
+      "title": "展开全部预算规则",
+      "device": "iPhone SE 3",
+      "test": "CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+      "capturedAt": "2026-09-11T02:52:29.825Z",
+      "sha256": "08956b0466f30c09527d4e3dfbd2aae0fa82f93661d4aed1c1f43fe51ebb4d87"
+    },
+    {
+      "file": "pro-12-entry-related-budget-preview.png",
+      "title": "记账预算预览",
+      "device": "iPhone 17 Pro",
+      "test": "CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+      "capturedAt": "2026-09-11T02:40:21.435Z",
+      "sha256": "9844b6993a225e28f3c94213df2bdb17eecdd3b59f53ed4f4adc13171409fb57"
+    },
+    {
+      "file": "se-12-entry-related-budget-preview.png",
+      "title": "记账预算预览",
+      "device": "iPhone SE 3",
+      "test": "CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+      "capturedAt": "2026-09-11T02:52:50.795Z",
+      "sha256": "c4c72cb25a06a16f0ce4961353990d7b4dc0cd3bb7848342520b151e9dbc4842"
+    },
+    {
+      "file": "pro-43-me.png",
+      "title": "我的",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:12.605Z",
+      "sha256": "df1e22acabf596f35672d8610d900e8b07a3f1ac31fcd89ee90b9402ac4053ef"
+    },
+    {
+      "file": "se-43-me.png",
+      "title": "我的",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:07.497Z",
+      "sha256": "bd4f26c1e6175a54fa70b1f2e85e25dc5d2df5e7110b7db805891eac49df7b93"
+    },
+    {
+      "file": "pro-44-accounts.png",
+      "title": "账户列表",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:13.852Z",
+      "sha256": "7ed191eae7d247d41600f2bebac6e18078f55d7f2f6ec70e9777e2678a1f7e5c"
+    },
+    {
+      "file": "se-44-accounts.png",
+      "title": "账户列表",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:08.706Z",
+      "sha256": "4ceea547dca1d7837bf6b9f979ad177f7d84ae9fd0849dce3e10cbb193ff1f4d"
+    },
+    {
+      "file": "pro-45-account-editor.png",
+      "title": "账户表单",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:15.896Z",
+      "sha256": "5ff14cc337e4ea21091e1eafccce073022018819b6b96f9c6847bb2dc0854c9a"
+    },
+    {
+      "file": "se-45-account-editor.png",
+      "title": "账户表单",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:10.731Z",
+      "sha256": "ca5b54664bcd2118191c6c29a61ab898f52a64b43a40568cc01504cf746c3eef"
+    },
+    {
+      "file": "pro-47-category-library.png",
+      "title": "分类管理",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:28.120Z",
+      "sha256": "17bcd64cb072e5828278e86bc18fc11be3b525563d6f7201fbe0e831627c71b3"
+    },
+    {
+      "file": "se-47-category-library.png",
+      "title": "分类管理",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:22.561Z",
+      "sha256": "d908ff53dfbf66041eba72794dfe615e4e0cc19a3a2b873b22f1b05679c4e4a2"
+    },
+    {
+      "file": "pro-48-ledgers.png",
+      "title": "账本管理",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:29.978Z",
+      "sha256": "17766e90e2ddda58bd64c46b73b747affbe1c35a2a5d6aaef20f3b077870cad7"
+    },
+    {
+      "file": "se-48-ledgers.png",
+      "title": "账本管理",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:24.362Z",
+      "sha256": "2e82a5d2af6fb2c315b5ab04913f1dcce9bf1ecb3e8cb8a135d44e689225ecd6"
+    },
+    {
+      "file": "pro-49-trash.png",
+      "title": "最近删除",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:31.823Z",
+      "sha256": "26267c0743b86b5009a7ef0a020d88014e900e62fca52b986d05c0fe30550016"
+    },
+    {
+      "file": "se-49-trash.png",
+      "title": "最近删除",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:26.204Z",
+      "sha256": "0cb8187eb447105898067a0cad039296734ed5e1d9433da411f95758b8dd0d5c"
+    },
+    {
+      "file": "pro-50-data.png",
+      "title": "备份与导出",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:33.676Z",
+      "sha256": "682d318bad367ccc896b6d4c0549ea5a174fce1182a77c7b90b591acc0e3b611"
+    },
+    {
+      "file": "se-50-data.png",
+      "title": "备份与导出",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:28.023Z",
+      "sha256": "8e085f7830473fe051fbbbce2aba9a398ae1322300d32a5e5e005e8c5df6c800"
+    },
+    {
+      "file": "pro-54-transaction-detail.png",
+      "title": "单笔详情",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:44.623Z",
+      "sha256": "d77298ff7b5f8e020f29c8d78fb3988c488dbb861c3aa1400154b72412c89218"
+    },
+    {
+      "file": "se-54-transaction-detail.png",
+      "title": "单笔详情",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:57:38.556Z",
+      "sha256": "a1823293f9d51b4b101d69c623563cee9b4630b6a41980bb8e1ee6e8d57b423f"
+    },
+    {
+      "file": "pro-15-large-refund-prefill.png",
+      "title": "退款与剩余额度",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+      "capturedAt": "2026-09-11T02:51:23.154Z",
+      "sha256": "adb77d67bd254ba16cff810f67dc31d054f17bfbedcdb15b3994a5bc5964c29b"
+    },
+    {
+      "file": "se-15-large-refund-prefill.png",
+      "title": "退款与剩余额度",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+      "capturedAt": "2026-09-11T03:00:19.788Z",
+      "sha256": "4a4321207e69e272570f593bff4c48205c146afbc46e01ec4538fdada11f4074"
+    },
+    {
+      "file": "pro-41-transfer.png",
+      "title": "转账表单",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:44:06.330Z",
+      "sha256": "018546a5582d239f9d983945be3dbeee3f3b9dc1176aeedc80ba5fe2e9a890c2"
+    },
+    {
+      "file": "se-41-transfer.png",
+      "title": "转账表单",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-09-11T02:56:59.231Z",
+      "sha256": "64e053746c69331fe2cf1a7aa0b5c29473bda3cb5986207ac96396553bde453c"
+    },
+    {
+      "file": "pro-62-backup-review.png",
+      "title": "恢复前确认",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testBackupReviewCancelAndRecoverableRestore()",
+      "capturedAt": "2026-09-11T03:03:04.276Z",
+      "sha256": "18b3cc8a8fac322c6cc90f8e71bd1bf93933f761c1ade7f64b9716345b02af13"
+    },
+    {
+      "file": "se-62-backup-review.png",
+      "title": "恢复前确认",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testBackupReviewCancelAndRecoverableRestore()",
+      "capturedAt": "2026-09-11T02:55:18.264Z",
+      "sha256": "e7b62335ebe77c9cf4a31ff992376db820d67cfa47caef1368ef56ffddc56769"
+    },
+    {
+      "file": "pro-63-backup-recovery-available.png",
+      "title": "替换前恢复点",
+      "device": "iPhone 17 Pro",
+      "test": "DesignQualityUITests/testBackupReviewCancelAndRecoverableRestore()",
+      "capturedAt": "2026-09-11T03:03:14.610Z",
+      "sha256": "3fbbd041bbbdd11fcae96d2cec52812cec5980e4426ab01bfa99e85ce1d2ae1e"
+    },
+    {
+      "file": "se-63-backup-recovery-available.png",
+      "title": "替换前恢复点",
+      "device": "iPhone SE 3",
+      "test": "DesignQualityUITests/testBackupReviewCancelAndRecoverableRestore()",
+      "capturedAt": "2026-09-11T02:55:28.970Z",
+      "sha256": "3fadf83d6cc983640d6afbbf72538cdf73f5c0fe9522188660db3b70acd48677"
+    },
+    {
+      "file": "pro-01-theme-settings.png",
+      "title": "主题设置",
+      "device": "iPhone 17 Pro",
+      "test": "ThemeUITests/testThemeAcrossPagesEntryAndRelaunch()",
+      "capturedAt": "2026-09-11T03:07:09.961Z",
+      "sha256": "0cdebfdef16a9b30f0aa0e3cb58be682deac8e23558f5ecd9e978d8286d7dc19"
+    },
+    {
+      "file": "se-01-theme-settings.png",
+      "title": "主题设置",
+      "device": "iPhone SE 3",
+      "test": "ThemeUITests/testThemeAcrossPagesEntryAndRelaunch()",
+      "capturedAt": "2026-09-11T03:09:20.004Z",
+      "sha256": "61f6c1263797808c4e498b7d73d1795a561f07c54d9dcedfef0abd9de7d2c322"
+    },
+    {
+      "file": "pro-11-custom-applied.png",
+      "title": "自定义主题",
+      "device": "iPhone 17 Pro",
+      "test": "ThemeUITests/testCustomEditorAppliesOnlyWhenFinished()",
+      "capturedAt": "2026-09-11T03:05:53.894Z",
+      "sha256": "60a1e8b33b39e5c0140a7420d6ef1b3bea9cc4446fb75a3411451ba4da07c6b8"
+    },
+    {
+      "file": "se-11-custom-applied.png",
+      "title": "自定义主题",
+      "device": "iPhone SE 3",
+      "test": "ThemeUITests/testCustomEditorAppliesOnlyWhenFinished()",
+      "capturedAt": "2026-09-11T03:08:05.859Z",
+      "sha256": "fcffa070a2fecab65adcfd36a928c7513bedf8f7e2da52f01a563172737904e8"
+    },
+    {
+      "file": "pro-20-dark-settings.png",
+      "title": "深色主题",
+      "device": "iPhone 17 Pro",
+      "test": "ThemeUITests/testDarkThemeAndLargestText()",
+      "capturedAt": "2026-09-11T03:06:13.292Z",
+      "sha256": "3e99f95f92ac08d47157234193ff9724dacbce77f04834750d91c5d52c4f5fa1"
+    },
+    {
+      "file": "se-20-dark-settings.png",
+      "title": "深色主题",
+      "device": "iPhone SE 3",
+      "test": "ThemeUITests/testDarkThemeAndLargestText()",
+      "capturedAt": "2026-09-11T03:08:25.497Z",
+      "sha256": "dac726f61d85b7ebc756ca57751e8673cae5a77075be2dc356e29b120d7c5e33"
+    },
+    {
+      "file": "pro-24-large-settings.png",
+      "title": "最大字号设置",
+      "device": "iPhone 17 Pro",
+      "test": "ThemeUITests/testDarkThemeAndLargestText()",
+      "capturedAt": "2026-09-11T03:06:37.430Z",
+      "sha256": "4c913d603aa232e5b162cc76313a93d520e938a19dbaf3a91e254cd41653552a"
+    },
+    {
+      "file": "se-24-large-settings.png",
+      "title": "最大字号设置",
+      "device": "iPhone SE 3",
+      "test": "ThemeUITests/testDarkThemeAndLargestText()",
+      "capturedAt": "2026-09-11T03:08:48.502Z",
+      "sha256": "f4688dad625865b5f606dcb14848e991b15c494c1ad4822548800d39a918ccc9"
+    },
+    {
+      "file": "pro-25-large-feed.png",
+      "title": "最大字号流水",
+      "device": "iPhone 17 Pro",
+      "test": "ThemeUITests/testDarkThemeAndLargestText()",
+      "capturedAt": "2026-09-11T03:06:39.342Z",
+      "sha256": "0db11ac9495c0ccc65450407832d99fc6bd13e8c8ffe4e9e913ceb7344972536"
+    },
+    {
+      "file": "se-25-large-feed.png",
+      "title": "最大字号流水",
+      "device": "iPhone SE 3",
+      "test": "ThemeUITests/testDarkThemeAndLargestText()",
+      "capturedAt": "2026-09-11T03:08:50.320Z",
+      "sha256": "604ad0cdb0c9824b41dfb34f9c87925ac783d1c137da2ab7b4300f7c4511eedb"
+    },
+    {
+      "file": "pro-80-first-launch.png",
+      "title": "首次进入账本",
+      "device": "iPhone 17 Pro",
+      "test": "LifecycleUITests/testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose()",
+      "capturedAt": "2026-09-11T03:04:48.510Z",
+      "sha256": "fd3d00f1656ced0546e749ffc085b6d5c7f693ece2801f8e21d6cf3f00b927f6"
+    },
+    {
+      "file": "se-80-first-launch.png",
+      "title": "首次进入账本",
+      "device": "iPhone SE 3",
+      "test": "LifecycleUITests/testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose()",
+      "capturedAt": "2026-09-11T02:59:21.706Z",
+      "sha256": "26a9ae6d2cbdb25bc760329388982e148556d16e08868c8add2a6e80eaadfa02"
+    },
+    {
+      "file": "pro-81-unreadable-recovery.png",
+      "title": "损坏数据恢复入口",
+      "device": "iPhone 17 Pro",
+      "test": "LifecycleUITests/testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger()",
+      "capturedAt": "2026-09-11T03:04:58.218Z",
+      "sha256": "404c326e66ab510f3fecda45c7c48c530721b6889b0c7144291efe1d81d344b4"
+    },
+    {
+      "file": "se-81-unreadable-recovery.png",
+      "title": "损坏数据恢复入口",
+      "device": "iPhone SE 3",
+      "test": "LifecycleUITests/testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger()",
+      "capturedAt": "2026-09-11T02:59:31.000Z",
+      "sha256": "7a53ecdb3d20de0e5c1b65397d880f80613f8209a02545f2755778afc5c3cd0c"
+    },
+    {
+      "file": "pro-82-recovery-data.png",
+      "title": "恢复时禁用导出",
+      "device": "iPhone 17 Pro",
+      "test": "LifecycleUITests/testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger()",
+      "capturedAt": "2026-09-11T03:05:01.095Z",
+      "sha256": "f5dc17abd1569cc53055b7b86278aef3ba18f4daf86cc268da3eaa445a8edd0d"
+    },
+    {
+      "file": "se-82-recovery-data.png",
+      "title": "恢复时禁用导出",
+      "device": "iPhone SE 3",
+      "test": "LifecycleUITests/testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger()",
+      "capturedAt": "2026-09-11T02:59:33.852Z",
+      "sha256": "2740ccee5b2aef5be222904fa6b414702b29ef78a49388c1afc1b7c895e7aeba"
+    },
+    {
+      "file": "pro-29-dark-large-text-exit.png",
+      "title": "大字号退出确认",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+      "capturedAt": "2026-09-11T03:11:43.636Z",
+      "sha256": "fa5379266a71d0e14c043d66e8abb21250f9931f924c017e162c6703fa90e2e0"
+    },
+    {
+      "file": "se-29-dark-large-text-exit.png",
+      "title": "大字号退出确认",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+      "capturedAt": "2026-09-11T03:12:59.339Z",
+      "sha256": "9faa9d07d38bb0c57bad377e20e29b501e7a94d22d49ea6645662f231fa1b8eb"
+    },
+    {
+      "file": "pro-17-large-text-dark-drilldown.png",
+      "title": "大字号同页下钻",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+      "capturedAt": "2026-09-11T03:11:18.339Z",
+      "sha256": "6739eae36b9bf890063385b00621451bd6fda353e11cbff42558e6202ed930de"
+    },
+    {
+      "file": "se-17-large-text-dark-drilldown.png",
+      "title": "大字号同页下钻",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+      "capturedAt": "2026-09-11T03:12:29.785Z",
+      "sha256": "b63151d2f6dbcef1c4beed9126387acbc8c4889813865c4cc9742c636279037d"
+    },
+    {
+      "file": "pro-83-refund-delete-undo.png",
+      "title": "退款删除与撤销",
+      "device": "iPhone 17 Pro",
+      "test": "StatsStressUITests/testRefundDeletionCancelAndUndoRestoreAmount()",
+      "capturedAt": "2026-09-11T02:56:26.420Z",
+      "sha256": "29efd6e3665f362ad5ebb914a922d9f8a548d4bbeca00730c5fc53002fa652b4"
+    },
+    {
+      "file": "se-83-refund-delete-undo.png",
+      "title": "退款删除与撤销",
+      "device": "iPhone SE 3",
+      "test": "StatsStressUITests/testRefundDeletionCancelAndUndoRestoreAmount()",
+      "capturedAt": "2026-09-11T03:06:39.573Z",
+      "sha256": "ad856972f77329c355fa202cd2ec0aedc628d3aa22211ff27f171d1e098a629e"
+    },
+    {
+      "file": "pro-84-theme-sheet-exit.png",
+      "title": "弹层主按钮主题一致",
+      "device": "iPhone 17 Pro",
+      "test": "ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+      "capturedAt": "2026-09-11T03:06:58.552Z",
+      "sha256": "2039c30feac736bbd8f994c270ab7375b00dae15772a3c34160f24bda0b31f7d"
+    },
+    {
+      "file": "se-84-theme-sheet-exit.png",
+      "title": "弹层主按钮主题一致",
+      "device": "iPhone SE 3",
+      "test": "ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+      "capturedAt": "2026-09-11T03:09:09.029Z",
+      "sha256": "f1b2c2bdd4e219b5525c19b43b33f75b09205b91997f82c5b4fbe3d214856582"
+    },
+    {
+      "file": "pro-85-empty-ledger-confirmation.png",
+      "title": "空账本删除确认",
+      "device": "iPhone 17 Pro",
+      "test": "LifecycleUITests/testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger()",
+      "capturedAt": "2026-09-11T03:04:39.397Z",
+      "sha256": "8fc6da7d369f2578984c8867203d6a3e798f39ad5919a15d358ab9726a871f78"
+    },
+    {
+      "file": "se-85-empty-ledger-confirmation.png",
+      "title": "空账本删除确认",
+      "device": "iPhone SE 3",
+      "test": "LifecycleUITests/testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger()",
+      "capturedAt": "2026-09-11T02:59:12.613Z",
+      "sha256": "296e8d689463e1a9f680576ce6b45b5613ec1d781312f342c343faba42c9200f"
+    }
+  ]
+}

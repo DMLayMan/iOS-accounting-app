@@ -21,3 +21,13 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Local iOS build artifacts
+.build-ios/
+.build-device/
+
+# Reproducible builds and local test evidence (portable snapshots live in docs/assets)
+.build-*/
+evidence/
+*.xcresult/
+ios-app/Yuji.xcodeproj/

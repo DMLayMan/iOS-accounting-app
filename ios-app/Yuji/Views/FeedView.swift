@@ -1,118 +1,116 @@
 import SwiftUI
 import YujiCore
 
-/// P02 流水：按日分组、日合计、筛选、进入详情。
+/// 时间固定在流水上方，周期与其他筛选取交集，返回单笔时保留条件。
 struct FeedView: View {
-    @EnvironmentObject var state: AppState
+    @EnvironmentObject private var state: AppState
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var showSearch = false
+    private var period: BrowsingPeriod { state.browsingPeriod }
     @State private var filter: TransactionFilter?
+    @State private var listRevision = UUID()
 
+    private var query: TransactionFilter {
+        var value = filter ?? TransactionFilter()
+        value.range = period.range(today: state.today)
+        return value
+    }
     var body: some View {
         NavigationStack {
             Group {
                 if let ledger = state.activeLedger {
-                    content(ledger: ledger)
-                } else {
-                    EmptyLedgerView()
-                }
+                    let records = state.store.transactions(in: ledger.id, matching: query)
+                    recordList(records)
+                        .safeAreaInset(edge: .top, spacing: 0) { timeControls(records) }
+                } else { EmptyLedgerView() }
             }
-            .navigationTitle("流水")
+            .navigationTitle("流水").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button { showSearch = true } label: { Image(systemName: "magnifyingglass") }
+                    Button { showSearch = true } label: { Image(systemName: "magnifyingglass").frame(minWidth: 44, minHeight: 44) }
+                        .accessibilityLabel("搜索与筛选").accessibilityIdentifier("feed.search")
                 }
             }
             .sheet(isPresented: $showSearch) {
-                SearchFilterView(ledgerID: state.activeLedger?.id ?? EntityID("x"), applied: { f in filter = f })
+                SearchFilterView(ledgerID: state.activeLedgerID ?? "", initial: filter) { value in
+                    var cleaned = value
+                    cleaned.range = nil
+                    if cleaned.query?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true { cleaned.query = nil }
+                    filter = cleaned == TransactionFilter() ? nil : cleaned
+                }
             }
+            .onChange(of: period) { _ in listRevision = UUID() }
+            .onChange(of: filter) { _ in listRevision = UUID() }
+            .onChange(of: state.activeLedger?.id) { _ in filter = nil; listRevision = UUID() }
         }
     }
-
-    @ViewBuilder
-    private func content(ledger: Ledger) -> some View {
-        let txns = filtered(ledgerID: ledger.id)
-        if txns.isEmpty {
-            QuietEmptyView(message: filter != nil ? "没有符合筛选的记录" : "还没有记录")
+    private func timeControls(_ records: [YujiCore.Transaction]) -> some View {
+        let totals = TransactionTotals(records)
+        return VStack(alignment: .leading, spacing: 0) {
+            PeriodNavigation(prefix: "feed")
+            VStack(alignment: .leading, spacing: 6) {
+                if case .custom(let range) = period, !typeSize.isAccessibilitySize {
+                    Text(statsRangeText(range)).font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("feed.customRange")
+                }
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    if !typeSize.isAccessibilitySize {
+                        (Text("净支出 \(statsMoney(totals.netExpense))").foregroundColor(Design.netExpense(totals.netExpense))
+                         + Text(" · ").foregroundColor(.secondary)
+                         + Text("收入 \(statsMoney(totals.income))").foregroundColor(Design.income))
+                            .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                            .accessibilityIdentifier("feed.totals")
+                        Spacer(minLength: 0)
+                    }
+                    Text("\(records.count) 笔").font(.caption).foregroundStyle(.secondary)
+                        .fixedSize().accessibilityIdentifier("feed.count")
+                }
+                if let filter {
+                    HStack {
+                        Text(filterDescription(filter)).font(.caption).lineLimit(2)
+                        Spacer()
+                        Button("清除筛选") { self.filter = nil }.font(.caption).frame(minHeight: 44).accessibilityIdentifier("feed.clearFilter")
+                    }
+                }
+            }.padding(.horizontal, 20).padding(.top, 6).padding(.bottom, 10)
+        }.background(Color(.systemBackground))
+            .overlay(alignment: .bottom) { Divider() }
+    }
+    @ViewBuilder private func recordList(_ records: [YujiCore.Transaction]) -> some View {
+        if records.isEmpty {
+            VStack(spacing: 12) {
+                Text("这段时间没有符合条件的记录").font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                    .accessibilityIdentifier("feed.empty")
+                Button("查看全部流水") { filter = nil; state.browsingPeriod = .all }.frame(minHeight: 44).accessibilityIdentifier("feed.resetAll")
+            }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(20)
         } else {
-            let groups = groupedByDay(txns)
+            let groups = Dictionary(grouping: records, by: \.date)
+            let days = groups.keys.sorted(by: >)
             List {
-                ForEach(groups.indices, id: \.self) { i in
-                    let day = groups[i].0
-                    let items = groups[i].1
+                ForEach(days, id: \.self) { day in
+                    let items = groups[day] ?? []
                     Section {
-                        ForEach(items) { t in
-                            NavigationLink {
-                                TransactionDetailView(transactionID: t.id)
-                            } label: {
-                                TransactionRow(t: t)
-                            }
+                        ForEach(items) { transaction in
+                            NavigationLink { TransactionDetailView(transactionID: transaction.id) } label: { TransactionRow(t: transaction) }
+                                .accessibilityIdentifier("feed.transaction.\(transaction.id.raw)")
                         }
                     } header: {
                         HStack {
-                            Text(dayText(day)).font(.system(size: Design.captionSize))
+                            Text(statsDayText(day)).font(.caption)
                             Spacer()
-                            Text("净 ¥\(Money(dayNet(items)).yuanDescription)")
-                                .font(.system(size: Design.captionSmall))
-                                .foregroundColor(.secondary)
-                        }
+                            if !typeSize.isAccessibilitySize {
+                                Text("结余 \(statsMoney(TransactionTotals(items).surplus))").font(.caption)
+                            }
+                        }.textCase(nil).padding(.vertical, 5)
                     }
                 }
-            }
-            .listStyle(.insetGrouped)
+            }.listStyle(.plain).id(listRevision).accessibilityIdentifier("feed.list")
         }
     }
-
-    private func filtered(ledgerID: EntityID) -> [Transaction] {
-        var txns = state.store.activeTransactions(in: ledgerID)
-        if let f = filter {
-            txns = txns.filter { t in
-                if let kind = f.kind, t.kind != kind { return false }
-                if let acc = f.accountID, t.accountID != acc, t.transferToAccountID != acc { return false }
-                if let cat = f.categoryID, t.categoryID != cat { return false }
-                if !f.tagIDs.isEmpty {
-                    let set = Set(t.tagIDs)
-                    if f.tagMatchAll ? !Set(f.tagIDs).isSubset(of: set) : set.intersection(f.tagIDs).isEmpty { return false }
-                }
-                if let r = f.range, !r.contains(t.date) { return false }
-                if let min = f.minCents, t.amountCents < min { return false }
-                if let max = f.maxCents, t.amountCents > max { return false }
-                if let q = f.query, !q.isEmpty {
-                    let inNote = t.note.localizedCaseInsensitiveContains(q)
-                    let inCat = (t.categoryID.flatMap { state.store.category($0)?.name.contains(q) }) ?? false
-                    if !inNote && !inCat { return false }
-                }
-                return true
-            }
-        }
-        return txns.sorted { ($0.date, $0.createdAt) > ($1.date, $1.createdAt) }
+    private func filterDescription(_ filter: TransactionFilter) -> String {
+        var parts: [String] = []
+        if let kind = filter.kind { parts.append(kind.displayName) }
+        if let category = filter.categoryID { parts.append(state.store.categoryPath(category)) }
+        if let query = filter.query, !query.isEmpty { parts.append(query) }
+        return parts.joined(separator: " · ")
     }
-
-    private func groupedByDay(_ txns: [Transaction]) -> [(Day, [Transaction])] {
-        var dict: [Day: [Transaction]] = [:]
-        for t in txns { dict[t.date, default: []].append(t) }
-        return dict.sorted { $0.key > $1.key }.map { ($0.key, $0.value) }
-    }
-    private func dayText(_ d: Day) -> String { String(format: "%02d-%02d", d.month, d.day) }
-    private func dayNet(_ items: [Transaction]) -> Int64 {
-        items.reduce(0) { acc, t in
-            switch t.kind {
-            case .expense: return acc - t.amountCents
-            case .income, .refund: return acc + t.amountCents
-            case .transfer: return acc
-            }
-        }
-    }
-}
-
-/// 筛选条件定义（搜索/批量/统计下钻共用同一口径，PRD §10）。
-struct TransactionFilter: Equatable {
-    var query: String?
-    var kind: TransactionKind?
-    var accountID: EntityID?
-    var categoryID: EntityID?
-    var tagIDs: [EntityID] = []
-    var tagMatchAll: Bool = false
-    var range: ClosedRange<Day>?
-    var minCents: Int64?
-    var maxCents: Int64?
 }

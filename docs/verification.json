@@ -1,0 +1,140 @@
+{
+  "verifiedAt": "2026-09-11T03:18:41.657Z",
+  "baseCommit": "f1bca776c03ff5208b1800a2307c05ab2a7738e8",
+  "scope": "Cumulative uncommitted implementation plus 2026-09-11 regression fixes; source hashes identify reviewed source, not a single test batch.",
+  "environment": {
+    "macOS": "26.5.2",
+    "xcode": "26.6 (17F113)",
+    "swift": "6.3.3",
+    "xcodegen": "2.45.3",
+    "simulatorOS": "26.5 (23F77)"
+  },
+  "core": {
+    "total": 116,
+    "passed": 116,
+    "domain": 99,
+    "appState": 17
+  },
+  "nativeUnits": {
+    "perDevice": 18,
+    "passed": 18
+  },
+  "ui": {
+    "expectedPerDevice": 49,
+    "proPassed": 49,
+    "sePassed": 49,
+    "mode": "Full suite followed by targeted retests; latest result per case",
+    "proCases": "verification/pro-cases.json",
+    "seCases": "verification/se-cases.json"
+  },
+  "runs": [
+    {
+      "name": "pro-final",
+      "result": "Passed",
+      "total": 65,
+      "passed": 65,
+      "failed": 0,
+      "skipped": 0,
+      "summary": "verification/pro-final-summary.json",
+      "localLog": "evidence/full-regression-2026-09-11/pro-final/native.log",
+      "localLogSha256": "1fbd927d40ba5697464a7e69d57eca5b1ea1a2bd0de795d0d2e48cbf8fa1f29e"
+    },
+    {
+      "name": "pro-hardened",
+      "result": "Passed",
+      "total": 31,
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "summary": "verification/pro-hardened-summary.json",
+      "localLog": "evidence/full-regression-2026-09-11/pro-hardened/native.log",
+      "localLogSha256": "d081ff20faf1ca94697420144627aa7ddfb67d9508747f4a5b56201ac06d2513"
+    },
+    {
+      "name": "pro-acceptance",
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "summary": "verification/pro-acceptance-summary.json",
+      "localLog": "evidence/full-regression-2026-09-11/pro-acceptance/native.log",
+      "localLogSha256": "b6138731acd8744de2fadfc7bc245efbb73d95bfd5c8837b917864e35f600e9a"
+    },
+    {
+      "name": "se-final",
+      "result": "Failed",
+      "total": 64,
+      "passed": 58,
+      "failed": 6,
+      "skipped": 0,
+      "summary": "verification/se-final-summary.json",
+      "localLog": "evidence/full-regression-2026-09-11/se-final/native.log",
+      "localLogSha256": "94e3569b5be5bc05f07e283bf486a9c809610e9213002d2b4a295501f597e817"
+    },
+    {
+      "name": "se-retest",
+      "result": "Failed",
+      "total": 47,
+      "passed": 46,
+      "failed": 1,
+      "skipped": 0,
+      "summary": "verification/se-retest-summary.json",
+      "localLog": "evidence/full-regression-2026-09-11/se-retest/native.log",
+      "localLogSha256": "02c2b56b0833ab548b244da27648c2849f52bde885992a299f0b85ea32fa378a"
+    },
+    {
+      "name": "se-acceptance",
+      "result": "Passed",
+      "total": 23,
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0,
+      "summary": "verification/se-acceptance-summary.json",
+      "localLog": "evidence/full-regression-2026-09-11/se-acceptance/native.log",
+      "localLogSha256": "d90112704c99d01eaa6b3ea0757d23caf6bd76f4abf2b00167712d09b6b71fd2"
+    }
+  ],
+  "sourceHashManifest": "verification-source-files.sha256",
+  "sourceHashManifestSha256": "9354c7d9622096eb419b524ea7d9ad5e76375bdc8762806cef611af24b0180ec",
+  "localArtifacts": [
+    {
+      "file": "evidence/full-regression-2026-09-11/core-final.log",
+      "sha256": "0d0966c8a4406fdf19033a74521d01571a59bef348ded2adace4ba1c77fa4887"
+    },
+    {
+      "file": "evidence/full-regression-2026-09-11/acceptance-build/build.log",
+      "sha256": "c57d041cbb934d17e5e2b9f657683322e79143ca2f5c69a38a5b3315fa7c99b8"
+    },
+    {
+      "file": "evidence/full-regression-2026-09-11/hardened-release/release.log",
+      "sha256": "979193488d947a657b3d7b503762fcd371a26016ac340d961e74fd0a608b082b"
+    },
+    {
+      "file": ".build-acceptance/Build/Products/Debug-iphonesimulator/Yuji.app/Yuji",
+      "sha256": "65e903dba9c8bad6c29fdbb7b2590210f5c5a4e378d7c2bab43a703102e37ed6"
+    },
+    {
+      "file": ".build-acceptance/Build/Products/Debug-iphonesimulator/Yuji.app/Yuji.debug.dylib",
+      "sha256": "c9dbe15dbcbe10d107d8bff3a7f5bb7acf16058317a181f12b2ca61fd1a07626"
+    },
+    {
+      "file": ".build-hardened-release/Build/Products/Release-iphoneos/Yuji.app/Yuji",
+      "sha256": "79d8349ecc6ed6f9898162e3bce8b0a0e75b3e07b0e3cbd6b0cd3a3bc1872702"
+    }
+  ],
+  "isolation": "verification/invalid-session.json",
+  "screenshots": {
+    "count": 92,
+    "manifest": "assets/current/manifest.json"
+  },
+  "ci": {
+    "status": "pending_pull_request",
+    "workflow": ".github/workflows/ci.yml"
+  },
+  "notes": [
+    "pro-final xcresult passed 65/65; shell wrapper failed after native completion because its script was edited during execution. Script syntax and subsequent run exits were verified.",
+    "Final acceptance build differs from hardened release only in a UI test scrolling helper and source whitespace.",
+    "Minimum iOS 16 is a target declaration. Physical device, other iOS versions, VoiceOver listening, power use and iCloud are not verified."
+  ]
+}

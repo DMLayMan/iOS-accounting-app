@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>余记 · 时间切换交互研究</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main class="stage">
+  <aside class="intro">
+    <h1>时间换了，<br>思路不用换。</h1>
+    <p class="lead">统计与流水，共用一个时间入口。<br>近的直接翻，远的直接选。</p>
+    <ol class="tasks">
+      <li>点左右箭头，连续看相邻月份。</li>
+      <li>点日期，展开年份和月份，试试 2024 年 2 月。</li>
+      <li>切到流水，刚才的时间仍然保留。</li>
+      <li>试试按年、跨年范围、全部时间。</li>
+    </ol>
+    <div class="preview-controls" aria-label="演示外观"><button id="compact" aria-pressed="false">小屏</button><button id="dark" aria-pressed="false">深色</button><button id="large" aria-pressed="false">大字号</button><button id="reset">重置演示</button></div>
+    <p class="note">交互原型，尚未替换 iOS 页面。读取既有 500 条隔离样例中的当前账本记录；日期固定为 2026.09.10。不会修改你的账本。</p>
+    <a class="report-link" href="../../docs/time-navigation-research-2026-09-10.md">阅读调研与设计决策 <span aria-hidden="true">↗</span></a>
+    <details class="research"><summary>为什么这样设计</summary><p>把高频翻月留在页面；低频年月定位按需展开。月份选完即关闭，不再滚轮后点确认。自定义范围需要两个日期，保留一次“应用”。</p><p>本月、本年均截至今天。自定和全部时间不硬套月度预算或同环比。</p><p>参考 <a href="https://developer.apple.com/design/human-interface-guidelines/pickers">Apple 选择器规范</a>、<a href="https://help.copilot.money/en/articles/9682232-cash-flow-tab-overview">Copilot 的期间口径</a>、<a href="https://help.spendee.com/article/169-all-wallets-overview">Spendee 的统一时期入口</a>。</p></details>
+  </aside>
+  <section class="device" aria-label="余记时间切换交互演示">
+    <header class="app-header"><div><h2 id="pageTitle">统计</h2><span>日常账本 · 演示</span></div><span class="brand-mark" aria-hidden="true">余</span></header>
+    <div class="workspace" id="workspace">
+      <div class="timebar" id="timebar"></div>
+      <section class="period-panel" id="periodPanel" aria-label="选择时间" hidden></section>
+      <div class="context" id="context"></div>
+      <div class="content" id="content"><p role="status">正在读取演示记录…</p></div>
+    </div>
+    <nav class="tabs" aria-label="页面切换"><button data-page="stats" aria-pressed="true"><svg><use href="#chart"/></svg>统计</button><button data-page="feed" aria-pressed="false"><svg><use href="#list"/></svg>流水</button></nav>
+    <div id="announcement" class="sr-only" aria-live="polite"></div>
+  </section>
+</main>
+<svg class="symbols" aria-hidden="true"><defs>
+<symbol id="left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+<symbol id="right" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></symbol>
+<symbol id="down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M4 20V12h4v8ZM10 20V4h4v16ZM16 20V8h4v12Z"/></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M8 5h13M8 12h13M8 19h13M3 5h1M3 12h1M3 19h1"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+</defs></svg>
+<script type="module" src="app.mjs"></script>
+</body></html>

@@ -1,0 +1,253 @@
+{
+  "expected": 49,
+  "passed": 49,
+  "missing": [],
+  "failed": [],
+  "cases": {
+    "BudgetEntryUITests.testCenterActionAndLastRecordStayReachable": {
+      "status": "passed",
+      "seconds": 22.361,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "BudgetEntryUITests.testCreateBudgetsDraftPreviewSaveAndAnnualBalance": {
+      "status": "passed",
+      "seconds": 46.019,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "BudgetEntryUITests.testDarkBudgetAndEntry": {
+      "status": "passed",
+      "seconds": 27.801,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "BudgetEntryUITests.testExistingBudgetInvalidInputClearAndLedgerIsolation": {
+      "status": "passed",
+      "seconds": 46.539,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "BudgetEntryUITests.testLargestTextBudgetEditorAndFloatingAction": {
+      "status": "passed",
+      "seconds": 40.701,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "CategoryBudgetUITests.testDarkCategoryBudgetAndEditor": {
+      "status": "passed",
+      "seconds": 41.113,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "CategoryBudgetUITests.testLargestTextCategoryBudgetAndEditor": {
+      "status": "passed",
+      "seconds": 53.727,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "CategoryBudgetUITests.testOverrunsFoldAndEntryPreview": {
+      "status": "passed",
+      "seconds": 58.526,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "CategoryBudgetUITests.testRuleCRUDDuplicateAndPersistence": {
+      "status": "passed",
+      "seconds": 111.469,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "DesignQualityUITests.testBackupReviewCancelAndRecoverableRestore": {
+      "status": "passed",
+      "seconds": 24.448,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "DesignQualityUITests.testCategoryIconSheetCreateCancelAndPersistence": {
+      "status": "passed",
+      "seconds": 29.259,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "DesignQualityUITests.testDarkCategorySheetAndEverySymbolAvailable": {
+      "status": "passed",
+      "seconds": 18.628,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "DesignQualityUITests.testEntryPickersSearchAndChangedCategoryCancel": {
+      "status": "passed",
+      "seconds": 28.338,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "DesignQualityUITests.testEverySupportPageTourAndAccountValidation": {
+      "status": "passed",
+      "seconds": 53.388,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "DesignQualityUITests.testLargeTypeCategoryAndSupportPages": {
+      "status": "passed",
+      "seconds": 22.843,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "ICostTimeUITests.testBothTabsShareHeaderGeometryAndModeTransitions": {
+      "status": "passed",
+      "seconds": 26.384,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "ICostTimeUITests.testDarkAndLargestTypeKeepControlsReachable": {
+      "status": "passed",
+      "seconds": 27.133,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "ICostTimeUITests.testRangeCancelAllEmptyAndFutureDoNotChangeMeaning": {
+      "status": "passed",
+      "seconds": 33.919,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "ICostTimeUITests.testVisiblePreviousNextAndSharedMonthYear": {
+      "status": "passed",
+      "seconds": 26.831,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "InlineCategoryUITests.testLongPressReorderUndoAndPersistence": {
+      "status": "passed",
+      "seconds": 19.035,
+      "log": "evidence/full-regression-2026-09-11/se-acceptance/native.log"
+    },
+    "InlineCategoryUITests.testParentReorderAndCrossPageDrag": {
+      "status": "passed",
+      "seconds": 21.627,
+      "log": "evidence/full-regression-2026-09-11/se-acceptance/native.log"
+    },
+    "InlineCategoryUITests.testRowMajorLayoutSingleRowAndQuickCreate": {
+      "status": "passed",
+      "seconds": 16.54,
+      "log": "evidence/full-regression-2026-09-11/se-acceptance/native.log"
+    },
+    "InlineCategoryUITests.testSearchLocatesSecondPage": {
+      "status": "passed",
+      "seconds": 10.567,
+      "log": "evidence/full-regression-2026-09-11/se-acceptance/native.log"
+    },
+    "LedgerFeedUITests.testCumulativeOverviewCreateSwitchAndRelaunch": {
+      "status": "passed",
+      "seconds": 35.097,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "LedgerFeedUITests.testDarkBookAndTimePicker": {
+      "status": "passed",
+      "seconds": 14.418,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "LedgerFeedUITests.testLargestTextHasReachableBookAndDateActions": {
+      "status": "passed",
+      "seconds": 19.072,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "LedgerFeedUITests.testMonthJumpRangeAndSearchKeepContext": {
+      "status": "passed",
+      "seconds": 34.197,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "LedgerFeedUITests.testMonthNavigationEmptyRecoveryAndSwitcherCreation": {
+      "status": "passed",
+      "seconds": 49.123,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "LifecycleUITests.testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger": {
+      "status": "passed",
+      "seconds": 26.575,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "LifecycleUITests.testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose": {
+      "status": "passed",
+      "seconds": 9.514,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "LifecycleUITests.testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger": {
+      "status": "passed",
+      "seconds": 7.195,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testDonutSelectionAndEditingRefresh": {
+      "status": "passed",
+      "seconds": 45.943,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testEditCancelUsesInlineDecisionAndProtectsOtherDraft": {
+      "status": "passed",
+      "seconds": 62.061,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testFeedSearchPreservesQueryAndEmptyFilterCanBeCleared": {
+      "status": "passed",
+      "seconds": 35.206,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testFiveYearDateJumpNegativeRefundAndEmptyMonth": {
+      "status": "passed",
+      "seconds": 44.947,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testInlineFiltersLinkTotalsWithoutModalAndKeepContext": {
+      "status": "passed",
+      "seconds": 37.594,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testLargeTextDarkAppearanceAndReachableRanking": {
+      "status": "passed",
+      "seconds": 64.005,
+      "log": "evidence/full-regression-2026-09-11/se-acceptance/native.log"
+    },
+    "StatsStressUITests.testNewDraftClosesWithoutPopupAndRestoresAfterRelaunch": {
+      "status": "passed",
+      "seconds": 28.35,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testRankingDrilldownSortingAndBackPreservesContext": {
+      "status": "passed",
+      "seconds": 47.147,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testRefundDeletionCancelAndUndoRestoreAmount": {
+      "status": "passed",
+      "seconds": 28.907,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "StatsStressUITests.testYearChartComparisonAndIncome": {
+      "status": "passed",
+      "seconds": 59.584,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "ThemeUITests.testCustomEditorAppliesOnlyWhenFinished": {
+      "status": "passed",
+      "seconds": 35.522,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "ThemeUITests.testDarkThemeAndLargestText": {
+      "status": "passed",
+      "seconds": 35.714,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "ThemeUITests.testSheetExitDecisionKeepsSelectedTheme": {
+      "status": "passed",
+      "seconds": 20.491,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "ThemeUITests.testThemeAcrossPagesEntryAndRelaunch": {
+      "status": "passed",
+      "seconds": 27.9,
+      "log": "evidence/full-regression-2026-09-11/se-retest/native.log"
+    },
+    "TimeNavigationUITests.testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave": {
+      "status": "passed",
+      "seconds": 42.678,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "TimeNavigationUITests.testDarkAppearanceAndLargestTypeHaveReachableDateAndEntry": {
+      "status": "passed",
+      "seconds": 23.838,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "TimeNavigationUITests.testMonthJumpSharesRangeAndCancelLeavesAppliedDate": {
+      "status": "passed",
+      "seconds": 28.982,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    },
+    "TimeNavigationUITests.testYearCustomFutureAndComparisonFlow": {
+      "status": "passed",
+      "seconds": 31.436,
+      "log": "evidence/full-regression-2026-09-11/se-final/native.log"
+    }
+  }
+}

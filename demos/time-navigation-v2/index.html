@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>余记 · 直接选月份</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<main class="stage">
+  <aside class="intro">
+    <h1>想看几月，<br>直接点。</h1>
+    <p class="lead">相邻月份放在眼前。<br>时间栏更轻，选择也更直接。</p>
+    <ol class="tasks">
+      <li>点「8 月」，直接切换；横滑可以找更多月份。</li>
+      <li>点日历，试试 2024 年 2 月，或自定日期范围。</li>
+      <li>切到流水，刚才的时间仍然保留。</li>
+      <li>试试按年、跨年范围、全部时间。</li>
+    </ol>
+    <div class="preview-controls" aria-label="演示外观"><button id="compact" aria-pressed="false">小屏</button><button id="dark" aria-pressed="false">深色</button><button id="large" aria-pressed="false">大字号</button><button id="reset">重置演示</button></div>
+    <p class="note">交互原型，尚未替换 iOS 页面。读取既有 500 条隔离样例中的当前账本记录；日期固定为 2026.09.10。不会修改你的账本。</p>
+    <div class="version-links"><a class="report-link" href="../../docs/time-navigation-refinement-2026-09-10.md">阅读本轮设计说明</a><a href="../time-navigation-v1/index.html?rev=reviewed">对比上一版</a></div>
+    <details class="research"><summary>为什么这样设计</summary><p>移除时间栏的三个箭头，直接展示可点击的月份。滑动只浏览月份，点击才更新数据；不会滑着滑着就误改时期。</p><p>日历负责精确定位，日期范围仍在原位展开。本月、本年均截至今天；跨年月份带年份，避免把去年的 12 月当成今年。</p></details>
+  </aside>
+  <section class="device" aria-label="余记时间切换交互演示">
+    <header class="app-header"><div><h2 id="pageTitle">统计</h2><span>日常账本 · 演示</span></div><span class="brand-mark" aria-hidden="true">余</span></header>
+    <div class="workspace" id="workspace">
+      <div class="timebar" id="timebar"></div>
+      <section class="period-panel" id="periodPanel" aria-label="选择时间" hidden></section>
+      <div class="context" id="context"></div>
+      <div class="content" id="content"><p role="status">正在读取演示记录…</p></div>
+    </div>
+    <nav class="tabs" aria-label="页面切换"><button data-page="stats" aria-pressed="true"><svg><use href="#chart"/></svg>统计</button><button data-page="feed" aria-pressed="false"><svg><use href="#list"/></svg>流水</button></nav>
+    <div id="announcement" class="sr-only" aria-live="polite"></div>
+  </section>
+</main>
+<svg class="symbols" aria-hidden="true"><defs>
+<symbol id="calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h1M12 14h1M17 14h1M7 18h1M12 18h1"/></symbol>
+<symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M4 20V12h4v8ZM10 20V4h4v16ZM16 20V8h4v12Z"/></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M8 5h13M8 12h13M8 19h13M3 5h1M3 12h1M3 19h1"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+</defs></svg>
+<script type="module" src="app.mjs"></script>
+</body></html>
