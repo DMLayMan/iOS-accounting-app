@@ -31,6 +31,9 @@ public enum DomainError: Swift.Error, Equatable {
     case parentNotFound
     case invalidParent(String)
     case nameEmpty
+    case duplicateTagName
+    case duplicateCategoryName
+    case categoryPinLimit
     case batchBlocked([String])
     case crossLedgerGroupIncomplete(String)
     case restoreBlocked(String)
@@ -66,6 +69,9 @@ public enum DomainError: Swift.Error, Equatable {
         case .parentNotFound: return "找不到所属分组"
         case .invalidParent(let m): return m
         case .nameEmpty: return "名称不能为空"
+        case .duplicateTagName: return "已有同名标签，请选择现有标签"
+        case .duplicateCategoryName: return "同一分组已有同名分类，请使用现有分类"
+        case .categoryPinLimit: return "最多置顶 4 个分类，请先取消一个置顶"
         case .batchBlocked(let items): return "有 \(items.count) 项无法处理，整批未更改：\(items.joined(separator: "；"))"
         case .crossLedgerGroupIncomplete(let m): return m
         case .restoreBlocked(let m): return m
@@ -88,8 +94,10 @@ public struct LedgerData: Codable, Sendable {
     public var appliedOperations: [String]
     public var lastBackupAt: Date?
     public var lastRestoreVerifiedAt: Date?
+    /// Local recovery-point pointer committed atomically with a successful restore.
+    public var recoveryBackupID: String?
 
-    public static let currentSchemaVersion = 1
+    public static let currentSchemaVersion = 3
 
     public init(schemaVersion: Int = currentSchemaVersion,
                 ledgers: [Ledger] = [], accounts: [Account] = [],
@@ -113,10 +121,28 @@ public struct AppSettings: Codable, Sendable {
     public var reduceMotion: Bool
     public var appearance: AppearanceMode      // 由系统深浅色派生；这里记录偏好
     public var icloudEnabled: Bool             // P1，默认关；开启前不影响 P0
+    public var accentTheme: AccentTheme
+    public var customAccentRGB: Int
     public init(hapticsEnabled: Bool = true, reduceMotion: Bool = false,
-                appearance: AppearanceMode = .system, icloudEnabled: Bool = false) {
+                appearance: AppearanceMode = .system, icloudEnabled: Bool = false,
+                accentTheme: AccentTheme = .sage, customAccentRGB: Int = 0x367961) {
         self.hapticsEnabled = hapticsEnabled; self.reduceMotion = reduceMotion
         self.appearance = appearance; self.icloudEnabled = icloudEnabled
+        self.accentTheme = accentTheme
+        self.customAccentRGB = (0...0xFFFFFF).contains(customAccentRGB) ? customAccentRGB : 0x367961
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case hapticsEnabled, reduceMotion, appearance, icloudEnabled, accentTheme, customAccentRGB
+    }
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(hapticsEnabled: try c.decodeIfPresent(Bool.self, forKey: .hapticsEnabled) ?? true,
+                  reduceMotion: try c.decodeIfPresent(Bool.self, forKey: .reduceMotion) ?? false,
+                  appearance: try c.decodeIfPresent(AppearanceMode.self, forKey: .appearance) ?? .system,
+                  icloudEnabled: try c.decodeIfPresent(Bool.self, forKey: .icloudEnabled) ?? false,
+                  accentTheme: (try c.decodeIfPresent(String.self, forKey: .accentTheme)).flatMap(AccentTheme.init(rawValue:)) ?? .sage,
+                  customAccentRGB: try c.decodeIfPresent(Int.self, forKey: .customAccentRGB) ?? 0x367961)
     }
 }
 

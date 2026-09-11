@@ -8,7 +8,7 @@
       "idiom" : "universal"
     },
     {
-      "appearances" : [ { "appearance" : "dark", "value" : "dark" } ],
+      "appearances" : [ { "appearance" : "luminosity", "value" : "dark" } ],
       "color" : {
         "color-space" : "srgb",
         "components" : { "alpha" : "1.000", "blue" : "0xB0", "green" : "0xCA", "red" : "0x9D" }

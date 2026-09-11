@@ -1,0 +1,22 @@
+@import url('../time-navigation-v1/style.css');
+
+.timebar{gap:10px;padding:8px 20px;min-height:62px}
+.period-year{font-size:14px;font-weight:600;white-space:nowrap;color:var(--ink);flex-shrink:0}
+.strip-window{flex:1;min-width:0;overflow:hidden}
+.period-strip{display:flex;align-items:center;gap:4px;overflow-x:auto;position:relative;scrollbar-width:none;overscroll-behavior-x:contain;scroll-padding-inline:14px;padding-inline:14px;min-height:46px;mask-image:linear-gradient(to right,transparent,#000 14px,#000 calc(100% - 14px),transparent)}
+.period-strip::-webkit-scrollbar{display:none}
+.period-item{flex:0 0 54px;min-height:44px;padding:4px 7px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;font-size:15px;color:var(--muted);border-radius:9px;line-height:1.25;white-space:nowrap}
+.period-item small{font-size:10px;font-weight:400;line-height:1}
+.period-item[aria-pressed=true]{background:var(--tint);color:var(--green);font-weight:650}
+.period-item.annual{flex-basis:64px}
+.calendar-trigger{width:44px;height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--green);border-radius:9px!important}
+.calendar-trigger[aria-expanded=true]{background:var(--tint)}
+.calendar-trigger svg{width:21px;height:21px}
+.range-title{flex:1;font-size:17px;font-weight:600;min-height:44px;display:flex;align-items:center}
+.version-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center;font-size:13px}
+.large .timebar{gap:8px;padding-inline:16px}
+.large .period-year{font-size:17px}
+.large .period-item{font-size:20px;flex-basis:64px;min-height:48px}
+.large .period-item small{font-size:12px}
+.large .period-item.annual{flex-basis:76px}
+.large .range-title{font-size:21px}

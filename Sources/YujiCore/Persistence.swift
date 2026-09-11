@@ -35,14 +35,18 @@ public final class JSONFileRepository: LedgerRepository {
     public func load() throws -> LedgerData? {
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }
         let data = try Data(contentsOf: url)
-        if data.isEmpty { return nil }
-        return try decoder.decode(LedgerData.self, from: data)
+        guard !data.isEmpty else { throw DomainError.restoreBlocked("本地账本文件为空，需恢复备份") }
+        let decoded = try decoder.decode(LedgerData.self, from: data)
+        try LedgerValidation.validate(decoded)
+        return decoded
     }
 
     public func save(_ data: LedgerData) throws {
+        try LedgerValidation.validate(data)
         let bytes = try encoder.encode(data)
         let tmp = url.deletingLastPathComponent()
             .appendingPathComponent(".\(url.lastPathComponent).tmp-\(UUID().uuidString)")
+        defer { try? FileManager.default.removeItem(at: tmp) }
         try bytes.write(to: tmp, options: .atomic)
         // 原子替换
         if FileManager.default.fileExists(atPath: url.path) {
@@ -80,6 +84,7 @@ public enum BackupService {
 
     public static func makeBackup(from store: LedgerStore, now: Date = Date()) throws -> BackupFile {
         let d = store.data
+        try LedgerValidation.validate(d)
         let active = d.transactions.filter { $0.isActive }
         let checksum = BackupFile.Checksum(
             ledgerCount: d.ledgers.count,
@@ -130,11 +135,13 @@ public enum BackupService {
     /// 在隔离数据上校验；通过返回可用的 LedgerData，失败抛错（原库不动）。
     public static func validate(backup: BackupFile) throws -> LedgerData {
         guard backup.format == "yuji-backup" else { throw RestoreError.badFormat }
-        guard backup.formatVersion <= LedgerData.currentSchemaVersion else {
+        guard (1...LedgerData.currentSchemaVersion).contains(backup.formatVersion) else {
             throw RestoreError.unsupportedVersion(backup.formatVersion)
         }
         let d = backup.data
         let active = d.transactions.filter { $0.isActive }
+
+        try LedgerValidation.validate(d)
 
         // 1) 校验清单数量
         let cs = backup.checksum
@@ -142,6 +149,7 @@ public enum BackupService {
         if cs.accountCount != d.accounts.count { throw RestoreError.checksumMismatch("账户数量") }
         if cs.transactionCount != d.transactions.count { throw RestoreError.checksumMismatch("交易数量") }
         if cs.activeTransactionCount != active.count { throw RestoreError.checksumMismatch("有效交易数量") }
+        if cs.trashedTransactionCount != d.transactions.count - active.count { throw RestoreError.checksumMismatch("回收站数量") }
         let sumExp = active.filter { $0.kind == .expense }.reduce(0) { $0 + $1.amountCents }
         let sumRef = active.filter { $0.kind == .refund }.reduce(0) { $0 + $1.amountCents }
         let sumInc = active.filter { $0.kind == .income }.reduce(0) { $0 + $1.amountCents }
@@ -149,36 +157,6 @@ public enum BackupService {
         if sumRef != cs.sumRefundCents { throw RestoreError.checksumMismatch("退款合计") }
         if sumInc != cs.sumIncomeCents { throw RestoreError.checksumMismatch("收入合计") }
 
-        // 2) 引用完整性：交易引用的账本/账户/分类必须存在
-        let ledgerIDs = Set(d.ledgers.map(\.id))
-        let accountIDs = Set(d.accounts.map(\.id))
-        let categoryIDs = Set(d.categories.map(\.id))
-        let txnByID = Dictionary(d.transactions.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
-        for t in d.transactions {
-            guard ledgerIDs.contains(t.ledgerID) else { throw RestoreError.orphanReference("交易所属账本缺失") }
-            guard accountIDs.contains(t.accountID) else { throw RestoreError.orphanReference("交易账户缺失") }
-            if let to = t.transferToAccountID, !accountIDs.contains(to) {
-                throw RestoreError.orphanReference("转账转入账户缺失")
-            }
-            if (t.kind == .expense || t.kind == .income), let c = t.categoryID, !categoryIDs.contains(c) {
-                throw RestoreError.orphanReference("交易分类缺失")
-            }
-            if t.kind == .refund {
-                guard let origID = t.originalExpenseID, let orig = txnByID[origID] else {
-                    throw RestoreError.orphanReference("退款缺少原支出")
-                }
-                if orig.kind != .expense { throw RestoreError.orphanReference("退款原记录不是支出") }
-            }
-        }
-
-        // 3) 退款额度：每笔原支出的有效退款合计不得超过其金额
-        for t in active where t.kind == .expense {
-            let refunded = active.filter { $0.kind == .refund && $0.originalExpenseID == t.id }
-                .reduce(0) { $0 + $1.amountCents }
-            if refunded > t.amountCents {
-                throw RestoreError.refundExceedsExpense("原支出 ¥\(t.money.yuanDescription) 退款合计 ¥\(Money(refunded).yuanDescription)")
-            }
-        }
         return d
     }
 }

@@ -1,78 +1,70 @@
-# 余记 Yuji · 个人记账 App
+# 余记 Yuji
 
-少一点干扰，多一点顺手。本地优先的个人记账应用：快捷录入、可解释的统计、可恢复的数据。
+个人使用的原生 iPhone 记账应用。快捷录入、两级分类、可下钻统计、账本与分类预算、可恢复的本地数据。SwiftUI + UIKit，最低 iOS 16，仅 CNY，无自建服务端。
 
-依据飞书 PRD v1、UI v2 与架构文档（2026-09-09）实现。本仓库是**原生 iOS（SwiftUI）实现**，不是浏览器原型。
+当前主界面为 **账本 / 流水 / 居中记账 / 统计 / 我的**。首次打开进入账本，正中记账为操作入口，保存或取消后回到发起页。流水和统计共用同一套时间组件与期间状态。
 
-## 仓库结构
+## 当前文档
 
-```
-Package.swift                 Swift Package 声明（YujiCore 可跨平台 `swift test`）
-Sources/YujiCore/             纯领域层（不依赖 SwiftUI/UIKit，可在 Linux/macOS 编译测试）
-  Money.swift                 整数「分」金额、CNY 格式化
-  Calculator.swift            十进制算式计算器（PRD §8）
-  Models.swift                账本/账户/分类/标签/交易/草稿、Day/MonthKey
-  LedgerData.swift            全量数据快照、设置、领域错误
-  LedgerStore.swift           领域服务：全部业务不变量、CRUD、退款、批量、回收站
-  Stats.swift                 月/年统计、同比环比、分类/标签分析（PRD §7）
-  Persistence.swift           JSON 原子落盘、完整备份/恢复校验
-  CSVExporter.swift           CSV 导出（RFC4180 + 公式注入防护）
-Tests/YujiCoreTests/          单元测试（38 个，覆盖 PRD §12 全部独立验收样本）
-ios-app/                      SwiftUI 应用（在 Mac/Xcode 构建）
-  project.yml                 XcodeGen 工程声明
-  Yuji/                       App 入口、设计系统、全部页面
-```
+| 文档 | 用途 |
+| --- | --- |
+| [完整 PRD](docs/PRD.md) | 当前功能、规则、用户动线、异常与验收标准 |
+| [设计规范](DESIGN.md) | 配色、布局、组件状态、弹层与操作约定 |
+| [页面复刻清单](docs/UI-SPEC.md) | 每页结构、共享组件、尺寸、交互与原生截图 |
+| [架构与扩展指南](docs/ARCHITECTURE.md) | 状态归属、数据边界、组件复用和扩展步骤 |
+| [本轮回归与审查](docs/regression-2026-09-11.md) | 已修问题、实际验证、未覆盖边界 |
+| [产品上下文](PRODUCT.md) | 用户已确认的产品取舍 |
+| [文档索引](docs/README.md) | 当前规范与历史迭代的区别 |
 
-## 已实现范围（P0 个人版）
+## 本地开发
 
-- **多账本/账户**：创建/改名/归档/空账本删除、切换隔离；账户期初、记账起点、归档、余额公式。
-- **交易 CRUD**：支出/收入/转账/退款；稳定 ID、修订号、幂等 operationID（防重复保存）。
-- **两级分类（单选叶子）+ 两级标签（多选、跨组）**；改名/归档/删除规则。
-- **金额计算器**：+−×÷、括号、优先级、一元负号、十进制求值（不用 Double）、舍入确认、除零/越界拦截。
-- **退款**：关联原支出、累计不超额、日期不早于原支出、原支出受保护、跨月退款按发生期冲减。
-- **转账**：同账本两账户整体提交，不进收支/预算统计。
-- **统计**：月/年五项口径、环比/同比（当前月同进度、月份不足/基期≤0 不给误导百分比）、YTD 与闰年处理、分类守恒、标签去重与父级并集。
-- **回收站**：逻辑删除、短时撤销、恢复重校验、永久删除。
-- **批量操作**：整批成功或整批不变，阻塞项可见。
-- **草稿**：取消保留、首页/＋恢复，不进统计。
-- **备份/恢复**：完整备份含校验清单，隔离校验后切换，失败原库不动；CSV 导出。
-- **UI v2**：白色画布、炭黑金额、鼠尾草绿；底部中央＋；7 常用分类；录入数字区固定底端；深色/浅色、等宽金额。
+需要 macOS、Xcode（选择 Command Line Tools）及 XcodeGen。此次验证环境与结果见回归文档；最低系统声明不等于已经覆盖所有 iOS 版本。
 
-## 在 Linux 上自测领域逻辑（已在本环境执行）
-
-```bash
-swift test        # 38 个测试，0 失败
-```
-
-领域层不依赖 iOS SDK，所有金额、退款、转账、统计口径、隔离、备份恢复、批量、幂等等规则在此全量验证。
-
-## 在 Mac 上构建 iOS App
-
-```bash
+```sh
 brew install xcodegen
-cd ios-app
-xcodegen generate          # 生成 Yuji.xcodeproj（本地引用 ../ 的 YujiCore 包）
-open Yuji.xcodeproj
-# 选择 iOS 16+ 模拟器或真机运行
+swift test
+xcodegen generate --spec ios-app/project.yml
+open ios-app/Yuji.xcodeproj
+xcrun simctl list devices available
 ```
 
-> 最低系统：iOS 16（使用 NavigationStack 等 iOS16 API）。
+选定模拟器 UUID 后，运行可重复的隔离回归：
 
-## 测试与验收对应
+```sh
+scripts/regress.sh build SIMULATOR_UUID
+scripts/regress.sh test SIMULATOR_UUID
+scripts/regress.sh release
+```
 
-`Tests/YujiCoreTests/DomainAcceptanceTests.swift` 逐条对应 PRD §12 的 18 个独立验收样本：
-基础余额、编辑与退款上限、转账删除恢复、跨月退款、分类守恒、标签重叠去重、部分月比较、
-基期零/负、月份不足、YTD 同比、日期归属、多账本隔离、批量原子、回收站并发额度、
-完整备份恢复、保存中断幂等，外加计算器 §8 全部用例。
+测试为每次运行生成新的隔离文件，业务日期固定为 2026-09-10；不会卸载应用或清空个人账本。`YUJI_REGRESSION_BUILD` 和 `YUJI_REGRESSION_OUTPUT` 可分别指定构建目录、结果目录。先 build 再 test；不要在同一构建目录测试进行中重建。`release` 只生成未签名的设备构建，不代表安装或发布。
 
-## 未包含 / 后续阶段
+`swift test` 在 macOS 运行领域与 AppState 测试；在 Linux 只运行纯领域测试。原生颜色和 XCUITest 通过 Xcode 运行。
 
-- **个人 iCloud 同步（P1）**、**家庭共享（P2）**：架构与边界已在架构文档设计，本版入口标注「未开放」，不提供假流程。
-- 预算、快捷模板、重复计划、CSV 导入（P1）：领域预留，未在本轮 UI 展开。
-- 真机验收（VoiceOver、动态字号、触觉、系统键盘、签名安装、App Store 发布）需在目标 iPhone 上进行；
-  本仓库的 SwiftUI 层未在本机（Linux）编译，构建以 Mac/Xcode 为准。
+## 代码结构
 
-## 数据与隐私
+```text
+Sources/YujiCore/             领域模型、分类/预算、统计、完整性校验、备份/CSV
+Tests/YujiCoreTests/          金额、边界、500 条数据及领域回归
+Fixtures/stats-500.json       2022–2026 年的确定性合成数据
+scripts/generate-stats-fixture.mjs  夹具生成器
+scripts/regress.sh           隔离测试与构建入口
+ios-app/project.yml          工程声明，XcodeGen 生成工程
+ios-app/Yuji/AppState.swift   统一写入、回滚、恢复及当前浏览期间
+ios-app/Yuji/Components/     流水行、分类图标、金额/日期格式等共享展示
+ios-app/Yuji/Views/          各业务页及共用日期、预算、分类表单
+ios-app/YujiTests/           状态/磁盘回归、原生颜色测试
+ios-app/YujiUITests/         模拟器完整交互路径
+docs/                       当前规范、审查记录与可移植截图
+evidence/                   本机原始 xcresult、日志及旧图集（不提交 Git）
+```
 
-仅 CNY；无业务登录、无自建服务器、无广告与第三方分析 SDK。数据保存在本机 Application Support，
-可随时导出完整备份或 CSV。
+## 实现边界
+
+- 本地 JSON 原子替换；保存失败回滚，损坏文件暂停写入并提供恢复入口。
+- 新建关闭留草稿；收入/支出一笔一个二级分类；旧标签仅为历史兼容。
+- 退款关联原支出，按退款日抵扣原分类；转账影响账户余额，不计收支或预算。
+- 整账本及分类月/年预算独立，保留历史生效规则；超额提示不阻止保存。
+- 六种主题及自定义颜色；支出暖橙、收入青绿、退款蓝色，语义不随主题改变。
+- 完整备份带结构与数量/金额校验；恢复前保留旧数据；CSV 导出可供核对，不能用于完整恢复。
+- **iCloud 尚未实现**，入口始终显示未开放。[同账号与跨账号共享方案](docs/icloud-sharing-plan-2026-09-10.md)为后续设计。
+- 真机签名、VoiceOver 听读、真实触觉、功耗、App Store 上传与审核尚未完成。没有广告、登录或第三方分析 SDK。

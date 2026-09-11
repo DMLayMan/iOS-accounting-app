@@ -4,7 +4,7 @@ import Foundation
 /// 视图层不直接改数据，只调用这里的方法；所有变更在内存中完成后由 repository 原子落盘。
 /// 规则来源：PRD §3–§7、§10。
 public final class LedgerStore {
-    public private(set) var data: LedgerData
+    public internal(set) var data: LedgerData
 
     public init(data: LedgerData = LedgerData()) {
         self.data = data
@@ -53,7 +53,8 @@ public final class LedgerStore {
     // MARK: - 账本 CRUD（US01/US02）
 
     @discardableResult
-    public func createLedger(name: String) throws -> Ledger {
+    public func createLedger(name: String, startDay: Day = Day(from: Date())) throws -> Ledger {
+        guard startDay.isValid else { throw DomainError.invalidParent("记账起点日期无效") }
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { throw DomainError.nameEmpty }
         let order = (data.ledgers.map(\.sortOrder).max() ?? -1) + 1
@@ -61,7 +62,7 @@ public final class LedgerStore {
         data.ledgers.append(ledger)
         if data.activeLedgerID == nil { data.activeLedgerID = ledger.id }
         // 默认账户：现金、银行卡
-        let today = Day(from: Date())
+        let today = startDay
         data.accounts.append(Account(ledgerID: ledger.id, name: "现金", startDay: today, sortOrder: 0))
         data.accounts.append(Account(ledgerID: ledger.id, name: "银行卡", startDay: today, sortOrder: 1))
         seedDefaultCategoriesAndTags(ledgerID: ledger.id, today: today)
@@ -111,6 +112,9 @@ public final class LedgerStore {
 
     public func archiveLedger(_ id: EntityID, archived: Bool) throws {
         guard let i = data.ledgers.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("账本") }
+        if archived && !data.ledgers[i].archived && data.ledgers.filter({ !$0.archived }).count <= 1 {
+            throw DomainError.mustKeepOneLedger
+        }
         data.ledgers[i].archived = archived
         // 归档当前账本时切到另一个可用账本
         if archived && data.activeLedgerID == id {
@@ -132,7 +136,7 @@ public final class LedgerStore {
         data.tags.removeAll { $0.ledgerID == id }
         data.drafts.removeAll { $0.ledgerID == id }
         data.ledgers.remove(at: i)
-        if data.activeLedgerID == id { data.activeLedgerID = data.ledgers.first?.id }
+        if data.activeLedgerID == id { data.activeLedgerID = data.ledgers.first(where: { !$0.archived })?.id }
     }
 
     public func switchLedger(_ id: EntityID) throws {
@@ -146,6 +150,7 @@ public final class LedgerStore {
     public func createAccount(ledgerID: EntityID, name: String, openingBalanceCents: Int64 = 0,
                               startDay: Day? = nil) throws -> Account {
         guard ledger(ledgerID) != nil else { throw DomainError.notFound("账本") }
+        try validateOpening(openingBalanceCents, startDay: startDay ?? Day(from: Date()))
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { throw DomainError.nameEmpty }
         let acc = Account(ledgerID: ledgerID, name: trimmed, openingBalanceCents: openingBalanceCents,
@@ -157,6 +162,7 @@ public final class LedgerStore {
 
     public func updateAccountOpening(_ id: EntityID, openingCents: Int64, startDay: Day) throws {
         guard let i = data.accounts.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("账户") }
+        try validateOpening(openingCents, startDay: startDay)
         // 流水不能早于起点：若收紧起点到已有交易之前则拒绝。
         let earliest = data.transactions
             .filter { $0.isActive && $0.date < startDay
@@ -167,6 +173,11 @@ public final class LedgerStore {
         data.accounts[i].openingBalanceCents = openingCents
         data.accounts[i].startDay = startDay
         data.accounts[i].updatedAt = Date()
+    }
+
+    private func validateOpening(_ cents: Int64, startDay: Day) throws {
+        guard (-Money.maxProductCents...Money.maxProductCents).contains(cents) else { throw DomainError.invalidAmount("期初余额超出范围") }
+        guard startDay.isValid else { throw DomainError.invalidParent("记账起点日期无效") }
     }
 
     public func archiveAccount(_ id: EntityID, archived: Bool) throws {
@@ -189,7 +200,7 @@ public final class LedgerStore {
         let referenced = data.transactions.contains { t in
             t.accountID == id || t.transferToAccountID == id
         }
-        if referenced { throw DomainError.accountReferencedCannotDelete }
+        if referenced || data.drafts.contains(where: { $0.accountID == id || $0.transferToAccountID == id }) { throw DomainError.accountReferencedCannotDelete }
         data.accounts.remove(at: i)
     }
 
@@ -209,113 +220,18 @@ public final class LedgerStore {
         return bal
     }
 
-    // MARK: - 分类 / 标签维护（US05/US06）
-
-    @discardableResult
-    public func createCategory(ledgerID: EntityID, kind: TransactionKind, parentID: EntityID?,
-                               name: String) throws -> CategoryNode {
-        guard ledger(ledgerID) != nil else { throw DomainError.notFound("账本") }
-        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { throw DomainError.nameEmpty }
-        if kind != .expense && kind != .income { throw DomainError.categoryKindMismatch }
-        if let pid = parentID {
-            guard let p = category(pid) else { throw DomainError.parentNotFound }
-            guard p.ledgerID == ledgerID && p.kind == kind && p.parentID == nil else {
-                throw DomainError.invalidParent("分类分组无效")
-            }
-        }
-        let node = CategoryNode(ledgerID: ledgerID, kind: kind, parentID: parentID, name: trimmed,
-                                sortOrder: data.categories.filter { $0.ledgerID == ledgerID }.count)
-        data.categories.append(node)
-        return node
-    }
-
-    public func renameCategory(_ id: EntityID, name: String) throws {
-        guard !name.trimmingCharacters(in: .whitespaces).isEmpty else { throw DomainError.nameEmpty }
-        guard let i = data.categories.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("分类") }
-        data.categories[i].name = name
-    }
-
-    public func archiveCategory(_ id: EntityID, archived: Bool) throws {
-        guard let i = data.categories.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("分类") }
-        data.categories[i].archived = archived
-        // 归档一级连同下级
-        if data.categories[i].parentID == nil {
-            for j in data.categories.indices where data.categories[j].parentID == id {
-                data.categories[j].archived = archived
-            }
-        }
-    }
-
-    public func deleteCategory(_ id: EntityID) throws {
-        guard let i = data.categories.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("分类") }
-        let referenced = data.transactions.contains { $0.categoryID == id }
-        if referenced { throw DomainError.categoryReferencedCannotDelete }
-        // 一级：连同未引用的叶子删除
-        if data.categories[i].parentID == nil {
-            let children = data.categories.filter { $0.parentID == id }
-            for c in children where !data.transactions.contains(where: { $0.categoryID == c.id }) {
-                data.categories.removeAll { $0.id == c.id }
-            }
-        }
-        data.categories.remove(at: data.categories.firstIndex { $0.id == id }!)
-    }
-
-    @discardableResult
-    public func createTag(ledgerID: EntityID, parentID: EntityID?, name: String) throws -> TagNode {
-        guard ledger(ledgerID) != nil else { throw DomainError.notFound("账本") }
-        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { throw DomainError.nameEmpty }
-        if let pid = parentID {
-            guard let p = tag(pid) else { throw DomainError.parentNotFound }
-            guard p.ledgerID == ledgerID && p.parentID == nil else { throw DomainError.invalidParent("标签分组无效") }
-        }
-        let node = TagNode(ledgerID: ledgerID, parentID: parentID, name: trimmed,
-                           sortOrder: data.tags.filter { $0.ledgerID == ledgerID }.count)
-        data.tags.append(node)
-        return node
-    }
-
-    public func renameTag(_ id: EntityID, name: String) throws {
-        guard !name.trimmingCharacters(in: .whitespaces).isEmpty else { throw DomainError.nameEmpty }
-        guard let i = data.tags.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("标签") }
-        data.tags[i].name = name
-    }
-
-    public func archiveTag(_ id: EntityID, archived: Bool) throws {
-        guard let i = data.tags.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("标签") }
-        data.tags[i].archived = archived
-        if data.tags[i].parentID == nil {
-            for j in data.tags.indices where data.tags[j].parentID == id {
-                data.tags[j].archived = archived
-            }
-        }
-    }
-
-    public func deleteTag(_ id: EntityID) throws {
-        guard let i = data.tags.firstIndex(where: { $0.id == id }) else { throw DomainError.notFound("标签") }
-        let referenced = data.transactions.contains { $0.tagIDs.contains(id) }
-        if referenced { throw DomainError.tagReferencedCannotDelete }
-        if data.tags[i].parentID == nil {
-            let children = data.tags.filter { $0.parentID == id }
-            for c in children where !data.transactions.contains(where: { $0.tagIDs.contains(c.id) }) {
-                data.tags.removeAll { $0.id == c.id }
-            }
-        }
-        data.tags.remove(at: data.tags.firstIndex { $0.id == id }!)
-    }
-
     // MARK: - 交易写入校验
 
     /// 校验一笔（新建或编辑后的）交易是否合法。返回归一化后的交易或抛错。
     /// `existing`：编辑时为原交易（用于退款额度、改类型等约束）。
     private func validate(_ t: Transaction, existing: Transaction?, operationID: String) throws {
         // 幂等：同一 operationID 已提交 → 拒绝重复（PRD §6.1）。
-        if data.appliedOperations.contains(operationID) && existing?.operationID != operationID {
+        if (data.appliedOperations.contains(operationID) || data.transactions.contains(where: { $0.operationID == operationID })) && existing?.operationID != operationID {
             throw DomainError.duplicateOperation
         }
         guard let ledger = ledger(t.ledgerID) else { throw DomainError.notFound("账本") }
         if ledger.archived { throw DomainError.archivedLedgerNoNewTransactions }
+        guard t.date.isValid else { throw DomainError.invalidParent("交易日期无效") }
 
         // 金额：普通录入为正且在产品范围内。
         guard t.amountCents >= Money.minProductCents else {
@@ -390,6 +306,7 @@ public final class LedgerStore {
 
     @discardableResult
     public func addTransaction(_ t: Transaction) throws -> Transaction {
+        guard transaction(t.id) == nil && !t.id.raw.isEmpty && !t.operationID.isEmpty else { throw DomainError.duplicateOperation }
         try validate(t, existing: nil, operationID: t.operationID)
         var saved = t
         saved.revision = 1
@@ -405,12 +322,16 @@ public final class LedgerStore {
             throw DomainError.notFound("记录")
         }
         let original = data.transactions[idx]
+        guard original.isActive else { throw DomainError.restoreBlocked("请先从回收站恢复记录再编辑") }
         var candidate = original
         apply(&candidate)
         // ledgerID 不可通过普通编辑改变（跨账本移动走专用关系组流程，PRD §6.4）。
         candidate.ledgerID = original.ledgerID
         candidate.id = original.id
         candidate.operationID = original.operationID
+        candidate.createdAt = original.createdAt
+        candidate.deletedAt = original.deletedAt
+        guard original.revision < Int.max - 1 else { throw DomainError.restoreBlocked("记录修订号超出范围") }
         candidate.revision = original.revision + 1
         candidate.updatedAt = Date()
 
@@ -422,9 +343,6 @@ public final class LedgerStore {
                 if candidate.amountCents < refunds { throw DomainError.expenseHasRefundsCannotChangeAmount }
                 if candidate.accountID != original.accountID {
                     throw DomainError.ledgerMismatch("已有退款的支出不能更换付款账户")
-                }
-                if candidate.date > refundsLatestDate(expenseID: original.id) ?? candidate.date {
-                    // 修改原日期不得使任何退款早于原支出
                 }
                 // 改日期不得晚于/导致退款早于原支出：新日期不得晚于最早退款日
                 if let earliestRefund = earliestRefundDate(expenseID: original.id), candidate.date > earliestRefund {
@@ -446,11 +364,6 @@ public final class LedgerStore {
         data.transactions
             .filter { $0.isActive && $0.kind == .refund && $0.originalExpenseID == expenseID }
             .map(\.date).min()
-    }
-    private func refundsLatestDate(expenseID: EntityID) -> Day? {
-        data.transactions
-            .filter { $0.isActive && $0.kind == .refund && $0.originalExpenseID == expenseID }
-            .map(\.date).max()
     }
 
     // MARK: - 删除 / 恢复（US21/US22）
@@ -507,6 +420,11 @@ public final class LedgerStore {
     public func purgeTransaction(_ id: EntityID) throws {
         guard let idx = data.transactions.firstIndex(where: { $0.id == id }) else {
             throw DomainError.notFound("记录")
+        }
+        guard !data.transactions[idx].isActive else { throw DomainError.restoreBlocked("请先将记录移入回收站") }
+        guard !data.transactions.contains(where: { $0.originalExpenseID == id }),
+              !data.drafts.contains(where: { $0.originalExpenseID == id }) else {
+            throw DomainError.restoreBlocked("原支出仍有关联退款，请先处理关联记录（包括回收站）")
         }
         data.transactions.remove(at: idx)
     }

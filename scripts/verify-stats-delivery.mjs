@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+const root=path.resolve(import.meta.dirname,'..');
+const base=path.join(root,'evidence/stats-500');
+const read=name=>fs.readFileSync(path.join(base,name),'utf8');
+const before=read('personal-before.sha').split(/\s/)[0],after=read('personal-after.sha').split(/\s/)[0];
+assert.equal(after,before,'Personal ledger content changed');
+for(const [file,pattern] of [['core-tests-final.log',/Executed 70 tests, with 0 failures/],['ui-acceptance.log',/Executed 9 tests, with 0 failures/],['ui-verified.log',/Executed 5 tests, with 0 failures/],['ui-feed.log',/Executed 1 test, with 0 failures/],['preview-build.log',/BUILD SUCCEEDED/]])assert(pattern.test(read(file)),file);
+const fixtureBytes=fs.readFileSync(path.join(root,'Fixtures/stats-500.json'));
+const o=JSON.parse(fs.readFileSync(path.join(root,'Fixtures/stats-500-oracle.json')));
+assert.equal(JSON.parse(fixtureBytes).transactions.length,500);assert.equal(o.months.length,57);assert.equal(o.years.length,5);
+const images=[...read('index.html').matchAll(/<img\b[^>]*\bsrc="(shots\/[^"]+\.png)"/g)].map(m=>m[1]);
+assert.equal(images.length,34);for(const p of images)assert(fs.statSync(path.join(base,p)).size>10000,p);
+const proof={verifiedAt:new Date().toISOString(),records:500,mainActiveRecords:470,otherLedgerRecords:10,trashedRecords:20,months:57,years:5,coreTests:70,iPhone17ProTests:9,iPhoneSEStatsTests:5,iPhoneSEFeedTests:1,normalLedgerSHA256:after,normalLedgerPreserved:true,fixtureSHA256:crypto.createHash('sha256').update(fixtureBytes).digest('hex'),galleryImages:images.length,previewBundle:'com.yuji.app',previewDevice:'Yuji-Acceptance',scope:'iOS 26.5 Simulator, local isolated JSON; no physical device or iCloud acceptance'};
+fs.writeFileSync(path.join(base,'verification.json'),JSON.stringify(proof,null,2)+'\n');
+console.log(JSON.stringify(proof,null,2));

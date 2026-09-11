@@ -1,230 +1,134 @@
 import SwiftUI
 import YujiCore
 
-/// P01 总览：当前账本/月份；本月净支出大数字；预算摘要；最近记录；草稿恢复条。
+/// 账本只展示累计汇总；逐笔查看交给流水，按期间分析交给统计。
 struct LedgerHomeView: View {
-    @EnvironmentObject var state: AppState
+    var openStats: () -> Void = {}
+    var openFeed: () -> Void = {}
+    @EnvironmentObject private var state: AppState
+    @Environment(\.colorScheme) private var scheme
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var showLedgerSwitch = false
+    @State private var showCreateLedger = false
     @State private var showEntry = false
     @State private var showTransfer = false
+    @State private var showBudget = false
 
     var body: some View {
         Group {
-            if let ledger = state.activeLedger {
-                content(ledger: ledger)
-            } else {
-                EmptyLedgerView()
-            }
+            if let ledger = state.activeLedger { content(ledger) }
+            else { EmptyLedgerView() }
         }
-        .navigationTitle("")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Button { showLedgerSwitch = true } label: {
-                    HStack(spacing: 4) {
-                        Text(state.activeLedger?.name ?? "余记")
-                            .font(.system(size: Design.ledgerTitle - 10, weight: .bold))
-                            .foregroundColor(.primary)
-                        Image(systemName: "chevron.down").font(.system(size: 12, weight: .semibold))
-                            .foregroundColor(.secondary)
-                    }
-                }
-                .accessibilityLabel("切换账本")
-            }
-        }
+        .navigationTitle("账本").navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showLedgerSwitch) { LedgerSwitcherView() }
+        .sheet(isPresented: $showCreateLedger) { NavigationStack { LedgerCreateView() } }
         .sheet(isPresented: $showEntry) { EntryContainerView() }
         .sheet(isPresented: $showTransfer) { TransferView() }
+        .sheet(isPresented: $showBudget) { if let ledger = state.activeLedger { LedgerBudgetEditor(ledgerID: ledger.id) } }
     }
-
-    @ViewBuilder
-    private func content(ledger: Ledger) -> some View {
-        let stats = state.stats(for: ledger.id)
-        let month = state.currentMonth
-        let summary = stats.monthSummary(month)
-        let recent = Array(state.store.activeTransactions(in: ledger.id)
-            .sorted { ($0.date, $0.createdAt) > ($1.date, $1.createdAt) }.prefix(8))
-        let draft = state.store.draft(for: ledger.id)
-
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                // 本月净支出：大数字
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("\(month.year) 年 \(month.month) 月 · 净支出")
-                        .font(.system(size: Design.captionSize))
-                        .foregroundColor(.secondary)
-                    AmountText(text: "¥\(Money(summary.netExpense).yuanDescription)",
-                               size: Design.homeAmount, weight: .bold)
-                        .accessibilityLabel("本月净支出 \(Money(summary.netExpense).formatted(style: .plain))")
-                    Text("支出 ¥\(Money(summary.expense).yuanDescription)  ·  退款 ¥\(Money(summary.refund).yuanDescription)")
-                        .font(.system(size: Design.captionSmall))
-                        .foregroundColor(.secondary)
-                    Text("收入 ¥\(Money(summary.income).yuanDescription)  ·  结余 ¥\(Money(summary.surplus).yuanDescription)")
-                        .font(.system(size: Design.captionSmall))
-                        .foregroundColor(.secondary)
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 8)
-
-                // 账户余额速览
-                AccountStripView(ledgerID: ledger.id)
-
-                // 快捷动作：转账
-                HStack(spacing: 12) {
-                    Button { showTransfer = true } label: {
-                        Label("转账", systemImage: "arrow.left.arrow.right")
-                            .font(.system(size: Design.bodySize, weight: .medium))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 12)
-                            .background(RoundedRectangle(cornerRadius: 12).fill(Design.lightFill(ColorScheme.light)))
-                            .foregroundColor(.primary)
-                    }
-                    NavigationLink {
-                        StatsView()
-                    } label: {
-                        Label("看统计", systemImage: "chart.bar")
-                            .font(.system(size: Design.bodySize, weight: .medium))
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 12)
-                            .background(RoundedRectangle(cornerRadius: 12).fill(Design.lightFill(ColorScheme.light)))
-                            .foregroundColor(.primary)
+    private var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible(), alignment: .leading), count: typeSize.isAccessibilitySize ? 1 : 2)
+    }
+    private var actionLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4)) : AnyLayout(HStackLayout(spacing: 20))
+    }
+    private func content(_ ledger: Ledger) -> some View {
+        let overview = state.store.overview(in: ledger.id, through: state.today)
+        return ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 12) {
+                    Label(ledger.name, systemImage: "book.closed")
+                        .font(.title2.weight(.semibold)).fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("ledger.currentName")
+                    actionLayout {
+                        Button { showLedgerSwitch = true } label: { Label("切换账本", systemImage: "arrow.left.arrow.right") }
+                            .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
+                            .frame(minHeight: 44).accessibilityIdentifier("ledger.switch")
+                        Button { showCreateLedger = true } label: { Label("新建账本", systemImage: "plus") }
+                            .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
+                            .frame(minHeight: 44).accessibilityIdentifier("ledger.create")
+                    }.font(.subheadline).frame(minHeight: 44)
+                    if ledger.archived {
+                        Text("已归档 · 可以查看和导出历史记录").font(.caption).foregroundStyle(.secondary)
                     }
                 }
-                .padding(.horizontal, 20)
-
-                // 草稿恢复条
-                if draft != nil {
+                Divider()
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Text("累计收支").font(.headline)
+                        Spacer()
+                        if !ledger.archived {
+                            Button("预算") { showBudget = true }.font(.subheadline).frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("ledger.budget")
+                        }
+                        Button("看统计", action: openStats).font(.subheadline).frame(minHeight: 44)
+                    }
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("累计结余").font(.subheadline).foregroundStyle(.secondary)
+                        AmountText(text: statsMoney(overview.totals.surplus), size: 38, weight: .semibold)
+                            .accessibilityIdentifier("ledger.surplus")
+                    }
+                    LazyVGrid(columns: columns, alignment: .leading, spacing: 18) {
+                        metric("累计收入", cents: overview.totals.income, id: "ledger.income", color: Design.income)
+                        metric("累计净支出", cents: overview.totals.netExpense, id: "ledger.netExpense", color: Design.netExpense(overview.totals.netExpense))
+                    }
+                    Text("支出 \(statsMoney(overview.totals.expense)) · 退款 \(statsMoney(overview.totals.refund))")
+                        .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                    Text(overview.firstRecord.map { "首笔 \(statsDayText($0)) · 截至 \(statsDayText(state.today))" } ?? "还没有记录，记下第一笔后开始累计。")
+                        .font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("ledger.coverage")
+                }
+                Divider()
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text("账户余额").font(.headline)
+                        Spacer()
+                        NavigationLink("管理", destination: AccountListView()).font(.subheadline).frame(minWidth: 44, minHeight: 44)
+                    }
+                    metric("合计（含期初余额）", cents: overview.balance, id: "ledger.balance")
+                    ForEach(overview.balances) { item in
+                        HStack(alignment: .firstTextBaseline) {
+                            Text(item.account.name + (item.account.archived ? " · 已归档" : ""))
+                                .font(.subheadline).foregroundStyle(.secondary)
+                            Spacer(minLength: 12)
+                            Text(statsMoney(item.cents)).font(.subheadline.monospacedDigit())
+                                .lineLimit(1).minimumScaleFactor(0.6)
+                        }.padding(.vertical, 4)
+                    }
+                    if overview.balances.isEmpty {
+                        NavigationLink("新增账户", destination: AccountListView()).frame(minHeight: 44)
+                    }
+                    if !ledger.archived {
+                        Button { showTransfer = true } label: { Label("转账", systemImage: "arrow.left.arrow.right").frame(minHeight: 44) }
+                            .font(.subheadline)
+                    }
+                }
+                Divider()
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text("记录概况").font(.headline)
+                        Spacer()
+                        Button("查看流水", action: openFeed).font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("ledger.openFeed")
+                    }
+                    Text("\(overview.recordCount) 笔记录 · \(overview.recordedDays) 个记账日")
+                        .font(.subheadline).accessibilityIdentifier("ledger.recordCount")
+                    if let latest = overview.lastRecord {
+                        Text("最近记账 \(statsDayText(latest))").font(.caption).foregroundStyle(.secondary)
+                    }
+                }
+                if state.store.draft(for: ledger.id) != nil && !ledger.archived {
                     Button { showEntry = true } label: {
-                        HStack {
-                            Image(systemName: "pencil.line")
-                            Text("继续上次未完成的记录")
-                            Spacer()
-                            Image(systemName: "chevron.right").font(.system(size: 12))
-                        }
-                        .font(.system(size: Design.bodySize))
-                        .foregroundColor(Design.sage)
-                        .padding(14)
-                        .background(RoundedRectangle(cornerRadius: 12).fill(Design.selectedFill(ColorScheme.light)))
-                        .padding(.horizontal, 20)
-                    }
-                    .accessibilityHint("打开后恢复未保存的金额、分类与备注")
+                        Label("继续上次未完成的记录", systemImage: "pencil.line")
+                            .font(.subheadline).frame(maxWidth: .infinity, alignment: .leading).padding(16)
+                            .background(Design.selectedFill(scheme), in: RoundedRectangle(cornerRadius: 14))
+                    }.accessibilityHint("草稿不计入累计收支")
                 }
-
-                // 最近记录
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("最近记录")
-                        .font(.system(size: Design.bodySize, weight: .semibold))
-                        .padding(.horizontal, 20)
-                    if recent.isEmpty {
-                        QuietEmptyView(message: "还没有记录，点底部 ＋ 记第一笔")
-                            .padding(.horizontal, 20)
-                    } else {
-                        LazyVStack(spacing: 0) {
-                            ForEach(recent) { t in
-                                NavigationLink {
-                                    TransactionDetailView(transactionID: t.id)
-                                } label: {
-                                    TransactionRow(t: t)
-                                }
-                                .buttonStyle(.plain)
-                                Divider().padding(.leading, 20)
-                            }
-                        }
-                        .padding(.horizontal, 20)
-                    }
-                }
-                Spacer(minLength: 80)
-            }
-        }
+            }.padding(20)
+        }.accessibilityIdentifier("ledger.scroll")
     }
-}
-
-struct AccountStripView: View {
-    let ledgerID: EntityID
-    @EnvironmentObject var state: AppState
-    var body: some View {
-        let accounts = state.store.accounts(in: ledgerID, includeArchived: false)
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(accounts) { acc in
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(acc.name).font(.system(size: Design.captionSmall)).foregroundColor(.secondary)
-                        AmountText(text: "¥\(Money(state.store.balance(accountID: acc.id)).yuanDescription)",
-                                   size: 18, weight: .semibold)
-                    }
-                    .padding(.horizontal, 14).padding(.vertical, 10)
-                    .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
-                }
-            }
-            .padding(.horizontal, 20)
-        }
-    }
-}
-
-/// 流水行：分类为主标题，备注辅助；金额右对齐；统一线性图标。
-struct TransactionRow: View {
-    let t: Transaction
-    @EnvironmentObject var state: AppState
-    @Environment(\.colorScheme) private var scheme
-
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: iconName)
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(Design.primary(scheme))
-                .frame(width: 36, height: 36)
-                .background(Circle().fill(Design.lightFill(scheme)))
-            VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.system(size: Design.bodySize)).foregroundColor(.primary)
-                if let sub = subtitle, !sub.isEmpty {
-                    Text(sub).font(.system(size: Design.captionSmall)).foregroundColor(.secondary)
-                        .lineLimit(1)
-                }
-            }
-            Spacer()
-            AmountText(text: amountText, size: Design.bodySize, weight: .semibold,
-                       color: amountColor)
-        }
-        .padding(.vertical, 10)
-        .contentShape(Rectangle())
-    }
-
-    private var iconName: String {
-        switch t.kind {
-        case .expense: return "fork.knife"
-        case .income: return "arrow.down.circle"
-        case .refund: return "arrow.uturn.backward.circle"
-        case .transfer: return "arrow.left.arrow.right"
-        }
-    }
-    private var title: String {
-        if t.kind == .transfer { return "转账" }
-        if t.kind == .refund { return "退款" }
-        if let cid = t.categoryID, let c = state.store.category(cid) { return c.name }
-        return t.kind.displayName
-    }
-    private var subtitle: String? {
-        let parts: [String] = [
-            state.store.account(t.accountID)?.name,
-            t.note
-        ].compactMap { $0 }.filter { !$0.isEmpty }
-        return parts.isEmpty ? nil : parts.joined(separator: " · ")
-    }
-    private var amountText: String {
-        let m = Money(t.amountCents)
-        switch t.kind {
-        case .expense: return "-¥\(m.yuanDescription)"
-        case .income: return "+¥\(m.yuanDescription)"
-        case .refund: return "+¥\(m.yuanDescription)"
-        case .transfer: return "¥\(m.yuanDescription)"
-        }
-    }
-    private var amountColor: Color? {
-        switch t.kind {
-        case .expense: return .primary
-        case .income, .refund: return Design.sage
-        case .transfer: return .secondary
-        }
+    private func metric(_ title: String, cents: Int64, id: String, color: Color = .primary) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title).font(.caption).foregroundStyle(.secondary)
+            AmountText(text: statsMoney(cents), size: 23, weight: .semibold, color: color)
+        }.accessibilityElement(children: .ignore).accessibilityLabel("\(title) \(statsMoney(cents))").accessibilityIdentifier(id)
     }
 }
 
@@ -233,7 +137,7 @@ struct QuietEmptyView: View {
     var body: some View {
         HStack {
             Spacer()
-            Text(message).font(.system(size: Design.captionSize)).foregroundColor(.secondary)
+            Text(message).font(.subheadline).foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.vertical, 32)
             Spacer()
@@ -242,12 +146,14 @@ struct QuietEmptyView: View {
 }
 
 struct EmptyLedgerView: View {
+    @State private var showCreate = false
     var body: some View {
         VStack(spacing: 12) {
             Spacer()
             Text("还没有账本").font(.system(size: 20, weight: .semibold))
-            Text("在「我的 → 我的账本」创建一个账本开始记账").font(.system(size: 14)).foregroundColor(.secondary)
+            Text("创建账本，开始记录你的收支。").font(.subheadline).foregroundColor(.secondary)
+            Button("新建账本") { showCreate = true }.buttonStyle(.borderedProminent)
             Spacer()
-        }
+        }.sheet(isPresented: $showCreate) { NavigationStack { LedgerCreateView() } }
     }
 }

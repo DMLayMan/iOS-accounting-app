@@ -91,3 +91,22 @@ public struct Currency: Hashable, Codable, Sendable {
     public let symbol: String
     public static let cny = Currency(code: "CNY", symbol: "¥")
 }
+
+extension Money {
+    /// Locale-independent text for calculator / numeric fields, never a formatted label.
+    public var inputString: String {
+        let value = cents.magnitude
+        let fraction = value % 100
+        return "\(cents < 0 ? "-" : "")\(value / 100).\(fraction < 10 ? "0" : "")\(fraction)"
+    }
+}
+
+extension Transaction {
+    /// Stored cents remain authoritative when an imported or old expression is absent/stale.
+    public var editingExpression: String {
+        if let expression = expression, let result = try? Calculator.evaluate(expression), result.roundedCents == amountCents {
+            return expression
+        }
+        return Money(amountCents).inputString
+    }
+}

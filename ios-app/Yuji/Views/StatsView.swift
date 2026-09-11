@@ -1,253 +1,195 @@
 import SwiftUI
+import Charts
 import YujiCore
 
-/// 统计：月（净支出大数字 + 同环比）/ 年（YTD + 逐月 + 年度同比），分类/标签下钻。
 struct StatsView: View {
     @EnvironmentObject var state: AppState
-    @State private var period: Period = .month
-    @State private var anchor: MonthKey
-
-    enum Period { case month, year }
-
-    init() {
-        let d = Day(from: Date())
-        _anchor = State(initialValue: d.monthKey)
-    }
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @State private var selectedComparison: String?
+    @State private var basePeriod = false
+    private var period: BrowsingPeriod { state.browsingPeriod }
+    private var month: MonthKey? { period.month(today: state.today) }
+    private var yearValue: Int? { period.year(today: state.today) }
 
     var body: some View {
         NavigationStack {
-            if let ledger = state.activeLedger {
-                let stats = state.stats(for: ledger.id)
-                ScrollView {
-                    VStack(spacing: 20) {
-                        Picker("", selection: $period) {
-                            Text("月").tag(Period.month)
-                            Text("年").tag(Period.year)
-                        }
-                        .pickerStyle(.segmented)
-                        .frame(width: 160)
-                        .padding(.top, 8)
-
-                        if period == .month {
-                            monthView(stats: stats)
+            Group {
+                if let ledger = state.activeLedger {
+                    let stats = state.stats(for: ledger.id)
+                    ScrollView {
+                        if let range = period.statisticsRange(today: state.today, earliest: state.browsingBounds.lowerBound) {
+                            analysis(ledger: ledger, stats: stats, range: range)
                         } else {
-                            yearView(stats: stats)
+                            VStack(spacing: 12) {
+                                Text("这段时间尚未发生").font(.headline).accessibilityIdentifier("stats.futurePeriod")
+                                Text("统计只计算截至今天的收支。未来日期的记录可在流水中查看。")
+                                    .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                                Button("回到本月") { state.browsingPeriod = .currentMonth }
+                                    .frame(minHeight: 44).accessibilityIdentifier("stats.resetPeriod")
+                            }.padding(24).frame(maxWidth: .infinity)
                         }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 80)
-                }
-                .navigationTitle("统计")
-            } else {
-                EmptyLedgerView()
+                    }.accessibilityIdentifier("stats.scroll")
+                        .safeAreaInset(edge: .top, spacing: 0) {
+                            PeriodNavigation(prefix: "stats")
+                        }
+                } else { EmptyLedgerView() }
             }
+            .navigationTitle("统计").navigationBarTitleDisplayMode(.inline)
+        }
+        .onChange(of: period) { _ in selectedComparison = nil; basePeriod = false }
+        .onChange(of: state.activeLedger?.id) { _ in
+            selectedComparison = nil; basePeriod = false
         }
     }
 
-    // MARK: 月
+    private func analysis(ledger: Ledger, stats: StatsEngine, range: ClosedRange<Day>) -> some View {
+        let summary = stats.summary(range: range)
+        let year = yearValue.map { stats.yearSummary($0, today: state.today) }
+        return VStack(spacing: 24) {
+            summaryHeader(summary)
+            if month != nil || yearValue != nil {
+                StatsBudgetView(ledgerID: ledger.id, period: month != nil ? .month : .year,
+                                day: range.lowerBound, cutoff: range.upperBound)
+            }
+            if let month {
+                adaptiveLayout {
+                    comparisonLink("环比", stats.momComparison(for: month, today: state.today), ledger.id)
+                    comparisonLink("同比", stats.yoyComparison(for: month, today: state.today), ledger.id)
+                }
+            } else if let year {
+                comparisonLink("年度同比", year.yoy, ledger.id)
+                MonthBarChart(months: year.months) { month in state.browsingPeriod = .month(month) }
+            } else {
+                Text("预算与同环比按月或年查看。当前图表和明细按所选范围汇总。")
+                    .font(.caption).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
+            }
+            if let selectedComparison, let cmp = comparison(stats) {
+                comparisonPanel(selectedComparison, cmp)
+                CategoryAnalysisView(ledgerID: ledger.id,
+                    range: (basePeriod ? cmp.baseRange : cmp.currentRange) ?? range, comparison: cmp)
+                    .id("comparison-\(ledger.id.raw)-\(period)-\(selectedComparison)")
+            } else {
+                CategoryAnalysisView(ledgerID: ledger.id, range: range).id("\(ledger.id.raw)-\(period)")
+            }
+        }.padding(20)
+    }
 
-    @ViewBuilder
-    private func monthView(stats: StatsEngine) -> some View {
-        // 当前未结束月份取 1..today（与同环比同进度口径一致）；历史完整月取整月（PRD §7.2）。
-        let isCurrent = anchor == state.today.monthKey
-        let s = isCurrent ? stats.summary(range: anchor.prefix(through: state.today.day))
-                          : stats.monthSummary(anchor)
-        VStack(alignment: .leading, spacing: 8) {
-            // 月份切换
+    private func comparison(_ stats: StatsEngine) -> StatsEngine.Comparison? {
+        if let month {
+            return selectedComparison == "环比" ? stats.momComparison(for: month, today: state.today)
+                : stats.yoyComparison(for: month, today: state.today)
+        }
+        if let yearValue { return stats.yearSummary(yearValue, today: state.today).yoy }
+        return nil
+    }
+
+    private func comparisonPanel(_ title: String, _ cmp: StatsEngine.Comparison) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Button { anchor = anchor.previous } label: {
-                    Image(systemName: "chevron.left")
-                }
+                Text(title + "分析").font(.headline)
                 Spacer()
-                Text("\(anchor.year) 年 \(anchor.month) 月").font(.system(size: 18, weight: .semibold))
-                Spacer()
-                Button { anchor = anchor.next } label: { Image(systemName: "chevron.right") }
+                Button("收起") { selectedComparison = nil; basePeriod = false }
+                    .font(.subheadline).accessibilityIdentifier("stats.closeComparison")
             }
-            .padding(.vertical, 4)
-
-            Text(isCurrent ? "净支出 · 截至 \(state.today.month)/\(state.today.day) 已记账" : "净支出")
-                .font(.system(size: Design.captionSize)).foregroundColor(.secondary)
-            AmountText(text: "¥\(Money(s.netExpense).yuanDescription)", size: 44, weight: .bold)
-            Text("支出 ¥\(Money(s.expense).yuanDescription) − 退款 ¥\(Money(s.refund).yuanDescription)")
-                .font(.system(size: Design.captionSmall)).foregroundColor(.secondary)
-            Text("收入 ¥\(Money(s.income).yuanDescription)  ·  结余 ¥\(Money(s.surplus).yuanDescription)")
-                .font(.system(size: Design.captionSmall)).foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-
-        comparisonCard(title: "环比（对比上月同期）",
-                       cmp: stats.momComparison(for: anchor, today: state.today))
-        comparisonCard(title: "同比（对比去年同期）",
-                       cmp: stats.yoyComparison(for: anchor, today: state.today))
-
-        breakdownSection(stats: stats, range: s.range)
+            Text(cmp.status == .baseNotCovered ? "基期记录范围不足" : (cmp.delta == 0 ? "全部分类净支出持平" : "全部分类净支出\(cmp.delta > 0 ? "增加" : "减少") \(statsMoney(abs(cmp.delta)))"))
+                .font(.subheadline).accessibilityIdentifier("stats.changeConclusion")
+            Text(statsComparisonReason(cmp.status)).font(.caption).foregroundStyle(.secondary)
+            Picker("对比时期", selection: $basePeriod) {
+                Text("本期").tag(false); Text("基期").tag(true)
+            }.pickerStyle(.segmented).accessibilityIdentifier("stats.comparisonPeriod")
+            if let range = basePeriod ? cmp.baseRange : cmp.currentRange { StatsRangeLabel(range: range) }
+            Text("下方图表与明细随时期、分类一起切换。")
+                .font(.caption).foregroundStyle(.secondary)
+        }.padding(.vertical, 8)
     }
 
-    private func comparisonCard(title: String, cmp: StatsEngine.Comparison) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(title).font(.system(size: Design.captionSize)).foregroundColor(.secondary)
-            HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Text("¥\(Money(cmp.current).yuanDescription)")
-                    .font(.system(size: 22, weight: .semibold, design: .rounded)).monospacedDigit()
-                if let p = cmp.percent {
-                    let up = cmp.delta >= 0
-                    Text(String(format: "%@%.1f%%", up ? "+" : "", p))
-                        .font(.system(size: Design.bodySize, weight: .semibold))
-                        .foregroundColor(up ? .primary : Design.sage)
-                } else {
-                    Text(reasonText(cmp.status)).font(.system(size: Design.captionSmall)).foregroundColor(.secondary)
-                }
+    private func summaryHeader(_ s: PeriodSummary) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            adaptiveLayout {
+                Text("净支出").font(.subheadline).foregroundStyle(.secondary)
+                if !typeSize.isAccessibilitySize { Spacer() }
+                StatsRangeLabel(range: s.range)
             }
-            Text("基期 ¥\(Money(cmp.base).yuanDescription)，变化 ¥\(Money(cmp.delta).yuanDescription)")
-                .font(.system(size: Design.captionSmall)).foregroundColor(.secondary)
-            Text("已记录的收支变化，不代表消费行为判断").font(.system(size: 11)).foregroundColor(.secondary.opacity(0.8))
-        }
-        .padding(16)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
-    }
-
-    private func reasonText(_ status: StatsEngine.Comparison.Status) -> String {
-        switch status {
-        case .ok: return ""
-        case .baseZero: return "基期为 0，无增长率"
-        case .baseNegative: return "基期为负值，无增长率"
-        case .baseNotCovered: return "基期数据未覆盖"
-        case .unequalLength: return "基期月份天数不足，按共同天数比较，不显示增长率"
+            Text(statsMoney(s.netExpense)).font(.system(.largeTitle, design: .rounded).weight(.semibold))
+                .foregroundStyle(Design.netExpense(s.netExpense))
+                .monospacedDigit().minimumScaleFactor(0.5).lineLimit(1).accessibilityIdentifier("stats.net")
+            Text("支出 \(statsMoney(s.expense)) − 退款 \(statsMoney(s.refund))")
+                .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            adaptiveLayout {
+                summaryValue("收入", s.income, color: Design.income)
+                if !typeSize.isAccessibilitySize { Spacer() }
+                summaryValue("结余", s.surplus)
+            }.padding(.top, 6)
         }
     }
-
-    // MARK: 年
-
-    @ViewBuilder
-    private func yearView(stats: StatsEngine) -> some View {
-        let ys = stats.yearSummary(anchor.year, today: state.today)
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Button { anchor = MonthKey(year: anchor.year - 1, month: anchor.month) } label: {
-                    Image(systemName: "chevron.left")
-                }
-                Spacer()
-                Text("\(anchor.year) 年\(ys.isCurrentYear ? " · 截至 \(state.today.month)/\(state.today.day)" : "")")
-                    .font(.system(size: 18, weight: .semibold))
-                Spacer()
-                Button { anchor = MonthKey(year: anchor.year + 1, month: anchor.month) } label: {
-                    Image(systemName: "chevron.right")
-                }
-            }
-            Text(ys.isCurrentYear ? "YTD 净支出" : "全年净支出")
-                .font(.system(size: Design.captionSize)).foregroundColor(.secondary)
-            AmountText(text: "¥\(Money(ys.total.netExpense).yuanDescription)", size: 44, weight: .bold)
-
-            comparisonCard(title: "年度同比（对比去年同期）", cmp: ys.yoy)
-
-            // 逐月趋势（条形 + 可访问列表）
-            VStack(alignment: .leading, spacing: 8) {
-                Text("逐月净支出").font(.system(size: Design.bodySize, weight: .semibold))
-                MonthBarChart(months: ys.months)
-            }
-            .padding(.top, 4)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-
-        breakdownSection(stats: stats, range: ys.ytdRange)
+    private var adaptiveLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(alignment: .top, spacing: 12))
     }
-
-    // MARK: 分类 / 标签
-
-    @ViewBuilder
-    private func breakdownSection(stats: StatsEngine, range: ClosedRange<Day>) -> some View {
-        let cats = stats.categoryBreakdown(range: range)
-        let tags = stats.tagBreakdown(range: range)
-        let totalNet = cats.reduce(0) { $0 + $1.net }
-
-        VStack(alignment: .leading, spacing: 10) {
-            Text("分类支出").font(.system(size: Design.bodySize, weight: .semibold))
-            if cats.isEmpty {
-                Text("该期间暂无支出").font(.system(size: Design.captionSize)).foregroundColor(.secondary)
-            } else {
-                ForEach(cats) { item in
-                    BreakdownRow(name: item.pathName, net: item.net, total: totalNet,
-                                 expense: item.expense, refund: item.refund)
-                }
-            }
+    private func summaryValue(_ title: String, _ amount: Int64, color: Color = .primary) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title).font(.caption).foregroundStyle(.secondary)
+            Text(statsMoney(amount)).font(.headline).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
+                .foregroundStyle(color)
         }
-        .padding(16)
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
-
-        VStack(alignment: .leading, spacing: 10) {
-            Text("标签支出").font(.system(size: Design.bodySize, weight: .semibold))
-            Text("标签可重叠，各项不可直接相加").font(.system(size: 11)).foregroundColor(.secondary)
-            if tags.isEmpty {
-                Text("该期间暂无带标签支出").font(.system(size: Design.captionSize)).foregroundColor(.secondary)
-            } else {
-                ForEach(tags) { item in
-                    BreakdownRow(name: item.pathName, net: item.net, total: totalNet,
-                                 expense: item.expense, refund: item.refund)
-                }
-            }
-        }
-        .padding(16)
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
+    }
+    private func comparisonLink(_ title: String, _ cmp: StatsEngine.Comparison, _ ledgerID: EntityID) -> some View {
+        Button {
+            selectedComparison = selectedComparison == title ? nil : title
+            basePeriod = false
+        } label: {
+            VStack(alignment: .leading, spacing: 7) {
+                HStack { Text(title).font(.caption); Spacer(); Image(systemName: selectedComparison == title ? "chevron.up" : "chevron.down").font(.caption2) }.foregroundStyle(.secondary)
+                Text(cmp.percent.map { String(format: "%+.1f%%", $0) } ?? "暂不计算")
+                    .font(.title3.weight(.semibold)).foregroundStyle(.primary)
+                Text(cmp.status == .ok ? "\(cmp.delta >= 0 ? "增加" : "减少") \(statsMoney(abs(cmp.delta)))" : statsComparisonReason(cmp.status))
+                    .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            }.padding(14).frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 16))
+        }.buttonStyle(.plain).accessibilityIdentifier("stats.compare.\(title)")
     }
 }
 
-struct BreakdownRow: View {
-    let name: String
-    let net: Int64
-    let total: Int64
-    let expense: Int64
-    let refund: Int64
-    var body: some View {
-        VStack(spacing: 4) {
-            HStack {
-                Text(name).font(.system(size: Design.bodySize))
-                Spacer()
-                Text("¥\(Money(net).yuanDescription)").font(.system(size: Design.bodySize, weight: .semibold))
-                    .monospacedDigit()
-            }
-            // 占当前筛选净支出比例；分母为正才显示
-            if total > 0 {
-                GeometryReader { geo in
-                    let ratio = max(0, min(1, Double(max(0, net)) / Double(total)))
-                    Rectangle().fill(Design.sage.opacity(0.75))
-                        .frame(width: geo.size.width * ratio)
-                }
-                .frame(height: 6)
-                .background(RoundedRectangle(cornerRadius: 3).fill(Design.sage.opacity(0.12)))
-            }
-            if refund > 0 {
-                Text("支出 ¥\(Money(expense).yuanDescription) · 退款 ¥\(Money(refund).yuanDescription)")
-                    .font(.system(size: 11)).foregroundColor(.secondary).frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-    }
-}
-
-/// 逐月条形图；同时提供可读数值（VoiceOver 读出金额）。
 struct MonthBarChart: View {
     let months: [MonthKey: PeriodSummary]
+    let select: (MonthKey) -> Void
     var body: some View {
-        let sorted = months.sorted { $0.key < $1.key }
-        let maxV = max(1, sorted.map { max(0, $0.value.netExpense) }.max() ?? 1)
-        VStack(spacing: 6) {
-            HStack(alignment: .bottom, spacing: 6) {
-                ForEach(sorted.indices, id: \.self) { i in
-                    let mk = sorted[i].key
-                    let s = sorted[i].value
-                    VStack(spacing: 2) {
-                        Rectangle()
-                            .fill(Design.sage.opacity(0.75))
-                            .frame(width: 14, height: barHeight(s.netExpense, max: maxV))
-                            .accessibilityLabel("\(mk.month) 月净支出 \(Money(s.netExpense).formatted(style: .plain))")
-                        Text("\(mk.month)").font(.system(size: 10)).foregroundColor(.secondary)
+        let sorted = months.keys.sorted()
+        VStack(alignment: .leading, spacing: 12) {
+            Text("逐月净支出").font(.headline)
+            Text("金额单位：元 · 负值表示退款多于支出").font(.caption).foregroundStyle(.secondary)
+            Chart {
+                ForEach(sorted, id: \.self) { month in
+                BarMark(x: .value("月份", month.month), y: .value("净支出（元）", Double(months[month]!.netExpense) / 100))
+                    .foregroundStyle(Design.netExpense(months[month]!.netExpense))
+                    .cornerRadius(3)
+                    .accessibilityLabel("\(month.month) 月")
+                    .accessibilityValue(statsMoney(months[month]!.netExpense))
+                }
+                RuleMark(y: .value("零", 0)).foregroundStyle(Color.secondary.opacity(0.3))
+            }
+            .chartXScale(domain: 0.5...12.5)
+            .chartXAxis { AxisMarks(values: sorted.map(\.month)) }
+            .frame(height: 164)
+            .chartOverlay { proxy in
+                GeometryReader { geometry in
+                    Rectangle().fill(.clear).contentShape(Rectangle()).gesture(SpatialTapGesture().onEnded { value in
+                        let x = value.location.x - geometry[proxy.plotAreaFrame].origin.x
+                        if let m: Double = proxy.value(atX: x), let month = sorted.first(where: { $0.month == Int(m.rounded()) }) { select(month) }
+                    })
+                }
+            }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(sorted, id: \.self) { month in
+                        Button { select(month) } label: {
+                            VStack(spacing: 3) {
+                                Text("\(month.month) 月").font(.caption.weight(.semibold))
+                                Text(statsMoney(months[month]!.netExpense)).font(.caption2).monospacedDigit()
+                            }.padding(10).background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 10))
+                        }.buttonStyle(.plain).accessibilityIdentifier("stats.month.\(month.month)")
                     }
                 }
             }
-            .frame(height: 120, alignment: .bottom)
         }
-    }
-    private func barHeight(_ v: Int64, max: Int64) -> CGFloat {
-        CGFloat(max(0, v)) / CGFloat(max) * 100
     }
 }

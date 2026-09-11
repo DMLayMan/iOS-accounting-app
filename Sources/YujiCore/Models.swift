@@ -13,6 +13,16 @@ public struct EntityID: Hashable, Codable, Sendable, ExpressibleByStringLiteral 
 /// 记账发生日（PRD §7.1：按发生期分组，旅行/系统时区变化不使历史流水跨日）。
 /// 以账本日历的年月日存储，不存绝对时刻，避免时区漂移。
 public struct Day: Hashable, Codable, Sendable, Comparable {
+    /// Ledger dates always use Gregorian year/month/day; only the local timezone follows the device.
+    public static var calendar: Calendar {
+        var value = Calendar(identifier: .gregorian)
+        value.timeZone = .current
+        value.locale = Locale(identifier: "en_US_POSIX")
+        return value
+    }
+    public var isValid: Bool {
+        (1...9999).contains(year) && (1...12).contains(month) && (1...daysInMonth).contains(day)
+    }
     public var year: Int
     public var month: Int   // 1...12
     public var day: Int     // 1...31
@@ -31,7 +41,7 @@ public struct Day: Hashable, Codable, Sendable, Comparable {
     public var monthKey: MonthKey { MonthKey(year: year, month: month) }
 
     public var nextDay: Day {
-        let cal = Calendar.current
+        let cal = Self.calendar
         if let d = cal.date(from: DateComponents(year: year, month: month, day: day)),
            let n = cal.date(byAdding: .day, value: 1, to: d) {
             return Day(from: n, calendar: cal)
@@ -40,18 +50,18 @@ public struct Day: Hashable, Codable, Sendable, Comparable {
     }
 
     /// 由 Date（按给定日历）取日。
-    public init(from date: Date, calendar: Calendar = .current) {
+    public init(from date: Date, calendar: Calendar = Day.calendar) {
         let c = calendar.dateComponents([.year, .month, .day], from: date)
         self.year = c.year ?? 1970; self.month = c.month ?? 1; self.day = c.day ?? 1
     }
 
-    public func date(calendar: Calendar = .current) -> Date {
+    public func date(calendar: Calendar = Day.calendar) -> Date {
         calendar.date(from: DateComponents(year: year, month: month, day: day)) ?? Date()
     }
 
     /// 该月天数。
     public var daysInMonth: Int {
-        let cal = Calendar.current
+        let cal = Self.calendar
         let dc = DateComponents(year: year, month: month, day: 1)
         if let d = cal.date(from: dc),
            let range = cal.range(of: .day, in: .month, for: d) {
@@ -104,6 +114,9 @@ public struct Ledger: Hashable, Codable, Identifiable, Sendable {
     public var archived: Bool
     public var sortOrder: Int
     public var createdAt: Date
+
+    /// Absent in v1 files; an unset budget never changes historical transactions.
+    public var budgetRules: [BudgetRule]?
 
     public init(id: EntityID = .new(), name: String, currencyCode: String = "CNY",
                 archived: Bool = false, sortOrder: Int = 0, createdAt: Date = Date()) {
@@ -165,6 +178,10 @@ public struct CategoryNode: Hashable, Codable, Identifiable, Sendable {
     public var name: String
     public var archived: Bool
     public var sortOrder: Int
+    /// Optional for backwards-compatible decoding of existing local files and backups.
+    public var pinnedOrder: Int?
+    /// Optional SF Symbol identifier; older local files keep their name-based icon.
+    public var symbolName: String?
 
     public init(id: EntityID = .new(), ledgerID: EntityID, kind: TransactionKind,
                 parentID: EntityID? = nil, name: String, archived: Bool = false, sortOrder: Int = 0) {

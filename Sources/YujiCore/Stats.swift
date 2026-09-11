@@ -43,18 +43,10 @@ public struct StatsEngine {
     /// 有效交易（未删除、未草稿）。
     private var active: [Transaction] { store.activeTransactions(in: ledgerID) }
 
-    /// 计算任意日区间的汇总。`dimension` 决定退款归属账户视角（现金流按到账账户；分类分析按原支出维度）。
+    /// 共用收支聚合规则；分类分析中的退款归属由分类查询负责。
     public func summary(range: ClosedRange<Day>) -> PeriodSummary {
-        var exp: Int64 = 0, ref: Int64 = 0, inc: Int64 = 0
-        for t in active where range.contains(t.date) {
-            switch t.kind {
-            case .expense: exp += t.amountCents
-            case .income: inc += t.amountCents
-            case .refund: ref += t.amountCents
-            case .transfer: break
-            }
-        }
-        return PeriodSummary(range: range, expense: exp, refund: ref, income: inc)
+        let totals = TransactionTotals(active.filter { range.contains($0.date) })
+        return PeriodSummary(range: range, expense: totals.expense, refund: totals.refund, income: totals.income)
     }
 
     /// 某自然月汇总。
@@ -70,6 +62,8 @@ public struct StatsEngine {
         public var base: Int64
         public var delta: Int64          // C − B
         public var percent: Double?      // 仅 B > 0 时有值
+        public var currentRange: ClosedRange<Day>? = nil
+        public var baseRange: ClosedRange<Day>? = nil
         public var status: Status
         public enum Status: Equatable, Sendable {
             case ok
@@ -80,63 +74,42 @@ public struct StatsEngine {
         }
     }
 
-    /// 环比：当前月（若未结束则取 1..d 日）对比上月同进度（或上月整月）。
+    /// Earliest declared account start, including archived accounts. This is a lower bound,
+    /// not a claim that the user has recorded every transaction since that date.
+    public var recordingStart: Day? { store.accounts(in: ledgerID).map(\.startDay).min() }
+
+    /// Current month compares equal progress; historical months compare full calendar months.
     public func momComparison(for month: MonthKey, today: Day) -> Comparison {
-        let isCurrentMonth = (month == today.monthKey)
-        if isCurrentMonth {
-            let curRange = month.prefix(through: today.day)
-            let prev = month.previous
-            let prevDays = prev.firstDay.daysInMonth
-            if today.day > prevDays {
-                // 基期月份不足 d 天：默认不展示增长率；金额按双方共同天数（上月天数）窗口重算并明示（PRD §7.2）。
-                let common = prevDays
-                let cur = summary(range: month.prefix(through: common)).netExpense
-                let base = summary(range: prev.prefix(through: common)).netExpense
-                return Comparison(current: cur, base: base, delta: cur - base, percent: nil, status: .unequalLength)
-            }
-            let baseRange = prev.prefix(through: today.day)
-            return compare(current: summary(range: curRange).netExpense,
-                           base: summary(range: baseRange).netExpense)
-        } else {
-            // 历史完整月：对比上一个完整自然月
-            let cur = monthSummary(month).netExpense
-            let base = monthSummary(month.previous).netExpense
-            return compare(current: cur, base: base)
-        }
+        monthComparison(month, base: month.previous, today: today)
     }
 
-    /// 同比：当前月 1..d 对比去年同月 1..d；历史完整月对比去年完整月。
     public func yoyComparison(for month: MonthKey, today: Day) -> Comparison {
-        let lastYear = MonthKey(year: month.year - 1, month: month.month)
-        let isCurrentMonth = (month == today.monthKey)
-        if isCurrentMonth {
-            let curRange = month.prefix(through: today.day)
-            let lyDays = lastYear.firstDay.daysInMonth
-            if today.day > lyDays {
-                // 今天 2/29、去年 2 月仅 28 天：比较按共同 1..28 窗口，本月主区间仍含 29 日（PRD §7.3）。
-                let common = lyDays
-                let cur = summary(range: month.prefix(through: common)).netExpense
-                let base = summary(range: lastYear.prefix(through: common)).netExpense
-                return Comparison(current: cur, base: base, delta: cur - base, percent: nil, status: .unequalLength)
-            }
-            return compare(current: summary(range: curRange).netExpense,
-                           base: summary(range: lastYear.prefix(through: today.day)).netExpense)
-        } else {
-            return compare(current: monthSummary(month).netExpense,
-                           base: monthSummary(lastYear).netExpense)
-        }
+        monthComparison(month, base: MonthKey(year: month.year - 1, month: month.month), today: today)
     }
 
-    private func compare(current: Int64, base: Int64) -> Comparison {
-        if base == 0 {
-            return Comparison(current: current, base: base, delta: current - base, percent: nil, status: .baseZero)
+    private func monthComparison(_ month: MonthKey, base: MonthKey, today: Day) -> Comparison {
+        guard month == today.monthKey else {
+            return comparison(currentRange: month.fullRange, baseRange: base.fullRange)
         }
-        if base < 0 {
-            return Comparison(current: current, base: base, delta: current - base, percent: nil, status: .baseNegative)
-        }
-        // 用整数分计算百分比，一位小数。
-        let pct = Double(current - base) * 100.0 / Double(base)
-        return Comparison(current: current, base: base, delta: current - base, percent: pct, status: .ok)
+        let common = min(today.day, base.firstDay.daysInMonth)
+        return comparison(currentRange: month.prefix(through: common), baseRange: base.prefix(through: common),
+                          unequalLength: common < today.day)
+    }
+
+    public func comparison(currentRange: ClosedRange<Day>, baseRange: ClosedRange<Day>,
+                           unequalLength: Bool = false) -> Comparison {
+        let current = summary(range: currentRange).netExpense
+        let base = summary(range: baseRange).netExpense
+        let baseIsCovered = recordingStart.map { baseRange.lowerBound >= $0 } ?? false
+        let status: Comparison.Status
+        if !baseIsCovered { status = .baseNotCovered }
+        else if unequalLength { status = .unequalLength }
+        else if base == 0 { status = .baseZero }
+        else if base < 0 { status = .baseNegative }
+        else { status = .ok }
+        return Comparison(current: current, base: base, delta: current - base,
+                          percent: status == .ok ? Double(current - base) * 100 / Double(base) : nil,
+                          currentRange: currentRange, baseRange: baseRange, status: status)
     }
 
     // MARK: - 年度（PRD §7.3）
@@ -178,11 +151,10 @@ public struct StatsEngine {
             let curCompareRange = Day(year: year, month: 1, day: 1)...Day(year: year, month: today.month, day: commonDay)
             let lastYearEnd = Day(year: year - 1, month: today.month, day: commonDay)
             let lyRange = Day(year: year - 1, month: 1, day: 1)...lastYearEnd
-            yoy = compare(current: summary(range: curCompareRange).netExpense,
-                          base: summary(range: lyRange).netExpense)
+            yoy = comparison(currentRange: curCompareRange, baseRange: lyRange)
         } else {
             let lyRange = Day(year: year - 1, month: 1, day: 1)...Day(year: year - 1, month: 12, day: 31)
-            yoy = compare(current: total.netExpense, base: summary(range: lyRange).netExpense)
+            yoy = comparison(currentRange: range, baseRange: lyRange)
         }
 
         return YearSummary(year: year, isCurrentYear: isCurrent, ytdRange: range,
@@ -201,7 +173,7 @@ public struct StatsEngine {
                 e.exp += t.amountCents; e.count += 1
                 byLeaf[catID] = e
             }
-            if t.kind == .refund, let origID = t.originalExpenseID, let orig = store.transaction(origID),
+            if kind == .expense, t.kind == .refund, let origID = t.originalExpenseID, let orig = store.transaction(origID),
                orig.kind == .expense, let catID = orig.categoryID {
                 // 退款按发生期计入，但归属原支出分类
                 if range.contains(t.date) {
@@ -220,7 +192,7 @@ public struct StatsEngine {
             return BreakdownItem(id: id, name: name, pathName: path,
                                  expense: v.exp, refund: v.ref, count: v.count)
         }
-        .sorted { $0.net > $1.net }
+        .sorted { $0.net == $1.net ? $0.id.raw < $1.id.raw : $0.net > $1.net }
     }
 
     // MARK: - 标签分析（PRD §7.5/§4：按交易 ID 去重，父标签=后代并集，重叠不相加）

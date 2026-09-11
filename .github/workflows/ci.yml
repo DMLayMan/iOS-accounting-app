@@ -1,0 +1,34 @@
+name: Core and iOS build
+on:
+  pull_request:
+  push:
+    branches: [master]
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Domain regression
+        run: swift test
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Domain and application state regression
+        run: swift test
+      - name: Generate project
+        run: |
+          brew install xcodegen
+          xcodegen generate --spec ios-app/project.yml
+      - name: Build app and native tests
+        run: >-
+          xcodebuild build-for-testing -project ios-app/Yuji.xcodeproj -scheme Yuji
+          -destination 'generic/platform=iOS Simulator' -derivedDataPath .build-ci
+          CODE_SIGNING_ALLOWED=NO
