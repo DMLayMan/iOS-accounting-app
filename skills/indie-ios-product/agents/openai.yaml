@@ -1,0 +1,4 @@
+interface:
+  display_name: "独立 iOS 产品开发"
+  short_description: "从用户任务到原生验收，沉淀独立 iOS 应用设计、复用与高效交付的方法"
+  default_prompt: "使用 $indie-ios-product 为当前 iOS 应用设计或审查一条完整用户动线，并按风险完成实现与验收。"

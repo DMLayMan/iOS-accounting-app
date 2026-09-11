@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-09-11T09:59:45.368Z",
+  "name": "indie-ios-product",
+  "source": "skills/indie-ios-product",
+  "installation": "~/.codex/skills/indie-ios-product",
+  "files": [
+    {
+      "file": "SKILL.md",
+      "sha256": "2acd553132e3565c957b175ed7071c8a3d78c9ad739bc9b1c02dcaa9cd8a27af",
+      "installedMatches": true
+    },
+    {
+      "file": "agents/openai.yaml",
+      "sha256": "b7c0e93c5e7a737594a128005a288282bb6a2570abff0b68c17dfab1e117ddbd",
+      "installedMatches": true
+    },
+    {
+      "file": "assets/delivery-record.md",
+      "sha256": "5c59b9d1c656b032390c6777880ef5288a7a1a998ee3178669113f5419333a57",
+      "installedMatches": true
+    },
+    {
+      "file": "assets/feature-brief.md",
+      "sha256": "e206701e7aa97011bbb72cd3d7776846304c83b74a5ab7adfbb473cb50f0299c",
+      "installedMatches": true
+    },
+    {
+      "file": "assets/page-contract.md",
+      "sha256": "d295925e8a5d1b27d10e0fbea1afb5e95e61f73c33f4b113b5a818f01be6e8a3",
+      "installedMatches": true
+    },
+    {
+      "file": "references/architecture-and-delivery.md",
+      "sha256": "5eb582f3e615c205404d4f29dedeb93d3ba2f4c971818848de6670feda59a811",
+      "installedMatches": true
+    },
+    {
+      "file": "references/product-and-ux.md",
+      "sha256": "0a7ec69ef09ebbd2edcc96931ae171fb4a2e336f2391fd03ec1142591a9ba8e2",
+      "installedMatches": true
+    },
+    {
+      "file": "references/review-gates.md",
+      "sha256": "16b78264be5568281b9fc18945b5d59b0b077bc1f6f96aa3985959f784fdeb5a",
+      "installedMatches": true
+    }
+  ]
+}

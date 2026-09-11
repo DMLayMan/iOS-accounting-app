@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-09-11T13:16:36.337Z",
+  "passed": true,
+  "installedRequested": true,
+  "checks": [
+    {
+      "name": "references",
+      "passed": true,
+      "documents": 13,
+      "links": 43
+    },
+    {
+      "name": "source manifest",
+      "passed": true,
+      "files": 8
+    },
+    {
+      "name": "installed parity",
+      "passed": true,
+      "files": 8
+    },
+    {
+      "name": "official skill schema",
+      "passed": true,
+      "output": "Skill is valid!"
+    },
+    {
+      "name": "verifier fault tests",
+      "passed": true,
+      "total": 7,
+      "passedTests": 7,
+      "failedTests": 0
+    },
+    {
+      "name": "application source unchanged from origin/master",
+      "passed": true
+    }
+  ],
+  "scope": "Reusable skill, documentation, verifier and CI; application source unchanged",
+  "designEvidence": "todo-worked-example.md is a design exercise, not native or independent validation"
+}
