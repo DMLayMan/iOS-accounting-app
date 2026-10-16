@@ -1,6 +1,6 @@
 {
-  "verifiedAtUTC": "2026-10-16T04:27:47.139Z",
-  "candidate": "1.0 (13) available in internal TestFlight; last installed and verified build is 12",
+  "verifiedAtUTC": "2026-10-16T05:38:34.084Z",
+  "candidate": "1.0 (13) installed and verified; real price inconsistency remains open",
   "appReviewSubmitted": false,
   "fullRegression": {
     "passed": 135,
@@ -43,9 +43,9 @@
     "groupAssigned": true,
     "notesSaved": true,
     "notesAndGroupReloadVerified": true,
-    "installedOnIPhone12": false,
-    "lastVerifiedInstalledBuild": "12",
-    "installedVersionVerifiedInAppAndDevice": false,
+    "installedOnIPhone12": true,
+    "lastVerifiedInstalledBuild": "13",
+    "installedVersionVerifiedInAppAndDevice": true,
     "localAppStoreIPAExportVerified": true
   },
   "production": {
@@ -260,7 +260,7 @@
     "remoteCI": "not started: account billing or spending limit; annotations verified all four checks",
     "remoteRun": "https://github.com/DMLayMan/ios-base/actions/runs/38693970346"
   },
-  "verificationScope": "Build 13 local tests, final signed archive/export, remote App CI and TestFlight availability are verified independently. Phone last verified installed build is 12; build 13 upgrade and real price/nickname abnormal scenarios remain pending. Prior real CloudKit evidence retains its tested build/device scope.",
+  "verificationScope": "Build 13 signed/exported/distributed/installed, upgrade data protection and native visible-price refresh/reopen verified. Real radio-offline nickname save/cold restart/reconnect, distinct Production peer readback and original nickname restoration passed; no financial or author field changes. Current USD catalog vs historical CNY receipts remains unresolved. Same-account multiple physical devices and minimum iOS17 actual runtime remain unverified.",
   "candidateBuild8": {
     "delivery": "../shared-nickname-2026-10-15/live-testflight8.md",
     "liveReceipt": "../shared-nickname-2026-10-15/live-verification.json",
@@ -433,11 +433,10 @@
     "source Git snapshot review and SDK CI billing"
   ],
   "remaining": [
-    "Build 13 physical TestFlight upgrade/data protection and live quote recheck",
-    "USD catalog vs CNY receipt inconsistency remains unresolved; user confirms China mainland purchase country",
-    "Same-account multi-device nickname and real offline nickname recovery not verified",
+    "Build 13 app US$0.99 vs human-observed Apple confirmation CNY6 confirmed; root cause unresolved, no new purchase",
+    "Same-account multi-physical-device nickname not verified",
     "iOS 17 actual runtime and human VoiceOver",
-    "SDK repository own CI blocked by account billing/spending limit; App CI private dependency build now passes",
+    "SDK repository own CI blocked by account billing/spending limit; App CI private dependency build passes",
     "ICP filing pending; no operations this batch",
     "Final human App Review submission authorization"
   ],
@@ -629,19 +628,88 @@
     "internalGroup": "首发验收",
     "testers": 1,
     "notesAndGroupReloadVerified": true,
-    "installedOnIPhone12": false,
+    "installedOnIPhone12": true,
     "remoteCI": {
-      "run": 38849387409,
-      "source": "a89d78e",
+      "run": 38850819923,
+      "source": "e54e9f807402067c3de5ec3360521d9a453335b8",
       "core": "success",
       "iosBuild": "success",
-      "readOnlyDependencyKey": true
+      "readOnlyDependencyKey": true,
+      "evidence": "https://github.com/DMLayMan/iOS-accounting-app/actions/runs/38850819923"
     },
     "storeScreenshots": 5,
     "storeScreenshotReloadVerified": true,
     "reviewDraftUpdated": true,
     "reviewNotesReloadVerified": true,
-    "productCodeMatchesArchive": true
+    "productCodeMatchesArchive": true,
+    "inAppVersionVerified": true,
+    "upgradeDataSafetyPassed": true,
+    "liveSupport": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "purchaseTriggered": false,
+      "prices": [
+        "US$0.99",
+        "US$2.99",
+        "US$3.99"
+      ],
+      "reopenFresh": true,
+      "refreshVerified": true,
+      "priceRootCauseFixed": false,
+      "initialHarnessFailureRetained": true,
+      "humanSystemConfirmation": {
+        "tier": "encourage",
+        "appQuote": "US$0.99",
+        "systemQuote": "CNY 6",
+        "observationSource": "human report",
+        "action": "cancelled without purchasing",
+        "environmentBadgeSeparatelyReported": false,
+        "noNewVerifiedTransaction": true,
+        "receiptJournalSemanticallyUnchanged": true
+      },
+      "immediateCancellationReturn": "not captured: observer found support sheet already closed; no conclusion on automatic vs human dismissal",
+      "postHumanCancelReopen": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "newPurchaseTriggered": false,
+        "selectedTierAndButtonMatch": true,
+        "freshSelectionOnReopen": true,
+        "businessAndReceiptsUnchanged": true,
+        "cloudOnlyLastSync": true
+      }
+    },
+    "liveNickname": {
+      "passed": true,
+      "physicalRadioOffline": true,
+      "offlineSaveAndColdRestart": true,
+      "reconnectPublished": true,
+      "distinctProductionAccountReadback": true,
+      "originalNicknameRestoredBothSides": true,
+      "financialAndAuthorFieldsUnchanged": true,
+      "finalSafetyChecksPassed": 9,
+      "phonePhaseExecutions": 3,
+      "peerPhaseExecutions": 3,
+      "phaseCountsAreNotUniqueCases": true,
+      "peerIsCatalystObserver": true,
+      "sameAccountMultiplePhysicalDevices": false,
+      "initialKeyboardFocusHarnessFailureRetained": true,
+      "report": "build13-live.md"
+    },
+    "appleFeedback": {
+      "authorized": true,
+      "submitted": true,
+      "accountVerified": true,
+      "privacyConsentCompletedByUser": true,
+      "finalStatementAcceptedByUser": true,
+      "feedbackID": "FB25209457",
+      "url": "https://feedbackassistant.apple.com/feedback/25209457",
+      "submittedAtLocal": "2026-10-16 13:37 Asia/Shanghai",
+      "attachments": 0,
+      "payload": "apple-storekit-feedback-submitted.txt",
+      "resolved": false
+    }
   },
   "previousTestflightBuild12": {
     "version": "1.0",

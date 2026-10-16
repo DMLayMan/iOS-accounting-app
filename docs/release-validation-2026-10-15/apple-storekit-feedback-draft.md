@@ -1,12 +1,20 @@
 # Apple Feedback草稿：TestFlight目录USD，验签交易CNY
 
-状态：本地草稿，尚未向Apple发送。原始设备日志、账本、账号邮箱、交易ID、appAccountToken和邀请链接不随草稿公开。
+状态：2026-10-16 13:37 已使用指定开发者账号提交，正式编号 [FB25209457](https://feedbackassistant.apple.com/feedback/25209457)，页面编号、标题及正文已回读。本人完成隐私同意及最终资料声明。仅文字、0 附件；实际提交的精简正文见 [提交内容](apple-storekit-feedback-submitted.txt)。价格根因未关闭，未收到处理结论。原始设备日志、账本、账号邮箱、交易 ID、appAccountToken 和邀请链接未提交。
 
 ## Title
 
 TestFlight StoreKit 2 returns USA/USD catalog, but verified consumable purchases settle in CNY on the same iPhone
 
-## Environment
+## 2026-10-16 update — installed TestFlight 1.0 (13)
+
+The user confirmed that the current Media & Purchases country is mainland China. Build 13 is now installed and independently verified on the same iPhone. A fresh StoreKit product refresh still displays US$0.99 / US$2.99 / US$3.99. Each selected tier and purchase button show the same returned price, and closing/reopening resets the selection.
+
+The user then opened Apple's purchase sheet for `com.yuji.app.support.encourage`: the app displayed US$0.99, while the system confirmation displayed CNY6. The user cancelled without purchasing. This system-sheet observation is user-reported, not an automated screenshot assertion; the environment badge was not separately reported. A readback immediately afterward found no new verified transactions and no semantic changes to the existing receipt journal, ledger or support-invitation data. The CNY verified transactions below belong to the earlier build 7 evidence. Account country was not changed and the user was not signed out.
+
+Build 13 listens to `Storefront.updates`, reloads `Product.products(for:)`, compares Storefront IDs before and after loading, checks the Product currency against Storefront currency when available, and checks the storefront again before purchasing. Purchase uses `onStorefrontChange`. These checks do not resolve the observed discrepancy between returned product metadata and the system sheet. We have not established that production App Store distribution is unaffected.
+
+## Historical environment and receipt evidence
 
 - Physical iPhone 12, iOS26.6.1
 - Xcode27.0 (27A266a), Swift6, SwiftUI
@@ -34,8 +42,9 @@ StoreKit product price, storefront and the actual purchase currency should agree
 1. Install this TestFlight build on the affected iPhone.
 2. Open the support chooser and request the products via StoreKit2.
 3. Observe USA/USD in Storefront and displayPrice.
-4. Compare with the two already verified coffee receipts from the same session: CNY18.
-5. Close and reopen the chooser; the catalog remains USD. No further purchase is necessary to demonstrate the current mismatch.
+4. In build 13, the user opens the encouragement purchase sheet: it displays CNY6, versus US$0.99 in the app. Cancel; do not purchase.
+5. Historical build 7 coffee purchases also returned verified CNY18 receipts against a US$2.99 catalog quote. These are separate transactions, not build 13 receipts.
+6. Close and reopen the chooser; the catalog remains USD. No further purchase is necessary to demonstrate the current mismatch.
 
 ## Questions for Apple
 

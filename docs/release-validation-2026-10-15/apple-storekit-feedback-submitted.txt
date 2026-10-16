@@ -1,0 +1,31 @@
+Environment: physical iPhone 12, iOS 26.6.1 (23G83); TestFlight 1.0 (13), bundle com.dmlayman.yuji; Xcode 27.0 (27A266a), StoreKit 2. Reproduced on 2026-10-16. No local .storekit configuration in the distributed app.
+
+Current reproduction:
+1. The user confirms their Media & Purchases country is mainland China. No account sign-out, country change or account switching was performed.
+2. Open the consumable support chooser. Request Product.products(for:) and display Product.displayPrice without conversion. Refreshing returns US$0.99 / US$2.99 / US$3.99.
+3. Select com.yuji.app.support.encourage. The product row and purchase button both show US$0.99.
+4. The user taps the purchase button. Apple system confirmation shows CNY6, then the user cancels. The system-sheet amount is user-reported; we have not captured that sheet or independently recorded its environment badge.
+5. Read back the app's verified transaction journal: no new transaction; existing receipts and financial data are unchanged. Reopening the chooser still shows USD and permits selection. No additional purchase is needed to demonstrate the mismatch.
+
+Historical evidence (separate from build 13): on the same iPhone, TestFlight build 7 returned Storefront USA and a US$2.99 coffee quote. Two user-initiated Sandbox purchases produced StoreKit-verified CNY18 transactions. Those are historical receipts, not build 13 transactions. Raw transaction IDs, account identifiers and tokens are omitted.
+
+Implementation checks already present in build 13:
+- Listen to Storefront.updates and invalidate the cached Product list.
+- Request Product.products(for:) on refresh; compare Storefront IDs before and after loading.
+- Compare Product currency with Storefront currency where available.
+- Refresh/check quote and storefront before calling purchase; use the onStorefrontChange purchase option.
+These checks do not resolve the discrepancy between product metadata and the Apple confirmation sheet. We do not hard-code CNY, replace currency symbols, or perform currency conversion.
+
+Expected: product metadata, displayed quote and system purchase confirmation agree for the active purchase identity, or an observable storefront change permits refreshing before confirmation.
+
+Questions:
+1. Can TestFlight catalog and purchase execution use different cached account/storefront contexts on this OS?
+2. Is there a supported way to refresh this state without signing out the user's everyday account?
+3. What focused diagnostics would distinguish a StoreKit service issue from account-session propagation?
+4. Is App Store production affected? We have not established that production is unaffected.
+
+Related first-hand reports (comparison only, not proof of the same root cause):
+https://developer.apple.com/forums/thread/847397
+https://developer.apple.com/forums/thread/794932
+
+This report intentionally excludes personal ledger data, account email addresses, transaction IDs, appAccountToken values and cloud invitation links.
