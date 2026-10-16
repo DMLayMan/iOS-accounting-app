@@ -1,6 +1,6 @@
 {
-  "verifiedAtUTC": "2026-10-16T07:44:10.191657+00:00",
-  "candidate": "1.0 (15) installed and verified on iPhone 12; data preservation, Production sync and statistics people filtering passed; physical VoiceOver listening deferred by user and unverified; App Review draft remains build 13",
+  "verifiedAtUTC": "2026-10-16T09:50:05.993Z",
+  "candidate": "1.0 (16) signed, uploaded, processed and assigned to original internal group; App Review draft build 16 with 3 IAPs and 5 new screenshots, not submitted; physical installation pending; latest confirmed installed build 15",
   "appReviewSubmitted": false,
   "fullRegression": {
     "passed": 135,
@@ -33,8 +33,8 @@
   },
   "testflight": {
     "version": "1.0",
-    "build": "15",
-    "buildID": "f34ffa3b-4ae6-41e8-89a2-2ee3fd55d22a",
+    "build": "16",
+    "buildID": "678b0a74-77a8-40f9-a817-a263b0cad217",
     "uploaded": true,
     "processed": true,
     "internalGroup": "首发验收",
@@ -43,11 +43,12 @@
     "groupAssigned": true,
     "notesSaved": true,
     "notesAndGroupReloadVerified": true,
-    "installedOnIPhone12": true,
+    "installedOnIPhone12": false,
     "lastVerifiedInstalledBuild": "15",
-    "installedVersionVerifiedInAppAndDevice": true,
+    "installedVersionVerifiedInAppAndDevice": false,
     "localAppStoreIPAExportVerified": true,
-    "actualInstalledBuild": "15"
+    "actualInstalledBuild": "15",
+    "installationStatus": "awaiting user update; latest readback before update was 15"
   },
   "production": {
     "differentAccountInvitationAccepted": true,
@@ -434,6 +435,7 @@
     "source Git snapshot review and SDK CI billing"
   ],
   "remaining": [
+    "Build 16 physical installation and new UI acceptance pending",
     "Build 13 app US$0.99 vs human-observed Apple confirmation CNY6 confirmed; root cause unresolved, no new purchase",
     "Same-account multi-physical-device nickname not verified",
     "Exact iOS 17.0 / physical minimum-system device not verified; iOS 17.5 simulator already passed",
@@ -444,14 +446,18 @@
   ],
   "reviewDraft": {
     "appVersion": "1.0",
-    "build": "13",
+    "build": "16",
     "iapCount": 3,
     "itemCount": 4,
     "state": "Ready for Review in draft submission",
     "submitted": false,
     "manualRelease": true,
-    "proof": "evidence/ux13-20261016/review-draft13-reloaded.jpg",
-    "reloadVerified": true
+    "proof": "evidence/build16-20261016/review-draft16-verified.png",
+    "readbackVerified": true,
+    "screenshots": 5,
+    "screenshotManifest": "build16-screenshots/manifest.json",
+    "notesFile": "app-review16-notes.txt",
+    "notesExactMatch": true
   },
   "cloudFinal10": {
     "report": "cloud-final.md",
@@ -902,5 +908,67 @@
     ],
     "humanListeningStatus": "deferred_by_user",
     "humanListeningReason": "User is temporarily unavailable for listening"
+  },
+  "previousTestflightBuild15": {
+    "version": "1.0",
+    "build": "15",
+    "buildID": "f34ffa3b-4ae6-41e8-89a2-2ee3fd55d22a",
+    "uploaded": true,
+    "processed": true,
+    "internalGroup": "首发验收",
+    "groupID": "f8122c0b-5bc8-4b78-ab6c-c407840ab8f3",
+    "testers": 1,
+    "groupAssigned": true,
+    "notesSaved": true,
+    "notesAndGroupReloadVerified": true,
+    "installedOnIPhone12": true,
+    "lastVerifiedInstalledBuild": "15",
+    "installedVersionVerifiedInAppAndDevice": true,
+    "localAppStoreIPAExportVerified": true,
+    "actualInstalledBuild": "15"
+  },
+  "previousReviewDraft13": {
+    "appVersion": "1.0",
+    "build": "13",
+    "iapCount": 3,
+    "itemCount": 4,
+    "state": "Ready for Review in draft submission",
+    "submitted": false,
+    "manualRelease": true,
+    "proof": "evidence/ux13-20261016/review-draft13-reloaded.jpg",
+    "reloadVerified": true
+  },
+  "candidateBuild16": {
+    "build": 16,
+    "source": "af89f013529cc87f5f12fafb3b114ec52a53e5d0",
+    "archiveResourceChecksPassed": 14,
+    "exportResourceChecksPassed": 14,
+    "team": "7S626H9YL4",
+    "environment": "Production",
+    "getTaskAllow": false,
+    "dSYMMatches": true,
+    "ipaBytes": 4354841,
+    "ipaSHA256": "7ad977cad037512ef9f5ffe3623c30dc559d6c9edea2b3ad96649b6928d17184",
+    "archivePassed": true,
+    "exportPassed": true,
+    "uploaded": true,
+    "processed": true,
+    "groupAssigned": true,
+    "notesAndGroupReloadVerified": true,
+    "installed": false,
+    "physicalInstallation": "pending",
+    "sourceCIPassed": true,
+    "sourceCI": "https://github.com/DMLayMan/iOS-accounting-app/actions/runs/38880971126",
+    "report": "build16-delivery.md",
+    "backupFiles": 3,
+    "productTestsReusedFromFinalPolish": true,
+    "portablePassed": 181,
+    "nativePassed": 69,
+    "uniqueUITests": 21,
+    "captureTestsPassed": 2,
+    "captureTestsSkipped": 0,
+    "captureTestsFailed": 0,
+    "realServicesRetested": false,
+    "appReviewDraftBuild": 16
   }
 }

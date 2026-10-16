@@ -56,3 +56,5 @@
 - 扩大按钮命中区时将 frame/contentShape 放进 label 内；外层 frame 不证明留白可点。大字号测试必须扣除固定底栏/键盘，以完整可见区域定位，不信任视口外控件的 isHittable。
 - SwiftUI 颜色测试在指定 EnvironmentValues 中用 Color.resolve(in:) 解析；iOS 17 的 Color→UIColor 桥接可能冻结当前外观。语义合并后的流水测试通过稳定记录 ID 和完整朗读标签定位，不查已隐藏的子 StaticText。
 - 本地 StoreKit 自动购买前校验实际返回的 fixture 报价。SKTestSession 配置加载失败可能只写日志而不抛异常；此时停止购买，不能把真实目录或等待认证结果当成本地 StoreKit 回归。
+
+- 拍摄启用 CloudKit 的模拟器 Release 时保留 Xcode 正常签名与模拟器 entitlement 注入；CODE_SIGNING_ALLOWED=NO 可能令 CKContainer 启动崩溃，照搬设备 entitlement 手工补签也可能被模拟器拒绝。截图驱动失败先与正式 IPA 分开诊断，不能为绕过工具失败修改发布权限或云配置。

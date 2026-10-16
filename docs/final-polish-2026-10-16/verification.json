@@ -150,11 +150,21 @@
   "unverified": [
     "Physical VoiceOver listening deferred by user",
     "Physical iOS 17 device",
-    "New UI TestFlight distribution"
+    "New UI physical installation and user acceptance"
   ],
   "unchangedExternalGates": [
     "Apple Feedback FB25209457",
     "Mainland China ICP filing"
   ],
-  "realServicesRetested": false
+  "realServicesRetested": false,
+  "distributionFollowup": {
+    "build": 16,
+    "sourceCommit": "af89f013529cc87f5f12fafb3b114ec52a53e5d0",
+    "uploaded": true,
+    "processed": true,
+    "groupAssigned": true,
+    "physicalInstallationVerified": false,
+    "report": "../release-validation-2026-10-15/build16-delivery.md",
+    "originalReleaseResultRetained": true
+  }
 }

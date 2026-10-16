@@ -1,0 +1,42 @@
+{
+  "build": "1.0 (16)",
+  "sourceCommit": "af89f013529cc87f5f12fafb3b114ec52a53e5d0",
+  "data": "synthetic isolated ledger, no personal data",
+  "screenshots": [
+    {
+      "file": "appstore16-01-entry.png",
+      "source": "8B7AC789-8330-410A-B145-D8B2904F1BCA.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "59681e930904a8e5df5dc46e17ce13962a8f7e9bf48c5e62ed7972c307e22657"
+    },
+    {
+      "file": "appstore16-02-statistics.png",
+      "source": "F61AE5D9-64CD-4044-A9AD-F5CC54C254F3.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "2c5684e92ef749a7530c3daffbed32e90c4ca8ee545f9c9ca6df28909c2acbf2"
+    },
+    {
+      "file": "appstore16-03-budgets.png",
+      "source": "881A02ED-B225-4C40-8567-F0A7F1E41F21.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "369da1d743fdbacf61b8eaf3b859c72cd4e60312b4e3135aa9d3dc43c1c73edf"
+    },
+    {
+      "file": "appstore16-04-ledger.png",
+      "source": "6208B277-9CF4-4E61-B643-4E7A96136622.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "d371014d88ff0025ff6fece80b7172470e39c04ca0215213286eb934dedc9712"
+    },
+    {
+      "file": "appstore16-05-feed.png",
+      "source": "827EAC92-BFA7-41A1-9B63-48E5801ADCEA.png",
+      "width": 1206,
+      "height": 2622,
+      "sha256": "978bf49aef66d9d078cc2cf0ce62d7973d42bc29c439318f163fedf220f6b240"
+    }
+  ]
+}
