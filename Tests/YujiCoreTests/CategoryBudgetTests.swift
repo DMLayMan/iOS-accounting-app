@@ -90,7 +90,7 @@ final class CategoryBudgetTests: XCTestCase {
         }
         try s.setCategoryBudgets(ledgerID: l.id, limits: rules, effective: day)
         let backup = try BackupService.makeBackup(from: s)
-        XCTAssertEqual(backup.formatVersion, 3)
+        XCTAssertEqual(backup.formatVersion, LedgerData.currentSchemaVersion)
         let restored = LedgerStore(data: try BackupService.validate(backup: BackupService.decode(BackupService.encode(backup))))
         XCTAssertEqual(restored.categoryBudgetLimits(in: l.id, containing: day).count, 32)
         var bad = backup

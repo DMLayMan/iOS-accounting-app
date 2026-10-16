@@ -1,0 +1,57 @@
+[
+  {
+    "test": "BudgetEntryUITests.testCreateBudgetsDraftPreviewSaveAndAnnualBalance()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "BudgetEntryUITests.testDarkBudgetAndEntry()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "BudgetEntryUITests.testExistingBudgetInvalidInputClearAndLedgerIsolation()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "BudgetEntryUITests.testLargestTextBudgetEditorAndFloatingAction()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "CategoryBudgetUITests.testDarkCategoryBudgetAndEditor()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "CategoryBudgetUITests.testLargestTextCategoryBudgetAndEditor()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "CategoryBudgetUITests.testRuleCRUDDuplicateAndPersistence()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "DesignQualityUITests.testEverySupportPageTourAndAccountValidation()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "LedgerFeedUITests.testCumulativeOverviewCreateSwitchAndRelaunch()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "LedgerFeedUITests.testMonthNavigationEmptyRecoveryAndSwitcherCreation()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  },
+  {
+    "test": "LifecycleUITests.testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger()",
+    "message": "Invalid frame dimension (negative or non-finite).",
+    "source": null
+  }
+]

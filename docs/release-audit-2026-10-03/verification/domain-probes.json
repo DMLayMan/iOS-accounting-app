@@ -1,0 +1,11 @@
+{
+  "accountListBalance" : 9000,
+  "businessDay" : "2026-10-03",
+  "discrepancyConfirmed" : true,
+  "ledgerHomeBalance" : 10000,
+  "openingCents" : 10000,
+  "reloadedTransactions" : 1,
+  "restoredTransactions" : 1,
+  "scope" : "isolated core reproduction using the exact UI call sites, cents",
+  "tomorrowExpenseCents" : 1000
+}

@@ -1,0 +1,536 @@
+{
+  "date": "2026-10-08",
+  "scope": "Developer support integration and 100 locally created records; focused regression, not new whole-app release approval",
+  "sourceRevision": "58aed2d526844739e13cdf2795800f83e869681d",
+  "workingTree": "dirty; existing user changes preserved; no commit or push",
+  "dependency": {
+    "repository": "DMLayMan/ios-base",
+    "tag": "v0.1.0",
+    "revision": "c7d4524ff0ae4233618f59d266c5aea790794d1f",
+    "products": [
+      "DeveloperSupportKit",
+      "EngagementPromptKit"
+    ]
+  },
+  "portable": {
+    "passed": 155,
+    "domain": 113,
+    "AppState": 42,
+    "failures": 0,
+    "log": "evidence/developer-support-20261008/core.log"
+  },
+  "upstreamModel": {
+    "passed": 5,
+    "failures": 0,
+    "log": "evidence/developer-support-20261008/upstream-support-tests.log"
+  },
+  "native": [
+    {
+      "batch": "pro-final",
+      "result": "Passed",
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0,
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C456E5DC-1377-43E9-871E-394439D7DAF0",
+        "deviceName": "iPhone 18 Pro",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      },
+      "runtimeWarnings": [],
+      "summary": "evidence/developer-support-20261008/pro-final/summary.json",
+      "resultBundle": "evidence/developer-support-20261008/pro-final/results.xcresult",
+      "cases": [
+        {
+          "id": "AppStateRecoveryTests/testRecoveryPreservesUnreadableOriginalBeforeReplacingIt()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateRecoveryTests/testTransferKeepsExpenseDraftAndThemeFailureRollsBack()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateRecoveryTests/testUnreadableFileBlocksWritesAndCanBeRetriedWithoutRenamingIt()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testBudgetsRollBackWithCreateAndPersistWithRestore()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testCategoryReorderRollsBackOnDiskFailureAndReloadsOnSuccess()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testCreateAndSwitchLedgerIsAtomicAndReloadsSelection()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testCurrentBalanceUsesRefreshedBusinessDayAndFutureOpening()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testDayRefreshIncludesNewDayTransactionsWithoutRelaunch()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testDraftSaveAndClearReturnFailureWithoutLosingPreviousDraft()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testPartialActionRollsBackWhenLaterOperationFails()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testRetryAfterFailurePersistsAndReloads()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testSharedPeriodSurvivesWritesAndOnlyResetsAfterSuccessfulLedgerSwitch()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testWholeAndCategoryBudgetsRollBackTogetherOnDiskFailure()",
+          "result": "Passed"
+        },
+        {
+          "id": "AppStateTests/testWriteFailureDoesNotReportSuccessOrChangeLedger()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testAccountSwitchHidesPreviousCacheAndDoesNotUploadIt()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testCompareAndSwapRetryAndInFlightLocalWriteArePreserved()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testConflictPersistsAndResolutionKeepsBothVersions()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testDiskFailureDoesNotAdvanceAncestorOrLoseOutbox()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testLeaveSerializesAndPreservesUnsentCopyBeforeRemoteMembershipChanges()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testLostAcknowledgementRetryDoesNotDuplicateTransaction()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testOldAccountResponseCannotBeInstalledAfterIdentityChanges()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testPauseStopsAutomaticSyncButExplicitRefreshStillWorks()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testPortableBackupDoesNotReactivateCloudBindingsOrExportOtherAccountCache()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testReadOnlyGuardBlocksAllBusinessWritesButAllowsPersonalDraft()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testRemoteDeletionKeepsStaleDraftAndCopyPreservesItsText()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testRestoredCloudSourceRequiresExplicitIndependentCopyWithoutOverwritingOriginal()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testRevocationFreezesPendingWorkAndPreservesLocalCopy()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testSameAccountSecondDeviceDiscoversOnlySelectedBook()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testTemporarilyUnavailableAccountKeepsConfirmedCacheAndStopsNetworkWrites()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testTwoAccountsOnOneDeviceKeepSeparatePendingCachesForTheSameSharedBook()",
+          "result": "Passed"
+        },
+        {
+          "id": "CloudStateTests/testTwoDifferentAccountsOfflineEntriesConvergeAfterRelaunch()",
+          "result": "Passed"
+        },
+        {
+          "id": "DiskPersistenceTests/testActualDiskSaveReplacementAndReload()",
+          "result": "Passed"
+        },
+        {
+          "id": "DiskPersistenceTests/testBackupPreviewIsReadOnlyAndRestoreKeepsARecoverableSnapshot()",
+          "result": "Passed"
+        },
+        {
+          "id": "DiskPersistenceTests/testFailedMainWritePreservesThePreviousRecoveryPoint()",
+          "result": "Passed"
+        },
+        {
+          "id": "DiskPersistenceTests/testRecoveryPointRemovalOnlyDeletesTheSelectedManagedCopy()",
+          "result": "Passed"
+        },
+        {
+          "id": "DiskPersistenceTests/testRestoreStopsIfRecoveryFileCannotBeWritten()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testCorruptAndForeignJournalsStayUntouchedAndNeverInvite()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testExactly100UniqueCreationsAndOneConsumptionSurviveRestart()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testFailedConsumptionCannotShowOrResetPersistedCount()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testInvitationWriteFailureNeverRollsBackSuccessfulAccounting()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testLedgerCountsOnlySuccessfulLocalCreateCommands()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testThresholdWaitsUntilSafePresentationAndDoesNotRequireAnotherRecord()",
+          "result": "Passed"
+        },
+        {
+          "id": "ThemeRenderingTests/testSemanticColorsRemainReadableInBothAppearances()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testCancellationReturnsQuietlyToSelection()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testDarkThemeCarriesIntoSupportSheet()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testInvitationAcceptDismissesBeforeOpeningSupport()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testLocalStoreKitPendingApprovalUpdatesAndColdRestartDoesNotReplayThanks()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testLocalStoreKitVerifiedPurchaseAndRelaunchDoNotCreateLedgerRecords()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeInvitationStaysDismissible()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testPendingPurchaseWaitsAfterColdRestart()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUnavailableProductsKeepExitAndAccountingUsable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUncertainPurchaseCannotBeRepeatedAfterRelaunch()",
+          "result": "Passed"
+        },
+        {
+          "id": "ReleaseReadinessUITests/testIncomeExpenseRefundTransferAndRelaunchConserveBalance()",
+          "result": "Passed"
+        },
+        {
+          "id": "ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+          "result": "Passed"
+        }
+      ]
+    },
+    {
+      "batch": "se-accepted",
+      "result": "Passed",
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0,
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "E6119632-E5BB-48F2-93C5-ECA03C60092F",
+        "deviceName": "Yuji-Compact-Stats",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23F77",
+        "osVersion": "26.5",
+        "platform": "iOS Simulator"
+      },
+      "runtimeWarnings": [],
+      "summary": "evidence/developer-support-20261008/se-accepted/summary.json",
+      "resultBundle": "evidence/developer-support-20261008/se-accepted/results.xcresult",
+      "cases": [
+        {
+          "id": "RecordSupportInvitationTests/testCorruptAndForeignJournalsStayUntouchedAndNeverInvite()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testExactly100UniqueCreationsAndOneConsumptionSurviveRestart()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testFailedConsumptionCannotShowOrResetPersistedCount()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testInvitationWriteFailureNeverRollsBackSuccessfulAccounting()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testLedgerCountsOnlySuccessfulLocalCreateCommands()",
+          "result": "Passed"
+        },
+        {
+          "id": "RecordSupportInvitationTests/testThresholdWaitsUntilSafePresentationAndDoesNotRequireAnotherRecord()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testCancellationReturnsQuietlyToSelection()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testDarkThemeCarriesIntoSupportSheet()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testInvitationAcceptDismissesBeforeOpeningSupport()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeInvitationStaysDismissible()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testPendingPurchaseWaitsAfterColdRestart()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUnavailableProductsKeepExitAndAccountingUsable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUncertainPurchaseCannotBeRepeatedAfterRelaunch()",
+          "result": "Passed"
+        },
+        {
+          "id": "ReleaseReadinessUITests/testIncomeExpenseRefundTransferAndRelaunchConserveBalance()",
+          "result": "Passed"
+        },
+        {
+          "id": "ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+          "result": "Passed"
+        }
+      ]
+    },
+    {
+      "batch": "pro-contrast",
+      "result": "Passed",
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C456E5DC-1377-43E9-871E-394439D7DAF0",
+        "deviceName": "iPhone 18 Pro",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      },
+      "runtimeWarnings": [],
+      "summary": "evidence/developer-support-20261008/pro-contrast/summary.json",
+      "resultBundle": "evidence/developer-support-20261008/pro-contrast/results.xcresult",
+      "cases": [
+        {
+          "id": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testCancellationReturnsQuietlyToSelection()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testDarkThemeCarriesIntoSupportSheet()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testInvitationAcceptDismissesBeforeOpeningSupport()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testLocalStoreKitPendingApprovalUpdatesAndColdRestartDoesNotReplayThanks()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testLocalStoreKitVerifiedPurchaseAndRelaunchDoNotCreateLedgerRecords()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeInvitationStaysDismissible()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testPendingPurchaseWaitsAfterColdRestart()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUnavailableProductsKeepExitAndAccountingUsable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUncertainPurchaseCannotBeRepeatedAfterRelaunch()",
+          "result": "Passed"
+        }
+      ]
+    },
+    {
+      "batch": "se-contrast",
+      "result": "Passed",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "E6119632-E5BB-48F2-93C5-ECA03C60092F",
+        "deviceName": "Yuji-Compact-Stats",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23F77",
+        "osVersion": "26.5",
+        "platform": "iOS Simulator"
+      },
+      "runtimeWarnings": [],
+      "summary": "evidence/developer-support-20261008/se-contrast/summary.json",
+      "resultBundle": "evidence/developer-support-20261008/se-contrast/results.xcresult",
+      "cases": [
+        {
+          "id": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testCancellationReturnsQuietlyToSelection()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testDarkThemeCarriesIntoSupportSheet()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testInvitationAcceptDismissesBeforeOpeningSupport()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testMaximumDynamicTypeInvitationStaysDismissible()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testPendingPurchaseWaitsAfterColdRestart()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUnavailableProductsKeepExitAndAccountingUsable()",
+          "result": "Passed"
+        },
+        {
+          "id": "DeveloperSupportUITests/testUncertainPurchaseCannotBeRepeatedAfterRelaunch()",
+          "result": "Passed"
+        }
+      ]
+    }
+  ],
+  "countsOverlap": "Hosted tests overlap portable; color reruns repeat feature UI; do not sum as unique coverage.",
+  "release": {
+    "result": "BUILD SUCCEEDED",
+    "signed": false,
+    "MinimumOSVersion": "17.0",
+    "machOMinos": "17.0",
+    "testStoreKitBundled": false,
+    "synthetic500Bundled": false,
+    "privacyPolicyBundled": true,
+    "privacyManifestBundled": true,
+    "log": "evidence/developer-support-20261008/release-contrast.log"
+  },
+  "screenshots": {
+    "count": 13,
+    "manifest": "captures.json",
+    "native": true,
+    "moneyCharged": false
+  },
+  "notVerified": [
+    "iOS 17 runtime or real device",
+    "App Store Connect real products, contracts, tax and bank setup",
+    "Real Sandbox purchase/cancel/pending/recovery",
+    "App Store upload, review, download",
+    "VoiceOver hearing and real haptics"
+  ],
+  "SDKBoundary": "Xcode27 local Ask-to-Buy cold pending restart returned a verified unfinished receipt. Actual SDK test verifies approval then restart; unresolved cold restart and cancellation separately use isolated client and upstream model.",
+  "invitationBoundary": "First100 successful local new-record IDs only; historical/import/restored/cloud records do not count. Consumed prior to presentation; app deletion/reinstallation can reset unless system restores state. Two-file process-death gap may undercount1 without affecting ledger.",
+  "sourceFingerprints": "source-fingerprints.json",
+  "visualReview": {
+    "disposition": "ship",
+    "reviewer": "fresh general-agent substitute for unavailable impeccable_finish_reviewer",
+    "capturesChecked": 13,
+    "materialFindings": 2,
+    "resolved": 2,
+    "partial": 0,
+    "unresolved": 0,
+    "report": "visual-review.md",
+    "contrast": "contrast.json"
+  },
+  "documentHealth": {
+    "canonicalDocuments": 8,
+    "checkedLinks": 72,
+    "legacyScreenshotHashes": 92,
+    "errors": [],
+    "featureDocumentsAndLinksChecked": true
+  },
+  "systemPurchaseUI": {
+    "verified": false,
+    "localTestSessionDisableDialogs": true,
+    "reason": "Local SDK automation skips Apple confirmation dialogs; real account authentication and Sandbox/production charge flow not tested."
+  }
+}

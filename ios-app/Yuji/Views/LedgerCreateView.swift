@@ -9,20 +9,19 @@ struct LedgerCreateView: View {
     @State private var name = ""
     @State private var monthly = ""
     @State private var yearly = ""
-    @State private var keyboardVisible = false
     @State private var error: String?
     @State private var exitRequested = false
-    @FocusState private var focused: Bool
+    @FocusState private var focusedField: BudgetInputField?
     private var dirty: Bool { !name.isEmpty || !monthly.isEmpty || !yearly.isEmpty }
 
     var body: some View {
         Form {
             Section("账本名称") {
                 TextField("例如：日常生活、旅行", text: $name)
-                    .focused($focused).submitLabel(.done).onSubmit { focused = false }
+                    .focused($focusedField, equals: .ledgerName).submitLabel(.done).onSubmit { endEditing() }
                     .accessibilityIdentifier("ledger.newName")
             }
-            BudgetFields(monthly: $monthly, yearly: $yearly)
+            BudgetFields(monthly: $monthly, yearly: $yearly, focusedField: $focusedField)
             Section { Text("创建后直接使用，附带现金、银行卡和常用分类。预算从本月、本年起生效。") }
                 .font(.caption).foregroundStyle(.secondary)
             if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("ledger.createError") }
@@ -32,10 +31,10 @@ struct LedgerCreateView: View {
             ToolbarItem(placement: .cancellationAction) {
                 Button("取消") { endEditing(); if !dirty { dismiss() } else { exitRequested = true } }
             }
-            ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("完成") { endEditing() } }
         }
+        .modifier(KeyboardCompletionBar(visible: focusedField != nil && !exitRequested, title: "完成", complete: endEditing))
         .safeAreaInset(edge: .bottom) {
-            if !exitRequested && !keyboardVisible {
+            if !exitRequested && focusedField == nil {
                 Button("创建并使用") {
                     endEditing()
                     do {
@@ -52,10 +51,8 @@ struct LedgerCreateView: View {
         .modifier(FormExitGuard(isDirty: dirty, requested: $exitRequested))
         .modifier(CleanSheetSurface())
         .presentationDetents([.fraction(0.7), .large]).presentationDragIndicator(.visible)
-        .modifier(BudgetKeyboardVisibility(visible: $keyboardVisible))
     }
     private func endEditing() {
-        focused = false
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        focusedField = nil
     }
 }

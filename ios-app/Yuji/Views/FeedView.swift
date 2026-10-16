@@ -31,7 +31,7 @@ struct FeedView: View {
                         .accessibilityLabel("搜索与筛选").accessibilityIdentifier("feed.search")
                 }
             }
-            .sheet(isPresented: $showSearch) {
+            .yujiSheet(isPresented: $showSearch) {
                 SearchFilterView(ledgerID: state.activeLedgerID ?? "", initial: filter) { value in
                     var cleaned = value
                     cleaned.range = nil
@@ -110,6 +110,9 @@ struct FeedView: View {
         var parts: [String] = []
         if let kind = filter.kind { parts.append(kind.displayName) }
         if let category = filter.categoryID { parts.append(state.store.categoryPath(category)) }
+        if let account = filter.accountID { parts.append(state.store.account(account)?.name ?? "账户") }
+        if let min = filter.minCents { parts.append("≥¥" + Money(min).yuanDescription) }
+        if let max = filter.maxCents { parts.append("≤¥" + Money(max).yuanDescription) }
         if let query = filter.query, !query.isEmpty { parts.append(query) }
         return parts.joined(separator: " · ")
     }

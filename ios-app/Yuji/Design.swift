@@ -84,6 +84,28 @@ struct CleanSheetSurface: ViewModifier {
     }
 }
 
+/// A form-owned completion bar stays above the keyboard without SwiftUI's
+/// InputAccessoryBar, whose initial sizing produces a runtime issue on iOS 26/27.
+/// The caller owns focus/visibility and excludes any child form or exit decision.
+struct KeyboardCompletionBar: ViewModifier {
+    let visible: Bool
+    var title = "完成输入"
+    let complete: () -> Void
+    func body(content: Content) -> some View {
+        content.safeAreaInset(edge: .bottom, spacing: 0) {
+            if visible {
+                HStack {
+                    Spacer()
+                    Button(action: complete) {
+                        Text(title).font(.body.weight(.semibold))
+                            .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                    }.accessibilityIdentifier("keyboard.complete")
+                }.padding(.horizontal, 20).background(Color(.systemBackground))
+            }
+        }
+    }
+}
+
 /// A page-bound decision avoids stacking an alert/popover over another task sheet.
 struct FormExitGuard: ViewModifier {
     let isDirty: Bool
@@ -130,5 +152,55 @@ extension EnvironmentValues {
     var yujiAccent: Color {
         get { self[YujiAccentKey.self] }
         set { self[YujiAccentKey.self] = newValue }
+    }
+}
+
+/// System presentations may reset the ambient tint. Resolve the app theme at
+/// every presentation root, rather than letting individual pages invent colors.
+struct ThemedPresentationRoot<Content: View>: View {
+    @ObservedObject var state: AppState
+    let content: Content
+    var body: some View {
+        content.modifier(AppAccentModifier(settings: state.store.data.settings))
+            .environmentObject(state)
+            .environment(\.locale, Locale(identifier: "zh_CN"))
+    }
+}
+
+private struct YujiBooleanSheet<Sheet: View>: ViewModifier {
+    @EnvironmentObject private var state: AppState
+    let isPresented: Binding<Bool>
+    let onDismiss: (() -> Void)?
+    let sheetContent: () -> Sheet
+    func body(content: Content) -> some View {
+        let presentingState = state
+        return content.sheet(isPresented: isPresented, onDismiss: onDismiss) {
+            ThemedPresentationRoot(state: presentingState, content: sheetContent())
+        }
+    }
+}
+
+private struct YujiItemSheet<Item: Identifiable, Sheet: View>: ViewModifier {
+    @EnvironmentObject private var state: AppState
+    let item: Binding<Item?>
+    let onDismiss: (() -> Void)?
+    let sheetContent: (Item) -> Sheet
+    func body(content: Content) -> some View {
+        let presentingState = state
+        return content.sheet(item: item, onDismiss: onDismiss) {
+            ThemedPresentationRoot(state: presentingState, content: sheetContent($0))
+        }
+    }
+}
+
+extension View {
+    func yujiSheet<Sheet: View>(isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
+                               @ViewBuilder content: @escaping () -> Sheet) -> some View {
+        modifier(YujiBooleanSheet(isPresented: isPresented, onDismiss: onDismiss, sheetContent: content))
+    }
+
+    func yujiSheet<Item: Identifiable, Sheet: View>(item: Binding<Item?>, onDismiss: (() -> Void)? = nil,
+                                                   @ViewBuilder content: @escaping (Item) -> Sheet) -> some View {
+        modifier(YujiItemSheet(item: item, onDismiss: onDismiss, sheetContent: content))
     }
 }

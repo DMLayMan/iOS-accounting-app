@@ -96,6 +96,7 @@ struct ThemeSettingsSections: View {
 
 /// The system editor keeps color dragging in memory; only Done writes the setting.
 struct NativeThemeColorPicker: UIViewControllerRepresentable {
+    @Environment(\.yujiAccent) private var accent
     @Binding var isPresented: Bool
     let rgb: Int
     let apply: (Int) -> Bool
@@ -107,6 +108,7 @@ struct NativeThemeColorPicker: UIViewControllerRepresentable {
         return host
     }
     func updateUIViewController(_ host: UIViewController, context: Context) {
+        host.view.tintColor = UIColor(accent)
         let coordinator = context.coordinator
         coordinator.owner = self
         guard isPresented, host.presentedViewController == nil, !coordinator.presenting else { return }
@@ -115,6 +117,7 @@ struct NativeThemeColorPicker: UIViewControllerRepresentable {
         DispatchQueue.main.async {
             guard coordinator.owner.isPresented, host.view.window != nil else { coordinator.presenting = false; return }
             let picker = UIColorPickerViewController()
+            picker.view.tintColor = host.view.tintColor
             let value = ThemeRGB(hex: coordinator.owner.rgb)
             picker.selectedColor = UIColor(red: value.red, green: value.green, blue: value.blue, alpha: 1)
             picker.supportsAlpha = false

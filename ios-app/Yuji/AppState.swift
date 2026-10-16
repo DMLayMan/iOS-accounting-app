@@ -15,10 +15,26 @@ final class AppState: ObservableObject {
     @Published var isSaving = false
     @Published private(set) var storageFailure: String?
     @Published var pendingUndo: (() -> Void)?   // 短时撤销回调
+    @Published var cloudAccountID: String?
+    @Published var cloudStatus = "本机本地"
+    @Published var cloudBusy = false
+    @Published var cloudAccountReady = false
+    @Published var cloudPeopleIssue: String?
+    @Published var cloudPeopleBusy = false
+    var cloudPeopleSyncRequested = false
+    var cloudPeopleRefreshedAt: Date?
+    var cloudTransport: CloudTransport?
+    var cloudEpoch = 0
+    var cloudRefreshing = false
+    var cloudDebounce: Task<Void, Never>?
+    /// Kept while startup hides cloud caches, restored only after identity verification.
+    var startupCloudSelection: (accountID: String, ledgerID: EntityID)?
 
     private let repository: LedgerRepository
     private let dayProvider: () -> Day
     private var toastTask: Task<Void, Never>?
+    /// Non-financial host events run only after the ledger has durably committed.
+    var onRecordCreated: ((EntityID) -> Void)?
 
     struct Toast: Equatable {
         var message: String
@@ -42,9 +58,17 @@ final class AppState: ObservableObject {
         do {
             if let data = try repository.load() {
                 try LedgerValidation.validate(data)
-                self.store = LedgerStore(data: data)
-                self.activeLedgerID = data.activeLedgerID
+                startupCloudSelection = data.activeCloudAccountID.flatMap { account in
+                    guard let id = data.activeLedgerID,
+                          data.cloudLinks?.contains(where: { $0.accountID == account && $0.cached.ledger.id == id }) == true else { return nil }
+                    return (account, id)
+                }
+                var visible = data
+                try CloudWorkspace.parkAll(&visible)
+                self.store = LedgerStore(data: visible)
+                self.activeLedgerID = visible.activeLedgerID
             } else {
+                startupCloudSelection = nil
                 let s = LedgerStore()
                 let ledger = try s.createLedger(name: "个人账本", startDay: today)
                 try repository.save(s.data)
@@ -73,6 +97,10 @@ final class AppState: ObservableObject {
         }
     }
 
+    func showSupportThanks() {
+        showToast(.init(message: "咖啡收到啦，谢谢你的支持。", kind: .success))
+    }
+
     /// 统一执行领域操作，捕获领域错误为可解释提示；失败不改数据。防重入（防重复保存）。
     @discardableResult
     func perform(_ messageOnSuccess: String? = nil, _ action: () throws -> Void) -> Bool {
@@ -83,11 +111,19 @@ final class AppState: ObservableObject {
         let snapshot = store.data
         do {
             try action()
-            try LedgerValidation.validate(store.data)
-            try repository.save(store.data)
+            try CloudWorkspace.checkMutation(before: snapshot, after: store.data, accountID: cloudAccountID)
+            var committed = store.data
+            committed.schemaVersion = LedgerData.currentSchemaVersion
+            stampCloudChanges(&committed, previous: snapshot)
+            try CloudWorkspace.capture(&committed)
+            try LedgerValidation.validate(committed)
+            try repository.save(committed)
+            store = LedgerStore(data: committed)
             activeLedgerID = store.data.activeLedgerID
+            if activeLedgerID != snapshot.activeLedgerID { startupCloudSelection = nil }
             alertError = nil
             if let message = messageOnSuccess { showToast(Toast(message: message, kind: .success)) }
+            scheduleCloudSync()
             return true
         } catch let e as DomainError {
             store = LedgerStore(data: snapshot)
@@ -111,11 +147,16 @@ final class AppState: ObservableObject {
         return store.activeLedger
     }
 
-    func stats(for ledgerID: EntityID) -> StatsEngine {
-        StatsEngine(store: store, ledgerID: ledgerID)
+    func stats(for ledgerID: EntityID, authorFilter: StatsEngine.AuthorFilter = .all) -> StatsEngine {
+        StatsEngine(store: store, ledgerID: ledgerID, authorFilter: authorFilter)
     }
 
     var currentMonth: MonthKey { today.monthKey }
+
+    /// Every screen presenting a current balance uses this same business clock.
+    func currentBalance(accountID: EntityID) -> Int64 {
+        store.balance(accountID: accountID, upTo: today)
+    }
 
     var browsingBounds: ClosedRange<Day> {
         let id = activeLedgerID ?? ""
@@ -133,7 +174,9 @@ final class AppState: ObservableObject {
 
     @discardableResult
     func switchLedger(_ id: EntityID) -> Bool {
-        perform { try store.switchLedger(id) }
+        let switched = perform { try store.switchLedger(id) }
+        if switched { startupCloudSelection = nil }
+        return switched
     }
 
     @discardableResult
@@ -154,21 +197,27 @@ final class AppState: ObservableObject {
         let t = YujiCore.Transaction(ledgerID: ledgerID, operationID: op, kind: kind, amountCents: amountCents,
                             date: date, accountID: accountID, categoryID: categoryID,
                             tagIDs: tagIDs, note: note, expression: expression)
-        return perform("已保存") { try store.addTransaction(t); store.clearDraft(for: ledgerID) }
+        let saved = perform("已保存") { try store.addTransaction(t); store.clearDraft(for: ledgerID) }
+        if saved { onRecordCreated?(t.id) }
+        return saved
     }
 
     func addTransfer(amountCents: Int64, date: Day, from: EntityID, to: EntityID, note: String,
                      ledgerID: EntityID) -> Bool {
         let t = YujiCore.Transaction(ledgerID: ledgerID, kind: .transfer, amountCents: amountCents, date: date,
                             accountID: from, transferToAccountID: to, note: note)
-        return perform("转账已记录") { try store.addTransaction(t) }
+        let saved = perform("转账已记录") { try store.addTransaction(t) }
+        if saved { onRecordCreated?(t.id) }
+        return saved
     }
 
     func addRefund(amountCents: Int64, date: Day, accountID: EntityID, original: EntityID, note: String,
                    ledgerID: EntityID) -> Bool {
         let t = YujiCore.Transaction(ledgerID: ledgerID, kind: .refund, amountCents: amountCents, date: date,
                             accountID: accountID, note: note, originalExpenseID: original)
-        return perform("退款已记录") { try store.addTransaction(t) }
+        let saved = perform("退款已记录") { try store.addTransaction(t) }
+        if saved { onRecordCreated?(t.id) }
+        return saved
     }
 
     func update(_ id: EntityID, success: String = "已保存", _ apply: (inout YujiCore.Transaction) -> Void) -> Bool {
@@ -226,6 +275,7 @@ final class AppState: ObservableObject {
     var recoveryDirectory: URL? {
         guard let url = (repository as? JSONFileRepository)?.url else { return nil }
         return url.deletingLastPathComponent().appendingPathComponent(url.lastPathComponent + ".restore-points", isDirectory: true)
+            .resolvingSymlinksInPath()
     }
 
     var recoveryBackupURL: URL? {
@@ -236,6 +286,50 @@ final class AppState: ObservableObject {
     func markBackupGenerated() {
         perform {
             var data = store.data; data.lastBackupAt = Date(); store = LedgerStore(data: data)
+        }
+    }
+
+    struct RecoveryPoint: Identifiable {
+        let url: URL
+        let createdAt: Date
+        let bytes: Int
+        let unreadable: Bool
+        var id: String { url.lastPathComponent }
+    }
+    var recoveryPoints: [RecoveryPoint] {
+        guard let directory = recoveryDirectory,
+              let urls = try? FileManager.default.contentsOfDirectory(at: directory,
+                    includingPropertiesForKeys: [.creationDateKey, .fileSizeKey, .isRegularFileKey, .isSymbolicLinkKey]) else { return [] }
+        return urls.compactMap { url -> RecoveryPoint? in
+            let name = url.deletingPathExtension().lastPathComponent
+            let unreadable = name.hasPrefix("unreadable-")
+            let identifier = unreadable ? String(name.dropFirst("unreadable-".count)) : name
+            guard url.pathExtension == "json", UUID(uuidString: identifier) != nil,
+                  let values = try? url.resourceValues(forKeys: [.creationDateKey, .fileSizeKey, .isRegularFileKey, .isSymbolicLinkKey]),
+                  values.isRegularFile == true, values.isSymbolicLink != true else { return nil }
+            let resolved = url.resolvingSymlinksInPath()
+            guard resolved.deletingLastPathComponent() == directory else { return nil }
+            return RecoveryPoint(url: resolved, createdAt: values.creationDate ?? .distantPast,
+                                 bytes: values.fileSize ?? 0, unreadable: unreadable)
+        }.sorted { $0.createdAt == $1.createdAt ? $0.id < $1.id : $0.createdAt > $1.createdAt }
+    }
+
+    /// Only a confirmed, listed recovery file can be removed; never the ledger.
+    @discardableResult
+    func removeRecoveryPoint(_ point: RecoveryPoint) -> Bool {
+        guard recoveryPoints.contains(where: { $0.url == point.url }) else { return false }
+        if recoveryBackupURL == point.url {
+            guard perform(nil, {
+                var data = store.data; data.recoveryBackupID = nil; store = LedgerStore(data: data)
+            }) else { return false }
+        }
+        do {
+            try FileManager.default.removeItem(at: point.url)
+            objectWillChange.send()
+            return true
+        } catch {
+            alertError = "恢复点未删除，请重试。当前账本未被删除。"
+            return false
         }
     }
 
@@ -261,6 +355,8 @@ final class AppState: ObservableObject {
             }
             let newStore = LedgerStore(data: validated)
             try repository.save(newStore.data)
+            cloudEpoch += 1
+            cloudDebounce?.cancel()
             store = newStore
             storageFailure = nil
             alertError = nil
@@ -275,6 +371,41 @@ final class AppState: ObservableObject {
             alertError = "恢复失败：\(error.localizedDescription)。原数据未改动。"
             return false
         }
+    }
+
+    /// Only this path installs a validated cloud result, with the same disk-before-UI contract.
+    @discardableResult
+    func commitCloudData(_ data: LedgerData) -> Bool {
+        guard storageFailure == nil else { return false }
+        do {
+            var current = data
+            current.schemaVersion = LedgerData.currentSchemaVersion
+            try LedgerValidation.validate(current)
+            try repository.save(current)
+            store = LedgerStore(data: current)
+            activeLedgerID = current.activeLedgerID
+            pendingUndo = nil
+            return true
+        } catch {
+            cloudStatus = "同步结果未保存，本机数据未改变。请重试。"
+            alertError = cloudStatus
+            return false
+        }
+    }
+
+    /// Nicknames use the same atomic file without altering financial state or its undo callback.
+    func persistCloudPeople(_ people: CloudPeople) throws {
+        if let storageFailure { throw CloudSyncError.invalid(storageFailure) }
+        var data = store.data; data.cloudPeople = people
+        try LedgerValidation.validate(data)
+        try repository.save(data)
+        store = LedgerStore(data: data)
+    }
+
+    func blockCloudWorkspace(_ visible: LedgerData, reason: String) {
+        store = LedgerStore(data: visible)
+        activeLedgerID = visible.activeLedgerID
+        storageFailure = reason
     }
 
     func exportCSV(ledgerID: EntityID) -> String {

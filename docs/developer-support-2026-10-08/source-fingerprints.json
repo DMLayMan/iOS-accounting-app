@@ -1,0 +1,15 @@
+{
+  "ios-app/project.yml": "074651cdebf3955d9d1659edc10d1e4183de245edf224604dce418c40b6736ca",
+  "Package.swift": "0115fa66fa4ee2a6139d10fcfb1364aab76a811807ac52dcb670c647f8afee85",
+  "ios-app/Yuji/AppState.swift": "1c6f054667d989541e116c904ed4f002867ec5edf6c4ca69c0ea9acc88f1b9d9",
+  "ios-app/Yuji/YujiApp.swift": "a2c205fc10c4857aa7511a26a1cc42be80181b40db348ea2aab9bb87498dbcba",
+  "ios-app/Yuji/RecordSupportInvitation.swift": "5e1822f92cffd1fb80f6b602cdf0bcaf49325eaf297c77dc7bbe5403fe132843",
+  "ios-app/Yuji/Support/DeveloperSupportCoordinator.swift": "75b262e811c18892e7f293360d501743c3ac2a94652f9a1f3a883498011ec489",
+  "ios-app/Yuji/Support/YujiDeveloperSupportSheet.swift": "537b32ba0bdba53521858c7c959f82d7d00eaa3bedadcdbe2a95bbaa0f2b4c3f",
+  "ios-app/Yuji/Views/RootView.swift": "7977267b2bf452e8f64dea347113710c404e4b24a0f346e527ef1c295b18a648",
+  "ios-app/Yuji/Views/MeAndData.swift": "eda6242e59e37a96ebc421c3f77949ffaeaa4527b55271659c0168e94ba2e51a",
+  "ios-app/YujiTests/RecordSupportInvitationTests.swift": "306ec23d287efe71f777ba2bdb1a21f0783b0fe417ae7ca24f9845ed22c9c0d2",
+  "ios-app/YujiUITests/DeveloperSupportUITests.swift": "908c513272839e8376c4f243241cae078f1c2beed59ab5776dd989ca0a74d1bf",
+  "ios-app/StoreKit/YujiSupport.storekit": "ac077ddd962014026da3a992f267560d8416d4de54a46ff08744c3adf87ace96",
+  "docs/privacy/PrivacyPolicy.md": "eb3c5f8af18e4e891fa30ea81aebbf83a8d45b47cb0032692482292134b2aba9"
+}

@@ -14,4 +14,5 @@ if [[ "$SIMULATOR_STATE" != *'"Booted"'* ]]; then
 fi
 xcrun simctl bootstatus "$SIMULATOR_ID" -b
 xcrun simctl install "$SIMULATOR_ID" .build-ios/Build/Products/Debug-iphonesimulator/Yuji.app
-xcrun simctl launch "$SIMULATOR_ID" com.yuji.app -AppleLanguages '(zh-Hans)' -AppleLocale zh_CN
+task_bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' .build-ios/Build/Products/Debug-iphonesimulator/Yuji.app/Info.plist)
+xcrun simctl launch "$SIMULATOR_ID" "$task_bundle_id" -AppleLanguages '(zh-Hans)' -AppleLocale zh_CN

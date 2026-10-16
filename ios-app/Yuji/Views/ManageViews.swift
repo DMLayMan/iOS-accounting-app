@@ -22,20 +22,24 @@ struct AccountListView: View {
                                     Text(acc.name).font(.body).foregroundColor(.primary)
                                     if acc.archived { Text("已归档").font(.caption).foregroundColor(.secondary) }
                                     Spacer()
-                                    Text("¥\(Money(state.store.balance(accountID: acc.id)).yuanDescription)")
+                                    Text("¥\(Money(state.currentBalance(accountID: acc.id)).yuanDescription)")
                                         .font(.body.weight(.semibold)).monospacedDigit()
                                         .foregroundColor(.primary)
+                                        .lineLimit(1).minimumScaleFactor(0.6).layoutPriority(1)
                                 }
-                                Text("期初 ¥\(Money(acc.openingBalanceCents).yuanDescription) · 起点 \(acc.startDay.year)/\(acc.startDay.month)/\(acc.startDay.day)")
+                                if acc.startDay > state.today {
+                                    Text("期初尚未生效").font(.caption).foregroundStyle(.secondary)
+                                }
+                                Text("期初 ¥\(Money(acc.openingBalanceCents).yuanDescription) · 起点 \(statsDayText(acc.startDay))")
                                     .font(.caption).foregroundColor(.secondary)
                             }
                         }
                     }
                 }
-                .sheet(isPresented: $showAdd) {
+                .yujiSheet(isPresented: $showAdd) {
                     AccountEditView(ledgerID: ledger.id, account: nil)
                 }
-                .sheet(item: $editing) { acc in
+                .yujiSheet(item: $editing) { acc in
                     AccountEditView(ledgerID: ledger.id, account: acc)
                 }
             }
@@ -48,6 +52,19 @@ struct AccountListView: View {
 struct AccountEditView: View {
     let ledgerID: EntityID
     let account: Account?
+    var body: some View {
+        NavigationStack { AccountEditForm(ledgerID: ledgerID, account: account) }
+            .presentationDetents([.fraction(0.7), .large]).presentationDragIndicator(.visible)
+            .modifier(CleanSheetSurface())
+    }
+}
+
+/// Shared by account management and the draft-preserving entry recovery route.
+/// The caller owns navigation; saving an account never saves the pending entry.
+struct AccountEditForm: View {
+    let ledgerID: EntityID
+    let account: Account?
+    var proposedStartDay: Day? = nil
     @EnvironmentObject var state: AppState
     @Environment(\.dismiss) private var dismiss
     @State private var name = ""
@@ -59,61 +76,67 @@ struct AccountEditView: View {
     @FocusState private var focused: Bool
 
     private var hasChanges: Bool {
-        loaded && (name != (account?.name ?? "") || openingYuan != (account.map { Money($0.openingBalanceCents).inputString } ?? "") || Day(from: startDate) != (account?.startDay ?? state.today))
+        loaded && (name != (account?.name ?? "") || openingYuan != (account.map { Money($0.openingBalanceCents).inputString } ?? "") || Day(from: startDate) != (proposedStartDay ?? account?.startDay ?? state.today))
     }
     var body: some View {
-        NavigationStack {
-            Form {
-                Section("名称") {
-                    TextField("如：现金、微信余额", text: $name).focused($focused).accessibilityIdentifier("account.name")
+        Form {
+            if let proposedStartDay {
+                Section {
+                    Text(verbatim: "这笔账发生于 \(proposedStartDay.year)年\(proposedStartDay.month)月\(proposedStartDay.day)日，已预填为新的记账起点。期初余额金额保持不变，适用日期会随起点调整。保存后返回记账，原有输入会保留。")
+                        .font(.subheadline).foregroundStyle(.secondary)
+                        .accessibilityIdentifier("account.backdateExplanation")
                 }
-                if account == nil {
-                    Section("期初余额（元）") {
-                        TextField("0.00", text: $openingYuan).keyboardType(.numbersAndPunctuation).focused($focused).accessibilityIdentifier("account.opening")
-                    }
-                    Section("记账起点") {
-                        DatePicker("起点日期", selection: $startDate, displayedComponents: .date)
-                    }
-                } else {
-                    Section("期初与起点") {
-                        Text("修改期初与起点会影响余额核对，提交前请确认。")
-                            .font(.caption).foregroundColor(.secondary)
-                        TextField("期初余额（元）", text: $openingYuan).keyboardType(.numbersAndPunctuation).focused($focused).accessibilityIdentifier("account.opening")
-                        DatePicker("记账起点", selection: $startDate, displayedComponents: .date)
-                    }
-                    if let acc = account {
-                        Section {
-                            Button(acc.archived ? "恢复为可用" : "归档账户") {
-                                if state.perform(acc.archived ? "已恢复" : "已归档", {
-                                    try state.store.archiveAccount(acc.id, archived: !acc.archived)
-                                }) { dismiss() } else { error = state.alertError }
-                            }
+            }
+            Section("名称") {
+                TextField("如：现金、微信余额", text: $name).focused($focused).accessibilityIdentifier("account.name")
+            }
+            if account == nil {
+                Section("期初余额（元）") {
+                    TextField("0.00", text: $openingYuan).keyboardType(.numbersAndPunctuation).focused($focused).accessibilityIdentifier("account.opening")
+                }
+                Section("记账起点") {
+                    DatePicker("起点日期", selection: $startDate, displayedComponents: .date)
+                }
+            } else {
+                Section("期初与起点") {
+                    Text("修改期初与起点会影响余额核对，提交前请确认。")
+                        .font(.caption).foregroundColor(.secondary)
+                    TextField("期初余额（元）", text: $openingYuan).keyboardType(.numbersAndPunctuation).focused($focused).accessibilityIdentifier("account.opening")
+                    DatePicker("记账起点", selection: $startDate, displayedComponents: .date)
+                }
+                if let acc = account {
+                    Section {
+                        Button(acc.archived ? "恢复为可用" : "归档账户") {
+                            if state.perform(acc.archived ? "已恢复" : "已归档", {
+                                try state.store.archiveAccount(acc.id, archived: !acc.archived)
+                            }) { dismiss() } else { error = state.alertError }
                         }
                     }
                 }
-                if let error { Section { Text(error).foregroundStyle(.red).font(.subheadline).accessibilityIdentifier("account.error") } }
             }
-            .scrollDismissesKeyboard(.interactively)
-            .navigationTitle(account == nil ? "新增账户" : "编辑账户")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("取消") { focused = false; if hasChanges { exitRequested = true } else { dismiss() } } }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("保存") { save() }.bold().disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty).accessibilityIdentifier("account.save")
-                }
+            if let error { Section { Text(error).foregroundStyle(.red).font(.subheadline).accessibilityIdentifier("account.error") } }
+        }
+        .scrollDismissesKeyboard(.interactively)
+        .navigationTitle(proposedStartDay != nil ? "调整记账起点" : (account == nil ? "新增账户" : "编辑账户"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) { Button("取消") { focused = false; if hasChanges { exitRequested = true } else { dismiss() } }.accessibilityIdentifier("account.cancel") }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("保存") { save() }.bold().disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty).accessibilityIdentifier("account.save")
             }
-            .toolbar { ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("完成输入") { focused = false } } }
-            .onAppear {
-                guard !loaded else { return }; loaded = true
-                if let a = account {
-                    name = a.name
-                    openingYuan = Money(a.openingBalanceCents).inputString
-                    startDate = a.startDay.date()
-                } else {
-                    startDate = state.today.date()
-                }
+        }
+        .modifier(KeyboardCompletionBar(visible: focused && !exitRequested) { focused = false })
+        .onAppear {
+            guard !loaded else { return }; loaded = true
+            if let a = account {
+                name = a.name
+                openingYuan = Money(a.openingBalanceCents).inputString
+                startDate = (proposedStartDay ?? a.startDay).date()
+            } else {
+                startDate = state.today.date()
             }
-        }.presentationDetents([.fraction(0.7), .large]).presentationDragIndicator(.visible).modifier(CleanSheetSurface()).modifier(FormExitGuard(isDirty: hasChanges, requested: $exitRequested))
+        }
+        .modifier(FormExitGuard(isDirty: hasChanges, requested: $exitRequested))
     }
 
     private func save() {

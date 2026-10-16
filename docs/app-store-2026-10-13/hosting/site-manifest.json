@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-14",
+  "draftOnly": true,
+  "purpose": "Static privacy/support pages only; no bookkeeping API or ledger uploads",
+  "proposedHost": "yuji.rush247tt.xyz",
+  "files": [
+    {
+      "name": "privacy.html",
+      "source": "../public/privacy.html",
+      "SHA256": "d2d79bbee34f808b9c637c42dda8b6441259b5dbe7ac1de76ffb9d9639f287ce",
+      "bytes": 6689
+    },
+    {
+      "name": "support.html",
+      "source": "../public/support.html",
+      "SHA256": "172174fd67f53849323774840a0209b23890dd9a24f7d984b0d6f1a14d5b3b42",
+      "bytes": 1891
+    }
+  ],
+  "configuration": "Caddyfile.example",
+  "configurationSHA256": "0f1e307103089e8970b5e6ee84102d611f7cbcfc21da41e361c08e8fb7a84975",
+  "deployed": false,
+  "CaddyParserVerified": false
+}

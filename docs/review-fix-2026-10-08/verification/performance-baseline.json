@@ -1,0 +1,28 @@
+[
+  {
+    "build" : "swiftc -O",
+    "categoryAllTimeMs" : 21.144915999999998,
+    "categoryAnnualMs" : 0.46804099999999998,
+    "categoryBudgetsMs" : 4.8787500000000001,
+    "categoryRules" : 19,
+    "environment" : "macOS host, not physical iPhone",
+    "feedAllMs" : 5.8538329999999998,
+    "loadMs" : 40.578749999999999,
+    "overviewMs" : 0.83733400000000002,
+    "records" : 5000,
+    "saveMs" : 44.719625000000001
+  },
+  {
+    "build" : "swiftc -O",
+    "categoryAllTimeMs" : 2340.0678330000001,
+    "categoryAnnualMs" : 4.57125,
+    "categoryBudgetsMs" : 49.290500000000002,
+    "categoryRules" : 19,
+    "environment" : "macOS host, not physical iPhone",
+    "feedAllMs" : 88.515416000000002,
+    "loadMs" : 417.60816699999998,
+    "overviewMs" : 8.2434170000000009,
+    "records" : 50000,
+    "saveMs" : 445.131417
+  }
+]

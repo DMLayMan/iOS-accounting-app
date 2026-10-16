@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "finding": "Element-scoped typing can reject native focus on iOS 27; application keyboard typing verifies the actual input destination. Final regression asserts the target value after every replacement and retains persisted budget/balance assertions.",
+  "probes": [
+    {
+      "run": "focus-probe17",
+      "source": "evidence/review-fix-20261008/focus-probe17/native.log",
+      "scope": "isolated diagnostic only, excluded from feature coverage",
+      "observed": [
+        "month-center: name=焦点诊断 month=1 year=",
+        "year-center: name=焦点诊断 month=1 year=2",
+        "year-title: name=焦点诊断 month=1 year=23",
+        "year-trailing: name=焦点诊断 month=1 year=423"
+      ],
+      "diagnosticCompleted": true
+    },
+    {
+      "run": "focus-probe-pro27",
+      "source": "evidence/review-fix-20261008/focus-probe-pro27/native.log",
+      "scope": "isolated diagnostic only, excluded from feature coverage",
+      "observed": [
+        "month-center: name=焦点诊断 month=1 year=",
+        "year-center: name=焦点诊断 month=1 year=2",
+        "year-title: name=焦点诊断 month=1 year=23",
+        "year-trailing: name=焦点诊断 month=1 year=423"
+      ],
+      "diagnosticCompleted": true
+    }
+  ]
+}

@@ -20,11 +20,11 @@ struct LedgerHomeView: View {
             else { EmptyLedgerView() }
         }
         .navigationTitle("账本").navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showLedgerSwitch) { LedgerSwitcherView() }
-        .sheet(isPresented: $showCreateLedger) { NavigationStack { LedgerCreateView() } }
-        .sheet(isPresented: $showEntry) { EntryContainerView() }
-        .sheet(isPresented: $showTransfer) { TransferView() }
-        .sheet(isPresented: $showBudget) { if let ledger = state.activeLedger { LedgerBudgetEditor(ledgerID: ledger.id) } }
+        .yujiSheet(isPresented: $showLedgerSwitch) { LedgerSwitcherView() }
+        .yujiSheet(isPresented: $showCreateLedger) { NavigationStack { LedgerCreateView() } }
+        .yujiSheet(isPresented: $showEntry) { EntryContainerView() }
+        .yujiSheet(isPresented: $showTransfer) { TransferView() }
+        .yujiSheet(isPresented: $showBudget) { if let ledger = state.activeLedger { LedgerBudgetEditor(ledgerID: ledger.id) } }
     }
     private var columns: [GridItem] {
         Array(repeating: GridItem(.flexible(), alignment: .leading), count: typeSize.isAccessibilitySize ? 1 : 2)
@@ -37,9 +37,20 @@ struct LedgerHomeView: View {
         return ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 12) {
+                    HStack(alignment: .top) {
                     Label(ledger.name, systemImage: "book.closed")
                         .font(.title2.weight(.semibold)).fixedSize(horizontal: false, vertical: true)
                         .accessibilityIdentifier("ledger.currentName")
+                    Spacer(minLength: 8)
+                    NavigationLink { CloudBookView(ledgerID: ledger.id) } label: {
+                        Image(systemName: state.cloudLink(for: ledger.id) == nil ? "icloud" : "person.2")
+                            .frame(width: 44, height: 44)
+                    }.accessibilityLabel("同步与成员").accessibilityIdentifier("ledger.cloud")
+                    }
+                    if state.cloudLink(for: ledger.id) != nil {
+                        Text(state.cloudBookStatus(ledger.id))
+                            .font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("ledger.cloudStatus")
+                    }
                     actionLayout {
                         Button { showLedgerSwitch = true } label: { Label("切换账本", systemImage: "arrow.left.arrow.right") }
                             .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
@@ -59,6 +70,7 @@ struct LedgerHomeView: View {
                         Spacer()
                         if !ledger.archived {
                             Button("预算") { showBudget = true }.font(.subheadline).frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("ledger.budget")
+                                .disabled(!state.canEditLedger(ledger.id))
                         }
                         Button("看统计", action: openStats).font(.subheadline).frame(minHeight: 44)
                     }
@@ -99,6 +111,7 @@ struct LedgerHomeView: View {
                     if !ledger.archived {
                         Button { showTransfer = true } label: { Label("转账", systemImage: "arrow.left.arrow.right").frame(minHeight: 44) }
                             .font(.subheadline)
+                            .disabled(!state.canEditLedger(ledger.id))
                     }
                 }
                 Divider()
@@ -147,13 +160,18 @@ struct QuietEmptyView: View {
 
 struct EmptyLedgerView: View {
     @State private var showCreate = false
+    @EnvironmentObject private var state: AppState
     var body: some View {
         VStack(spacing: 12) {
             Spacer()
-            Text("还没有账本").font(.system(size: 20, weight: .semibold))
-            Text("创建账本，开始记录你的收支。").font(.subheadline).foregroundColor(.secondary)
-            Button("新建账本") { showCreate = true }.buttonStyle(.borderedProminent)
+            Text((state.store.data.cloudLinks ?? []).isEmpty ? "还没有账本" : "云端账本等待账号确认").font(.title3.weight(.semibold))
+            Text((state.store.data.cloudLinks ?? []).isEmpty ? "创建账本，开始记录你的收支。" : state.cloudStatus)
+                .font(.subheadline).foregroundColor(.secondary).multilineTextAlignment(.center)
+            if !(state.store.data.cloudLinks ?? []).isEmpty {
+                Button("检查 iCloud") { Task { await state.refreshCloudAccount(); await state.synchronizeCloud() } }.frame(minHeight: 44)
+            }
+            Button("新建本地账本") { showCreate = true }.buttonStyle(.borderedProminent)
             Spacer()
-        }.sheet(isPresented: $showCreate) { NavigationStack { LedgerCreateView() } }
+        }.yujiSheet(isPresented: $showCreate) { NavigationStack { LedgerCreateView() } }
     }
 }

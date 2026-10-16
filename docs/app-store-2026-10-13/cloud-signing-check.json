@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-13",
+  "teamID": "7S626H9YL4",
+  "bundleID": "com.dmlayman.yuji",
+  "container": "iCloud.com.dmlayman.yuji",
+  "portalContainerRegistration": "verified",
+  "portalAppIDAssociation": "verified",
+  "developmentBuild": "passed signed",
+  "configuration": "Debug with explicit xcodebuild overrides; canonical cloud flag remains NO",
+  "signedEntitlements": {
+    "application-identifier": "7S626H9YL4.com.dmlayman.yuji",
+    "com.apple.developer.icloud-container-environment": "Development",
+    "com.apple.developer.icloud-container-identifiers": [
+      "iCloud.com.dmlayman.yuji"
+    ],
+    "com.apple.developer.icloud-services": [
+      "CloudKit"
+    ],
+    "com.apple.developer.team-identifier": "7S626H9YL4"
+  },
+  "profileMatchesContainerAndTeam": true,
+  "registeredPhysicalDeviceIncluded": true,
+  "signatureVerification": "passed strict verification",
+  "installed": false,
+  "schema": "not created or deployed",
+  "realABSharing": "not tested",
+  "production": "not verified",
+  "scope": "Cloud signing configuration only; no bookkeeping data uploaded"
+}

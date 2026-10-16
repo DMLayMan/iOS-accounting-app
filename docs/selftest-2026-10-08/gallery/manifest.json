@@ -1,0 +1,221 @@
+{
+  "scope": "Original screenshots from this completed batch; selected states, not an exhaustive manual visual review",
+  "screenshots": [
+    {
+      "run": "pro",
+      "stem": "03-entry-budget-projection",
+      "file": "pro-03-entry-budget-projection-32fe01ee.png",
+      "sha256": "32fe01ee8bd1bf34572966d63aa4e8a805322c0ef494a3c281e75dc8efd1d4ed",
+      "source": "evidence/selftest-20261008/pro/attachments/4DF4660E-CC74-4AEB-9A4F-991A40D79B6F.png",
+      "test": "BudgetEntryUITests/testCreateBudgetsDraftPreviewSaveAndAnnualBalance()",
+      "capturedAt": "2026-10-08T08:35:27.749Z"
+    },
+    {
+      "run": "pro",
+      "stem": "30-category-create-sheet",
+      "file": "pro-30-category-create-sheet-4b61c47a.png",
+      "sha256": "4b61c47a53d622045ce4338efa2798b9e5268e6abe0c74395cb8bba437a5df27",
+      "source": "evidence/selftest-20261008/pro/attachments/F273F78B-326C-4F27-BCE3-F333BD3D2573.png",
+      "test": "DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+      "capturedAt": "2026-10-08T08:44:46.169Z"
+    },
+    {
+      "run": "pro",
+      "stem": "40-home",
+      "file": "pro-40-home-83cf44f6.png",
+      "sha256": "83cf44f6c962abd216741c7f5ba7b95dcc6587252e9178fa87fd46c1815c4899",
+      "source": "evidence/selftest-20261008/pro/attachments/A8C07B9B-FDC1-4F53-8624-87B1665831E4.png",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-10-08T08:46:11.495Z"
+    },
+    {
+      "run": "pro",
+      "stem": "71-unified-feed",
+      "file": "pro-71-unified-feed-efeb73ea.png",
+      "sha256": "efeb73eabd683f36eb459068039e175c5d7f8e7ce66d4190d9f60194ad1749a7",
+      "source": "evidence/selftest-20261008/pro/attachments/ECC39C52-3273-4FFD-90AF-3D0ADA43920E.png",
+      "test": "ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+      "capturedAt": "2026-10-08T08:47:34.499Z"
+    },
+    {
+      "run": "pro",
+      "stem": "70-unified-statistics",
+      "file": "pro-70-unified-statistics-e246ef82.png",
+      "sha256": "e246ef82d36624fc1d4a908091513364372fa61367305dff83c51d2bd58f42e0",
+      "source": "evidence/selftest-20261008/pro/attachments/12B4294C-FF25-4F20-92ED-9D411C1B8E97.png",
+      "test": "ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+      "capturedAt": "2026-10-08T08:47:30.944Z"
+    },
+    {
+      "run": "pro",
+      "stem": "02-note-without-amount-keypad",
+      "file": "pro-02-note-without-amount-keypad-b1ecd9e9.png",
+      "sha256": "b1ecd9e97813619a101fa2db5213cc6bf1397e73cc5b32747f2df7be89551401",
+      "source": "evidence/selftest-20261008/pro/attachments/A3BEF9E0-9DFF-4A67-8224-7B14E85CAD8A.png",
+      "test": "InlineCategoryUITests/testRowMajorLayoutSingleRowAndQuickCreate()",
+      "capturedAt": "2026-10-08T08:50:30.805Z"
+    },
+    {
+      "run": "pro",
+      "stem": "review-largest-type-long-account",
+      "file": "pro-review-largest-type-long-account-f63ed290.png",
+      "sha256": "f63ed29078ec7b82130aa18142dcd77e3f8e73005c8d7044cb408e26ec603016",
+      "source": "evidence/selftest-20261008/pro/attachments/B041C7ED-5BF7-4747-ACFE-5169F7B66D00.png",
+      "test": "ReleaseReadinessUITests/testLongAccountNameKeepsEntryDateOnScreen()",
+      "capturedAt": "2026-10-08T08:57:37.834Z"
+    },
+    {
+      "run": "pro",
+      "stem": "13-pie-selection-inline",
+      "file": "pro-13-pie-selection-inline-b1e49be5.png",
+      "sha256": "b1e49be5af519550492fb8b143a22f2269618f774c2a36027765822cbbdc5713",
+      "source": "evidence/selftest-20261008/pro/attachments/1512B930-155B-44F9-AF61-9B611B29AC52.png",
+      "test": "StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+      "capturedAt": "2026-10-08T08:59:11.984Z"
+    },
+    {
+      "run": "pro",
+      "stem": "26-inline-leaf-transactions",
+      "file": "pro-26-inline-leaf-transactions-b18c40a0.png",
+      "sha256": "b18c40a0dec9fe0765bbd8f8ea9ca9c624b29a313093f00517da803112908169",
+      "source": "evidence/selftest-20261008/pro/attachments/74980840-D9A7-4600-921E-8B67842AA95A.png",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-10-08T09:02:00.924Z"
+    },
+    {
+      "run": "pro",
+      "stem": "16-large-text-dark-summary",
+      "file": "pro-16-large-text-dark-summary-658bd9c5.png",
+      "sha256": "658bd9c5e9ec6fa92f8c6e0a194e291fa8f798c840e1c08fa03bb8370fa8c2bc",
+      "source": "evidence/selftest-20261008/pro/attachments/3B6ACDD1-DF1F-4269-82D5-201A6C7C1102.png",
+      "test": "StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+      "capturedAt": "2026-10-08T09:02:27.699Z"
+    },
+    {
+      "run": "pro",
+      "stem": "84-theme-sheet-exit",
+      "file": "pro-84-theme-sheet-exit-7b7d6798.png",
+      "sha256": "7b7d6798e45307b597fe6bb421c64d36df2612e10b63a28388e7171d05542590",
+      "source": "evidence/selftest-20261008/pro/attachments/F6E845D3-6C2D-4E42-A54E-F588CDFB3230.png",
+      "test": "ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+      "capturedAt": "2026-10-08T09:07:14.193Z"
+    },
+    {
+      "run": "pro",
+      "stem": "01-theme-settings",
+      "file": "pro-01-theme-settings-9e2b9c39.png",
+      "sha256": "9e2b9c39cebd772d400227fb2c6e32a8798cae4d2c761ad87025eaefc14a79b5",
+      "source": "evidence/selftest-20261008/pro/attachments/26EDD7F8-7C0A-46ED-9189-085420ACE913.png",
+      "test": "ThemeUITests/testThemeAcrossPagesEntryAndRelaunch()",
+      "capturedAt": "2026-10-08T09:07:27.590Z"
+    },
+    {
+      "run": "se",
+      "stem": "03-entry-budget-projection",
+      "file": "se-03-entry-budget-projection-54983f8f.png",
+      "sha256": "54983f8fc791a4648ee7c5f892d607de7cb583a2e891c939e931c714e5fe39b0",
+      "source": "evidence/selftest-20261008/se/attachments/7B8949FE-D3C1-4E24-81F9-7982A02E2D58.png",
+      "test": "BudgetEntryUITests/testCreateBudgetsDraftPreviewSaveAndAnnualBalance()",
+      "capturedAt": "2026-10-08T08:35:26.190Z"
+    },
+    {
+      "run": "se",
+      "stem": "30-category-create-sheet",
+      "file": "se-30-category-create-sheet-facabc45.png",
+      "sha256": "facabc45c81f619896d4670bbaf5ef5bd57501178226625c94d49f03ee46bc1d",
+      "source": "evidence/selftest-20261008/se/attachments/488177AD-58A3-4F94-9D0C-C572A8C7F06C.png",
+      "test": "DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+      "capturedAt": "2026-10-08T08:46:23.059Z"
+    },
+    {
+      "run": "se",
+      "stem": "40-home",
+      "file": "se-40-home-137384a6.png",
+      "sha256": "137384a6e5ff06136be5b41c46e14abfeca5a19266c7b0d6605a29bd503424c4",
+      "source": "evidence/selftest-20261008/se/attachments/91F9B6E0-7A6A-4F50-9078-E0936AA6A153.png",
+      "test": "DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+      "capturedAt": "2026-10-08T08:47:41.326Z"
+    },
+    {
+      "run": "se",
+      "stem": "71-unified-feed",
+      "file": "se-71-unified-feed-506f58ea.png",
+      "sha256": "506f58eae5e8348266769e8317106e44cf0a93fa1f998bd3caab76434beae118",
+      "source": "evidence/selftest-20261008/se/attachments/A4517AD0-F5C1-49FF-B529-AEF52F9BDFAF.png",
+      "test": "ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+      "capturedAt": "2026-10-08T08:49:06.818Z"
+    },
+    {
+      "run": "se",
+      "stem": "70-unified-statistics",
+      "file": "se-70-unified-statistics-4d344354.png",
+      "sha256": "4d344354668a777488f135b4cad50227b26a535f288da350af2a86d3f15aee71",
+      "source": "evidence/selftest-20261008/se/attachments/10EBA226-22ED-4309-BA80-7CEDD3528A4E.png",
+      "test": "ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+      "capturedAt": "2026-10-08T08:49:03.988Z"
+    },
+    {
+      "run": "se",
+      "stem": "02-note-without-amount-keypad",
+      "file": "se-02-note-without-amount-keypad-d9b9d4ee.png",
+      "sha256": "d9b9d4eeeeb5a280a37c67aaad13417662f395e8eebb18ed1180114ed652b69e",
+      "source": "evidence/selftest-20261008/se/attachments/EBC02E09-A816-427C-9502-2F53B73F204F.png",
+      "test": "InlineCategoryUITests/testRowMajorLayoutSingleRowAndQuickCreate()",
+      "capturedAt": "2026-10-08T08:51:59.827Z"
+    },
+    {
+      "run": "se",
+      "stem": "review-largest-type-long-account",
+      "file": "se-review-largest-type-long-account-6fd40ec5.png",
+      "sha256": "6fd40ec52af03551d591adede344c3ed278697b3c8b8e4bef0b56e140620f2c7",
+      "source": "evidence/selftest-20261008/se/attachments/DB6786F3-732F-403C-AE7E-E0998AEE1D90.png",
+      "test": "ReleaseReadinessUITests/testLongAccountNameKeepsEntryDateOnScreen()",
+      "capturedAt": "2026-10-08T08:59:05.567Z"
+    },
+    {
+      "run": "se",
+      "stem": "13-pie-selection-inline",
+      "file": "se-13-pie-selection-inline-e582fa75.png",
+      "sha256": "e582fa75fc945dca29bb90dc2e468ee090156c667c3d53535f230e19f8bdcd26",
+      "source": "evidence/selftest-20261008/se/attachments/00E41E8D-81CA-4C1F-B89B-D18961C45B63.png",
+      "test": "StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+      "capturedAt": "2026-10-08T09:00:43.526Z"
+    },
+    {
+      "run": "se",
+      "stem": "26-inline-leaf-transactions",
+      "file": "se-26-inline-leaf-transactions-587c075a.png",
+      "sha256": "587c075a9939ff7edde567620fcd02d7448b75a4a8237834aa4d4d842b52da59",
+      "source": "evidence/selftest-20261008/se/attachments/34DE0BAB-2C1D-4E65-AF7B-61B05C3C6E7C.png",
+      "test": "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+      "capturedAt": "2026-10-08T09:03:58.105Z"
+    },
+    {
+      "run": "se",
+      "stem": "16-large-text-dark-summary",
+      "file": "se-16-large-text-dark-summary-bd07b165.png",
+      "sha256": "bd07b1651e269815f258ec0815364a74d5063a2ae8497387d866855450e818ad",
+      "source": "evidence/selftest-20261008/se/attachments/3612BB50-D41E-4178-A61D-F826A463529D.png",
+      "test": "StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+      "capturedAt": "2026-10-08T09:04:31.176Z"
+    },
+    {
+      "run": "se",
+      "stem": "84-theme-sheet-exit",
+      "file": "se-84-theme-sheet-exit-90e2c0fc.png",
+      "sha256": "90e2c0fc84a4c4a9b0cbb1422952597ac4a2213264649327b4d08b47138dbdcc",
+      "source": "evidence/selftest-20261008/se/attachments/65795DDF-10F0-44BF-BCFE-1048DFDD22DC.png",
+      "test": "ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+      "capturedAt": "2026-10-08T09:09:53.108Z"
+    },
+    {
+      "run": "se",
+      "stem": "01-theme-settings",
+      "file": "se-01-theme-settings-a49aefc9.png",
+      "sha256": "a49aefc994e1d73a47465525fee1c5448e0f5bc96884a70570dcd09242639c3d",
+      "source": "evidence/selftest-20261008/se/attachments/23F67CFB-A26F-4F8F-A6F1-EFAE6EB2FFE7.png",
+      "test": "ThemeUITests/testThemeAcrossPagesEntryAndRelaunch()",
+      "capturedAt": "2026-10-08T09:10:06.500Z"
+    }
+  ]
+}

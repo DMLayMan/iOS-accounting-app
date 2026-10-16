@@ -1,0 +1,62 @@
+{
+  "identifier": "45BDE46A-80DF-4B9D-A857-B3B57C6AE9F1",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "6.00",
+      "familyShareable": false,
+      "internalID": "610001",
+      "localizations": [
+        {
+          "description": "一次性自愿支持余记开发，不解锁额外权益。",
+          "displayName": "小小鼓励",
+          "locale": "zh_CN"
+        }
+      ],
+      "productID": "com.yuji.app.support.encourage",
+      "referenceName": "小小鼓励",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "18.00",
+      "familyShareable": false,
+      "internalID": "610002",
+      "localizations": [
+        {
+          "description": "一次性自愿支持余记开发，不解锁额外权益。",
+          "displayName": "一杯咖啡",
+          "locale": "zh_CN"
+        }
+      ],
+      "productID": "com.yuji.app.support.coffee",
+      "referenceName": "一杯咖啡",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "30.00",
+      "familyShareable": false,
+      "internalID": "610003",
+      "localizations": [
+        {
+          "description": "一次性自愿支持余记开发，不解锁额外权益。",
+          "displayName": "加倍支持",
+          "locale": "zh_CN"
+        }
+      ],
+      "productID": "com.yuji.app.support.generous",
+      "referenceName": "加倍支持",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "zh_CN",
+    "_storefront": "CHN",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}

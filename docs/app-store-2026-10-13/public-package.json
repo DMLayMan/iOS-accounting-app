@@ -1,0 +1,45 @@
+{
+  "scope": "Only two static public pages deployed",
+  "canonicalPolicy": "docs/privacy/PrivacyPolicy.md",
+  "canonicalPolicySHA256": "e3465534d78ae4388fa0aeb6495c583a087df89fcb1aee8060678c9c5f839b2f",
+  "files": {
+    "privacy.html": "b9749c0f23f1857431f9d5a47e5139392758d7613d8603c35543ec8d245a3631",
+    "support.html": "69dce5a98d35d1835b16c762ba372c8f5194962202d83aa0d16a576381201c36"
+  },
+  "renderReview": "Local privacy and support desktop render reviewed; public HTTP content byte-identical",
+  "deployment": {
+    "branch": "codex/public-policy-20261015",
+    "commit": "7c3ffd2319c0c59f9e613ec9fe7b77f989fec859",
+    "status": "built and anonymous HTTPS byte readback verified",
+    "checkedAt": "2026-10-15T12:53:22.022877+00:00",
+    "checks": {
+      "privacy.html": {
+        "url": "https://dmlayman.github.io/iOS-accounting-app/privacy.html?rev=7c3ffd2",
+        "sha256": "b9749c0f23f1857431f9d5a47e5139392758d7613d8603c35543ec8d245a3631",
+        "matches": true
+      },
+      "support.html": {
+        "url": "https://dmlayman.github.io/iOS-accounting-app/support.html?rev=7c3ffd2",
+        "sha256": "69dce5a98d35d1835b16c762ba372c8f5194962202d83aa0d16a576381201c36",
+        "matches": true
+      }
+    }
+  },
+  "previousDeployment": {
+    "branch": "codex/public-policy-20261015",
+    "commit": "cf89b6bbbda63a1a3b0c7890e990be212b54597d",
+    "checkedAt": "2026-10-15T11:45:01.476Z",
+    "checks": {
+      "privacy.html": {
+        "url": "https://dmlayman.github.io/iOS-accounting-app/privacy.html",
+        "sha256": "17a81730c9888999b4427370f798499eb95f7403313be932be0319b0387795cb",
+        "matches": true
+      },
+      "support.html": {
+        "url": "https://dmlayman.github.io/iOS-accounting-app/support.html",
+        "sha256": "b0c594a3968c920e5ed9747cdd669b702c111d320196835dc6ced35934064617",
+        "matches": true
+      }
+    }
+  }
+}

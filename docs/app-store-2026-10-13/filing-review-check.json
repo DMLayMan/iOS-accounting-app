@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-13",
+  "timezone": "Asia/Shanghai",
+  "userReportedSubmitted": true,
+  "applicationSubmitted": true,
+  "provider": "Alibaba Cloud",
+  "stage": "Alibaba Cloud preliminary review",
+  "visibleStatus": "审核中",
+  "visibleEstimate": "明天20点前审核",
+  "estimatedReviewBy": "2026-10-14T20:00:00+08:00",
+  "estimateIsGuarantee": false,
+  "preliminaryReviewPassed": false,
+  "MIITSMSVerified": false,
+  "administrationApproved": false,
+  "appFilingNumber": null,
+  "nextUserAction": "Keep filing phone reachable; complete MIIT SMS verification within 24 hours after receipt when required",
+  "source": "Current signed-in order detail DOM; only review-stage text retained, no government IDs, contact values or order identifiers",
+  "releaseGate": "Filing submission does not establish App Store readiness",
+  "plan": "after-submission.md"
+}

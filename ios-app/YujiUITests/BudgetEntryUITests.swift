@@ -35,11 +35,23 @@ final class BudgetEntryUITests: XCTestCase {
         if old != field.placeholderValue && !old.isEmpty {
             let clear = e(id + ".clear")
             if clear.exists { clear.tap(); field.tap() }
-            else { field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count)) }
+            else { app.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count)) }
         }
-        if !value.isEmpty { field.typeText(value) }
+        // iOS 27 can reject element-scoped typing despite native keyboard focus.
+        // Send the real keyboard input and prove its destination instead.
+        if !value.isEmpty { app.typeText(value) }
+        let actual = e(id).value as? String ?? ""
+        XCTAssertEqual(actual == field.placeholderValue ? "" : actual, value, "Input must remain in the tapped field: " + id)
     }
-    private func finishKeyboard() { if app.keyboards.firstMatch.exists { app.buttons["完成"].firstMatch.tap() } }
+    private func finishKeyboard() {
+        if app.keyboards.firstMatch.exists {
+            let done = e("keyboard.complete")
+            XCTAssertTrue(done.waitForExistence(timeout: 3)); XCTAssertTrue(done.isHittable)
+            XCTAssertGreaterThanOrEqual(done.frame.height, 44)
+            done.tap()
+            XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 5))
+        }
+    }
     private func setBudget(month: String, year: String) {
         app.tabBars.buttons["账本"].tap(); reveal("ledger.budget").tap()
         XCTAssertTrue(e("budget.monthly").waitForExistence(timeout: 5))
@@ -64,8 +76,8 @@ final class BudgetEntryUITests: XCTestCase {
         for key in ["1", "2", "0"] { e("entry.key." + key).tap() }
         e("category.child.早餐").tap()
         XCTAssertGreaterThanOrEqual(e("category.parent.餐饮").frame.minX, e("entry.parents").frame.minX)
-        XCTAssertTrue(e("entry.budgetHint").label.contains("超出 ¥20.00"))
-        XCTAssertTrue(e("entry.budgetHint").label.contains("剩余 ¥880.00"))
+        XCTAssertTrue(e("entry.budgetMore").label.contains("超出 ¥20.00"))
+        XCTAssertTrue(e("entry.budgetMore").label.contains("剩余 ¥880.00"))
         capture("03-entry-budget-projection")
         reveal("entry.note").tap(); e("entry.note").typeText("预算预览\n")
         XCTAssertTrue(e("entry.amountKeypad").waitForExistence(timeout: 5))
@@ -136,7 +148,7 @@ final class BudgetEntryUITests: XCTestCase {
         capture("20-dark-budget")
         e("root.newEntry").tap(); e("entry.key.1").tap()
         capture("21-dark-entry-budget")
-        XCTAssertTrue(e("entry.budgetHint").label.contains("超出"))
+        XCTAssertTrue(e("entry.budgetMore").label.contains("超出"))
         e("entry.close").tap()
     }
 

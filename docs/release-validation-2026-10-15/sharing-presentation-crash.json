@@ -1,0 +1,81 @@
+{
+  "platform": "Mac Catalyst",
+  "rootCause": "presentation theme reads an absent AppState EnvironmentObject",
+  "events": [
+    {
+      "time": "2026-10-15 12:01:22.4340 +0800",
+      "exception": "EXC_BREAKPOINT",
+      "signal": "SIGTRAP",
+      "frames": [
+        {
+          "symbol": "_assertionFailure(_:_:file:line:flags:)",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "specialized EnvironmentObject.error()",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "specialized EnvironmentObject.wrappedValue.getter",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "EnvironmentObject.wrappedValue.getter",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "PresentationTheme.body(content:)",
+          "sourceFile": "Design.swift",
+          "sourceLine": 161
+        },
+        {
+          "symbol": "protocol witness for ViewModifier.body(content:) in conformance PresentationTheme",
+          "sourceFile": "/<compiler-generated>",
+          "sourceLine": null
+        }
+      ]
+    },
+    {
+      "time": "2026-10-15 12:15:48.0013 +0800",
+      "exception": "EXC_BREAKPOINT",
+      "signal": "SIGTRAP",
+      "frames": [
+        {
+          "symbol": "_assertionFailure(_:_:file:line:flags:)",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "specialized EnvironmentObject.error()",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "specialized EnvironmentObject.wrappedValue.getter",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "EnvironmentObject.wrappedValue.getter",
+          "sourceFile": null,
+          "sourceLine": null
+        },
+        {
+          "symbol": "PresentationTheme.body(content:)",
+          "sourceFile": "Design.swift",
+          "sourceLine": 161
+        },
+        {
+          "symbol": "protocol witness for ViewModifier.body(content:) in conformance PresentationTheme",
+          "sourceFile": "/<compiler-generated>",
+          "sourceLine": null
+        }
+      ]
+    }
+  ],
+  "phoneCrashIndex": "no matching file returned; not proof of no iPhone crash"
+}

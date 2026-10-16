@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-08",
+  "source": "evidence/review-fix-20261008/release-v17/Yuji.xcarchive",
+  "configuration": "Release",
+  "signed": false,
+  "archiveSucceeded": true,
+  "bundleID": "com.yuji.app",
+  "version": "0.1.0",
+  "build": "1",
+  "minimumOS": "16.0",
+  "sdk": "iphoneos27.0",
+  "developmentRegion": "zh-Hans",
+  "localizations": [
+    "zh-Hans"
+  ],
+  "icons": {
+    "CFBundlePrimaryIcon": {
+      "CFBundleIconFiles": [
+        "AppIcon60x60"
+      ],
+      "CFBundleIconName": "AppIcon"
+    }
+  },
+  "policyBundled": true,
+  "policyMatchesSource": true,
+  "privacy": {
+    "NSPrivacyAccessedAPITypes": [
+      {
+        "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "NSPrivacyAccessedAPITypeReasons": [
+          "C617.1"
+        ]
+      }
+    ],
+    "NSPrivacyCollectedDataTypes": [],
+    "NSPrivacyTracking": false
+  },
+  "fixturePresent": false,
+  "binarySHA256": "097a4c68e7e19fc90b7cb97755c3b5c87a6e9768c11258898a271f7ca59c06b8",
+  "scope": "unsigned archive resource verification only; not device installation, upload or review"
+}

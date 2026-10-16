@@ -7,14 +7,23 @@ struct AccountPickerView: View {
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         NavigationStack {
-            List(accounts) { acc in
-                Button {
-                    selected = acc.id; dismiss()
-                } label: {
-                    HStack {
-                        Text(acc.name).foregroundColor(.primary)
-                        Spacer()
-                        if selected == acc.id { Image(systemName: "checkmark").foregroundStyle(.tint) }
+            List {
+                if accounts.isEmpty {
+                    Section {
+                        Text("没有可用账户").font(.headline)
+                        Text("请关闭记账，在“我的 → 账户”中新增或恢复账户。已有输入会保留为草稿。")
+                            .font(.subheadline).foregroundStyle(.secondary)
+                    }
+                }
+                ForEach(accounts) { acc in
+                    Button {
+                        selected = acc.id; dismiss()
+                    } label: {
+                        HStack {
+                            Text(acc.name).foregroundColor(.primary)
+                            Spacer()
+                            if selected == acc.id { Image(systemName: "checkmark").foregroundStyle(.tint) }
+                        }
                     }
                 }
             }

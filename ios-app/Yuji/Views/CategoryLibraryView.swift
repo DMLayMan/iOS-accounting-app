@@ -114,7 +114,7 @@ struct CategoryLibraryContent: View {
                 }
             }
         }
-        .sheet(item: $editor) { context in
+        .yujiSheet(item: $editor) { context in
             CategoryEditorView(ledgerID: ledgerID, kind: kind, context: context) { id in
                 if !isManaging, let node = state.store.category(id), node.isLeaf, !node.archived { selected = id; dismiss() }
             }

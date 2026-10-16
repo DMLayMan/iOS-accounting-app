@@ -9,13 +9,16 @@ struct CategoryAnalysisView: View {
     let ledgerID: EntityID
     let range: ClosedRange<Day>
     var comparison: StatsEngine.Comparison? = nil
+    var authorFilter: StatsEngine.AuthorFilter = .all
+    var authorLabel: String? = nil
+    var clearAuthor: () -> Void = {}
     @State private var kind: TransactionKind = .expense
     @State private var sort: StatsEngine.CategorySort = .amount
     @State private var categoryID: EntityID?
     @State private var showAllCategories = false
     @State private var largestFirst = false
     @State private var limit = 20
-    private var stats: StatsEngine { state.stats(for: ledgerID) }
+    private var stats: StatsEngine { state.stats(for: ledgerID, authorFilter: authorFilter) }
     private var parentID: EntityID? {
         guard let node = state.store.category(categoryID) else { return nil }
         return node.parentID ?? node.id
@@ -30,6 +33,7 @@ struct CategoryAnalysisView: View {
         } : values
     }
     var body: some View {
+        let visibleRecords = records
         let rows = stats.categoryGroups(range: range, kind: kind, sort: sort)
         let total = rows.reduce(Int64(0)) { $0 + $1.expense }
         VStack(alignment: .leading, spacing: 12) {
@@ -91,9 +95,20 @@ struct CategoryAnalysisView: View {
             }
             Divider()
             recordsToolbarLayout {
-                HStack(spacing: 8) {
-                    Text("收支明细").font(.headline)
-                    Text("\(records.count) 条").font(.caption).foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(spacing: 8) {
+                        Text("收支明细").font(.headline)
+                        Text("\(visibleRecords.count) 条").font(.caption).foregroundStyle(.secondary)
+                    }
+                    if let authorLabel {
+                        Button(action: clearAuthor) {
+                            HStack(spacing: 6) {
+                                Text(authorLabel).fixedSize(horizontal: false, vertical: true)
+                                Image(systemName: "xmark.circle.fill").accessibilityHidden(true)
+                            }.font(.caption).frame(minHeight: 44)
+                        }.accessibilityLabel("当前记账人：\(authorLabel)，清除筛选")
+                            .accessibilityIdentifier("stats.detailClearAuthor")
+                    }
                 }
                 if !typeSize.isAccessibilitySize { Spacer() }
                 HStack(spacing: 14) {
@@ -119,9 +134,9 @@ struct CategoryAnalysisView: View {
                     }
                 }.id(parentID)
             }
-            summary
-            if records.isEmpty {
-                Text("当前筛选没有记录，试试其他分类。")
+            recordsSummary(visibleRecords)
+            if visibleRecords.isEmpty {
+                Text("当前筛选没有记录，试试其他时间、记账人或分类。")
                     .font(.subheadline).foregroundStyle(.secondary).padding(.vertical, 20)
                     .accessibilityIdentifier("stats.drilldownEmpty")
             }
@@ -129,7 +144,7 @@ struct CategoryAnalysisView: View {
             // lazy stack can repeatedly invalidate its height when a large-type
             // category filter changes. This page starts with only 20 records.
             VStack(spacing: 0) {
-                ForEach(records.prefix(limit)) { transaction in
+                ForEach(visibleRecords.prefix(limit)) { transaction in
                     NavigationLink {
                         TransactionDetailView(transactionID: transaction.id)
                     } label: {
@@ -137,8 +152,8 @@ struct CategoryAnalysisView: View {
                     }.buttonStyle(.plain).accessibilityIdentifier("stats.transaction.\(transaction.id.raw)")
                     Divider()
                 }
-                if records.count > limit {
-                    Button("再显示 \(min(20, records.count - limit)) 条 · 还有 \(records.count - limit) 条") { limit += 20 }
+                if visibleRecords.count > limit {
+                    Button("再显示 \(min(20, visibleRecords.count - limit)) 条 · 还有 \(visibleRecords.count - limit) 条") { limit += 20 }
                         .font(.subheadline).frame(maxWidth: .infinity, minHeight: 48).accessibilityIdentifier("stats.loadMore")
                 }
             }
@@ -146,6 +161,7 @@ struct CategoryAnalysisView: View {
         .onChange(of: kind) { _ in categoryID = nil; sort = .amount; limit = 20 }
         .onChange(of: categoryID) { _ in limit = 20 }
         .onChange(of: range) { _ in limit = 20 }
+        .onChange(of: authorFilter) { _ in categoryID = nil; limit = 20 }
     }
     private var recordsToolbarLayout: AnyLayout {
         typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout())
@@ -185,8 +201,7 @@ struct CategoryAnalysisView: View {
         }.buttonStyle(.plain).accessibilityAddTraits(categoryID == id ? [.isSelected] : [])
             .accessibilityIdentifier("\(prefix).\(id.raw)")
     }
-    private var summary: some View {
-        let values = records
+    private func recordsSummary(_ values: [YujiCore.Transaction]) -> some View {
         let gross = values.filter { $0.kind == kind }.reduce(Int64(0)) { $0 + $1.amountCents }
         let refund = values.filter { $0.kind == .refund }.reduce(Int64(0)) { $0 + $1.amountCents }
         let title = categoryID.map { state.store.categoryPath($0) } ?? "全部\(kind.displayName)"
@@ -213,6 +228,7 @@ private struct RingSegment: Shape {
     let end: Double
     func path(in rect: CGRect) -> Path {
         var p = Path()
+        guard min(rect.width, rect.height) > 30 else { return p }
         p.addArc(center: CGPoint(x: rect.midX, y: rect.midY), radius: min(rect.width, rect.height) / 2 - 15,
                  startAngle: .degrees(start * 360 - 90), endAngle: .degrees(end * 360 - 90), clockwise: false)
         return p.strokedPath(StrokeStyle(lineWidth: 25, lineCap: .butt))

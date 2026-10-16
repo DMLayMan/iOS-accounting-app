@@ -33,15 +33,30 @@ public struct BreakdownItem: Equatable, Identifiable, Sendable {
 
 /// 统计引擎。所有口径按交易发生日（PRD §7.1）。
 public struct StatsEngine {
+    /// Record creator, not the payer or last editor. Legacy nil identities remain unknown.
+    public enum AuthorFilter: Hashable, Sendable {
+        case all
+        case person(String)
+        case unknown
+
+        func includes(_ transaction: Transaction) -> Bool {
+            switch self {
+            case .all: return true
+            case .person(let identity): return transaction.authorID == identity
+            case .unknown: return transaction.authorID == nil
+            }
+        }
+    }
     let store: LedgerStore
     let ledgerID: EntityID
+    let authorFilter: AuthorFilter
 
-    public init(store: LedgerStore, ledgerID: EntityID) {
-        self.store = store; self.ledgerID = ledgerID
+    public init(store: LedgerStore, ledgerID: EntityID, authorFilter: AuthorFilter = .all) {
+        self.store = store; self.ledgerID = ledgerID; self.authorFilter = authorFilter
     }
 
     /// 有效交易（未删除、未草稿）。
-    private var active: [Transaction] { store.activeTransactions(in: ledgerID) }
+    var active: [Transaction] { store.activeTransactions(in: ledgerID).filter(authorFilter.includes) }
 
     /// 共用收支聚合规则；分类分析中的退款归属由分类查询负责。
     public func summary(range: ClosedRange<Day>) -> PeriodSummary {

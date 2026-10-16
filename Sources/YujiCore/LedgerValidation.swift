@@ -92,7 +92,24 @@ public enum LedgerValidation {
             for id in draft.tagIDs { try require(tags[id]?.ledgerID == draft.ledgerID, "草稿历史标签缺失或跨账本") }
             if let id = draft.originalExpenseID { try require(transactions[id]?.ledgerID == draft.ledgerID, "草稿原交易缺失或跨账本") }
         }
+        var cloudIDs = Set<CloudBookKey>()
+        var cloudAddresses = Set<CloudLocationKey>()
+        for link in data.cloudLinks ?? [] {
+            try require(!link.accountID.isEmpty && !link.address.container.isEmpty && !link.address.zoneName.isEmpty,
+                        "云端账号或账本定位信息缺失")
+            let key = CloudBookKey(account: link.accountID, ledger: link.cached.ledger.id)
+            let address = CloudLocationKey(account: link.accountID, address: link.address)
+            try require(cloudIDs.insert(key).inserted && cloudAddresses.insert(address).inserted, "云端账本存在重复绑定")
+            try link.cached.validate()
+            if let base = link.base { try base.validate(); try require(base.ledger.id == link.cached.ledger.id, "云端基线身份不一致") }
+            if let incoming = link.incoming { try incoming.validate(); try require(incoming.ledger.id == link.cached.ledger.id, "冲突副本身份不一致") }
+        }
+        for (id, links) in Dictionary(grouping: data.cloudLinks ?? [], by: { $0.cached.ledger.id }) where ledgers[id] != nil && links.count > 1 {
+            try require(links.contains { $0.accountID == data.activeCloudAccountID }, "可见云账本的账号归属缺失")
+        }
     }
+    private struct CloudBookKey: Hashable { let account: String; let ledger: EntityID }
+    private struct CloudLocationKey: Hashable { let account: String; let address: CloudAddress }
     private struct BudgetKey: Hashable { let categoryID: EntityID?; let period: BudgetPeriod; let day: Day }
     private static func invalid(_ message: String) -> DomainError { .restoreBlocked(message) }
     private static func require(_ condition: Bool, _ message: String) throws { if !condition { throw invalid(message) } }

@@ -10,7 +10,8 @@ xcodebuild -project ios-app/Yuji.xcodeproj -scheme Yuji -configuration Debug -de
 xcrun simctl boot "$task_device" 2>/dev/null || true
 xcrun simctl bootstatus "$task_device" -b
 xcrun simctl install "$task_device" .build-ios/Build/Products/Debug-iphonesimulator/Yuji.app
-xcrun simctl terminate "$task_device" com.yuji.app 2>/dev/null || true
-SIMCTL_CHILD_YUJI_STRESS_SESSION="$task_session" SIMCTL_CHILD_YUJI_STRESS_PREVIEW=1 xcrun simctl launch "$task_device" com.yuji.app
+task_bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' .build-ios/Build/Products/Debug-iphonesimulator/Yuji.app/Info.plist)
+xcrun simctl terminate "$task_device" "$task_bundle_id" 2>/dev/null || true
+SIMCTL_CHILD_YUJI_STRESS_SESSION="$task_session" SIMCTL_CHILD_YUJI_STRESS_PREVIEW=1 xcrun simctl launch "$task_device" "$task_bundle_id"
 printf '%s\n' "$task_session" > evidence/stats-500/preview-session.txt
 open -a Simulator

@@ -1,24 +1,18 @@
 import SwiftUI
 import YujiCore
 
-/// Keep the next field reachable on small sheets while the system keyboard is open.
-struct BudgetKeyboardVisibility: ViewModifier {
-    @Binding var visible: Bool
-    func body(content: Content) -> some View {
-        content
-            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in visible = true }
-            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in visible = false }
-    }
-}
+/// The hosting form owns focus, including its name field when creating a book.
+enum BudgetInputField: Hashable { case ledgerName, monthly, yearly }
 
 struct BudgetFields: View {
     @Binding var monthly: String
     @Binding var yearly: String
     @Environment(\.dynamicTypeSize) private var typeSize
+    var focusedField: FocusState<BudgetInputField?>.Binding
     var body: some View {
         Section {
-            field("每月预算", value: $monthly, id: "budget.monthly")
-            field("每年预算", value: $yearly, id: "budget.yearly")
+            field("每月预算", value: $monthly, id: "budget.monthly", focus: .monthly)
+            field("每年预算", value: $yearly, id: "budget.yearly", focus: .yearly)
             if let message = Self.validation(monthly, yearly) {
                 Text(message).font(.caption).foregroundStyle(.red).accessibilityIdentifier("budget.inputError")
             }
@@ -26,7 +20,7 @@ struct BudgetFields: View {
             Text("留空不设预算；填 0 表示计划零支出。月、年额度独立，按周期重置，不滚存。")
         }
     }
-    private func field(_ title: String, value: Binding<String>, id: String) -> some View {
+    private func field(_ title: String, value: Binding<String>, id: String, focus: BudgetInputField) -> some View {
         let layout = typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(spacing: 8))
         return layout {
             HStack(spacing: 8) {
@@ -35,6 +29,8 @@ struct BudgetFields: View {
             }
             HStack(spacing: 4) {
                 TextField("未设置", text: value).keyboardType(.decimalPad)
+                    .focused(focusedField, equals: focus)
+                    .frame(minHeight: 44).contentShape(Rectangle())
                     .multilineTextAlignment(typeSize.isAccessibilitySize ? .leading : .trailing)
                     .accessibilityLabel(title + "，元").accessibilityIdentifier(id)
                 if !typeSize.isAccessibilitySize { Text("元").foregroundStyle(.secondary) }
@@ -64,7 +60,7 @@ struct LedgerBudgetEditor: View {
     @State private var loaded = false
     @State private var error: String?
     @State private var exitRequested = false
-    @State private var keyboardVisible = false
+    @FocusState private var focusedField: BudgetInputField?
     @State private var categoryRules: [CategoryBudgetDraft] = []
     @State private var initialCategoryRules: [CategoryBudgetDraft] = []
     @State private var editingRule: CategoryBudgetDraft?
@@ -73,10 +69,10 @@ struct LedgerBudgetEditor: View {
         NavigationStack {
             Form {
                 Section { Text(state.store.ledger(ledgerID)?.name ?? "账本").font(.headline) }
-                BudgetFields(monthly: $monthly, yearly: $yearly)
+                BudgetFields(monthly: $monthly, yearly: $yearly, focusedField: $focusedField)
                 Section {
                     ForEach(categoryRules) { rule in
-                        Button { editingRule = rule } label: {
+                        Button { endEditing(); editingRule = rule } label: {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(state.store.categoryPath(rule.categoryID)).foregroundStyle(.primary)
                                 Text("\(rule.period == .month ? "每月" : "每年") · \(rule.amount) 元").font(.caption).foregroundStyle(.secondary)
@@ -84,7 +80,7 @@ struct LedgerBudgetEditor: View {
                         }.accessibilityIdentifier("budget.category.edit.\(rule.period.rawValue).\(rule.categoryID?.raw ?? "")")
                             .swipeActions { Button("移除", role: .destructive) { categoryRules.removeAll { $0.id == rule.id } } }
                     }
-                    Button { editingRule = CategoryBudgetDraft() } label: { Label("添加分类预算", systemImage: "plus") }
+                    Button { endEditing(); editingRule = CategoryBudgetDraft() } label: { Label("添加分类预算", systemImage: "plus") }
                         .accessibilityIdentifier("budget.category.add")
                 } header: { Text("分类预算 · \(categoryRules.count) 项") } footer: {
                     Text("可选一级或二级支出分类，不限制规则条数。修改后点“保存预算”统一生效。")
@@ -98,10 +94,9 @@ struct LedgerBudgetEditor: View {
             .navigationTitle("账本预算").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("取消") { endEditing(); if dirty { exitRequested = true } else { dismiss() } } }
-                ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("完成") { endEditing() } }
             }
             .safeAreaInset(edge: .bottom) {
-                if !exitRequested && !keyboardVisible && editingRule == nil {
+                if !exitRequested && focusedField == nil && editingRule == nil {
                     Button("保存预算", action: save).buttonStyle(SolidActionStyle())
                         .disabled(!loaded || BudgetFields.validation(monthly, yearly) != nil || state.store.ledger(ledgerID)?.archived != false)
                         .accessibilityIdentifier("budget.save").padding(20).background(Color(.systemBackground))
@@ -118,9 +113,9 @@ struct LedgerBudgetEditor: View {
                 }
             }
         }
+        .modifier(KeyboardCompletionBar(visible: focusedField != nil && !exitRequested && editingRule == nil, title: "完成", complete: endEditing))
         .presentationDetents(typeSize.isAccessibilitySize ? [.large] : [.fraction(0.7), .large])
         .presentationDragIndicator(.visible).modifier(CleanSheetSurface())
-        .modifier(BudgetKeyboardVisibility(visible: $keyboardVisible))
         .onAppear {
             guard !loaded else { return }
             monthly = state.store.budgetLimit(in: ledgerID, period: .month, containing: state.today).map { Money($0).inputString } ?? ""
@@ -147,7 +142,7 @@ struct LedgerBudgetEditor: View {
             else { error = state.alertError }
         } catch let e as DomainError { error = e.message } catch { self.error = "请检查预算金额" }
     }
-    private func endEditing() { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) }
+    private func endEditing() { focusedField = nil }
 }
 
 struct StatsBudgetView: View {
@@ -160,12 +155,17 @@ struct StatsBudgetView: View {
     @State private var showEditor = false
     var body: some View {
         let snapshot = state.store.budget(in: ledgerID, period: period, containing: day, through: cutoff)
+        let categories = state.store.categoryBudgets(in: ledgerID, period: period, containing: day, through: cutoff)
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(period == .month ? "\(String(day.year)) 年 \(day.month) 月预算" : "\(String(day.year)) 年预算").font(.subheadline.weight(.semibold))
+                if snapshot.limit == nil && categories.isEmpty {
+                    Text("未设置预算").font(.subheadline).foregroundStyle(.secondary).accessibilityIdentifier("stats.budgetUnset")
+                } else {
+                    Text(period == .month ? "\(String(day.year)) 年 \(day.month) 月预算" : "\(String(day.year)) 年预算").font(.subheadline.weight(.semibold))
+                }
                 Spacer(minLength: 8)
                 if state.activeLedger?.archived == false {
-                    Button("管理") { showEditor = true }.font(.subheadline).frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("stats.budgetManage")
+                    Button(snapshot.limit == nil && categories.isEmpty ? "设置预算" : "管理") { showEditor = true }.font(.subheadline).frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("stats.budgetManage")
                 }
             }
             if let remaining = snapshot.remaining, let limit = snapshot.limit {
@@ -177,13 +177,13 @@ struct StatsBudgetView: View {
                 Text("预算 \(statsMoney(limit)) · 已用 \(statsMoney(snapshot.spent))")
                     .font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("stats.budgetAmounts")
                 Text("账本总预算 · 按净支出计算").font(.caption2).foregroundStyle(.secondary)
-            } else {
+            } else if !categories.isEmpty {
                 Text("未设置账本总预算").font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("stats.budgetUnset")
             }
-            CategoryBudgetSummary(rows: state.store.categoryBudgets(in: ledgerID, period: period, containing: day, through: cutoff), prefix: "stats.categoryBudget")
+            CategoryBudgetSummary(rows: categories, prefix: "stats.categoryBudget")
                 .id("\(ledgerID.raw)-\(period)-\(day)")
         }.padding(.vertical, 4)
-        .sheet(isPresented: $showEditor) { LedgerBudgetEditor(ledgerID: ledgerID) }
+        .yujiSheet(isPresented: $showEditor) { LedgerBudgetEditor(ledgerID: ledgerID) }
     }
 }
 
@@ -195,23 +195,46 @@ struct EntryBudgetHint: View {
     let replacingID: EntityID?
     let categoryID: EntityID?
     @EnvironmentObject private var state: AppState
+    @State private var expanded = false
     var body: some View {
         let preview = cents.flatMap { Money($0).isWithinPositiveProductRange ? BudgetEntryPreview(kind: kind, cents: $0, date: date, replacingID: replacingID, categoryID: categoryID) : nil }
         let cutoff = max(state.today, date)
         let month = state.store.budget(in: ledgerID, period: .month, containing: date, through: cutoff, preview: preview)
         let year = state.store.budget(in: ledgerID, period: .year, containing: date, through: cutoff, preview: preview)
+        let categoryRows = kind == .expense ? categoryID.map {
+            state.store.categoryBudgets(in: ledgerID, containing: date, through: cutoff, preview: preview, matching: $0)
+        } ?? [] : []
         if month.limit != nil || year.limit != nil {
-            VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: 0) {
                 if kind == .income && replacingID == nil {
                     Text("收入不占用预算").font(.caption).foregroundStyle(.secondary)
                 } else {
-                    if let left = month.remaining { line("\(date.month) 月", remaining: left, projected: preview != nil) }
-                    if let left = year.remaining { line("\(String(date.year)) 年", remaining: left, projected: preview != nil) }
+                    let values = [("\(date.month) 月", month.remaining), ("\(String(date.year)) 年", year.remaining)]
+                    Button { expanded.toggle() } label: {
+                        HStack(alignment: .firstTextBaseline, spacing: 6) {
+                            Text(preview != nil ? "保存后" : "预算").foregroundStyle(.secondary)
+                            let visible = values.compactMap { period, left -> String? in
+                                guard let left else { return nil }
+                                return "\(period)\(left < 0 ? "超" : "余") \(statsMoney(abs(left)))"
+                            }
+                            Text(visible.joined(separator: " · "))
+                                .foregroundStyle((month.remaining ?? 0) < 0 || (year.remaining ?? 0) < 0 ? Color.red : Color.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Image(systemName: expanded ? "chevron.up" : "chevron.down").font(.caption2).foregroundStyle(.secondary)
+                        }.font(.caption).frame(minHeight: 44, alignment: .leading)
+                    }.buttonStyle(.plain).accessibilityIdentifier("entry.budgetMore")
+                        .accessibilityLabel(values.compactMap { period, left in left.map { "\(period)预算\($0 < 0 ? "超出" : "剩余") \(statsMoney(abs($0)))" } }.joined(separator: "，"))
+                        .accessibilityHint(expanded ? "收起预算详情" : "展开预算详情")
+                    if expanded {
+                        if let left = month.remaining { line("\(date.month) 月", remaining: left, projected: preview != nil) }
+                        if let left = year.remaining { line("\(String(date.year)) 年", remaining: left, projected: preview != nil) }
+                    }
                 }
-            }.accessibilityElement(children: .combine).accessibilityIdentifier("entry.budgetHint")
+            }.accessibilityElement(children: .contain).accessibilityIdentifier("entry.budgetHint")
         }
-        if let categoryID, kind == .expense {
-            CategoryBudgetSummary(rows: state.store.categoryBudgets(in: ledgerID, containing: date, through: cutoff, preview: preview, matching: categoryID),
+        if let categoryID, kind == .expense,
+           expanded || month.limit == nil && year.limit == nil || categoryRows.contains(where: { $0.overrun > 0 }) {
+            CategoryBudgetSummary(rows: categoryRows,
                                   prefix: "entry.categoryBudget", projected: preview != nil)
                 .id("\(ledgerID.raw)-\(categoryID.raw)-\(date)")
         }

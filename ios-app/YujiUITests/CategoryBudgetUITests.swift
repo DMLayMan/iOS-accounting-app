@@ -51,7 +51,9 @@ final class CategoryBudgetUITests: XCTestCase {
         app.segmentedControls["categoryBudget.period"].buttons[period].tap()
         e("categoryBudget.choose").tap()
         let search = e("categoryBudget.search"); XCTAssertTrue(search.waitForExistence(timeout: 5)); search.tap(); search.typeText(query + "\n")
-        reveal("categoryBudget.select." + category).tap()
+        let categoryChoice = reveal("categoryBudget.select." + category)
+        capture("04-budget-category-picker")
+        categoryChoice.tap()
         amount(value)
         if finish { applyButton.tap(); XCTAssertTrue(e("budget.category.add").waitForExistence(timeout: 5)) }
     }

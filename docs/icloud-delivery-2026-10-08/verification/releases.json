@@ -1,0 +1,77 @@
+{
+  "scope": "compile/resources; no signature, accounts, container registration or cloud requests",
+  "runs": [
+    {
+      "run": "release-local-final",
+      "archiveSucceeded": true,
+      "unsigned": true,
+      "identifier": "com.yuji.app",
+      "enabled": "NO",
+      "container": "iCloud.com.yuji.app",
+      "environment": "Production",
+      "sharingSupported": true,
+      "minimumOS": "16.0",
+      "icons": {
+        "CFBundlePrimaryIcon": {
+          "CFBundleIconFiles": [
+            "AppIcon60x60"
+          ],
+          "CFBundleIconName": "AppIcon"
+        }
+      },
+      "fixturePresent": false,
+      "fakeSymbols": false,
+      "testFlagsPresent": [],
+      "policyMatchesSource": true,
+      "binarySHA256": "ae4db954358692c16cc5ca23f1ebb76b6a67dcd2f5ea13c8d227fdded670967c",
+      "privacy": {
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
+          }
+        ],
+        "NSPrivacyCollectedDataTypes": [],
+        "NSPrivacyTracking": false
+      }
+    },
+    {
+      "run": "release-cloud-final",
+      "archiveSucceeded": true,
+      "unsigned": true,
+      "identifier": "com.yuji.app",
+      "enabled": "YES",
+      "container": "iCloud.com.yuji.app",
+      "environment": "Production",
+      "sharingSupported": true,
+      "minimumOS": "16.0",
+      "icons": {
+        "CFBundlePrimaryIcon": {
+          "CFBundleIconFiles": [
+            "AppIcon60x60"
+          ],
+          "CFBundleIconName": "AppIcon"
+        }
+      },
+      "fixturePresent": false,
+      "fakeSymbols": false,
+      "testFlagsPresent": [],
+      "policyMatchesSource": true,
+      "binarySHA256": "f599005780d546b48416a55114670119717254b01edc68c80037879f71e7aa1b",
+      "privacy": {
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
+          }
+        ],
+        "NSPrivacyCollectedDataTypes": [],
+        "NSPrivacyTracking": false
+      }
+    }
+  ]
+}

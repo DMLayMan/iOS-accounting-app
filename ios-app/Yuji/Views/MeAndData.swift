@@ -6,10 +6,17 @@ import YujiCore
 /// 我的：账本管理、账户、回收站、数据备份/导出、偏好、存储状态。
 struct MeView: View {
     @EnvironmentObject var state: AppState
+    @EnvironmentObject private var support: DeveloperSupportCoordinator
 
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    Button(action: support.presentManually) {
+                        Label(DeveloperSupportCoordinator.entryTitle, systemImage: "cup.and.saucer")
+                            .foregroundStyle(.primary)
+                    }.accessibilityIdentifier("me.developerSupport")
+                }
                 Section("账本") {
                     NavigationLink { LedgerManageView() } label: {
                         Label("我的账本", systemImage: "books.vertical")
@@ -32,20 +39,21 @@ struct MeView: View {
                     }
                 }
                 Section("偏好") {
+                    NavigationLink { CloudNicknameView() } label: {
+                        LabeledContent { Text(state.myNicknameSummary).lineLimit(1) } label: {
+                            Label("我的昵称", systemImage: "person.crop.circle")
+                        }
+                    }.accessibilityIdentifier("me.nickname")
                     NavigationLink { SettingsView() } label: {
                         Label("外观与反馈", systemImage: "slider.horizontal.3")
                     }
                 }
                 Section("存储") {
+                    NavigationLink { CloudOverviewView() } label: { Label("iCloud 与共享", systemImage: "icloud") }
                     HStack {
                         Label("数据位置", systemImage: "internaldrive")
                         Spacer()
-                        Text("本机本地").foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Label("iCloud 同步", systemImage: "icloud")
-                        Spacer()
-                        Text("未开放").foregroundColor(.secondary)
+                        Text(state.currentCloudLinks.isEmpty ? "本机本地" : "本机与 iCloud").foregroundColor(.secondary)
                     }
                     if let t = state.store.data.lastBackupAt {
                         HStack {
@@ -54,6 +62,10 @@ struct MeView: View {
                             Text(t, format: .dateTime.year().month().day().hour().minute()).foregroundColor(.secondary)
                         }
                     }
+                }
+                Section("关于") {
+                    NavigationLink { PrivacyPolicyView() } label: { Label("隐私说明", systemImage: "hand.raised") }
+                    NavigationLink { HelpView() } label: { Label("帮助与反馈", systemImage: "questionmark.circle") }
                 }
             }
             .navigationTitle("我的").navigationBarTitleDisplayMode(.inline)
@@ -186,7 +198,7 @@ struct TrashView: View {
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text(state.store.category(t.categoryID)?.name ?? t.kind.displayName)
-                                    Text("\(t.date.year)/\(t.date.month)/\(t.date.day) · ¥\(Money(t.amountCents).yuanDescription)")
+                                    Text("\(statsDayText(t.date)) · ¥\(Money(t.amountCents).yuanDescription)")
                                         .font(.caption).foregroundColor(.secondary)
                                 }
                                 Spacer()
@@ -244,6 +256,12 @@ struct DataManagementView: View {
                     }
                 } footer: { Text("每次恢复前，自动保留一份替换前的数据。") }
             }
+            if !state.recoveryPoints.isEmpty {
+                Section {
+                    NavigationLink("管理本地恢复点（\(state.recoveryPoints.count) 份）") { RecoveryPointsView() }
+                        .accessibilityIdentifier("backup.recoveryPoints")
+                } footer: { Text("查看替换前副本，确认后清理。不会自动删除你的历史恢复点。") }
+            }
             Section("CSV 导出") {
                 Button {
                     if let ledger = state.activeLedger {
@@ -272,12 +290,12 @@ struct DataManagementView: View {
         }
         .navigationTitle("数据")
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showShare) {
+        .yujiSheet(isPresented: $showShare, onDismiss: clearExport) {
             if let url = exportURL {
                 ShareSheet(items: [url])
             }
         }
-        .sheet(item: $restorePreview) { preview in
+        .yujiSheet(item: $restorePreview) { preview in
             BackupRestoreReview(preview: preview)
         }
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.json]) { result in
@@ -295,9 +313,13 @@ struct DataManagementView: View {
         }
     }
     private func prepareRestore(_ bytes: Data) throws {
-        let backup = try BackupService.decode(bytes)
-        _ = try BackupService.validate(backup: backup)
-        restorePreview = RestorePreview(bytes: bytes, backup: backup)
+        restorePreview = try RestorePreview.validated(bytes)
+    }
+    private func clearExport() {
+        guard let url = exportURL else { return }
+        // Only remove the exact transient directory owned by this presentation.
+        try? FileManager.default.removeItem(at: url.deletingLastPathComponent())
+        exportURL = nil
     }
     private func writeTemp(_ data: Data, name: String) -> URL? {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
@@ -341,18 +363,25 @@ struct SearchFilterView: View {
     @EnvironmentObject var state: AppState
     @Environment(\.dismiss) private var dismiss
     @State private var f = TransactionFilter()
+    @State private var minimum = ""
+    @State private var maximum = ""
+    private enum Field: Hashable { case query, minimum, maximum }
+    @FocusState private var focusedField: Field?
     init(ledgerID: EntityID, initial: TransactionFilter? = nil, applied: @escaping (TransactionFilter) -> Void) {
         self.ledgerID = ledgerID
         self.applied = applied
         _f = State(initialValue: initial ?? TransactionFilter())
+        _minimum = State(initialValue: initial?.minCents.map { Money($0).inputString } ?? "")
+        _maximum = State(initialValue: initial?.maxCents.map { Money($0).inputString } ?? "")
     }
     var body: some View {
         NavigationStack {
             Form {
                 Section("关键词") {
                     TextField("搜索一级或二级分类", text: Binding(get: { f.query ?? "" }, set: { f.query = $0 }))
+                        .focused($focusedField, equals: .query)
                         .accessibilityIdentifier("feed.query").submitLabel(.search)
-                        .onSubmit { applied(f); dismiss() }
+                        .onSubmit { applyFilter() }
                 }
                 Section("类型") {
                     Picker("类型", selection: Binding(get: { f.kind }, set: { f.kind = $0; f.categoryID = nil })) {
@@ -372,15 +401,55 @@ struct SearchFilterView: View {
                         }
                     }
                 }
+                Section("账户") {
+                    Picker("按账户筛选", selection: $f.accountID) {
+                        Text("全部账户").tag(EntityID?.none)
+                        ForEach(state.store.accounts(in: ledgerID)) { account in
+                            Text(account.name + (account.archived ? "（已归档）" : "")).tag(EntityID?.some(account.id))
+                        }
+                    }.accessibilityIdentifier("feed.filterAccount")
+                }
                 Section {
-                    Button("重置筛选") { f = TransactionFilter() }
-                    Button("应用筛选") { applied(f); dismiss() }.bold()
+                    TextField("最低金额（元）", text: $minimum).keyboardType(.decimalPad).focused($focusedField, equals: .minimum)
+                        .accessibilityIdentifier("feed.minimum")
+                    TextField("最高金额（元）", text: $maximum).keyboardType(.decimalPad).focused($focusedField, equals: .maximum)
+                        .accessibilityIdentifier("feed.maximum")
+                    if let validation { Text(validation).font(.caption).foregroundStyle(.red).accessibilityIdentifier("feed.filterError") }
+                } header: { Text("单笔金额（可选）") } footer: {
+                    Text("包含边界金额；转账匹配转出或转入账户。备注不参与搜索。")
+                }
+                Section {
+                    Button("重置筛选") { f = TransactionFilter(); minimum = ""; maximum = "" }
                 }
             }
             .navigationTitle("搜索与筛选")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } } }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("取消") { focusedField = nil; dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("应用", action: applyFilter).bold().disabled(validation != nil).accessibilityIdentifier("feed.applyFilter")
+                }
+            }
+            .modifier(KeyboardCompletionBar(visible: focusedField != nil) { focusedField = nil })
         }
+    }
+    private func validatedFilter() throws -> TransactionFilter {
+        var value = f
+        value.minCents = try BudgetInput.parse(minimum)
+        value.maxCents = try BudgetInput.parse(maximum)
+        if let min = value.minCents, let max = value.maxCents, min > max {
+            throw DomainError.invalidAmount("最低金额不能高于最高金额")
+        }
+        return value
+    }
+    private var validation: String? {
+        do { _ = try validatedFilter(); return nil }
+        catch let error as DomainError { return error.message }
+        catch { return "请检查金额范围" }
+    }
+    private func applyFilter() {
+        guard let value = try? validatedFilter() else { return }
+        focusedField = nil; applied(value); dismiss()
     }
 }
 
@@ -420,7 +489,7 @@ struct TransferView: View {
                     Section("金额") {
                         TextField("金额（可算式）", text: $expression).focused($focused)
                             .keyboardType(.numbersAndPunctuation)
-                            .font(.system(size: 22, weight: .semibold))
+                            .font(.title2.weight(.semibold))
                         if let r = result { Text("¥\(r.roundedDisplay)").foregroundColor(.secondary) }
                         if let e = error { Text(e).foregroundColor(.red).font(.caption) }
                         DatePicker("日期", selection: Binding(get: { date.date() },
@@ -460,9 +529,12 @@ struct TransferView: View {
 
 /// UIActivityViewController 包装（分享备份/CSV 文件）。
 struct ShareSheet: UIViewControllerRepresentable {
+    @Environment(\.yujiAccent) private var accent
     let items: [Any]
     func makeUIViewController(context: Context) -> UIActivityViewController {
-        UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        controller.view.tintColor = UIColor(accent)
+        return controller
     }
-    func updateUIViewController(_ vc: UIActivityViewController, context: Context) {}
+    func updateUIViewController(_ vc: UIActivityViewController, context: Context) { vc.view.tintColor = UIColor(accent) }
 }

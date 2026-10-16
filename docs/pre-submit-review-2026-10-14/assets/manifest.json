@@ -1,0 +1,40 @@
+{
+  "scope": "native synthetic regression only; local StoreKit/simulated cloud, not store screenshots or Production proof",
+  "screenshots": [
+    {
+      "file": "stats-inline-pro.png",
+      "title": "统计同页选择",
+      "device": "iPhone 18 Pro / iOS 27",
+      "sha256": "12bef9f248ce7cdc42cbf7979fdef20bafc56a1e686e842990041844d844d021",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "support-thanks-pro.png",
+      "title": "支付关闭与感谢",
+      "device": "iPhone 18 Pro / iOS 27",
+      "sha256": "1b54a7e6fbb4f23900e7d2c54312e75debc2e3a1d1dbfa00e131e9d0e7f36e51",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "privacy-pro.png",
+      "title": "新版离线隐私说明",
+      "device": "iPhone 18 Pro / iOS 27",
+      "sha256": "f09066a28b96a0f093ee4986d6a9a326a8e1d83f0a696b9031e919e2521d71d5",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "support-large-se.png",
+      "title": "小屏最大字号支持页",
+      "device": "iPhone SE 3 / iOS 26.5",
+      "sha256": "2d8ccefb357ca9be0f3b10bfd8159961b09bd0ce60d13b6d5262c2a028fbcbbe",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "stats-large-dark-se.png",
+      "title": "小屏深色最大字号统计",
+      "device": "iPhone SE 3 / iOS 26.5",
+      "sha256": "8e338c1d529d10f2ca0efaed7bb18af7fb6411cf7b268e566128806a8c5ba80d",
+      "visuallyReviewed": true
+    }
+  ]
+}

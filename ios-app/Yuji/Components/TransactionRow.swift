@@ -51,6 +51,7 @@ struct TransactionRow: View {
     }
     private var subtitle: String? {
         let parts: [String] = [
+            state.cloudLink(for: t.ledgerID) != nil ? state.personName(t.authorID, ledgerID: t.ledgerID, marksSelf: true) : nil,
             showsDate ? statsDayText(t.date) : nil,
             state.store.account(t.accountID)?.name,
             t.note

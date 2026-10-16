@@ -1,0 +1,298 @@
+{
+  "expected": 58,
+  "passed": 58,
+  "missing": [],
+  "failed": [],
+  "cases": {
+    "BudgetEntryUITests.testCenterActionAndLastRecordStayReachable": {
+      "status": "passed",
+      "seconds": 26.842,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "BudgetEntryUITests.testCreateBudgetsDraftPreviewSaveAndAnnualBalance": {
+      "status": "passed",
+      "seconds": 52.909,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "BudgetEntryUITests.testDarkBudgetAndEntry": {
+      "status": "passed",
+      "seconds": 31.408,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "BudgetEntryUITests.testExistingBudgetInvalidInputClearAndLedgerIsolation": {
+      "status": "passed",
+      "seconds": 47.106,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "BudgetEntryUITests.testLargestTextBudgetEditorAndFloatingAction": {
+      "status": "passed",
+      "seconds": 37.514,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "CategoryBudgetUITests.testDarkCategoryBudgetAndEditor": {
+      "status": "passed",
+      "seconds": 32.877,
+      "log": "evidence/review-fix-20261008/latest-final-pro27/native.log"
+    },
+    "CategoryBudgetUITests.testLargestTextCategoryBudgetAndEditor": {
+      "status": "passed",
+      "seconds": 41.646,
+      "log": "evidence/review-fix-20261008/latest-final-pro27/native.log"
+    },
+    "CategoryBudgetUITests.testOverrunsFoldAndEntryPreview": {
+      "status": "passed",
+      "seconds": 44.866,
+      "log": "evidence/review-fix-20261008/latest-final-pro27/native.log"
+    },
+    "CategoryBudgetUITests.testRuleCRUDDuplicateAndPersistence": {
+      "status": "passed",
+      "seconds": 110.582,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "DesignQualityUITests.testBackupReviewCancelAndRecoverableRestore": {
+      "status": "passed",
+      "seconds": 30.662,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "DesignQualityUITests.testCategoryIconSheetCreateCancelAndPersistence": {
+      "status": "passed",
+      "seconds": 31.447,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "DesignQualityUITests.testDarkCategorySheetAndEverySymbolAvailable": {
+      "status": "passed",
+      "seconds": 18.917,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "DesignQualityUITests.testEntryPickersSearchAndChangedCategoryCancel": {
+      "status": "passed",
+      "seconds": 27.389,
+      "log": "evidence/review-fix-20261008/latest-final-pro27/native.log"
+    },
+    "DesignQualityUITests.testEverySupportPageTourAndAccountValidation": {
+      "status": "passed",
+      "seconds": 48.284,
+      "log": "evidence/review-fix-20261008/latest-final-pro27/native.log"
+    },
+    "DesignQualityUITests.testLargeTypeCategoryAndSupportPages": {
+      "status": "passed",
+      "seconds": 29.134,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ICostTimeUITests.testBothTabsShareHeaderGeometryAndModeTransitions": {
+      "status": "passed",
+      "seconds": 27.73,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "ICostTimeUITests.testDarkAndLargestTypeKeepControlsReachable": {
+      "status": "passed",
+      "seconds": 31.925,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "ICostTimeUITests.testRangeCancelAllEmptyAndFutureDoNotChangeMeaning": {
+      "status": "passed",
+      "seconds": 36.69,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "ICostTimeUITests.testVisiblePreviousNextAndSharedMonthYear": {
+      "status": "passed",
+      "seconds": 26.538,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "InlineCategoryUITests.testLongPressReorderUndoAndPersistence": {
+      "status": "passed",
+      "seconds": 22.352,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "InlineCategoryUITests.testParentReorderAndCrossPageDrag": {
+      "status": "passed",
+      "seconds": 23.873,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "InlineCategoryUITests.testRowMajorLayoutSingleRowAndQuickCreate": {
+      "status": "passed",
+      "seconds": 16.149,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "InlineCategoryUITests.testSearchLocatesSecondPage": {
+      "status": "passed",
+      "seconds": 13.236,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "LedgerFeedUITests.testCumulativeOverviewCreateSwitchAndRelaunch": {
+      "status": "passed",
+      "seconds": 34.697,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "LedgerFeedUITests.testDarkBookAndTimePicker": {
+      "status": "passed",
+      "seconds": 21.569,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "LedgerFeedUITests.testLargestTextHasReachableBookAndDateActions": {
+      "status": "passed",
+      "seconds": 24.681,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "LedgerFeedUITests.testMonthJumpRangeAndSearchKeepContext": {
+      "status": "passed",
+      "seconds": 34.807,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "LedgerFeedUITests.testMonthNavigationEmptyRecoveryAndSwitcherCreation": {
+      "status": "passed",
+      "seconds": 50.508,
+      "log": "evidence/review-fix-20261008/final-input-pro27/native.log"
+    },
+    "LifecycleUITests.testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger": {
+      "status": "passed",
+      "seconds": 28.661,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "LifecycleUITests.testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose": {
+      "status": "passed",
+      "seconds": 11.346,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "LifecycleUITests.testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger": {
+      "status": "passed",
+      "seconds": 8.673,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testAccountAndAmountFiltersApplyValidateCancelAndClear": {
+      "status": "passed",
+      "seconds": 49.827,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testBackgroundCheckpointRestoresUnsubmittedEntryWithoutChangingTotals": {
+      "status": "passed",
+      "seconds": 23.155,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testBackgroundDraftCanReturnToOriginalEmptyValues": {
+      "status": "passed",
+      "seconds": 21.813,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testBackupAndCSVOpenShareAndImportCancelPreservesLedger": {
+      "status": "passed",
+      "seconds": 32.907,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testIncomeExpenseRefundTransferAndRelaunchConserveBalance": {
+      "status": "passed",
+      "seconds": 58.643,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testLongAccountNameKeepsEntryDateOnScreen": {
+      "status": "passed",
+      "seconds": 37.902,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testNoUsableAccountExplainsRecoveryAndKeepsDraft": {
+      "status": "passed",
+      "seconds": 25.103,
+      "log": "evidence/review-fix-20261008/latest-final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testOfflinePrivacyAndHelpAreReadable": {
+      "status": "passed",
+      "seconds": 19.563,
+      "log": "evidence/review-fix-20261008/latest-final-pro27/native.log"
+    },
+    "ReleaseReadinessUITests.testRecoveryPointPreviewAndConfirmedCleanupKeepCurrentLedger": {
+      "status": "passed",
+      "seconds": 32.712,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "StatsStressUITests.testDonutSelectionAndEditingRefresh": {
+      "status": "passed",
+      "seconds": 35.789,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "StatsStressUITests.testEditCancelUsesInlineDecisionAndProtectsOtherDraft": {
+      "status": "passed",
+      "seconds": 55.917,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "StatsStressUITests.testFeedSearchPreservesQueryAndEmptyFilterCanBeCleared": {
+      "status": "passed",
+      "seconds": 37.265,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "StatsStressUITests.testFiveYearDateJumpNegativeRefundAndEmptyMonth": {
+      "status": "passed",
+      "seconds": 45.037,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "StatsStressUITests.testInlineFiltersLinkTotalsWithoutModalAndKeepContext": {
+      "status": "passed",
+      "seconds": 27.086,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "StatsStressUITests.testLargeTextDarkAppearanceAndReachableRanking": {
+      "status": "passed",
+      "seconds": 52.628,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "StatsStressUITests.testNewDraftClosesWithoutPopupAndRestoresAfterRelaunch": {
+      "status": "passed",
+      "seconds": 31.96,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "StatsStressUITests.testRankingDrilldownSortingAndBackPreservesContext": {
+      "status": "passed",
+      "seconds": 45.647,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "StatsStressUITests.testRefundDeletionCancelAndUndoRestoreAmount": {
+      "status": "passed",
+      "seconds": 29.222,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "StatsStressUITests.testYearChartComparisonAndIncome": {
+      "status": "passed",
+      "seconds": 44.402,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "ThemeUITests.testCustomEditorAppliesOnlyWhenFinished": {
+      "status": "passed",
+      "seconds": 43.019,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ThemeUITests.testDarkThemeAndLargestText": {
+      "status": "passed",
+      "seconds": 40.666,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ThemeUITests.testSheetExitDecisionKeepsSelectedTheme": {
+      "status": "passed",
+      "seconds": 25.254,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "ThemeUITests.testThemeAcrossPagesEntryAndRelaunch": {
+      "status": "passed",
+      "seconds": 34.309,
+      "log": "evidence/review-fix-20261008/final-pro27/native.log"
+    },
+    "TimeNavigationUITests.testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave": {
+      "status": "passed",
+      "seconds": 45.105,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "TimeNavigationUITests.testDarkAppearanceAndLargestTypeHaveReachableDateAndEntry": {
+      "status": "passed",
+      "seconds": 29.188,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "TimeNavigationUITests.testMonthJumpSharesRangeAndCancelLeavesAppliedDate": {
+      "status": "passed",
+      "seconds": 30.712,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    },
+    "TimeNavigationUITests.testYearCustomFutureAndComparisonFlow": {
+      "status": "passed",
+      "seconds": 33.207,
+      "log": "evidence/review-fix-20261008/pro27/native.log"
+    }
+  }
+}

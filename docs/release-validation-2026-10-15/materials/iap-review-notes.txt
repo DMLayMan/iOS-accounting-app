@@ -1,0 +1,7 @@
+This is a consumable voluntary tip. It grants no feature, content, account balance or other entitlement, and does not renew automatically. Bookkeeping remains fully available without purchasing. A user may voluntarily purchase the same tip again.
+
+Entry: Me (“我的”) → the first row “好用，请开发者喝杯☕吧” → choose a support amount → tap “请一杯” with the selected localized price. The chooser and button display StoreKit's product price. Apple's native confirmation completes the in-app purchase. No amount or currency is hard-coded or converted.
+
+A successful verified purchase dismisses the support sheet and displays thanks; cancelling returns to the amount chooser. Closing and reopening starts a fresh selection. An optional invitation may appear once after 100 newly saved local records; dismissing it has no effect on bookkeeping.
+
+The attached image is an unmodified screenshot of the current native host using an isolated local StoreKit test catalog. It documents the interface, not a live TestFlight currency or payment result. Product pricing and availability are configured separately in App Store Connect.

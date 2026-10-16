@@ -44,7 +44,7 @@ struct PeriodNavigation: View {
         }
         .padding(.horizontal, 20).padding(.top, 8).padding(.bottom, 4)
         .background(Color(.systemBackground))
-        .sheet(item: $picker) { request in
+        .yujiSheet(item: $picker) { request in
             PeriodPicker(initial: request.initial, today: state.today, bounds: state.browsingBounds) {
                 state.browsingPeriod = $0
             }
@@ -94,7 +94,7 @@ struct PeriodNavigation: View {
             if state.store.data.settings.hapticsEnabled { UISelectionFeedbackGenerator().selectionChanged() }
         } label: {
             Image(systemName: delta < 0 ? "arrow.left.circle.fill" : "arrow.right.circle.fill")
-                .font(.system(size: 20, weight: .semibold)).foregroundStyle(Design.primary(scheme))
+                .font(.system(size: 20, weight: .semibold)).foregroundStyle(next == nil ? Color.secondary : Design.primary(scheme))
                 .frame(width: 44, height: 44).contentShape(Rectangle())
         }.buttonStyle(.plain).disabled(next == nil)
             .accessibilityLabel((delta < 0 ? "上一" : "下一") + unit)

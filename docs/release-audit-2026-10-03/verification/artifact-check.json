@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checkedLinks": 34,
+  "screenshots": 359,
+  "portableScreenshots": 4,
+  "knownProductFailures": [
+    "ReleaseReadinessUITests.testLongAccountNameKeepsEntryDateOnScreen"
+  ],
+  "errors": []
+}

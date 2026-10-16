@@ -1,0 +1,22 @@
+[
+  {
+    "file": "long-account-overflow.png",
+    "source": "evidence/release-audit-20261003/supplement-v3-attachments/67A618A7-4261-4D4A-A0C4-76BB7CB740E2.png",
+    "sha256": "7e89f4211fb9dee3866ed1b350b7f54ed51aad354adf05fda6bdf9d69f2f7968"
+  },
+  {
+    "file": "refund-theme.png",
+    "source": "evidence/release-audit-20261003/supplement-v3-attachments/0EBEF9BA-A817-4469-8363-F957C22EFC9F.png",
+    "sha256": "224279e322cfe8ee17caa42aa69ee53a68c81e3db5223cf1d52582b40e6515c2"
+  },
+  {
+    "file": "app-icon-missing.png",
+    "source": "evidence/release-audit-20261003/supplement-last.png",
+    "sha256": "68f6b4d831f2c530567c533a5fda31242f3fbc04eebc18a66f2123132e03290d"
+  },
+  {
+    "file": "edit-theme.png",
+    "source": "evidence/release-audit-20261003/pro27-attachments/F6DBAFA9-335B-40A9-8D18-9FBBB0D0B1B5.png",
+    "sha256": "ae85e978db0d512758f351aefd2a6f88e96d1546468e78f010fdc9aced4f1d92"
+  }
+]

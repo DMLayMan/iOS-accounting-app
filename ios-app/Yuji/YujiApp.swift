@@ -1,22 +1,48 @@
 import SwiftUI
 import UIKit
+import CloudKit
 import YujiCore
 
 @main
 struct YujiApp: App {
+    @UIApplicationDelegateAdaptor(YujiApplicationDelegate.self) private var appDelegate
     @StateObject private var state = YujiApp.makeState()
+    @StateObject private var invitations = CloudInvitationCenter.shared
+    @StateObject private var support = DeveloperSupportCoordinator.live()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environmentObject(state)
                 .modifier(AppAccentModifier(settings: state.store.data.settings))
                 .environment(\.locale, Locale(identifier: "zh_CN"))
                 .preferredColorScheme(colorScheme)
-                .onAppear { state.refreshToday() }
+                .onAppear { state.refreshToday(); support.attach(to: state); support.setActive(scenePhase == .active) }
+                .onChange(of: support.model.lastPresentationCompletion) { _, receipt in
+                    if let receipt { support.supportCompleted(receipt) }
+                }
                 .onChange(of: scenePhase) { phase in
-                    if phase == .active { state.refreshToday() }
+                    support.setActive(phase == .active)
+                    if phase == .active {
+                        state.refreshToday()
+                        Task { await state.refreshCloudAccount(); await state.synchronizeCloud() }
+                    }
+                }
+                .task {
+                    await support.model.start()
+                    await state.refreshCloudAccount(); await state.synchronizeCloud()
+                    while !Task.isCancelled {
+                        try? await Task.sleep(nanoseconds: 30_000_000_000)
+                        guard !Task.isCancelled else { return }
+                        if scenePhase == .active { await state.synchronizeCloud() }
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: .CKAccountChanged)) { _ in
+                    state.invalidateCloudAccount()
+                    Task { await state.refreshCloudAccount(); await state.synchronizeCloud() }
+                }
+                .yujiSheet(isPresented: Binding(get: { invitations.pending != nil }, set: { if !$0 { invitations.pending = nil } })) {
+                    if let metadata = invitations.pending { CloudInvitationView(metadata: metadata) }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
                     state.refreshToday()
@@ -25,8 +51,8 @@ struct YujiApp: App {
                     state.refreshToday()
                 }
                 .alert("提示", isPresented: Binding(get: { state.alertError != nil },
-                                                    set: { if !$0 { state.alertError = nil } })) {
-                    Button("好", role: .cancel) { state.alertError = nil }
+                                                    set: { if !$0 { Task { @MainActor in state.alertError = nil } } })) {
+                    Button("好", role: .cancel) { }
                 } message: {
                     Text(state.alertError ?? "")
                 }
@@ -35,11 +61,17 @@ struct YujiApp: App {
                         ToastView(toast: toast, onUndo: {
                             state.undoLastDelete()
                         })
-                        .padding(.top, 8)
+                        // The root safe area starts above the inline navigation
+                        // title. Keep transient feedback below that 44pt bar.
+                        .padding(.top, 56)
                         .transition(state.store.data.settings.reduceMotion || UIAccessibility.isReduceMotionEnabled
                                     ? .opacity : .move(edge: .top).combined(with: .opacity))
                     }
                 }
+                // Global presentations and their theme modifiers must inherit
+                // the same dependencies as RootView, not only its inner tree.
+                .environmentObject(state)
+                .environmentObject(support)
         }
     }
 
@@ -109,7 +141,24 @@ struct YujiApp: App {
             return isolatedState(repository: repository)
         }
         #endif
-        return AppState()
+        return prepareCloud(AppState())
+    }
+
+    private static func prepareCloud(_ state: AppState) -> AppState {
+        #if DEBUG
+        if let mode = ProcessInfo.processInfo.environment["YUJI_TEST_CLOUD_MODE"],
+           ["YUJI_STRESS_SESSION", "YUJI_UI_TEST_SESSION"].contains(where: {
+               ProcessInfo.processInfo.environment[$0].flatMap(UUID.init(uuidString:)) != nil
+           }) {
+            let driver = SimulatedCloudTransport(mode: mode)
+            if ProcessInfo.processInfo.environment["YUJI_STRESS_DARK"] == "1" {
+                _ = state.perform { state.store.updateSettings { $0.appearance = .dark } }
+            }
+            driver.seed(state); state.configureCloud(driver); return state
+        }
+        #endif
+        state.configureCloud(CloudKitTransport.configured())
+        return state
     }
 
     #if DEBUG
@@ -122,8 +171,8 @@ struct YujiApp: App {
         return day.isValid ? day : nil
     }
     private static func isolatedState(repository: LedgerRepository) -> AppState {
-        guard let day = testDay else { return AppState(repository: repository) }
-        return AppState(repository: repository, clockDay: day, dayProvider: { day })
+        guard let day = testDay else { return prepareCloud(AppState(repository: repository)) }
+        return prepareCloud(AppState(repository: repository, clockDay: day, dayProvider: { day }))
     }
     #endif
 
@@ -143,11 +192,12 @@ struct ToastView: View {
     var body: some View {
         HStack(spacing: 12) {
             Text(toast.message)
-                .font(.system(size: 14))
+                .font(.subheadline)
                 .foregroundColor(.white)
+                .accessibilityIdentifier("app.toast")
             if toast.message == "已删除" {
                 Button("撤销") { onUndo() }
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
                     .foregroundColor(.white).underline()
             }
         }

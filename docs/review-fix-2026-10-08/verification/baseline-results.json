@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-08",
+  "scope": "initial failure evidence retained; current per-case results supersede these outcomes",
+  "runs": [
+    {
+      "run": "pro27",
+      "source": "evidence/review-fix-20261008/pro27/native.log",
+      "uiPassed": 54,
+      "uiFailed": [
+        "ReleaseReadinessUITests.testAccountAndAmountFiltersApplyValidateCancelAndClear",
+        "ReleaseReadinessUITests.testBackupAndCSVOpenShareAndImportCancelPreservesLedger",
+        "ReleaseReadinessUITests.testOfflinePrivacyAndHelpAreReadable"
+      ],
+      "invalidFrameWarnings": 15
+    },
+    {
+      "run": "se26",
+      "source": "evidence/review-fix-20261008/se26/native.log",
+      "uiPassed": 56,
+      "uiFailed": [
+        "ReleaseReadinessUITests.testAccountAndAmountFiltersApplyValidateCancelAndClear"
+      ],
+      "invalidFrameWarnings": 15
+    }
+  ],
+  "environmentIncident": "A newly created isolated iOS 27 simulator failed to finish startup. No test cases ran there. Its test process was terminated and only that newly created device was removed. Existing simulators and personal stores were not reset. Xcode failure diagnostics also delayed completion; process sample retained locally.",
+  "focusDiagnostic": "Element-scoped typeText reports were investigated with application keyboard input and actual value assertions; see focus-diagnostic.json. Temporary probes are excluded from feature coverage."
+}

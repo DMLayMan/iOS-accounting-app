@@ -1,0 +1,202 @@
+{
+  "baselineCommit": "58aed2d526844739e13cdf2795800f83e869681d",
+  "generatedAt": "2026-10-03T03:35:10.067Z",
+  "files": [
+    {
+      "file": "Sources/YujiCore/BrowsingPeriod.swift",
+      "sha256": "d4a1924e05da602044bd05653eedb872368b1c9c46d57dc8fc915a0305ed4b24"
+    },
+    {
+      "file": "Sources/YujiCore/Budget.swift",
+      "sha256": "fad3370efcf3efa23afd3dcd438a2a7d9c5648a4211db30d2525b562e3aadd0e"
+    },
+    {
+      "file": "Sources/YujiCore/CSVExporter.swift",
+      "sha256": "45d0b446e1367a3f561fa9b88605a0691c6f937ff40a1fc5be0ac891343e814b"
+    },
+    {
+      "file": "Sources/YujiCore/Calculator.swift",
+      "sha256": "2219e3a01965bd86854b713227e2de29b2d0fd23a54580fbfd17cd8fdd1b008b"
+    },
+    {
+      "file": "Sources/YujiCore/CategoryExperience.swift",
+      "sha256": "c6f847840e1acdb829215d2692149a6dee893f346db78505c8deb4054100f8fa"
+    },
+    {
+      "file": "Sources/YujiCore/CategoryIcon.swift",
+      "sha256": "6989f8b44eb0aeea0f2321816e1cf11eed57e68c47894b77ee754343c4d2137e"
+    },
+    {
+      "file": "Sources/YujiCore/LedgerBrowsing.swift",
+      "sha256": "6538ef5f9ae0c6e395ac69b09e7722121a6d00bb4d89007efd237998d6b3f1b0"
+    },
+    {
+      "file": "Sources/YujiCore/LedgerData.swift",
+      "sha256": "8232ce37619767bdb65aebb9a8b604cbdd3a5a3d1efa0bd8398ad6d0829580fe"
+    },
+    {
+      "file": "Sources/YujiCore/LedgerStore+Budgets.swift",
+      "sha256": "4ea1e21d7cdb687c8d5107e991186c0252f8267bfd688835b9e38162cb5e401e"
+    },
+    {
+      "file": "Sources/YujiCore/LedgerStore+Categories.swift",
+      "sha256": "5c4f4c8335207c045e6908527d327541e6b9f20e182d1a19d90e2b6045a4e033"
+    },
+    {
+      "file": "Sources/YujiCore/LedgerStore.swift",
+      "sha256": "62e7da291fe9e1b589e47c97f73b8b26bfb0f2f9993d4c45073fa79506643653"
+    },
+    {
+      "file": "Sources/YujiCore/LedgerValidation.swift",
+      "sha256": "c77deaa62344407f8351abcd5a3a5912f8c88a50d24e1a5f79a182fa0d55499c"
+    },
+    {
+      "file": "Sources/YujiCore/Models.swift",
+      "sha256": "11fedd18965bf773f8c8d223014c3cb1aed7eab5b7b5c829a176a8bf455e8a4d"
+    },
+    {
+      "file": "Sources/YujiCore/Money.swift",
+      "sha256": "20389bd0e6fc87bb36c7737b828013285d9df0a1b49018393198b86026fbd9fb"
+    },
+    {
+      "file": "Sources/YujiCore/Persistence.swift",
+      "sha256": "0f6055cc45f2e0f9d3dfe5b26d1c2521a0a3aaa4b9361f8ecbe4c3b5306fac90"
+    },
+    {
+      "file": "Sources/YujiCore/Stats.swift",
+      "sha256": "724a8824abb5aab3068bff2f7c2100cd054707852835a57fbb10f349a4da296a"
+    },
+    {
+      "file": "Sources/YujiCore/StatsExploration.swift",
+      "sha256": "11cba471ead0b2c5a3e19396df061a3189f9f17c675aaaaf69dd201891a07dcc"
+    },
+    {
+      "file": "Sources/YujiCore/TagCatalog.swift",
+      "sha256": "ad9d904cd68b3a263362e3a5ea483ffadc93077f3755fd1908f3fc45197a3fd4"
+    },
+    {
+      "file": "Sources/YujiCore/Theme.swift",
+      "sha256": "4e963375abfe50372db35aa6ec736e030a7b5c4c164794d1b449123d303e3496"
+    },
+    {
+      "file": "ios-app/Yuji/AppState.swift",
+      "sha256": "b417b3e76a94d1af07fbdfe2fef4bd37b8a04c17ec70774a24ac57883df48f8a"
+    },
+    {
+      "file": "ios-app/Yuji/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "731c026d9973b24882a92490ce872cd716a31bd0b1d6407513985ac5dbf144c5"
+    },
+    {
+      "file": "ios-app/Yuji/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "6123724bf7bd341d49933f40561a891d09d1763a382ac3c90cabf4829dd10507"
+    },
+    {
+      "file": "ios-app/Yuji/Assets.xcassets/Contents.json",
+      "sha256": "f23266b9672263c92ced1d26fe4dafa75a14d530eb9bc5fc1f599034d597ab48"
+    },
+    {
+      "file": "ios-app/Yuji/Components/CategorySymbol.swift",
+      "sha256": "ba2305e26ffb9f14ac5a76ce77ceb0dc08660801c1591bf3aa42cbad1098210c"
+    },
+    {
+      "file": "ios-app/Yuji/Components/LedgerFormatting.swift",
+      "sha256": "7b0f047cd7edb5332117739b31b0164038210e884e42b47d33ca115420a9c0b6"
+    },
+    {
+      "file": "ios-app/Yuji/Components/TransactionRow.swift",
+      "sha256": "7a1c20520a89314772dd94867be2ab7e483ac66382357d010dbabda8bf64c602"
+    },
+    {
+      "file": "ios-app/Yuji/Design.swift",
+      "sha256": "ec0e14104505b1f3446f1ac22da396dfe3b04c65ff09921f87a97c68f6112d04"
+    },
+    {
+      "file": "ios-app/Yuji/Info.plist",
+      "sha256": "abe80a9b3307d1ddf9195736753f02bf4715ade4b203a9bfdde34d25a693a58f"
+    },
+    {
+      "file": "ios-app/Yuji/Views/BackupRestoreReview.swift",
+      "sha256": "ff12d7b714e4160f07cdf83a33abd581d1e715d13b07b70b2114d789b68f2f30"
+    },
+    {
+      "file": "ios-app/Yuji/Views/BudgetViews.swift",
+      "sha256": "6b6afc857c92b29079b60bb1e86eac9132fc10ee7b79edb37067b81ba79bdf71"
+    },
+    {
+      "file": "ios-app/Yuji/Views/CategoryBudgetViews.swift",
+      "sha256": "b89a6b583b17e256fca6aad28e0b4a110d0290c29aa438ccc708c0a0645237e9"
+    },
+    {
+      "file": "ios-app/Yuji/Views/CategoryLibraryView.swift",
+      "sha256": "56660ffa604b02b4ca7bb2de955b2a9ba06ba09aa60a9d9164c7428af9bb86ac"
+    },
+    {
+      "file": "ios-app/Yuji/Views/DetailAndRefund.swift",
+      "sha256": "08d6dcd806f980e028c364c4947e636d9a87d71b513cd8192890ca3d62af808f"
+    },
+    {
+      "file": "ios-app/Yuji/Views/EntryView.swift",
+      "sha256": "c879886dbd4ee81b61b5a7a67c0ca98ab383e68abadde1a52256800121b17cb3"
+    },
+    {
+      "file": "ios-app/Yuji/Views/FeedView.swift",
+      "sha256": "96469ad0a46e0b58e25a83cdc0dc2f157669f71a4f301186a8dfefb8724498f0"
+    },
+    {
+      "file": "ios-app/Yuji/Views/InlineCategoryStrip.swift",
+      "sha256": "92e5b9fcba0d01ad2d3cf1aec00b068a31064b6806aa85a6b1fa9490353c4d92"
+    },
+    {
+      "file": "ios-app/Yuji/Views/LedgerCreateView.swift",
+      "sha256": "afd6583701bb7c086ad0bf8a0c3af5317e95d6f9c8131e1f4aa1f7b0f56f1018"
+    },
+    {
+      "file": "ios-app/Yuji/Views/LedgerHomeView.swift",
+      "sha256": "66bbcb224b99a9315a7746ea17508c4b347846a8a0a533688c962797ce8454c2"
+    },
+    {
+      "file": "ios-app/Yuji/Views/ManageViews.swift",
+      "sha256": "21632be9f2add1a43c2c80417ebaa662944ea6d4ab426feeb669f90d1f8a2289"
+    },
+    {
+      "file": "ios-app/Yuji/Views/MeAndData.swift",
+      "sha256": "0d214b777caf7fe40f4c4b08c71589d4202df9b85cce3ea27d310158f7d18048"
+    },
+    {
+      "file": "ios-app/Yuji/Views/PeriodNavigation.swift",
+      "sha256": "1bf8109c873a53476c59f90c9fd5aa780cf00253dd75c0fe115cdd95cd3e2667"
+    },
+    {
+      "file": "ios-app/Yuji/Views/PeriodPicker.swift",
+      "sha256": "a1a1327adef7c4d7761d191061597ef54a8fef89d2df675bb645316e110b0213"
+    },
+    {
+      "file": "ios-app/Yuji/Views/Pickers.swift",
+      "sha256": "d0a0f1d07d6d73183cc5d3df8f2a782384307601fd399c2aba3a1257cabbe68a"
+    },
+    {
+      "file": "ios-app/Yuji/Views/RootView.swift",
+      "sha256": "1083f2a9ac291f12039823d9648221e047ac54955cda785f7013b01e2d4f02c2"
+    },
+    {
+      "file": "ios-app/Yuji/Views/StatsExplorationView.swift",
+      "sha256": "cdd8293b4195202aee15ad6b599bd8190fed8d659f00f4c8c61ef1582293935f"
+    },
+    {
+      "file": "ios-app/Yuji/Views/StatsView.swift",
+      "sha256": "51f7e9a98b9a5966e6d5889361f4ba707d94f60db1563bf09be9c22251f52046"
+    },
+    {
+      "file": "ios-app/Yuji/Views/ThemeSettings.swift",
+      "sha256": "c110ca9d908b10916e04570d73a43ec3c4c9a9ce693467bb01a340f628a8b646"
+    },
+    {
+      "file": "ios-app/Yuji/YujiApp.swift",
+      "sha256": "dffde579ae00e4c1a20c7b902f32cc55318eb3c4ee433190436e907c25e0ec35"
+    },
+    {
+      "file": "ios-app/project.yml",
+      "sha256": "d5c828b911d5d0d832a827cacef6b273a35f5c281c4db44bf4db4f0dc381e9ea"
+    }
+  ]
+}

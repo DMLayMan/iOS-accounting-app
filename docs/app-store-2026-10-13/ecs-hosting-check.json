@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-13",
+  "userChoice": "User handled agreement and payment; payment success and created Beijing ECS read back. Public deployment not performed.",
+  "configuration": {
+    "region": "cn-beijing",
+    "zone": "cn-beijing-h",
+    "instanceType": "ecs.e-c1m1.large",
+    "vCPU": 2,
+    "memoryGiB": 2,
+    "imageName": "Ubuntu 24.04 64位(安全加固)",
+    "imageID": "ubuntu_24_04_x64_20G_alibase_20260916.vhd",
+    "systemDisk": "ESSD Entry",
+    "systemDiskGiB": 40,
+    "publicIPv4": true,
+    "fixedBandwidthMbps": 3,
+    "quantity": 1,
+    "months": 12,
+    "automaticRenewal": false,
+    "fileBackup": false,
+    "autoSnapshotPolicy": null,
+    "loginCredential": "No password or key entered by agent; Cloud Assistant read-only execution succeeded",
+    "proposedNewSecurityGroupName": "yuji-web-20261013",
+    "proposedInboundTCPPorts": [
+      80,
+      443
+    ],
+    "existingSecurityGroupsModified": false,
+    "actualSecurityGroupName": "yuji-web-20261013",
+    "actualInboundTCPPorts": [
+      80,
+      443
+    ],
+    "snapshotCount": 0,
+    "observedExtension": "SWAP configuration already installed; not changed by agent"
+  },
+  "currentAccountQuoteCNY": 99,
+  "quoteReadBack": true,
+  "proof": "evidence/app-store-20261013/browser/aliyun-ecs-99-configured.png",
+  "termsAccepted": null,
+  "orderSubmitted": true,
+  "paid": true,
+  "instanceCreated": true,
+  "serviceCodeVerified": false,
+  "activity": {
+    "source": "https://www.aliyun.com/activity/ecs/99program",
+    "end": "2029-03-31T23:59:59+08:00",
+    "renewal": "Same specified configuration; at most one discounted renewal per service year; initiate before activity end; one discounted instance per person at a time"
+  },
+  "hosting": {
+    "proposedHost": "yuji.rush247tt.xyz",
+    "DNSChanged": false,
+    "websiteFilingScopeVerified": false,
+    "deployed": false,
+    "HTTPSVerified": false,
+    "inAppDomainEntryAdded": false,
+    "guide": "hosting/README.md",
+    "CaddyParserVerified": false
+  },
+  "sourceProductInputsChanged": [],
+  "appRetested": false,
+  "termsAcceptanceEvidence": "User completed purchase; agreement checkbox not independently read back",
+  "actualPaidAmountCNY": null,
+  "actualPaidAmountEvidence": "Payment success verified; purchase quote was CNY 99, actual order amount not independently read back",
+  "instanceStatus": "Running",
+  "instanceExpiresAt": "2027-10-13T23:59:59+08:00",
+  "filingEligibility": {
+    "verifiedBeforeSubmission": true,
+    "freeUsedAtPurchase": 0,
+    "freeLimit": 5,
+    "sameAccountInstanceSelection": true,
+    "manualServiceCodeRequired": false,
+    "source": "Actual eligible ECS row before filing submission; system associates code during same-account filing",
+    "official": "https://help.aliyun.com/zh/icp-filing/basic-icp-service/user-guide/fill-in-the-access-information-of-website-app"
+  },
+  "readOnlyPreflight": {
+    "executed": true,
+    "status": "Success",
+    "exitCode": 0,
+    "OS": "Ubuntu 24.04.5 LTS",
+    "rootDiskAvailableGiBApprox": 31,
+    "CaddyInstalled": false,
+    "siteDirectoryExists": false,
+    "UFW": "inactive",
+    "systemSSHListening": true,
+    "securityGroupPublicSSHRule": false,
+    "serverConfigurationChanged": false
+  }
+}

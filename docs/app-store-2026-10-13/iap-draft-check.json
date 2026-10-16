@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-13",
+  "appAppleID": "6822126066",
+  "appName": "余记账本",
+  "readback": "Each detail page saved and reloaded; one sales territory selected. Persisted price popovers show China mainland CNY 6.00, 18.00, 30.00 respectively. Price matrix covers 175 territories automatically, sales availability remains China mainland only.",
+  "products": [
+    {
+      "referenceName": "小小鼓励",
+      "appleID": "6822127270",
+      "productID": "com.yuji.app.support.encourage",
+      "localizedDescription": "自愿支持余记开发，所有记账功能仍可使用。",
+      "type": "Consumable",
+      "locale": "zh-Hans",
+      "localizedDisplayName": "小小鼓励",
+      "status": "Prepare for Submission; Draft",
+      "priceConfigured": true,
+      "availabilityConfigured": true,
+      "reviewScreenshotUploaded": false,
+      "submittedForReview": false,
+      "baseTerritory": "China mainland",
+      "currency": "CNY",
+      "price": 6,
+      "salesTerritories": [
+        "China mainland"
+      ],
+      "autoAvailableInNewTerritories": false,
+      "priceProofScreenshot": "evidence/app-store-20261013/browser/iap-encourage-price.png",
+      "reviewNotesSaved": true,
+      "reviewNotesSource": "iap-review-notes.txt"
+    },
+    {
+      "referenceName": "一杯咖啡",
+      "appleID": "6822128113",
+      "productID": "com.yuji.app.support.coffee",
+      "localizedDescription": "请开发者喝杯咖啡，不解锁功能、不自动续费。",
+      "type": "Consumable",
+      "locale": "zh-Hans",
+      "localizedDisplayName": "一杯咖啡",
+      "status": "Prepare for Submission; Draft",
+      "priceConfigured": true,
+      "availabilityConfigured": true,
+      "reviewScreenshotUploaded": false,
+      "submittedForReview": false,
+      "baseTerritory": "China mainland",
+      "currency": "CNY",
+      "price": 18,
+      "salesTerritories": [
+        "China mainland"
+      ],
+      "autoAvailableInNewTerritories": false,
+      "priceProofScreenshot": "evidence/app-store-20261013/browser/iap-coffee-price.png",
+      "reviewNotesSaved": true,
+      "reviewNotesSource": "iap-review-notes.txt"
+    },
+    {
+      "referenceName": "加倍支持",
+      "appleID": "6822128461",
+      "productID": "com.yuji.app.support.generous",
+      "localizedDescription": "一次性支持后续开发，记账功能不受影响。",
+      "type": "Consumable",
+      "locale": "zh-Hans",
+      "localizedDisplayName": "加倍支持",
+      "status": "Prepare for Submission; Draft",
+      "priceConfigured": true,
+      "availabilityConfigured": true,
+      "reviewScreenshotUploaded": false,
+      "submittedForReview": false,
+      "baseTerritory": "China mainland",
+      "currency": "CNY",
+      "price": 30,
+      "salesTerritories": [
+        "China mainland"
+      ],
+      "autoAvailableInNewTerritories": false,
+      "priceProofScreenshot": "evidence/app-store-20261013/browser/iap-generous-price.png",
+      "reviewNotesSaved": true,
+      "reviewNotesSource": "iap-review-notes.txt"
+    }
+  ],
+  "paidAgreementLastObserved": "Active; user completed agreement and tax forms, live readback 2026-10-13",
+  "realSandboxPurchase": "not tested",
+  "proofScreenshot": "evidence/app-store-20261013/browser/iap-drafts.jpg",
+  "bankInformationLastObserved": "Available",
+  "taxFormsLastObserved": "Both In Use, submitted 2026-10-13",
+  "pricesExplicitlyApprovedByUser": true
+}
