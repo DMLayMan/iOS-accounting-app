@@ -11,17 +11,22 @@ struct TransactionRow: View {
 
     var body: some View {
         rowLayout {
-            HStack(spacing: 12) {
+            HStack(alignment: .top, spacing: 12) {
             Image(systemName: iconName)
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(Design.money(t.kind))
                 .frame(width: 36, height: 36)
                 .background(Circle().fill(Design.money(t.kind).opacity(scheme == .dark ? 0.12 : 0.07)))
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(title).font(.body).lineLimit(2).foregroundColor(.primary)
-                if let sub = subtitle, !sub.isEmpty {
+                if let sub = metadata, !sub.isEmpty {
                     Text(sub).font(.caption).foregroundColor(Design.secondary)
-                        .lineLimit(1)
+                        .lineLimit(typeSize.isAccessibilitySize ? nil : 1)
+                }
+                if !t.note.isEmpty {
+                    Text(t.note).font(.caption).foregroundStyle(Design.secondary)
+                        .lineLimit(typeSize.isAccessibilitySize ? nil : 2)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             }
@@ -47,7 +52,7 @@ struct TransactionRow: View {
     }
 
     private var rowLayout: AnyLayout {
-        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(spacing: 12))
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(alignment: .top, spacing: 12))
     }
     private var iconName: String {
         switch t.kind {
@@ -62,12 +67,11 @@ struct TransactionRow: View {
         if let cid = t.categoryID, let c = state.store.category(cid) { return c.name }
         return t.kind.displayName
     }
-    private var subtitle: String? {
+    private var metadata: String? {
         let parts: [String] = [
             state.cloudLink(for: t.ledgerID) != nil ? state.personName(t.authorID, ledgerID: t.ledgerID, marksSelf: true) : nil,
             showsDate ? statsDayText(t.date) : nil,
-            state.store.account(t.accountID)?.name,
-            t.note
+            state.store.account(t.accountID)?.name
         ].compactMap { $0 }.filter { !$0.isEmpty }
         return parts.isEmpty ? nil : parts.joined(separator: " · ")
     }

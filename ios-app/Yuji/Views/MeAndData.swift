@@ -27,15 +27,8 @@ struct MeView: View {
                     NavigationLink { CategoryManageView() } label: {
                         Label("分类管理", systemImage: "square.grid.2x2")
                     }
-                }
-                Section("整理") {
                     NavigationLink { TrashView() } label: {
                         Label("最近删除", systemImage: "trash")
-                    }
-                }
-                Section("数据") {
-                    NavigationLink { DataManagementView() } label: {
-                        Label("备份、恢复与导出", systemImage: "externaldrive")
                     }
                 }
                 Section("偏好") {
@@ -48,8 +41,11 @@ struct MeView: View {
                         Label("外观与反馈", systemImage: "slider.horizontal.3")
                     }
                 }
-                Section("存储") {
+                Section("数据与同步") {
                     NavigationLink { CloudOverviewView() } label: { Label("iCloud 与共享", systemImage: "icloud") }
+                    NavigationLink { DataManagementView() } label: {
+                        Label("备份、恢复与导出", systemImage: "externaldrive")
+                    }
                     HStack {
                         Label("数据位置", systemImage: "internaldrive")
                         Spacer()
@@ -67,7 +63,7 @@ struct MeView: View {
                     NavigationLink { PrivacyPolicyView() } label: { Label("隐私说明", systemImage: "hand.raised") }
                     NavigationLink { HelpView() } label: { Label("帮助与反馈", systemImage: "questionmark.circle") }
                 }
-            }
+            }.listSectionSpacing(12)
             .navigationTitle("我的").navigationBarTitleDisplayMode(.inline)
         }
     }

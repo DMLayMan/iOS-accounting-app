@@ -32,19 +32,36 @@ struct LedgerHomeView: View {
     private var actionLayout: AnyLayout {
         typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4)) : AnyLayout(HStackLayout(spacing: 20))
     }
+    private var headingLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(alignment: .top, spacing: 12))
+    }
+    private func sectionHeading<Actions: View>(_ title: String, @ViewBuilder actions: () -> Actions) -> some View {
+        headingLayout {
+            Text(title).font(.headline).fixedSize(horizontal: false, vertical: true)
+            if !typeSize.isAccessibilitySize { Spacer(minLength: 12) }
+            HStack(spacing: 16, content: actions).font(.subheadline)
+        }
+    }
     private func content(_ ledger: Ledger) -> some View {
         let overview = state.store.overview(in: ledger.id, through: state.today)
         return ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 12) {
-                    HStack(alignment: .top) {
-                    Label(ledger.name, systemImage: "book.closed")
+                    headingLayout {
+                    Group {
+                        if typeSize.isAccessibilitySize { Text(ledger.name) }
+                        else { Label(ledger.name, systemImage: "book.closed") }
+                    }
                         .font(.title2.weight(.semibold)).fixedSize(horizontal: false, vertical: true)
                         .accessibilityIdentifier("ledger.currentName")
-                    Spacer(minLength: 8)
+                    if !typeSize.isAccessibilitySize { Spacer(minLength: 8) }
                     NavigationLink { CloudBookView(ledgerID: ledger.id) } label: {
-                        Image(systemName: state.cloudLink(for: ledger.id) == nil ? "icloud" : "person.2")
-                            .frame(width: 44, height: 44)
+                        if typeSize.isAccessibilitySize {
+                            Text("同步与成员").font(.subheadline).minimumTouchTarget()
+                        } else {
+                            Image(systemName: state.cloudLink(for: ledger.id) == nil ? "icloud" : "person.2")
+                                .frame(width: 44, height: 44)
+                        }
                     }.accessibilityLabel("同步与成员").accessibilityIdentifier("ledger.cloud")
                     }
                     if state.cloudLink(for: ledger.id) != nil {
@@ -65,9 +82,7 @@ struct LedgerHomeView: View {
                 }
                 Divider()
                 VStack(alignment: .leading, spacing: 16) {
-                    HStack {
-                        Text("累计收支").font(.headline)
-                        Spacer()
+                    sectionHeading("累计收支") {
                         if !ledger.archived {
                             Button { showBudget = true } label: { Text("预算").minimumTouchTarget() }
                                 .font(.subheadline).accessibilityIdentifier("ledger.budget")
@@ -92,17 +107,16 @@ struct LedgerHomeView: View {
                 }
                 Divider()
                 VStack(alignment: .leading, spacing: 12) {
-                    HStack {
-                        Text("账户余额").font(.headline)
-                        Spacer()
+                    sectionHeading("账户余额") {
                         NavigationLink { AccountListView() } label: { Text("管理").minimumTouchTarget() }.font(.subheadline)
                     }
                     metric("合计（含期初余额）", cents: overview.balance, id: "ledger.balance")
                     ForEach(overview.balances) { item in
-                        HStack(alignment: .firstTextBaseline) {
+                        headingLayout {
                             Text(item.account.name + (item.account.archived ? " · 已归档" : ""))
                                 .font(.subheadline).foregroundStyle(Design.secondary)
-                            Spacer(minLength: 12)
+                                .fixedSize(horizontal: false, vertical: true)
+                            if !typeSize.isAccessibilitySize { Spacer(minLength: 12) }
                             Text(statsMoney(item.cents)).font(.subheadline.monospacedDigit())
                                 .lineLimit(1).minimumScaleFactor(0.6)
                         }.padding(.vertical, 4).accessibilityElement(children: .combine)
@@ -118,9 +132,7 @@ struct LedgerHomeView: View {
                 }
                 Divider()
                 VStack(alignment: .leading, spacing: 12) {
-                    HStack {
-                        Text("记录概况").font(.headline)
-                        Spacer()
+                    sectionHeading("记录概况") {
                         Button(action: openFeed) { Text("查看流水").minimumTouchTarget() }.font(.subheadline).accessibilityIdentifier("ledger.openFeed")
                     }
                     Text("\(overview.recordCount) 笔记录 · \(overview.recordedDays) 个记账日")

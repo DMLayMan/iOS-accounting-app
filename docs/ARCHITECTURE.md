@@ -4,6 +4,8 @@
 
 新增 `CloudSnapshotComparison` 是纯只读领域投影，按实体 ID、业务字段与预算范围/生效期比较；不参与合并、写入或冲突解决，UI 只分页呈现差异。`CloudPeopleState.nicknameReadOnlyBooks` 复用当前账号云绑定判定展示影响范围，权限来源仍为 CloudKit。统计记账人筛选仍由 StatsView 单点持有，标题生成逻辑复用，明细通过清除闭包更新同一状态。预算组件只改变展开态，不复制计算规则。
 
+最终视觉收尾只调整 View 层：`StatsView.authorMenu` 是常规摘要与大字号人员行的同一菜单，仍绑定同一 `authorFilter`；`TransactionRow` 在流水和统计复用，完整 AX 摘要保持单节点；`LedgerHomeView.sectionHeading` 统一三处章节的字号适配。详情备注是展示改动，没有新增字段、数据迁移、网络请求或领域计算。设计、截图和验证见 [收尾记录](final-polish-2026-10-16/README.md)。
+
 支付 SDK 固定 `97f38bb1b9aa31cae0f469a58a37e1641aa8870f`。`SupportOffer` 包含可选数值价格/国家用于付款前一致性检查；`SupportReceipt.quotedOffer` 为当次选择的本地附属诊断，不是 Apple 签名字段，既有 schema 1 可兼容读取。实际金额/币种仍来自验签交易，缺证据返回未知；不自动改币种、重付或增加服务端。见 [本轮交付](release-validation-2026-10-15/build13-polish.md)。
 
 最新问题、修复与证据见 [2026-10-08 复审](review-fix-2026-10-08/README.md)。保持现有分层；统一当前余额的业务截止日、sheet 主题根和中断草稿，量化长期数据查询成本。[10 月 3 日问题](release-audit-2026-10-03/findings.md)为历史基线。
@@ -34,7 +36,7 @@ flowchart TD
   Payment --> StoreKit[StoreKitSupportClient / Apple 消耗型购买]
 ```
 
-`YujiCore` 仅依赖 Foundation。原生目标依赖本地 Swift Package 和私有 `DMLayMan/ios-base`；后者通过 SSH 固定支付修复提交 `aaa646c95d472243507c3c1062d6eb77f25ada74`（组件 [PR #4](https://github.com/DMLayMan/ios-base/pull/4)，尚未合并）；远端解析与源码一致性已核对，消费 `DeveloperSupportKit` 的付款模型与 UI，并仅使用 `EngagementPromptKit` 的 UI。没有引入支持后端、订阅、功能权益或分析 SDK，不使用 `EngagementStore` 的时间门槛。UIKit 用于分类按行分页与原生挪位、系统选色器、分享，以及核对自动邀请前的实际呈现/键盘状态。不要为复用引入与领域无关的通用表单引擎。
+`YujiCore` 仅依赖 Foundation。原生目标依赖本地 Swift Package 和私有 `DMLayMan/ios-base`；后者通过 SSH 固定支付修复提交 `97f38bb1b9aa31cae0f469a58a37e1641aa8870f`（组件 [PR #4](https://github.com/DMLayMan/ios-base/pull/4)）；消费 `DeveloperSupportKit` 的付款模型与 UI，并仅使用 `EngagementPromptKit` 的 UI。没有引入支持后端、订阅、功能权益或分析 SDK，不使用 `EngagementStore` 的时间门槛。UIKit 用于分类按行分页与原生挪位、系统选色器、分享，以及核对自动邀请前的实际呈现/键盘状态。不要为复用引入与领域无关的通用表单引擎。
 
 ## 2. 状态归属
 

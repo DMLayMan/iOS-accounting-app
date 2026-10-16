@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-16",
+  "baseCommit": "9c353f1d36e1b58b5a82314894c16ca35f95bbeb",
+  "delivery": "Local native source and simulator only; not uploaded to TestFlight",
+  "portable": {
+    "core": 123,
+    "appState": 58,
+    "evidence": "evidence/final-polish-20261016/swift-test.log"
+  },
+  "runs": [
+    {
+      "id": "after-pro",
+      "evidence": "evidence/final-polish-20261016/after-pro-summary.json",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "device": "iPhone 16 Pro",
+      "os": "26.5"
+    },
+    {
+      "id": "ios17",
+      "evidence": "evidence/final-polish-20261016/final17-summary.json",
+      "passed": 75,
+      "failed": 0,
+      "skipped": 10,
+      "device": "iPhone 15 Pro",
+      "os": "17.5"
+    },
+    {
+      "id": "se-before-spacing-fix",
+      "evidence": "evidence/final-polish-20261016/final-se-summary.json",
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "device": "iPhone SE (3rd generation)",
+      "os": "26.5"
+    },
+    {
+      "id": "pro-final",
+      "evidence": "evidence/final-polish-20261016/final-pro-summary.json",
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "device": "iPhone 16 Pro",
+      "os": "26.5"
+    },
+    {
+      "id": "se-fixed",
+      "evidence": "evidence/final-polish-20261016/final-se-fixed-summary.json",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "device": "iPhone SE (3rd generation)",
+      "os": "26.5"
+    },
+    {
+      "id": "ios17-spacing-fixed",
+      "evidence": "evidence/final-polish-20261016/final17-fixed-summary.json",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "device": "iPhone 15 Pro",
+      "os": "17.5"
+    }
+  ],
+  "uniquePostChangeUITestCount": 21,
+  "uiTestIdentities": [
+    "AccessibilityUITests/testEntrySemanticsAndDestructiveDecision",
+    "AccessibilityUITests/testIncomeRankingAndTransactionReadAsOneRecord",
+    "AccessibilityUITests/testNicknameAudit",
+    "AccessibilityUITests/testProfileAudit",
+    "AccessibilityUITests/testStatsAudit",
+    "AccessibilityUITests/testSupportPreviewAudit",
+    "BudgetEntryUITests/testDarkBudgetAndEntry",
+    "DesignQualityUITests/testDarkCategorySheetAndEverySymbolAvailable",
+    "DesignQualityUITests/testEntryPickersSearchAndChangedCategoryCancel",
+    "DesignQualityUITests/testEverySupportPageTourAndAccountValidation",
+    "DesignQualityUITests/testLargeTypeCategoryAndSupportPages",
+    "DesignQualityUITests/testLongNoteReadabilityAndProfileShortcuts",
+    "LedgerFeedUITests/testDarkBookAndTimePicker",
+    "LedgerFeedUITests/testLargestTextHasReachableBookAndDateActions",
+    "LifecycleUITests/testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose",
+    "StatsPeopleUITests/testDarkLargestTypeFilterRemainsReachable",
+    "StatsPeopleUITests/testPersonFilterLinksSummaryRefundChartAndRecords",
+    "StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext",
+    "ThemeUITests/testDarkThemeAndLargestText",
+    "ThemeUITests/testThemeAcrossPagesEntryAndRelaunch",
+    "TimeNavigationUITests/testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave"
+  ],
+  "release": {
+    "passed": true,
+    "scope": "resources/configuration only; not signing or live acceptance",
+    "version": "1.0",
+    "build": "15",
+    "checks": {
+      "bundle": true,
+      "displayName": true,
+      "minimumOS": true,
+      "devicePlatform": true,
+      "cloudEnabled": true,
+      "cloudEnvironment": true,
+      "cloudContainer": true,
+      "sharing": true,
+      "noFixture": true,
+      "noTestFlags": true,
+      "noSimulatedClients": true,
+      "noNativeTests": true,
+      "offlinePolicyMatchesSource": true,
+      "noTracking": true
+    }
+  },
+  "sourceFingerprints": [
+    {
+      "file": "ios-app/Yuji/Components/TransactionRow.swift",
+      "sha256": "6960497716d43a377ed139392e4263907ac8c419dd5d2613e107a4c1456c6764"
+    },
+    {
+      "file": "ios-app/Yuji/Views/DetailAndRefund.swift",
+      "sha256": "28d38c8de2dc697de1d1cf7ba6c4e7ddb28aa1a5a490d2ab77a27ca0878e51d2"
+    },
+    {
+      "file": "ios-app/Yuji/Views/EntryView.swift",
+      "sha256": "9fd79600938ce3900a8f4d94bb813078c8ffb546cbec3d7f2451df58b2822c08"
+    },
+    {
+      "file": "ios-app/Yuji/Views/FeedView.swift",
+      "sha256": "bf39eea8a849f509c72e2d5f273823ed7b76e1b9180091123af65612c03c9961"
+    },
+    {
+      "file": "ios-app/Yuji/Views/LedgerHomeView.swift",
+      "sha256": "d1a32387c3d0c79923bbde103cd040ab6cabfe13480f4a17eaf89fc60e25872b"
+    },
+    {
+      "file": "ios-app/Yuji/Views/MeAndData.swift",
+      "sha256": "b058465dac12aa09349d1680bbfb6704c562040c8badb40974e3240b6e885992"
+    },
+    {
+      "file": "ios-app/Yuji/Views/StatsView.swift",
+      "sha256": "d11b4a1998291c640e85dbc604d880a00293c880d7057aab5f9901d949a80d4a"
+    },
+    {
+      "file": "ios-app/YujiUITests/DesignQualityUITests.swift",
+      "sha256": "93a28d0a41eb7693f5d1eef103540b7b9ea55dfb08c1893994a5647a189116dd"
+    },
+    {
+      "file": "ios-app/YujiUITests/LedgerFeedUITests.swift",
+      "sha256": "ae3cfd09e59e16356ff6a5a2ed6232af7ee0a5ee004e3af5fb98b1515429013a"
+    }
+  ],
+  "unverified": [
+    "Physical VoiceOver listening deferred by user",
+    "Physical iOS 17 device",
+    "New UI TestFlight distribution"
+  ],
+  "unchangedExternalGates": [
+    "Apple Feedback FB25209457",
+    "Mainland China ICP filing"
+  ],
+  "realServicesRetested": false
+}

@@ -63,7 +63,13 @@ struct TransactionDetailView: View {
                 if !t.tagIDs.isEmpty {
                     row("历史附加信息", t.tagIDs.compactMap { state.store.tag($0)?.name }.joined(separator: "、"))
                 }
-                if !t.note.isEmpty { row("备注", t.note) }
+                if !t.note.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("备注").foregroundStyle(Design.secondary)
+                        Text(t.note).fixedSize(horizontal: false, vertical: true)
+                            .accessibilityIdentifier("detail.note")
+                    }.padding(.vertical, 2)
+                }
                 if t.authorID != nil || state.cloudLink(for: t.ledgerID) != nil {
                     row("记账人", state.personName(t.authorID, ledgerID: t.ledgerID, marksSelf: true))
                     if let editor = t.lastEditorID, editor != t.authorID {
@@ -96,7 +102,7 @@ struct TransactionDetailView: View {
                                 HStack {
                                     Text("退款 · \(statsDayText(r.date))")
                                     Spacer()
-                                    Text("¥\(Money(r.amountCents).yuanDescription)").foregroundStyle(.tint)
+                                    Text("¥\(Money(r.amountCents).yuanDescription)").foregroundStyle(Design.refund)
                                 }
                             }
                         }
@@ -111,7 +117,7 @@ struct TransactionDetailView: View {
                         HStack {
                             Text("原支出 · \(statsDayText(orig.date))")
                             Spacer()
-                            Text("¥\(Money(orig.amountCents).yuanDescription)").foregroundColor(.secondary)
+                            Text("¥\(Money(orig.amountCents).yuanDescription)").foregroundStyle(Design.expense)
                         }
                     }
                 }

@@ -72,7 +72,7 @@ struct EntryView: View {
                         }.padding(.top, 8)
                         VStack(alignment: .leading, spacing: 3) {
                             Text(displayAmount)
-                                .font(typeSize.isAccessibilitySize ? .system(.largeTitle, design: .rounded).weight(.semibold) : .system(size: 46, weight: .semibold))
+                                .font(typeSize.isAccessibilitySize ? .system(.largeTitle, design: .rounded).weight(.semibold) : .system(size: 46, weight: .semibold, design: .rounded))
                                 .monospacedDigit().lineLimit(1).minimumScaleFactor(0.5)
                                 .foregroundColor(calcError == nil ? Design.money(kind) : .red)
                                 .frame(maxWidth: .infinity, minHeight: 58, alignment: .leading)
@@ -119,7 +119,7 @@ struct EntryView: View {
                                 .onSubmit { noteFocused = false }
                                 .accessibilityIdentifier("entry.note")
                             if noteFocused { Button("完成") { noteFocused = false }.font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("entry.noteDone") }
-                        }.frame(minHeight: 42).overlay(alignment: .top) { Divider() }
+                        }.frame(minHeight: 44).overlay(alignment: .top) { Divider() }
                     }.padding(.horizontal, 20).padding(.bottom, 4)
                 }
                 .accessibilityIdentifier("entry.form")
@@ -201,6 +201,11 @@ struct EntryView: View {
                 .foregroundColor(kind == value ? Design.money(value) : Design.secondary)
                 .accessibilityAddTraits(kind == value ? [.isSelected] : [])
                 .minimumTouchTarget()
+                .overlay(alignment: .bottom) {
+                    if kind == value {
+                        Capsule().fill(Design.money(value)).frame(width: 18, height: 3).accessibilityHidden(true)
+                    }
+                }
         }.accessibilityIdentifier("entry.kind.\(value.rawValue)")
     }
 

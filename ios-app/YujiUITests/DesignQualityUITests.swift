@@ -116,6 +116,35 @@ final class DesignQualityUITests: XCTestCase {
         capture("54-transaction-detail")
     }
 
+    func testLongNoteReadabilityAndProfileShortcuts() {
+        app.tabBars.buttons["我的"].tap()
+        let appearance = app.buttons["外观与反馈"]
+        XCTAssertTrue(appearance.isHittable)
+        XCTAssertLessThan(appearance.frame.maxY, app.tabBars.firstMatch.frame.minY,
+                          "The appearance shortcut should be visible without an initial scroll")
+        capture("76-profile-shortcuts")
+        appearance.tap()
+        XCTAssertTrue(e("theme.preset.sage").waitForExistence(timeout: 5))
+        back()
+        app.tabBars.buttons["流水"].tap()
+        let record = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'feed.transaction.' AND label CONTAINS %@", "较长备注：旅行期间")).firstMatch
+        for _ in 0..<5 {
+            if record.isHittable && record.frame.maxY < app.tabBars.firstMatch.frame.minY { break }
+            app.swipeUp()
+        }
+        XCTAssertTrue(record.label.contains("返回统计后仍应保留原来的时间与分类。"))
+        capture("77-long-note-feed")
+        record.tap()
+        let note = e("detail.note")
+        XCTAssertTrue(note.waitForExistence(timeout: 5))
+        XCTAssertTrue(note.label.hasSuffix("返回统计后仍应保留原来的时间与分类。"))
+        XCTAssertGreaterThan(note.frame.width, app.frame.width * 0.65)
+        capture("78-long-note-detail")
+        back()
+        XCTAssertTrue(record.exists)
+        XCTAssertTrue(e("feed.date").label.contains("9 月"))
+    }
+
     func testEntryPickersSearchAndChangedCategoryCancel() {
         e("root.newEntry").tap()
         XCTAssertTrue(e("entry.accountPicker").waitForExistence(timeout: 5))

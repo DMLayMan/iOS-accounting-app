@@ -47,8 +47,7 @@ struct StatsView: View {
         let summary = stats.summary(range: range)
         let year = yearValue.map { stats.yearSummary($0, today: state.today) }
         return VStack(spacing: 20) {
-            authorPicker(ledger.id)
-            summaryHeader(summary)
+            summaryHeader(summary, ledgerID: ledger.id)
             if authorFilter == .all, month != nil || yearValue != nil {
                 StatsBudgetView(ledgerID: ledger.id, period: month != nil ? .month : .year,
                                 day: range.lowerBound, cutoff: range.upperBound)
@@ -106,9 +105,6 @@ struct StatsView: View {
         }
     }
     private func authorPicker(_ ledgerID: EntityID) -> some View {
-        let records = state.store.activeTransactions(in: ledgerID).filter { $0.kind.affectsFlow }
-        let options = authorOptions(ledgerID)
-        let title = authorTitle(ledgerID)
         return VStack(alignment: .leading, spacing: 4) {
             if typeSize.isAccessibilitySize {
                 HStack(alignment: .firstTextBaseline) {
@@ -118,24 +114,7 @@ struct StatsView: View {
                 }
             }
             HStack(alignment: .top, spacing: 16) {
-                Menu {
-                    Picker("记账人", selection: $authorFilter) {
-                        Text("全部记账人").tag(StatsEngine.AuthorFilter.all)
-                        ForEach(options, id: \.identity) { option in
-                            Text(option.label).tag(StatsEngine.AuthorFilter.person(option.identity))
-                        }
-                        if records.contains(where: { $0.authorID == nil }) || authorFilter == .unknown {
-                            Text("未知记账人").tag(StatsEngine.AuthorFilter.unknown)
-                        }
-                    }
-                } label: {
-                    HStack(alignment: .firstTextBaseline, spacing: 8) {
-                        if !typeSize.isAccessibilitySize { Image(systemName: "person.crop.circle") }
-                        Text(title).multilineTextAlignment(.leading)
-                            .fixedSize(horizontal: false, vertical: true)
-                        Image(systemName: "chevron.down").font(.caption2.weight(.semibold))
-                    }.font(.subheadline).frame(minHeight: 44)
-                }.accessibilityLabel("记账人，\(title)").accessibilityIdentifier("stats.authorFilter")
+                authorMenu(ledgerID)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 if !typeSize.isAccessibilitySize, authorFilter != .all {
                     clearAuthorButton.fixedSize()
@@ -146,6 +125,28 @@ struct StatsView: View {
                     .font(.caption).foregroundStyle(Design.secondary)
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func authorMenu(_ ledgerID: EntityID) -> some View {
+        let records = state.store.activeTransactions(in: ledgerID).filter { $0.kind.affectsFlow }
+        let title = authorTitle(ledgerID)
+        return Menu {
+            Picker("记账人", selection: $authorFilter) {
+                Text("全部记账人").tag(StatsEngine.AuthorFilter.all)
+                ForEach(authorOptions(ledgerID), id: \.identity) { option in
+                    Text(option.label).tag(StatsEngine.AuthorFilter.person(option.identity))
+                }
+                if records.contains(where: { $0.authorID == nil }) || authorFilter == .unknown {
+                    Text("未知记账人").tag(StatsEngine.AuthorFilter.unknown)
+                }
+            }
+        } label: {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                if !typeSize.isAccessibilitySize { Image(systemName: "person.crop.circle") }
+                Text(title).multilineTextAlignment(.leading).fixedSize(horizontal: false, vertical: true)
+                Image(systemName: "chevron.down").font(.caption2.weight(.semibold))
+            }.font(.subheadline).minimumTouchTarget()
+        }.accessibilityLabel("记账人，\(title)").accessibilityIdentifier("stats.authorFilter")
     }
 
     private var clearAuthorButton: some View {
@@ -183,23 +184,34 @@ struct StatsView: View {
         }.padding(.vertical, 8)
     }
 
-    private func summaryHeader(_ s: PeriodSummary) -> some View {
+    private func summaryHeader(_ s: PeriodSummary, ledgerID: EntityID) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            adaptiveLayout {
+            if typeSize.isAccessibilitySize || authorFilter != .all {
+                authorPicker(ledgerID)
                 Text("净支出").font(.subheadline).foregroundStyle(Design.secondary)
-                if !typeSize.isAccessibilitySize { Spacer() }
-                StatsRangeLabel(range: s.range)
+            } else {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("净支出").font(.subheadline).foregroundStyle(Design.secondary)
+                    Spacer(minLength: 12)
+                    authorMenu(ledgerID)
+                }
             }
             Text(statsMoney(s.netExpense)).font(.system(.largeTitle, design: .rounded).weight(.semibold))
                 .foregroundStyle(Design.netExpense(s.netExpense))
                 .accessibilityLabel("净支出，" + statsMoney(s.netExpense))
                 .monospacedDigit().minimumScaleFactor(0.5).lineLimit(1).accessibilityIdentifier("stats.net")
-            Text("支出 \(statsMoney(s.expense)) − 退款 \(statsMoney(s.refund))")
-                .font(.caption).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: 4) {
+                StatsRangeLabel(range: s.range)
+                if s.refund != 0 {
+                    Text("支出 \(statsMoney(s.expense)) − 退款 \(statsMoney(s.refund))")
+                        .font(.caption).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
+                }
+            }
             adaptiveLayout {
                 summaryValue("收入", s.income, color: Design.income)
-                if !typeSize.isAccessibilitySize { Spacer() }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 summaryValue("结余", s.surplus)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }.padding(.top, 6)
         }
     }

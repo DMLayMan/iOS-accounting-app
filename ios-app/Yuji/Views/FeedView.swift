@@ -91,6 +91,7 @@ struct FeedView: View {
                     Section {
                         ForEach(items) { transaction in
                             NavigationLink { TransactionDetailView(transactionID: transaction.id) } label: { TransactionRow(t: transaction) }
+                                .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                                 .accessibilityIdentifier("feed.transaction.\(transaction.id.raw)")
                         }
                     } header: {
@@ -104,7 +105,7 @@ struct FeedView: View {
                         }.textCase(nil).padding(.vertical, 5)
                     }
                 }
-            }.listStyle(.plain).id(listRevision).accessibilityIdentifier("feed.list")
+            }.listStyle(.plain).listSectionSpacing(8).id(listRevision).accessibilityIdentifier("feed.list")
         }
     }
     private func filterDescription(_ filter: TransactionFilter) -> String {
