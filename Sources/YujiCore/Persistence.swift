@@ -15,7 +15,8 @@ public final class JSONFileRepository: LedgerRepository {
     public init(url: URL) {
         self.url = url
         let e = JSONEncoder()
-        e.outputFormatting = [.prettyPrinted, .sortedKeys]
+        // The internal file is compact; exported backups remain human-readable.
+        e.outputFormatting = [.sortedKeys]
         e.dateEncodingStrategy = .iso8601
         self.encoder = e
         let d = JSONDecoder()
@@ -43,7 +44,9 @@ public final class JSONFileRepository: LedgerRepository {
 
     public func save(_ data: LedgerData) throws {
         try LedgerValidation.validate(data)
-        let bytes = try encoder.encode(data)
+        var current = data
+        current.schemaVersion = LedgerData.currentSchemaVersion
+        let bytes = try encoder.encode(current)
         let tmp = url.deletingLastPathComponent()
             .appendingPathComponent(".\(url.lastPathComponent).tmp-\(UUID().uuidString)")
         defer { try? FileManager.default.removeItem(at: tmp) }
@@ -97,6 +100,10 @@ public enum BackupService {
             sumIncomeCents: active.filter { $0.kind == .income }.reduce(0) { $0 + $1.amountCents }
         )
         var data = d
+        // Backup is portable business data, never another account's cache or a live cloud binding.
+        data.cloudLinks = nil
+        data.activeCloudAccountID = nil
+        data.cloudPeople = nil
         data.lastBackupAt = now
         return BackupFile(format: "yuji-backup", formatVersion: LedgerData.currentSchemaVersion,
                           createdAt: now, data: data, checksum: checksum)
@@ -157,6 +164,10 @@ public enum BackupService {
         if sumRef != cs.sumRefundCents { throw RestoreError.checksumMismatch("退款合计") }
         if sumInc != cs.sumIncomeCents { throw RestoreError.checksumMismatch("收入合计") }
 
-        return d
+        var restored = d
+        restored.cloudLinks = nil
+        restored.activeCloudAccountID = nil
+        restored.cloudPeople = nil
+        return restored
     }
 }

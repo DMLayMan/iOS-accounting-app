@@ -1,0 +1,129 @@
+{
+  "environment": "Development",
+  "build": "1.0 (3)",
+  "corePassed": 158,
+  "physicalLatestStatePassed": 23,
+  "focusedNativePassed": 33,
+  "focusedNativeOverlapsState": true,
+  "finalActualWarmAndColdPassed": 2,
+  "sourceSHA256": {
+    "ios-app/Yuji/AppState.swift": "377368e0b0a1c842e174e5798d526587c621b68805efc7652d2b0a585f832a82",
+    "ios-app/Yuji/CloudState.swift": "60858a1d299f15b09f4e5cb3859173233ff1fb88c08a02af479349a7e42163b6",
+    "ios-app/Yuji/YujiApp.swift": "243226b8f56d5edad9779b8e1f11c036cfb35b56ceafcb010ce18542c60e1347",
+    "ios-app/Yuji/Cloud/CloudInvitations.swift": "b34c57ac3a7110e8775ac95f87839a3d666e691e9b0d5972ccd73acc94e0d288",
+    "ios-app/Yuji/Cloud/CloudKitTransport.swift": "a0ce8f22d105efaaab9ad53c31ececd2e984fd4ba9c036ce46dc7f89c89ea5bb",
+    "ios-app/Yuji/Views/CloudBookView.swift": "e4323a0d18529c6d863572456ebe371033923641b1e1b8b9fc57b755567ab809",
+    "ios-app/Yuji/Views/CloudMemberInviteView.swift": "b691433f9cfbc2d698129256798ffddfe13418ad103fa045974029ad8e0569b5"
+  },
+  "evidenceDirectory": "evidence/dual-account-20261014",
+  "productionSchemaDeployed": false,
+  "appStoreSubmitted": false,
+  "humanRealSandboxFeedbackPending": false,
+  "personalLedgerUnchangedAfterFinalReadback": true,
+  "finalIsolatedRecords": 3,
+  "realSandboxObservation": {
+    "passed": false,
+    "waitTimeoutSeconds": 300,
+    "newVerifiedReceiptCount": 0,
+    "requiresHumanOutcome": true,
+    "phase": "original automated observation before later human confirmation",
+    "humanOutcomeResolvedByLaterAcceptance": true
+  },
+  "realSandboxHumanAcceptance": {
+    "passed": true,
+    "feedbackHumanConfirmed": true,
+    "newVerifiedReceiptCount": 1,
+    "amount": 6,
+    "currency": "CNY",
+    "automatedObservationTimedOut": true
+  },
+  "normalLedgerAfterHumanConfirmation": {
+    "originalRecordsUnchanged": true,
+    "originalSelectionUnchanged": true,
+    "autoDiscoveredDevelopmentFixtureBooks": 1,
+    "autoDiscoveredFixtureRecords": 3,
+    "wholeFileBytesUnchanged": false,
+    "cleanupRequiresApproval": false,
+    "cleanupAuthorized": true,
+    "cleanupCompleted": true
+  },
+  "fixtureCleanupPreparation": {
+    "status": "offline-preview-passed-then-authorized-and-completed",
+    "cloudRequests": false,
+    "deviceWrites": false,
+    "fixtureRecords": 3,
+    "targets": [
+      {
+        "afterBooks": 1,
+        "afterRecords": 1,
+        "beforeBooks": 2,
+        "beforeRecords": 4,
+        "otherBusinessEntitiesUnchanged": true,
+        "target": "a-normal",
+        "validated": true
+      },
+      {
+        "afterBooks": 1,
+        "afterRecords": 0,
+        "beforeBooks": 2,
+        "beforeRecords": 3,
+        "otherBusinessEntitiesUnchanged": true,
+        "target": "b-isolated",
+        "validated": true
+      },
+      {
+        "afterBooks": 1,
+        "afterRecords": 0,
+        "beforeBooks": 2,
+        "beforeRecords": 3,
+        "otherBusinessEntitiesUnchanged": true,
+        "target": "b-normal",
+        "validated": true
+      }
+    ],
+    "documentation": "test-fixture-cleanup-2026-10-14.md"
+  },
+  "fixtureCleanup": {
+    "completed": true,
+    "humanAuthorized": true,
+    "environment": "Development",
+    "remoteDeletionAcknowledged": true,
+    "remoteTargetAbsenceVerified": true,
+    "otherCloudZonesUnchanged": true,
+    "aNormalAfterRelaunch": {
+      "books": 1,
+      "records": 1,
+      "fixtureAbsent": true,
+      "originalBusinessEntitiesUnchanged": {
+        "ledgers": true,
+        "accounts": true,
+        "categories": true,
+        "tags": true,
+        "transactions": true,
+        "drafts": true
+      },
+      "settingsAndSelectionUnchanged": true,
+      "otherCloudBindingPreserved": true
+    },
+    "bNormalAfterRelaunch": {
+      "books": 1,
+      "records": 0,
+      "fixtureAbsent": true
+    },
+    "bIsolated": {
+      "books": 1,
+      "records": 0,
+      "fixtureAbsent": true
+    },
+    "paymentJournalByteUnchanged": true,
+    "newSandbox6CNYReceiptRetained": true,
+    "actualCleanupCasesPassed": 3,
+    "firstLocalFingerprintGuardBlockedWithoutWrite": true,
+    "oldAFixtureArchiveRetained": true,
+    "productionTouched": false,
+    "appStoreSubmitted": false,
+    "documentation": "test-fixture-cleanup-2026-10-14.md",
+    "evidenceDirectory": "evidence/dual-account-20261014/cleanup-preparation/execution"
+  },
+  "activeSharedFixtureRetained": false
+}

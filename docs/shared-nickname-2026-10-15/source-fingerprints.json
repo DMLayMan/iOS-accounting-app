@@ -1,0 +1,21 @@
+{
+  "Sources/YujiCore/CloudPeople.swift": "6b97514c63bdb3e0803dbd154d7722ecc98dcc7303db7f5af501ef96fd8048b9",
+  "Sources/YujiCore/CloudSync.swift": "18af37385516d43a85664da22ea45ac9e76c9f092cd8778fd286249227e5e1d9",
+  "Sources/YujiCore/LedgerData.swift": "d7d9dff1f85a00588ddea72f147fae6928d5d87d9dc8e06ca948f339c1a328ca",
+  "Sources/YujiCore/Persistence.swift": "1c9691cc9018711f5ba09074cd955a101e7bf3163bf8b80af753404fcc28e721",
+  "ios-app/Yuji/CloudPeopleState.swift": "e08461e8fb0a67b37e74cd8c55b128696e8aefdebedc2cf2e2cd3c65c01925bc",
+  "ios-app/Yuji/CloudState.swift": "f33f2d746ff43df6614c71d5c6960a51333b6692f15a317490047296a402898d",
+  "ios-app/Yuji/AppState.swift": "2d743cbaa3130e73b97d0ac1badfd7bac420a2dda3e9d4ed17be30c06a0cca24",
+  "ios-app/Yuji/Cloud/CloudKitPeople.swift": "65ccf837c4e53da7e0df1eec65da8866ef66b83709862772cba1beb3f857e724",
+  "ios-app/Yuji/Cloud/SimulatedCloudTransport.swift": "f859798ae43e6e8d4083357d0126fdfa7324d3d25b89a923ab21c4b22107e247",
+  "ios-app/Yuji/Views/CloudNicknameView.swift": "816ffe25716b49432300abffbb7baa973f26cd467a7607daac23d630567f1c8b",
+  "ios-app/Yuji/Views/CloudBookView.swift": "ac0e3f479fe0d30bb7939a6fb35e9bd30d9caff0dab1f385c0fecc18e17de35c",
+  "ios-app/Yuji/Views/MeAndData.swift": "280c4ae8404ecb6a306f14deacad9dc4378b3320c74eb833ce54c5fd8dafccec",
+  "ios-app/Yuji/Views/DetailAndRefund.swift": "a4d1a9878b6c1e32ece1e4260a99745dfbee0f74849766557807719122e9da46",
+  "ios-app/Yuji/Components/TransactionRow.swift": "c493e0638886b68fb28104020e464ecbd946ac146b09ca938abdcd332c00be91",
+  "ios-app/YujiUITests/CloudPeopleUITests.swift": "d2faad1bae12e550fe584a62ce17d306340e06299283e8588c7307d87dff9821",
+  "ios-app/YujiTests/CloudPeopleStateTests.swift": "d9e51b61d0033608e3f88d03758609036b0846cad40effc9e57dc63964978ffb",
+  "Tests/YujiCoreTests/CloudPeopleTests.swift": "7f2e9c00a58a57b44a9fc2f62f810cbd0cd91d14a60deff731f53e03fb375c4c",
+  "docs/privacy/PrivacyPolicy.md": "78322a3a0ab54bc486043410e1cd13fb85a9b3ab154a948da27a47db64d3d4e8",
+  "Package.swift": "199c736b8f1be5337e037e5b1921faf9e3aef33c63f227493a59a7152adcc49f"
+}

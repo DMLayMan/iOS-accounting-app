@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-13",
+  "model": "iPhone 12",
+  "osVersion": "26.6.1",
+  "wiredPaired": true,
+  "developerMode": "enabled",
+  "bundleID": "com.dmlayman.yuji",
+  "version": "0.1.0",
+  "build": "1",
+  "configuration": "Release",
+  "teamID": "7S626H9YL4",
+  "provisioning": "Development wildcard; actual signed application-identifier verified separately",
+  "registeredDeviceIncluded": true,
+  "signedApplicationIdentifier": "7S626H9YL4.com.dmlayman.yuji",
+  "signatureVerification": "passed codesign --verify --deep --strict",
+  "installed": true,
+  "launchCommandOutcome": "success",
+  "priorOldIDAppFound": false,
+  "priorNewIDAppFound": false,
+  "cloudEnabled": "NO",
+  "interactionAcceptance": {
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "configuration": "Debug, isolated temporary ledger",
+    "scope": [
+      "income/expense/refund/transfer and relaunch balance conservation",
+      "backup/CSV system share and import cancel"
+    ],
+    "summary": "evidence/app-store-20261013/device-ui/summary.json"
+  },
+  "scope": "Installation and process launch are not full interaction or cloud/IAP acceptance; raw identifiers kept only in ignored evidence",
+  "finalInstalledBuild": "1.0 (2) Debug Development cloud-enabled live acceptance; personal ledger preserved, all service data in isolated UUID session",
+  "previousFinalInstalledBuild": "ordinary Release reinstalled and launched after tests",
+  "currentLiveServicesCheck": "../live-services-2026-10-13/verification.json"
+}

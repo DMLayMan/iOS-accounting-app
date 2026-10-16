@@ -247,6 +247,9 @@ public struct Transaction: Hashable, Codable, Identifiable, Sendable {
     public var updatedAt: Date
     /// 逻辑删除时间；nil = 有效。回收站保留（PRD §6.2）。
     public var deletedAt: Date?
+    /// Opaque iCloud user record identifiers, only for attribution inside the shared book.
+    public var authorID: String?
+    public var lastEditorID: String?
 
     public var isActive: Bool { deletedAt == nil }
 

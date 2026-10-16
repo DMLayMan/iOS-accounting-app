@@ -1,0 +1,56 @@
+[
+  {
+    "key": "people-01-default",
+    "label": "iCloud 默认姓名",
+    "file": "assets/people-01-default.png",
+    "source": "evidence/people-20261015/pro-final-attachments/F80218D9-6D29-4A70-9020-C8588731FAC1.png",
+    "sha256": "ea14f9061894f002a7bd46a17b358ac503b05ce76e19977abb0c290ee2b1bb03",
+    "device": "pro",
+    "test": "CloudPeopleUITests/testDefaultRenameSharedFeedDetailAndReset()"
+  },
+  {
+    "key": "people-02-shared-feed",
+    "label": "共享流水显示记账人",
+    "file": "assets/people-02-shared-feed.png",
+    "source": "evidence/people-20261015/pro-final-attachments/742FCA43-8B1E-469B-AFC0-601A6A7ED068.png",
+    "sha256": "30d9269af80daf39cb5a36df355ec33b22a441a6162a9018b598b75385420209",
+    "device": "pro",
+    "test": "CloudPeopleUITests/testDefaultRenameSharedFeedDetailAndReset()"
+  },
+  {
+    "key": "people-03-author-detail",
+    "label": "单笔详情保留创建人",
+    "file": "assets/people-03-author-detail.png",
+    "source": "evidence/people-20261015/pro-final-attachments/95C91DE3-C7B3-443C-B980-2161C97AC35C.png",
+    "sha256": "de7894861641538e051ada312b5f9aa8573fae34d5f7494ba7d2b0d451b2a6c0",
+    "device": "pro",
+    "test": "CloudPeopleUITests/testDefaultRenameSharedFeedDetailAndReset()"
+  },
+  {
+    "key": "people-04-default-restored",
+    "label": "清空后恢复默认姓名",
+    "file": "assets/people-04-default-restored.png",
+    "source": "evidence/people-20261015/pro-final-attachments/C71F0A99-0BD1-46A2-898A-F8506CF9BF29.png",
+    "sha256": "f756804ed0f8585234268a3598eb7dbccd37cdf39fe4934e655963a7b018dfe2",
+    "device": "pro",
+    "test": "CloudPeopleUITests/testDefaultRenameSharedFeedDetailAndReset()"
+  },
+  {
+    "key": "people-05-compact-dark-keyboard",
+    "label": "小屏、深色、最大字号输入",
+    "file": "assets/people-05-compact-dark-keyboard.png",
+    "source": "evidence/people-20261015/se-final-attachments/995B23F8-FB3E-4C9E-B169-177DA3E8D7E0.png",
+    "sha256": "ef5e6d7eeaac0fa734b6b6ad79217b089523e769a422818d87b2543ffb446403",
+    "device": "se",
+    "test": "CloudPeopleUITests/testCompactDarkLargestTypeReadOnlyCanChangePrivateName()"
+  },
+  {
+    "key": "people-06-readonly-largest",
+    "label": "只读成员的明确限制",
+    "file": "assets/people-06-readonly-largest.png",
+    "source": "evidence/people-20261015/se-final-attachments/98B7FC45-6582-466D-90EC-664188F96B59.png",
+    "sha256": "2fd6cfeff8048c9655281947bf626ee84b137c5cc4f58291c50dc8b1f03eb616",
+    "device": "se",
+    "test": "CloudPeopleUITests/testCompactDarkLargestTypeReadOnlyCanChangePrivateName()"
+  }
+]

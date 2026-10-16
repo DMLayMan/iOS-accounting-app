@@ -1,0 +1,7 @@
+This consumable is an optional, one-time tip to support the developer. It does not unlock features, grant virtual currency or other benefits, or start a subscription.
+
+Path: open the app, select the Me tab (我的), then tap the first row titled 好用，请开发者喝杯☕吧. Select this support option and tap the purchase button. No option is selected by default. All bookkeeping features remain available without purchasing, including after cancellation or a failed purchase. A successful tip does not create a bookkeeping transaction.
+
+The app displays the localized price supplied by StoreKit before the user chooses a support option. Selecting a tier never purchases automatically; the explicit purchase button opens the native Apple confirmation inside the app. No currency is converted or replaced with a guessed amount. No payment information is collected by the developer. The app has no developer-operated payment server. The first three consumable support products are intended to be reviewed together with the first app version.
+
+The review screenshot must show the final native support chooser with visible localized prices. The same three options are available; select the product being reviewed. No price is drawn into or overlaid on the screenshot.

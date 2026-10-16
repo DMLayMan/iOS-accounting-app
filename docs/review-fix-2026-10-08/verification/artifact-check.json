@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "scope": "document links, native-original hashes, portable/native/UI result coverage, archive resource facts and frozen source fingerprints",
+  "documents": 10,
+  "links": 78,
+  "screenshots": 102,
+  "errors": []
+}

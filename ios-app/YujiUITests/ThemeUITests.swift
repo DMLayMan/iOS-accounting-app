@@ -61,7 +61,10 @@ final class ThemeUITests: XCTestCase {
     func testCustomEditorAppliesOnlyWhenFinished() {
         settings(); e("theme.preset.ocean").tap()
         show("theme.custom"); e("theme.custom").tap()
-        let swatch = app.otherElements["深紫色 12"]
+        // UIKit renamed this same grid swatch in iOS 27; preserve the commit/cancel assertions.
+        let swatch = app.otherElements.matching(
+            NSPredicate(format: "label IN %@", ["深紫色 12", "暗紫色 12"])
+        ).firstMatch
         XCTAssertTrue(swatch.waitForExistence(timeout: 5)); swatch.tap()
         capture("10-custom-color-editor")
         app.terminate(); app.launch()

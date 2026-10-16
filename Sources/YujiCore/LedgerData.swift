@@ -96,8 +96,13 @@ public struct LedgerData: Codable, Sendable {
     public var lastRestoreVerifiedAt: Date?
     /// Local recovery-point pointer committed atomically with a successful restore.
     public var recoveryBackupID: String?
+    /// Account-isolated cloud cache and durable common ancestors; never exported as invitations.
+    public var cloudLinks: [CloudLink]?
+    /// Identity owning the currently materialized cloud books, distinct from offline caches.
+    public var activeCloudAccountID: String?
+    public var cloudPeople: CloudPeople?
 
-    public static let currentSchemaVersion = 3
+    public static let currentSchemaVersion = 4
 
     public init(schemaVersion: Int = currentSchemaVersion,
                 ledgers: [Ledger] = [], accounts: [Account] = [],

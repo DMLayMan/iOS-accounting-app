@@ -1,0 +1,10 @@
+{
+  "scope": "Fixture and independent oracle captured during this fresh run; source freeze is separate",
+  "files": {
+    "Fixtures/stats-500.json": "890d7bc95cf5a218366dfe8b93dffd25a038e40fa5341e67d512d124f6544cfc",
+    "Fixtures/stats-500-oracle.json": "5f2c36fc2977bbaac99f3d9aa0ee43121ebf0f4430e7262428a21411a60c1d40"
+  },
+  "records": 500,
+  "monthWindows": 57,
+  "yearWindows": 5
+}

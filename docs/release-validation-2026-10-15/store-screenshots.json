@@ -1,0 +1,50 @@
+{
+  "appVersion": "1.0",
+  "build": "4",
+  "configuration": "canonical Release, iPhone simulator",
+  "sdkRevision": "aaa646c95d472243507c3c1062d6eb77f25ada74",
+  "data": "293 synthetic transactions, local-only, no personal data",
+  "sourceNote": "No released application behavior changed after the 1.0(4) archive; the new transport diagnostic hook is DEBUG-only. Simulator images are UI materials, not proof of TestFlight/Production execution.",
+  "images": [
+    {
+      "file": "01-entry.png",
+      "width": 1206,
+      "height": 2622,
+      "colorType": "RGB, no alpha",
+      "sha256": "4f9299323a42ddb17f2907707f5fa4cb79c6f11a8f1f4a070953a3f0ff6bfc5e",
+      "source": "evidence/release-20261015/store-capture/attachments-v3/7F1C6E45-AFF0-4B47-8B08-9BDC5BA61C38.png"
+    },
+    {
+      "file": "02-statistics.png",
+      "width": 1206,
+      "height": 2622,
+      "colorType": "RGB, no alpha",
+      "sha256": "4142a6a3103d32697c5f9a812888d336be5fe8a6f3d0b38f28db6399b39c5747",
+      "source": "evidence/release-20261015/store-capture/attachments-chart-v2/D2E495C7-689D-4764-9344-D139E0B54F02.png"
+    },
+    {
+      "file": "03-budgets.png",
+      "width": 1206,
+      "height": 2622,
+      "colorType": "RGB, no alpha",
+      "sha256": "6fbfe81e60d11d27faecc0a4d16f0f7709aefd1132dd2af9926fcae8ee66dc00",
+      "source": "evidence/release-20261015/store-capture/attachments-v3/5C5DE5B5-C259-43F6-BBD9-43EA95F938DF.png"
+    },
+    {
+      "file": "04-ledger.png",
+      "width": 1206,
+      "height": 2622,
+      "colorType": "RGB, no alpha",
+      "sha256": "505f23aa60ce00b903f6899d50e3211b1b1a587c9828d051961080c58609dd41",
+      "source": "evidence/release-20261015/store-capture/attachments-v3/9E6C312C-4A88-43ED-BBDF-2161D25D1E40.png"
+    },
+    {
+      "file": "05-feed.png",
+      "width": 1206,
+      "height": 2622,
+      "colorType": "RGB, no alpha",
+      "sha256": "360c62a35095f8d70b68e274543302aac2f30c7c21d0fee332b712e33d71596f",
+      "source": "evidence/release-20261015/store-capture/attachments-v3/B2F3F603-DB3D-479A-BE40-DFB6A89358C3.png"
+    }
+  ]
+}

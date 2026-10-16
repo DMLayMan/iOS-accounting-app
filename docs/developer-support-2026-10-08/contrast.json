@@ -1,0 +1,107 @@
+[
+  {
+    "capture": "pro-invitation",
+    "sourceRegionPixels": [
+      245,
+      1890,
+      1000,
+      2000
+    ],
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "coreTextRGB": [
+      76,
+      76,
+      76
+    ],
+    "contrast": 8.59,
+    "passesBody4_5": true
+  },
+  {
+    "capture": "pro-storekit-coffee",
+    "sourceRegionPixels": [
+      350,
+      2190,
+      900,
+      2290
+    ],
+    "backgroundRGB": [
+      242,
+      242,
+      247
+    ],
+    "coreTextRGB": [
+      72,
+      72,
+      74
+    ],
+    "contrast": 8.18,
+    "passesBody4_5": true
+  },
+  {
+    "capture": "pro-storekit-pending",
+    "sourceRegionPixels": [
+      160,
+      1295,
+      1040,
+      1425
+    ],
+    "backgroundRGB": [
+      242,
+      242,
+      247
+    ],
+    "coreTextRGB": [
+      72,
+      72,
+      74
+    ],
+    "contrast": 8.18,
+    "passesBody4_5": true
+  },
+  {
+    "capture": "pro-uncertain",
+    "sourceRegionPixels": [
+      155,
+      1295,
+      1040,
+      1425
+    ],
+    "backgroundRGB": [
+      242,
+      242,
+      247
+    ],
+    "coreTextRGB": [
+      72,
+      72,
+      74
+    ],
+    "contrast": 8.18,
+    "passesBody4_5": true
+  },
+  {
+    "capture": "se-invitation",
+    "sourceRegionPixels": [
+      130,
+      900,
+      650,
+      990
+    ],
+    "backgroundRGB": [
+      255,
+      255,
+      255
+    ],
+    "coreTextRGB": [
+      76,
+      76,
+      76
+    ],
+    "contrast": 8.59,
+    "passesBody4_5": true
+  }
+]

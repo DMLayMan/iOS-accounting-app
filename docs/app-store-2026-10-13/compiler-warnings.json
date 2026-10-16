@@ -1,0 +1,22 @@
+{
+  "scope": "Current unsigned Release compile; non-fatal warnings preserved",
+  "warnings": [
+    "ios-app/Yuji/Views/CategoryLibraryView.swift:329:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/EntryView.swift:135:14: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/EntryView.swift:138:14: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/EntryView.swift:139:14: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/FeedView.swift:42:14: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/FeedView.swift:43:14: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/FeedView.swift:44:14: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/PeriodNavigation.swift:52:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/PeriodPicker.swift:67:14: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/StatsExplorationView.swift:147:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/StatsExplorationView.swift:148:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/StatsExplorationView.swift:149:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/StatsView.swift:39:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/StatsView.swift:40:10: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "ios-app/Yuji/Views/StatsView.swift:176:67: warning: 'plotAreaFrame' was deprecated in iOS 17.0: renamed to 'plotFrame' [#DeprecatedDeclaration]",
+    "ios-app/Yuji/YujiApp.swift:23:18: warning: 'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+    "2026-10-13 09:44:02.715 appintentsmetadataprocessor[24370:38451822] warning: Metadata extraction skipped, no AppIntents.framework dependency found"
+  ]
+}

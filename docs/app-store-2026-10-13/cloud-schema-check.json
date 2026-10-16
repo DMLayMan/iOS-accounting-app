@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-13",
+  "teamID": "7S626H9YL4",
+  "container": "iCloud.com.dmlayman.yuji",
+  "environment": "Development",
+  "recordType": "YujiLedger",
+  "fields": {
+    "name": "STRING",
+    "formatVersion": "INT64",
+    "payload": "ASSET"
+  },
+  "readback": "Console reloaded, all three custom fields persisted; official Export Schema text retained",
+  "schemaExport": "cloudkit-development.ckdb",
+  "sha256": "9bda6bb37f0d7a2e03ae2f7956cd8aee3e3743681d7c113042cfa1330a420018",
+  "proofScreenshot": "evidence/app-store-20261013/browser/cloud-development-schema.png",
+  "consoleDefaultRoles": {
+    "YujiLedger": [
+      "WRITE _creator",
+      "CREATE _icloud",
+      "READ _world"
+    ]
+  },
+  "scope": "Record type only. No records uploaded. App transport uses private/shared databases, not public. Console default roles preserved; actual private and shared permissions still need A/B acceptance.",
+  "productionSchemaDeployed": false,
+  "realCloudAccountAcceptance": false
+}

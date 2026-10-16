@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-13",
+  "appAppleID": "6822126066",
+  "appName": "余记账本",
+  "status": "Prepare for Submission",
+  "price": {
+    "currency": "CNY",
+    "amount": 0,
+    "baseTerritory": "China mainland",
+    "savedAndReloaded": true,
+    "proof": "evidence/app-store-20261013/browser/app-free-price.png"
+  },
+  "availability": {
+    "territories": [
+      "China mainland"
+    ],
+    "count": 1,
+    "ChinaMainlandStatus": "Available upon App release",
+    "autoAvailableInNewTerritories": false,
+    "savedAndReloaded": true,
+    "proof": "evidence/app-store-20261013/browser/app-china-availability.png"
+  },
+  "platforms": {
+    "iPhone": true,
+    "appleSiliconMac": false,
+    "visionPro": false,
+    "savedAndReloaded": true
+  },
+  "metadata": {
+    "subtitle": "随手记账，清晰预算与收支",
+    "primaryCategory": "Finance",
+    "secondaryCategory": null,
+    "savedAndReloaded": true,
+    "proof": "evidence/app-store-20261013/browser/app-info-readback.png"
+  },
+  "ICP": {
+    "field": null,
+    "userHasAppFiling": false,
+    "applicationSubmitted": false,
+    "guide": "china-filing.md"
+  },
+  "uploadedBuild": false,
+  "submittedForReview": false,
+  "published": false
+}

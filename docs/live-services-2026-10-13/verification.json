@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-13",
+  "build": "1.0 (2)",
+  "configuration": "Debug development-signed; explicit cloud override",
+  "cloudEnvironment": "Development",
+  "accountAliases": [
+    "A"
+  ],
+  "device": "iPhone 12 / iOS 26.6.1",
+  "uniqueNativeTestsPassed": 2,
+  "failed": 0,
+  "simulatedCloud": false,
+  "localStoreKitSession": false,
+  "privateUploadAndRelaunch": "passed",
+  "isolatedExpenseCents": 1234,
+  "cachedMatchesServerBase": true,
+  "serverVersionPresent": true,
+  "realProductsLoaded": true,
+  "loadedStorefrontPrices": [
+    "US$0.99",
+    "US$2.99",
+    "US$3.99"
+  ],
+  "chinaSandboxStorefrontVerified": false,
+  "sandboxAccountCreated": true,
+  "sandboxSystemPurchaseConfirmed": false,
+  "verifiedSandboxReceipt": false,
+  "dualAccountSharingTested": false,
+  "productionSchemaDeployed": false,
+  "personalLedgerUnchanged": true,
+  "personalLedgerSHA256": "a0f471584526976701cec79c6666e1290ebb8d9820e2a5dcfd69a87157fdee46",
+  "initialHarnessFailures": "First build applied cloud entitlements to test bundles; first probe used UI fixture which automatically presented entry. Both failures preserved and fixed; neither is a completed service transaction.",
+  "next": [
+    "Human Sandbox login, cancellation then verified purchase",
+    "Second iCloud identity/device, private invitation and two-account collaboration"
+  ],
+  "appStoreUploadPerformed": false,
+  "portable": {
+    "corePassed": 113,
+    "appStatePassed": 42,
+    "failed": 0
+  },
+  "bEndpoint": {
+    "model": "iPhone 17 Simulator",
+    "runtime": "iOS 26.5",
+    "cloudEnvironment": "Development",
+    "builtAndLaunched": true,
+    "signedIn": false,
+    "renderVerified": true,
+    "MacLockedDuringUIHandoff": true,
+    "loginScreenOpened20261014": true,
+    "currentlyBlockedByMacLock": false
+  },
+  "followUp20261014": {
+    "userReportedPurchase": true,
+    "verifiedSandboxReceiptReadBack": true,
+    "paymentUXFix": "../support-payment-2026-10-14/README.md",
+    "preparedDevelopmentBuild": "1.0 (3)",
+    "build3Installed": true,
+    "physicalDevice": "connected",
+    "bAccountLoginScreenOpened": true,
+    "bAccountSignedInConfirmed": false,
+    "receiptCount": 1,
+    "receiptProduct": "com.yuji.app.support.encourage",
+    "historicAmountAvailable": false,
+    "currentRealCatalogPrices": [
+      "¥6.00",
+      "¥18.00",
+      "¥30.00"
+    ],
+    "personalLedgerStillByteIdentical": true,
+    "componentPR": "https://github.com/DMLayMan/ios-base/pull/4",
+    "secondRealAccountIdentified": true,
+    "bRestartRequestedAndCompleted": true
+  }
+}

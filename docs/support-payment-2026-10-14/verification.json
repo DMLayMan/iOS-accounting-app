@@ -1,0 +1,310 @@
+{
+  "date": "2026-10-14",
+  "status": "human-real-sandbox-feedback-and-new-cny-receipt-verified-development-sharing-verified",
+  "componentCommit": "aaa646c95d472243507c3c1062d6eb77f25ada74",
+  "componentPushed": true,
+  "componentPRCreated": true,
+  "appDependency": "fixed remote revision, resolved and source-compared",
+  "modelTestsPassed": 13,
+  "allComponentModelTestsPassed": 32,
+  "componentNative": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0
+  },
+  "initialAppUI": {
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "finalAppAcceptance": {
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "invitationUnitTests": 6,
+    "paymentUITests": 3,
+    "overlapWithInitialUI": 3
+  },
+  "toastBelowNavigationAsserted": true,
+  "finalScreenshotsManuallyReviewed": true,
+  "appReleaseCompiled": true,
+  "appReleaseSigned": false,
+  "preparedDevelopmentBuild": "1.0 (3)",
+  "preparedCloudEnvironment": "Development",
+  "deviceBuildInstalled": true,
+  "userReportedPayment": true,
+  "verifiedSandboxReceiptReadBack": true,
+  "realChinaStorefrontPriceVerified": true,
+  "personalLedgerReadBackThisTurn": true,
+  "physicalDeviceAtFollowUp": "connected iPhone 12",
+  "bLoginScreenOpened": true,
+  "bRealAccountConfirmed": true,
+  "dualAccountSharingVerified": true,
+  "productionSchemaDeployed": false,
+  "appStoreSubmitted": false,
+  "checks": {
+    "initialMakeVerifyExit": 2,
+    "initialFailure": "npm audit upstream ETIMEDOUT",
+    "separateAuditRecheckExit": 0,
+    "auditVulnerabilities": 0,
+    "relayTests": 16,
+    "releasePolicyTests": 4,
+    "relayDryRun": true,
+    "consumerSmoke": true,
+    "componentReleaseCompiled": true
+  },
+  "componentPR": "https://github.com/DMLayMan/ios-base/pull/4",
+  "remotePinDeviceBuildPassed": true,
+  "verifiedSandboxReceiptCount": 2,
+  "verifiedSandboxProduct": "com.yuji.app.support.encourage",
+  "historicReceiptAmountAvailable": false,
+  "realChinaStorefrontPrices": [
+    "¥6.00",
+    "¥18.00",
+    "¥30.00"
+  ],
+  "physicalReadbackUI": {
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0
+  },
+  "personalLedgerUnchangedAfterInstallAndReadback": true,
+  "personalLedgerMatchesPreviousBackup": true,
+  "purchaseJournalUnchangedAfterUpgrade": true,
+  "newBuildPurchaseToAutoDismissVerifiedInRealSandbox": true,
+  "bSecondRealIdentityIdentifiedByUser": true,
+  "bLoginState": "existing Mac identity logged into isolated B; distinct real CloudKit identity verified; no host account or user switch",
+  "remoteCI": {
+    "run": "https://github.com/DMLayMan/ios-base/actions/runs/38510701148",
+    "passed": false,
+    "jobsStarted": false,
+    "blocker": "GitHub billing or spending limit; no code job logs"
+  },
+  "privateShareController": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "screenshotReviewed": true,
+    "messageSent": false,
+    "participantInvited": true,
+    "twoAccountsValidated": true,
+    "explicitInviteActionAsserted": true
+  },
+  "personalLedgerUnchangedAfterPrivateSharePreparation": true,
+  "bAuthDiagnostic": {
+    "rawMessagesSaved": false,
+    "rootCauseConfirmed": false,
+    "timeoutHints": 9,
+    "cancelledURLErrorCount": 2,
+    "b27DiagnosticsRead": true,
+    "appleAccount401Observed": true,
+    "authServer401Observed": true,
+    "hostTLSConnectivitySucceeded": true,
+    "authRequestSuccessConfirmed": false
+  },
+  "bComparison": {
+    "name": "Yuji-Cloud-B27-20261014",
+    "runtime": "iOS 27.0",
+    "buildSucceeded": true,
+    "build": "1.0 (3)",
+    "environment": "Development",
+    "entitlementsChecked": true,
+    "installed": true,
+    "loginConfirmed": true,
+    "oldEndpointRetained": true,
+    "bootCompleted": true,
+    "isolatedLaunchSucceeded": true,
+    "settingsOpenedByCLI": true,
+    "loginScreenPresented": true,
+    "userActionNeeded": null,
+    "keyboardInputEnabled": true,
+    "loginStallReported": true,
+    "postWebLoginCloudAccountReady": false
+  },
+  "bWebLogin": {
+    "humanConfirmed": true,
+    "homeHeadingReadBack": true,
+    "host": "www.icloud.com.cn",
+    "plan": "web-only iCloud",
+    "deviceActivationConfirmed": false,
+    "scope": "previous publisher-account candidate; not the newly authorized Mac iCloud identity"
+  },
+  "bMacActivation": {
+    "noSpareDeviceConfirmed": true,
+    "currentHostIdentityDifferent": true,
+    "webIdentityMatchesB": true,
+    "addUserFormPrepared": false,
+    "userType": "standard",
+    "fullName": "Yuji Cloud B",
+    "accountName": "yujicloudb",
+    "accountNameCollision": false,
+    "userCreated": false,
+    "passwordEnteredByAgent": false,
+    "iCloudDeviceLoginConfirmed": false,
+    "pending": "route canceled; no Mac user creation or switch; existing identity will be used only in simulator",
+    "addUserFormCanceled": true,
+    "userExistenceRechecked": true,
+    "currentUserSwitched": false,
+    "routeCanceledByUser": true,
+    "userExists": false
+  },
+  "userConstraints": {
+    "mustNotInterruptCurrentDesktopOrWork": true,
+    "noCurrentMacUserSwitch": true,
+    "noCurrentMacOrIPhoneICloudReplacement": true
+  },
+  "bIdentitySelection": {
+    "source": "current Mac iCloud account",
+    "differentFromIPhoneConfirmedByUser": true,
+    "useOnlyInIsolatedSimulatorAuthorized": true,
+    "systemIdentityReadFromUI": true,
+    "credentialsWrittenToDocs": false,
+    "distinctCloudKitIDVerified": true,
+    "publisherIdentityUnchanged": true
+  },
+  "dualAccountSharingScope": "Development named private invite, warm/cold actual system links, duplicate accept and recipient, B expense/A income, matching snapshots, real SDK readOnly/readWrite/revoke plus B UI guards, re-invite and restored edit; full matrix and Production remain unverified",
+  "dualAccountEvidence": "../icloud-delivery-2026-10-08/dual-account-acceptance-2026-10-14.md",
+  "sharingFinalState": {
+    "members": 2,
+    "acceptedNonOwners": 1,
+    "pendingNonOwners": 0,
+    "privatePermission": true,
+    "bWritable": true,
+    "records": 3,
+    "expenseCents": 2000,
+    "incomeCents": 10000,
+    "netCents": 8000,
+    "issue": null
+  },
+  "sharingTests": {
+    "portableLatest": 158,
+    "focusedNativePassed": 33,
+    "focusedNativeIncludesLocalPaymentUI": 3,
+    "latestPhysicalStatePassed": 23,
+    "latestPhysicalStateOverlapsFocused": true,
+    "finalColdAndWarmPassed": 2,
+    "productionReleaseCompiledUnsigned": true
+  },
+  "realSandboxFeedbackObservationPrepared": true,
+  "humanSandboxObservation": {
+    "prepared": true,
+    "displayedPrice": "¥6.00",
+    "testPassed": false,
+    "waitTimeoutSeconds": 300,
+    "newVerifiedReceiptCount": 0,
+    "receiptCountBefore": 1,
+    "receiptCountAfter": 1,
+    "humanOutcomePending": false,
+    "productFailureConfirmed": false,
+    "humanConfirmedResult": "测试没问题",
+    "laterNormalDirectoryReceiptVerified": true,
+    "laterReceiptAmount": 6,
+    "laterReceiptCurrency": "CNY",
+    "laterReceiptEnvironment": "Sandbox",
+    "automatedTestResultPreserved": "timed out; not changed to pass"
+  },
+  "personalLedgerUnchangedAfterFinalSharingAndPaymentObservation": true,
+  "isolatedLedgerUnchangedAfterPaymentObservation": true,
+  "verifiedSandboxReceiptCountScope": "unique receipts across isolated and normal app directories",
+  "newBuildPurchaseAcceptanceEvidence": "human confirmed price/dismissal/thanks in response to exact scenario, plus new verified Sandbox receipt ¥6 CNY",
+  "humanConfirmationPayment": {
+    "passed": true,
+    "humanConfirmedFeedback": true,
+    "newVerifiedReceiptCount": 1,
+    "amount": 6,
+    "currency": "CNY",
+    "product": "com.yuji.app.support.encourage",
+    "revoked": false,
+    "journalScope": "normal application directory",
+    "receiptOnlyRecordedFromStoreKitVerifiedTransaction": true
+  },
+  "personalLedgerAfterHumanConfirmation": {
+    "wholeFileBytesUnchanged": false,
+    "originalBusinessEntitiesUnchanged": true,
+    "originalActiveSelectionUnchanged": true,
+    "addedBooks": 1,
+    "addedRecords": 3,
+    "addedBookMatchesKnownDevelopmentFixture": true,
+    "testDataCleanupPendingApproval": false,
+    "testDataCleanupCompleted": true
+  },
+  "fixtureCleanupPreparation": {
+    "status": "offline-preview-passed-then-authorized-and-completed",
+    "cloudRequests": false,
+    "deviceWrites": false,
+    "fixtureRecords": 3,
+    "targets": [
+      {
+        "afterBooks": 1,
+        "afterRecords": 1,
+        "beforeBooks": 2,
+        "beforeRecords": 4,
+        "otherBusinessEntitiesUnchanged": true,
+        "target": "a-normal",
+        "validated": true
+      },
+      {
+        "afterBooks": 1,
+        "afterRecords": 0,
+        "beforeBooks": 2,
+        "beforeRecords": 3,
+        "otherBusinessEntitiesUnchanged": true,
+        "target": "b-isolated",
+        "validated": true
+      },
+      {
+        "afterBooks": 1,
+        "afterRecords": 0,
+        "beforeBooks": 2,
+        "beforeRecords": 3,
+        "otherBusinessEntitiesUnchanged": true,
+        "target": "b-normal",
+        "validated": true
+      }
+    ],
+    "documentation": "../icloud-delivery-2026-10-08/test-fixture-cleanup-2026-10-14.md"
+  },
+  "fixtureCleanup": {
+    "completed": true,
+    "humanAuthorized": true,
+    "environment": "Development",
+    "remoteDeletionAcknowledged": true,
+    "remoteTargetAbsenceVerified": true,
+    "otherCloudZonesUnchanged": true,
+    "aNormalAfterRelaunch": {
+      "books": 1,
+      "records": 1,
+      "fixtureAbsent": true,
+      "originalBusinessEntitiesUnchanged": {
+        "ledgers": true,
+        "accounts": true,
+        "categories": true,
+        "tags": true,
+        "transactions": true,
+        "drafts": true
+      },
+      "settingsAndSelectionUnchanged": true,
+      "otherCloudBindingPreserved": true
+    },
+    "bNormalAfterRelaunch": {
+      "books": 1,
+      "records": 0,
+      "fixtureAbsent": true
+    },
+    "bIsolated": {
+      "books": 1,
+      "records": 0,
+      "fixtureAbsent": true
+    },
+    "paymentJournalByteUnchanged": true,
+    "newSandbox6CNYReceiptRetained": true,
+    "actualCleanupCasesPassed": 3,
+    "firstLocalFingerprintGuardBlockedWithoutWrite": true,
+    "oldAFixtureArchiveRetained": true,
+    "productionTouched": false,
+    "appStoreSubmitted": false,
+    "documentation": "../icloud-delivery-2026-10-08/test-fixture-cleanup-2026-10-14.md",
+    "evidenceDirectory": "evidence/dual-account-20261014/cleanup-preparation/execution"
+  },
+  "historicalProtectionScope": "whole-file byte matches describe the earlier isolated/install batches; current normal startup/cleanup preserve original business and existing non-target bindings, not historical whole-file bytes"
+}

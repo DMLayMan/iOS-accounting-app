@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-08",
+  "source": "evidence/review-fix-20261008/core-clean/core.log",
+  "total": 121,
+  "warnings": false,
+  "suites": [
+    {
+      "suite": "YujiCoreTests.xctest",
+      "tests": 102,
+      "failures": 0
+    },
+    {
+      "suite": "YujiAppStateTests.xctest",
+      "tests": 19,
+      "failures": 0
+    }
+  ]
+}

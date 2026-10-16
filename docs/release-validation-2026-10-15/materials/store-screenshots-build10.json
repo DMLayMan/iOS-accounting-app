@@ -1,0 +1,41 @@
+{
+  "appVersion": "1.0 (10)",
+  "testResult": "2 passed, 0 failed, 0 skipped",
+  "images": [
+    {
+      "file": "docs/release-validation-2026-10-15/assets/build10-store/01-entry.png",
+      "sha256": "05d20ea64ca4921d322fd27e4f8fff7dff2baad56a9a8b75e61753971f26ddf7",
+      "source": "D154535F-616B-49E7-84D7-17A566C2CF40.png",
+      "size": "1206x2622",
+      "sourceKind": "Current Release native UI, synthetic local fixture, no image edits"
+    },
+    {
+      "file": "docs/release-validation-2026-10-15/assets/build10-store/02-statistics.png",
+      "sha256": "e5e0dcceb91eede1755183e759c9b72c595181c1b2b16f9328a0d64370c48860",
+      "source": "7373DF19-93E6-4917-89F8-7DDEE40E03BF.png",
+      "size": "1206x2622",
+      "sourceKind": "Current Release native UI, synthetic local fixture, no image edits"
+    },
+    {
+      "file": "docs/release-validation-2026-10-15/assets/build10-store/03-budgets.png",
+      "sha256": "ee47aeb66d3ea4f57dc03dfb359188c3a6f46f22e9311e6b5a3b223986c49d7c",
+      "source": "F2DDB077-AEF7-4D02-81BC-6A62B27931D9.png",
+      "size": "1206x2622",
+      "sourceKind": "Current Release native UI, synthetic local fixture, no image edits"
+    },
+    {
+      "file": "docs/release-validation-2026-10-15/assets/build10-store/04-ledger.png",
+      "sha256": "7ded06c91c24e839df27fdf9aa4ee93d35a1f0f4f6328985b4c2c97a67f7af32",
+      "source": "7D9869B9-00AA-459D-8D51-12F8567CCA3C.png",
+      "size": "1206x2622",
+      "sourceKind": "Current Release native UI, synthetic local fixture, no image edits"
+    },
+    {
+      "file": "docs/release-validation-2026-10-15/assets/build10-store/05-feed.png",
+      "sha256": "9155089e7e9c0b58c3acfaddb6913edceef31a6a7927f69503fa284dfeb79cae",
+      "source": "93BE9B76-BCE6-42CD-B724-4E34BF73F75B.png",
+      "size": "1206x2622",
+      "sourceKind": "Current Release native UI, synthetic local fixture, no image edits"
+    }
+  ]
+}

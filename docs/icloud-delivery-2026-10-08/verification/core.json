@@ -1,0 +1,16 @@
+{
+  "source": "evidence/icloud-20261008/core-verified.log",
+  "suites": [
+    {
+      "suite": "YujiCoreTests.xctest",
+      "tests": 113,
+      "failures": 0
+    },
+    {
+      "suite": "YujiAppStateTests.xctest",
+      "tests": 36,
+      "failures": 0
+    }
+  ],
+  "total": 149
+}

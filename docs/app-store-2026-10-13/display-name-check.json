@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-13",
+  "displayName": "余记账本",
+  "inAppBrand": "余记",
+  "bundleIDUnchanged": true,
+  "productInputsChecked": 125,
+  "changedInputs": [
+    "ios-app/Yuji/Info.plist",
+    "ios-app/project.yml"
+  ],
+  "nativeTextSectionUnchanged": true,
+  "signedBinaryRehashed": true,
+  "signatureVerification": "passed codesign --verify --deep --strict",
+  "cloudEnvironment": "Production",
+  "archivePassed": true,
+  "exportPassed": true,
+  "portablePassed": 155,
+  "portableFailed": 0,
+  "artifact": "evidence/app-store-20261013/cloud-production-named-export/Yuji.ipa",
+  "ipaSHA256": "b833ec91a898e332cd9354162ee6132bc8a03fff2fdade3fdc481fd1b61ac298",
+  "installed": false,
+  "uploaded": false
+}

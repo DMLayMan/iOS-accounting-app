@@ -1,0 +1,11 @@
+App opens into the Ledger tab. The central Record tab opens transaction entry. Local bookkeeping requires no account. Transfers are excluded from income and expense statistics; refunds link to the original expense. Backup/export is initiated by the user through the system share sheet.
+
+Voluntary support is the first row in the Me tab, titled “好用，请开发者喝杯☕吧”. Three consumable In-App Purchases offer voluntary support only. They do not unlock features, grant currency, or renew automatically. A one-time optional invitation may appear after 100 newly saved local records; dismissing it never restricts bookkeeping. Each support action is voluntary and may be repeated.
+
+The support chooser and purchase button display StoreKit's localized product price. No amount or currency is hard-coded or converted. Tapping the purchase button opens Apple's native purchase confirmation within the app. A successful verified tip dismisses the support sheet and shows thanks; cancellation returns to the chooser. Reopening starts a fresh selection and does not require resolving historical purchase state.
+
+iCloud is optional. From a ledger, open “同步与成员” to enable syncing. The owner can invite a specific Apple account privately and grant read-only or editing access. The invited participant uses their own iCloud account; no Yuji account or developer-provided login is required. “我的 → 我的昵称” changes the display name without changing historical record authors. Drafts and appearance preferences are not shared. Local bookkeeping works without iCloud.
+
+The Statistics tab supports filtering by record creator through “全部记账人”. Summaries, period comparisons, category charts, rankings and transaction details use the same filter. This identifies the creator, not necessarily the actual payer. Unknown historical creators are listed separately; changing a nickname or editing another member's record does not change authorship.
+
+Nickname editing stays open after saving to show local persistence and sync status, including delays for read-only shared ledgers. In Sync and Members, a conflict comparison shows the changed records and fields; choosing the cloud version first preserves the local version as a separate local ledger. Budget reminders never block recording.

@@ -81,8 +81,8 @@ struct CategoryBudgetRuleEditor: View {
                     editingAmount = false; apply(rule); dismiss()
                 }.disabled(!valid).accessibilityIdentifier("categoryBudget.apply")
             }
-            ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("收起键盘") { editingAmount = false } }
         }
+        .modifier(KeyboardCompletionBar(visible: editingAmount && !exitRequested, title: "收起键盘") { editingAmount = false })
         .modifier(FormExitGuard(isDirty: rule != initial, requested: $exitRequested))
     }
 }
@@ -133,15 +133,16 @@ struct CategoryBudgetSummary: View {
         if !rows.isEmpty {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(projected ? "保存后的分类预算" : "分类预算").font(.caption.weight(.semibold))
+                    if exceeded.isEmpty && !expanded {
+                        Text("\(rows.count) 项分类预算均未超出").font(.caption).foregroundStyle(.secondary).accessibilityIdentifier(prefix + ".within")
+                    } else {
+                        Text(projected ? "保存后的分类预算" : "分类预算").font(.caption.weight(.semibold))
+                    }
                     Spacer(minLength: 8)
                     if rows.count > min(2, exceeded.count) || expanded {
-                        Button(expanded ? "收起" : "全部 \(rows.count) 项") { expanded.toggle() }
+                        Button(expanded ? "收起" : exceeded.isEmpty ? "详情" : "全部 \(rows.count) 项") { expanded.toggle() }
                             .font(.caption).frame(minHeight: 44).accessibilityIdentifier(prefix + ".more")
                     }
-                }
-                if exceeded.isEmpty && !expanded {
-                    Text("\(rows.count) 项预算均未超出").font(.caption).foregroundStyle(.secondary).accessibilityIdentifier(prefix + ".within")
                 }
                 ForEach(visible) { row in
                     VStack(alignment: .leading, spacing: 3) {

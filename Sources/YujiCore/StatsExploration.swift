@@ -10,7 +10,7 @@ extension StatsEngine {
     public func categoryTransactions(range: ClosedRange<Day>, kind: TransactionKind,
                                      categoryID: EntityID? = nil) -> [Transaction] {
         guard kind == .expense || kind == .income else { return [] }
-        return store.activeTransactions(in: ledgerID).filter { t in
+        return active.filter { t in
             range.contains(t.date) && (t.kind == kind || (kind == .expense && t.kind == .refund)) &&
             (categoryID.map { store.matchesCategory(t, id: $0) } ?? true)
         }.sorted { a, b in

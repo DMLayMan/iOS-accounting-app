@@ -2,6 +2,23 @@ import SwiftUI
 import YujiCore
 
 enum CategorySymbol {
+    static func accessibilityName(for symbol: String) -> String {
+        if let icon = CategoryIcon.all.first(where: { $0.id == symbol }) { return icon.name }
+        switch symbol {
+        case "basket": return "菜篮"
+        case "flame": return "火锅"
+        case "person.2": return "聚餐"
+        case "moon": return "夜宵"
+        case "sofa": return "家居"
+        case "play.rectangle": return "影音"
+        case "suitcase": return "旅行"
+        case "tram": return "公共交通"
+        case "fuelpump": return "加油"
+        case "chart.line.uptrend.xyaxis": return "理财收益"
+        default: return "其他"
+        }
+    }
+
     static func name(for node: CategoryNode) -> String {
         if let symbol = node.symbolName, CategoryIcon.all.contains(where: { $0.id == symbol }) { return symbol }
         return name(for: node.name)

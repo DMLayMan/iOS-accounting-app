@@ -117,11 +117,34 @@ extension LedgerStore {
     public func categoryBudgets(in ledgerID: EntityID, period: BudgetPeriod? = nil, containing day: Day,
                                 through cutoff: Day, preview: BudgetEntryPreview? = nil,
                                 matching selectedCategoryID: EntityID? = nil) -> [CategoryBudgetSnapshot] {
-        categoryBudgetLimits(in: ledgerID, containing: day).filter { rule in
+        let rules = categoryBudgetLimits(in: ledgerID, containing: day).filter { rule in
             (period == nil || rule.period == period) && (selectedCategoryID == nil || rule.categoryID == selectedCategoryID || category(selectedCategoryID)?.parentID == rule.categoryID)
-        }.map { rule in
+        }
+        guard !rules.isEmpty else { return [] }
+        let ranges = Dictionary(uniqueKeysWithValues: Set(rules.map(\.period)).map { ($0, $0.range(containing: day)) })
+        var amounts: [BudgetPeriod: [EntityID: Int64]] = [:]
+        func accumulate(_ cents: Int64, date: Day, categoryID: EntityID?) {
+            guard date <= cutoff, let node = category(categoryID) else { return }
+            for (period, range) in ranges where range.contains(date) {
+                amounts[period, default: [:]][node.id, default: 0] += cents
+                if let parent = node.parentID { amounts[period, default: [:]][parent, default: 0] += cents }
+            }
+        }
+        // One traversal for all parent/leaf rules, instead of one history scan
+        // per rule. Keep their independent allowances and refund-date semantics.
+        for transaction in activeTransactions(in: ledgerID) where transaction.id != preview?.replacingID {
+            if transaction.kind == .expense || transaction.kind == .refund {
+                accumulate(transaction.kind == .refund ? -transaction.amountCents : transaction.amountCents,
+                           date: transaction.date, categoryID: effectiveCategory(for: transaction)?.id)
+            }
+        }
+        if let preview, preview.kind == .expense || preview.kind == .refund {
+            accumulate(preview.kind == .refund ? -preview.cents : preview.cents, date: preview.date, categoryID: preview.categoryID)
+        }
+        return rules.map { rule in
             CategoryBudgetSnapshot(period: rule.period, categoryID: rule.categoryID, title: categoryPath(rule.categoryID),
-                                   snapshot: budget(in: ledgerID, period: rule.period, containing: day, through: cutoff, preview: preview, categoryID: rule.categoryID))
+                snapshot: BudgetSnapshot(range: rule.period.range(containing: day), limit: rule.limit,
+                                         spent: amounts[rule.period]?[rule.categoryID] ?? 0))
         }.sorted {
             if $0.overrun != $1.overrun { return $0.overrun > $1.overrun }
             if $0.title != $1.title { return $0.title < $1.title }

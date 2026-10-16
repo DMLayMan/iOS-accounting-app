@@ -4,14 +4,18 @@
 # YujiCore 为本地 Swift Package（仓库根目录），其领域逻辑可在任意平台 `swift test`。
 name: Yuji
 options:
-  bundleIdPrefix: com.yuji
+  developmentLanguage: zh-Hans
+  bundleIdPrefix: com.dmlayman.yuji
   deploymentTarget:
-    iOS: "16.0"
+    iOS: "17.0"
   createIntermediateGroups: true
 
 packages:
   YujiCore:
     path: ..
+  IOSBase:
+    url: ssh://git@github.com/DMLayMan/ios-base.git
+    revision: 97f38bb1b9aa31cae0f469a58a37e1641aa8870f
 
 targets:
   Yuji:
@@ -21,35 +25,59 @@ targets:
       - path: Yuji
         excludes:
           - "Info.plist"
+          - "Cloud/Yuji.entitlements"
       - path: ../Fixtures/stats-500.json
+        buildPhase: resources
+      - path: ../docs/privacy/PrivacyPolicy.md
         buildPhase: resources
     resources:
       - path: Yuji/Assets.xcassets
     info:
       path: Yuji/Info.plist
       properties:
-        CFBundleDisplayName: 余记
+        CFBundleDisplayName: 余记账本
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        CFBundleLocalizations: [zh-Hans]
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         ITSAppUsesNonExemptEncryption: false
+        CKSharingSupported: true
+        YujiCloudKitEnabled: "$(YUJI_CLOUDKIT_ENABLED)"
+        YujiCloudKitContainer: "$(YUJI_ICLOUD_CONTAINER)"
+        YujiCloudKitEnvironment: "$(YUJI_CLOUDKIT_ENVIRONMENT)"
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.yuji.app
-        MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "1"
-        DEVELOPMENT_TEAM: ""
+        PRODUCT_BUNDLE_IDENTIFIER: com.dmlayman.yuji
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "16"
+        DEVELOPMENT_TEAM: "7S626H9YL4"
         CODE_SIGN_STYLE: Automatic
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
         TARGETED_DEVICE_FAMILY: "1"
         SWIFT_VERSION: "5.7"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_ENTITLEMENTS: "$(YUJI_CLOUD_ENTITLEMENTS)"
+        YUJI_CLOUD_ENTITLEMENTS: ""
+        YUJI_CLOUDKIT_ENABLED: NO
+        YUJI_ICLOUD_CONTAINER: iCloud.com.dmlayman.yuji
+        YUJI_CLOUDKIT_ENVIRONMENT: Development
+      configs:
+        Release:
+          EXCLUDED_SOURCE_FILE_NAMES: stats-500.json
+          YUJI_CLOUDKIT_ENABLED: YES
+          YUJI_CLOUD_ENTITLEMENTS: Yuji/Cloud/Yuji.entitlements
+          YUJI_CLOUDKIT_ENVIRONMENT: Production
     dependencies:
       - package: YujiCore
+      - package: IOSBase
+        product: DeveloperSupportKit
+      - package: IOSBase
+        product: EngagementPromptKit
 
   YujiTests:
     type: bundle.unit-test
@@ -58,7 +86,8 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: com.yuji.tests
+        PRODUCT_BUNDLE_IDENTIFIER: com.dmlayman.yuji.tests
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
     dependencies:
       - target: Yuji
       - package: YujiCore
@@ -66,12 +95,16 @@ targets:
   YujiUITests:
     type: bundle.ui-testing
     platform: iOS
-    sources: [YujiUITests]
+    sources:
+      - path: YujiUITests
+      - path: StoreKit/YujiSupport.storekit
+        buildPhase: resources
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: com.yuji.uitests
+        PRODUCT_BUNDLE_IDENTIFIER: com.dmlayman.yuji.uitests
         TEST_TARGET_NAME: Yuji
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
     dependencies:
       - target: Yuji
 

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "pro-normal",
+    "path": "docs/support-entry-2026-10-09/assets/pro-normal.png",
+    "test": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+    "batch": "pro",
+    "attachment": "support-01-manual-entry_0_5DC581F4-B762-4553-85B1-1B9A1013D72B.png",
+    "exportedFileName": "2C11B4AE-5E81-4021-AAC8-F9180FCC2761.png",
+    "timestamp": 1791513455.023,
+    "sha256": "ecf9da8d7f781e0a3999ca5332bc71e92cfced15acc9340b8880750f78f6d4f2",
+    "beforeScrolling": true
+  },
+  {
+    "name": "pro-dark",
+    "path": "docs/support-entry-2026-10-09/assets/pro-dark.png",
+    "test": "DeveloperSupportUITests/testDarkThemeCarriesIntoSupportSheet()",
+    "batch": "pro",
+    "attachment": "support-01-manual-entry_0_A26FF180-0249-427A-A7DE-3F90A92D0487.png",
+    "exportedFileName": "411F5D7E-F5DF-4786-9642-16C4D99F4109.png",
+    "timestamp": 1791513478.721,
+    "sha256": "3736dbddebe0b6b90319b26f096e71efa22e17c012b7e5dd1389c091847114e6",
+    "beforeScrolling": true
+  },
+  {
+    "name": "pro-largest",
+    "path": "docs/support-entry-2026-10-09/assets/pro-largest.png",
+    "test": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+    "batch": "pro",
+    "attachment": "support-01-manual-entry_0_42537126-24EE-4B7C-B3AB-634B558A2A08.png",
+    "exportedFileName": "0AB65FFA-7770-459F-84B0-0FA005A04956.png",
+    "timestamp": 1791513493.502,
+    "sha256": "ea4fbb509fcdffa3c2b0770b4a5037eab71f7da6a8923f2fea9bc5f2f92e3892",
+    "beforeScrolling": true
+  },
+  {
+    "name": "se-normal",
+    "path": "docs/support-entry-2026-10-09/assets/se-normal.png",
+    "test": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+    "batch": "se",
+    "attachment": "support-01-manual-entry_0_9F349047-50CC-405A-B28F-FB96DD5AA3AC.png",
+    "exportedFileName": "03F55B38-3F44-4078-ADD6-973A58F2CFF4.png",
+    "timestamp": 1791513384.229,
+    "sha256": "cc1aa9e6c9e8fb371cf94b7cf66216d20840cf173ba5338082ca4f84750f6025",
+    "beforeScrolling": true
+  },
+  {
+    "name": "se-dark",
+    "path": "docs/support-entry-2026-10-09/assets/se-dark.png",
+    "test": "DeveloperSupportUITests/testDarkThemeCarriesIntoSupportSheet()",
+    "batch": "se",
+    "attachment": "support-01-manual-entry_0_E456B2F2-0EE8-4CB1-A53A-0567CA556371.png",
+    "exportedFileName": "2E4ABC10-0EF2-45AD-81E2-100578283D86.png",
+    "timestamp": 1791513407.03,
+    "sha256": "b7e94f48033dd409e86dc3462222f61d682815ee6ea125e147564fefd6feb46d",
+    "beforeScrolling": true
+  },
+  {
+    "name": "se-largest",
+    "path": "docs/support-entry-2026-10-09/assets/se-largest.png",
+    "test": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+    "batch": "se",
+    "attachment": "support-01-manual-entry_0_0DE45E13-7DB0-4F29-ACC0-0ECF5F945237.png",
+    "exportedFileName": "7B51A143-B5B4-4380-95F3-BA51D9A64844.png",
+    "timestamp": 1791513420.716,
+    "sha256": "8855863d23c5ff32638b1a022176ea6810b22dbed221b16addba5f2400f5a7f7",
+    "beforeScrolling": true
+  }
+]

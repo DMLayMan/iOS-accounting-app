@@ -1,0 +1,234 @@
+{
+  "date": "2026-10-13",
+  "preparationOnly": true,
+  "account": {
+    "specifiedAccountOnly": true,
+    "verifiedLogin": true,
+    "teamID": "7S626H9YL4",
+    "teamName": "wang kai",
+    "role": "Admin",
+    "developmentProvisioning": "physical device registered; development signed build installed",
+    "developerPortalVerified": true,
+    "membership": "Apple Developer Program, Individual; current portal verified",
+    "renewalDate": "2027-10-13"
+  },
+  "release": {
+    "archive": "passed unsigned",
+    "artifactCheck": "artifact-check.json",
+    "compilerWarnings": 17,
+    "signedArchive": "passed com.dmlayman.yuji",
+    "localDistributionExport": "passed; not uploaded",
+    "distributionCheck": "distribution-check.json",
+    "versionAlignment": "source, ASC draft and new candidate aligned to 1.0 (1); physical phone retains local 0.1.0 Release",
+    "productionCandidate": "1.0 (1), installed/store name 余记账本, in-app brand 余记; signed archive and local export passed with explicit CloudKit overrides; not installed or uploaded",
+    "productionCandidateCheck": "production-candidate-check.json",
+    "previousExportAfterCloudLink": "0.1.0 reexport passed but reused cached pre-capability-change profile; historical only",
+    "displayNameCheck": "display-name-check.json"
+  },
+  "portable": {
+    "passed": 155,
+    "core": 113,
+    "appState": 42,
+    "failed": 0
+  },
+  "native": {
+    "status": "Passed",
+    "passed": 55,
+    "failed": 0,
+    "skipped": 0,
+    "runtimeWarnings": [],
+    "unitCases": 43,
+    "uiCases": 12,
+    "device": {
+      "architecture": "arm64",
+      "deviceId": "C456E5DC-1377-43E9-871E-394439D7DAF0",
+      "deviceName": "iPhone 18 Pro",
+      "modelName": "iPhone 18 Pro",
+      "osBuildNumber": "24A434",
+      "osVersion": "27.0",
+      "platform": "iOS Simulator"
+    },
+    "summary": "evidence/app-store-20261013/native/summary.json",
+    "bundle": "evidence/app-store-20261013/native/results.xcresult",
+    "scope": "All current YujiTests plus 9 ReleaseReadiness and 3 support placement/invitation cases; Debug isolated simulator, no real IAP/cloud; before display-name metadata change, not rerun"
+  },
+  "external": {
+    "appStoreConnect": "authenticated via exact team Developer link; app draft and three consumable IAP drafts created",
+    "appRecord": {
+      "status": "Created; Prepare for Submission",
+      "name": "余记账本",
+      "appleID": "6822126066",
+      "bundleID": "com.dmlayman.yuji",
+      "sku": "yuji-ios",
+      "primaryLocale": "zh-Hans",
+      "platform": "iOS",
+      "draftVersion": "1.0",
+      "url": "https://appstoreconnect.apple.com/apps/6822126066/distribution/ios/version/inflight"
+    },
+    "bundleIDRegistration": "explicit com.dmlayman.yuji verified in Portal; App Store profile matches",
+    "cloudKitProduction": "Production signed entitlements/profile verified; schema not deployed and real A/B service tests pending",
+    "IAPProducts": "Three configured consumables actually loaded from StoreKit on physical device; US prices before China sandbox sign-in, actual system purchase, CNY storefront and IAP review screenshots remain pending",
+    "publicPolicy": "Candidate static HTML and Caddy deployment draft prepared; not deployed or integrated into App",
+    "testFlight": "not uploaded",
+    "appReview": "not submitted",
+    "appStore": "not published",
+    "paidAppsAgreement": "Active; read back after user completed tax forms, 2026-10-12 through 2027-10-12",
+    "freeAppsAgreement": "Active, 2026-10-12 through 2027-10-12",
+    "cloudContainer": "registered and bound to App ID, persisted selection verified",
+    "cloudSigning": "Development signed build and Production distribution IPA profile/entitlements verified; neither cloud artifact installed or used",
+    "draftMetadata": "description and notes match local, keywords exact, no app login required, manual release; persisted after reload",
+    "IAPDraftCheck": "iap-draft-check.json",
+    "bankInformation": "Available; status column read without retaining bank identifiers",
+    "taxInformation": {
+      "status": "In Use",
+      "forms": [
+        "U.S. Certificate of Foreign Status of Beneficial Owner",
+        "U.S. Form W-8BEN"
+      ],
+      "submittedDate": "2026-10-13",
+      "submission": "completed by user; live readback by agent"
+    },
+    "chinaDecree810": "Business compliance row Active; does not prove app ICP filing or selected distribution eligibility",
+    "cloudKitDevelopment": "YujiLedger schema saved previously; first isolated A-account private upload/change/relaunch verified on iPhone 12, server base/version read back. No real B invitation or Production schema deployment yet.",
+    "releaseChoices": {
+      "appPrice": "Free",
+      "supportPricesCNY": [
+        6,
+        18,
+        30
+      ],
+      "territories": [
+        "China mainland"
+      ],
+      "source": "explicit user response in current session"
+    },
+    "appFiling": {
+      "status": "Submitted by user; live Alibaba Cloud preliminary review in progress, not approved",
+      "proposedProvince": "Beijing",
+      "provider": "Alibaba Cloud",
+      "resources": "Beijing paid ECS created/running and accepted by same-account eligible-resource page; domain real-name successful. Website deployment and filing scope remain pending.",
+      "technicalMaterials": "Updated from signed named 1.0 (1) candidate; public certificate and public keys only; local evidence/app-store-20261013/icp/",
+      "applicationSubmitted": true,
+      "guide": "china-filing.md",
+      "consultation": {
+        "destination": "Alibaba Cloud official online support",
+        "authorization": "Explicit user approval to send architecture, resource eligibility and name matching consultation",
+        "sentAt": "2026-10-13T11:49:20+08:00",
+        "humanServiceConnectedAt": "2026-10-13T11:54:04+08:00",
+        "humanFollowupSentAt": "2026-10-13T11:54:54+08:00",
+        "status": "Human final correction confirmed installed-icon naming; user approved installed/store name 余记账本. Real privacy/support domain access on qualifying mainland resource can be submitted; actual filing not submitted.",
+        "humanInitialReplyAt": "2026-10-13T11:56:56+08:00",
+        "humanClarificationSentAt": "2026-10-13T11:57:53+08:00",
+        "humanSecondReplyAt": "2026-10-13T11:59:51+08:00",
+        "documentDiscrepancyFollowupSentAt": "2026-10-13T12:00:58+08:00",
+        "unresolvedDocumentDifferences": [
+          "Duration wording differs between general table and support/product guide; all compared concrete candidates use 12 months."
+        ],
+        "humanReplyIsFilingApproval": false,
+        "aiResponseIsEligibilityProof": false,
+        "resourcePurchased": false,
+        "identityDocumentsUploaded": false,
+        "humanFinalReplyAt": "2026-10-13T12:04:49+08:00",
+        "promotionEligibilityReplyAt": "2026-10-13T12:20:07+08:00",
+        "promotionEligibility": "Human says filing depends on meeting resource conditions, not price; quoted 79-CNY paid SWAS instance not yet purchased and service code unverified"
+      },
+      "hostingCandidate": {
+        "product": "Alibaba Cloud Web Hosting, exclusive basic enhanced",
+        "region": "Beijing",
+        "OS": "Linux",
+        "months": 12,
+        "configurationQuoteCNY": 500,
+        "quoteIsPaidOrder": false,
+        "renewalPriceVerified": false,
+        "purpose": "Real privacy/support static pages only, no ledger API or ledger data hosting",
+        "purchaseAuthorized": false,
+        "purchased": false,
+        "userDecision": "Do not select 500-CNY hosting yet; compare cheaper options"
+      },
+      "pending": [
+        "Alibaba Cloud preliminary review, any requested personal verification/materials, MIIT SMS verification and administration approval",
+        "Actual privacy/support domain deployment, website filing scope, HTTPS and in-app access",
+        "MIIT App filing number readback and App Store Connect registration"
+      ],
+      "nameDecision": {
+        "storeName": "余记账本",
+        "installedDisplayName": "余记账本",
+        "inAppBrand": "余记",
+        "explicitUserApproval": true,
+        "signedCandidateVerified": true
+      },
+      "cheaperCandidates": [
+        {
+          "product": "SWAS",
+          "region": "Beijing",
+          "months": 12,
+          "configuration": "2 vCPU, 2 GiB, 40 GiB, 200 Mbps peak, public IPv4",
+          "quoteCNY": 79,
+          "quoteEvidence": "Current signed-in configuration page",
+          "firstPurchaseNewUserOnly": true,
+          "renewal": "Standard product pricing; new-purchase promotion does not carry into renewal, exact amount unverified",
+          "autoRenew": false,
+          "purchased": false
+        },
+        {
+          "product": "ECS economic e 99 program",
+          "configuration": "2 vCPU, 2 GiB, 3 Mbps fixed, 40 GiB ESSD Entry",
+          "advertisedCNYPerYear": 99,
+          "source": "https://www.aliyun.com/activity/ecs/99program",
+          "ruleEnd": "2029-03-31T23:59:59+08:00",
+          "rule": "Same activity configuration, at most one discounted renewal per service year, initiated before activity deadline; one eligible instance per person at a time",
+          "eligibleRegionsIncludeBeijing": true,
+          "currentAccountFinalQuoteVerified": true,
+          "purchased": true,
+          "currentAccountQuoteCNY": 99,
+          "region": "Beijing",
+          "OS": "Ubuntu 24.04",
+          "months": 12,
+          "automaticRenewal": false,
+          "paidAddonsSelected": false,
+          "purchaseEvidence": "Payment success and actual instance read back after user payment"
+        },
+        {
+          "product": "Shared web hosting economic enhanced",
+          "documentReferenceCNYPerYear": 298,
+          "currentAccountFinalQuoteVerified": false,
+          "purchased": false
+        }
+      ],
+      "selectedResourceDirection": "User purchased Beijing ECS after CNY 99 quote; payment success and instance verified, actual paid amount not independently read back",
+      "ECSHostingCheck": "ecs-hosting-check.json",
+      "reviewCheck": "filing-review-check.json",
+      "afterSubmissionPlan": "after-submission.md"
+    },
+    "sandboxAccount": {
+      "creationFormOpened": true,
+      "country": "China mainland",
+      "credentialEntry": "User handoff; no password retained",
+      "created": "Verified in current ASC tester table: one China mainland account; identifying email local only",
+      "realPurchaseTested": false
+    },
+    "storeDistributionCheck": "store-distribution-check.json",
+    "liveServices": "Two real physical-device preflight tests passed: Development private upload/change/relaunch and actual three-product fetch; system Sandbox purchase and two-account sharing pending"
+  },
+  "git": {
+    "branch": "codex/app-store-audit-20261003",
+    "workingTreeDirty": true,
+    "matchingPRs": 0,
+    "branchCIRuns": 0
+  },
+  "sourceFingerprints": "source-fingerprints.json",
+  "device": "device-check.json",
+  "signingSourceFingerprints": "signing-source-fingerprints.json",
+  "signingAttempts": [
+    {
+      "oldBundleID": "com.yuji.app",
+      "outcome": "not available in specified team"
+    },
+    {
+      "newBundleID": "com.dmlayman.yuji",
+      "outcome": "Development build and App Store distribution export passed"
+    }
+  ],
+  "productionSourceFingerprints": "named-production-source-fingerprints.json",
+  "liveServicesCheck": "../live-services-2026-10-13/verification.json"
+}

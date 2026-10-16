@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-13",
+  "bundleID": "com.dmlayman.yuji",
+  "version": "0.1.0",
+  "build": "1",
+  "minimumOS": "17.0",
+  "deviceFamily": [
+    1
+  ],
+  "teamID": "7S626H9YL4",
+  "signingType": "App Store Connect distribution",
+  "explicitApplicationIdentifier": "7S626H9YL4.com.dmlayman.yuji",
+  "signatureVerification": "passed codesign --verify --deep --strict on exported payload",
+  "getTaskAllow": false,
+  "deviceRestricted": false,
+  "allDevices": false,
+  "cloudEnabled": "NO",
+  "cloudContainer": "iCloud.com.dmlayman.yuji",
+  "cloudEnvironment": "Production",
+  "signedCloudEntitlements": {},
+  "privacyTracking": false,
+  "collectedDataTypes": [],
+  "privacyPolicyMatchesCanonical": true,
+  "debugResourceMatches": [],
+  "simulatedClientsAbsent": true,
+  "appIconPresent": true,
+  "ipaSHA256": "e679852775f5a752bcaea603486934f3ccf75c6ca3dd77c9a4c49f62675ea163",
+  "binarySHA256": "12f58a3be5f985753fff2f6d6253dcbd43bce1660d2912234f4504c8097e44d3",
+  "localArtifact": "evidence/app-store-20261013/export-new-id/Yuji.ipa",
+  "destination": "local export, no upload",
+  "appleServerValidation": "not executed",
+  "productionReadiness": "blocked on real cloud/IAP and store configuration"
+}

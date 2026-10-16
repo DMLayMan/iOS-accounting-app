@@ -1,0 +1,265 @@
+{
+  "scope": "isolated simulated cloud, native original pixels; not real CloudKit evidence",
+  "screenshots": [
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testEnableCancelPauseAndRelaunchPreservesCloudBinding()",
+      "stem": "cloud-01-owner-synced",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/76632298-A2BD-4BA4-96BF-940BDFCD2C7E.png",
+      "sha256": "d706fce20d337bcebb375a72fa683b4e44416135e305a43498d3f7871b55d9f4",
+      "capturedAt": "2026-10-08T07:43:03.330Z",
+      "file": "pro-cloud-01-owner-synced-d706fce2.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testEnableCancelPauseAndRelaunchPreservesCloudBinding()",
+      "stem": "cloud-01-owner-synced",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/303912DB-083E-4CDE-94E0-FBBC130A18C6.png",
+      "sha256": "09b75357b8fa6c1291cf9ca50add5f9ea125e1d15672893b71e0b7a31593ccee",
+      "capturedAt": "2026-10-08T07:44:52.876Z",
+      "file": "se-cloud-01-owner-synced-09b75357.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testEnableCancelPauseAndRelaunchPreservesCloudBinding()",
+      "stem": "cloud-02-paused-relaunch",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/60277E66-313E-403D-8366-8F3C6330C43F.png",
+      "sha256": "ee704e3c75c636a69e3dc439711dab642db5e8db99c6e5666dfe385974031f1f",
+      "capturedAt": "2026-10-08T07:43:15.925Z",
+      "file": "pro-cloud-02-paused-relaunch-ee704e3c.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testEnableCancelPauseAndRelaunchPreservesCloudBinding()",
+      "stem": "cloud-02-paused-relaunch",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/B5D6DD1D-5AAB-4376-87F5-9DC8562305D3.png",
+      "sha256": "75171c54a1baf5a373616f728c5a0a9804e44b80c010d386fe6cfe6599a9316f",
+      "capturedAt": "2026-10-08T07:45:04.854Z",
+      "file": "se-cloud-02-paused-relaunch-75171c54.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testReadOnlyEntryBlockedAndPermissionVisible()",
+      "stem": "cloud-03-readonly",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/FFDD4629-4C89-494C-9A2D-B09DBA8617B8.png",
+      "sha256": "51251cab70e5b7a47aaba5e5681adffda60b59449507fb37c0fc5d49260de23c",
+      "capturedAt": "2026-10-08T07:44:13.937Z",
+      "file": "pro-cloud-03-readonly-51251cab.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testReadOnlyEntryBlockedAndPermissionVisible()",
+      "stem": "cloud-03-readonly",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/55DB2329-3E17-4923-8CC1-5C48260CC56C.png",
+      "sha256": "fe55a03738b25b4e2bce5733b0de05aa6e44889ff1d6e947b3517d0ab555066b",
+      "capturedAt": "2026-10-08T07:46:01.462Z",
+      "file": "se-cloud-03-readonly-fe55a037.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+      "stem": "cloud-04-conflict-comparison",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/B90F79FC-533A-4EA6-B486-A37803637D39.png",
+      "sha256": "779dcdd3ce77e71eb9dac42ec02050afe975f5bd0d758ad5e0fb90b23f9fd76e",
+      "capturedAt": "2026-10-08T07:42:21.897Z",
+      "file": "pro-cloud-04-conflict-comparison-779dcdd3.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+      "stem": "cloud-04-conflict-comparison",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/C8742240-814E-440C-A5AB-E7E98BDBFDE1.png",
+      "sha256": "2bef44afa79ce74913fa6e1abbc52919885f14ae3c049e096cb165d6b32dae71",
+      "capturedAt": "2026-10-08T07:44:06.422Z",
+      "file": "se-cloud-04-conflict-comparison-2bef44af.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+      "stem": "cloud-05-conflict-resolved",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/0B8D3A90-D46D-4D4E-8A50-E19F0B0A500A.png",
+      "sha256": "2dca3ab9e7019a0c033f713e2426ac8d580617183c3bf4032f806a7bfba227d8",
+      "capturedAt": "2026-10-08T07:42:29.816Z",
+      "file": "pro-cloud-05-conflict-resolved-2dca3ab9.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+      "stem": "cloud-05-conflict-resolved",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/64FB7FCA-3471-4E4B-8D91-49D2BC336813.png",
+      "sha256": "80044fa028eee507c0f4a617ddaa145d7df63db995a848262e63c726192f69da",
+      "capturedAt": "2026-10-08T07:44:14.503Z",
+      "file": "se-cloud-05-conflict-resolved-80044fa0.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testOfflineAndRevokedExplainRecoveryWithoutFalseSyncedState()",
+      "stem": "cloud-06-offline",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/4AE7459A-121A-4C83-836F-07300117B5FF.png",
+      "sha256": "4b324c42cc409ce743a613f0924944b774c4446f8df58456db578ee36e6669ed",
+      "capturedAt": "2026-10-08T07:43:46.801Z",
+      "file": "pro-cloud-06-offline-4b324c42.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testOfflineAndRevokedExplainRecoveryWithoutFalseSyncedState()",
+      "stem": "cloud-06-offline",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/68C17467-5909-4D9D-9C02-A5CF6ED569BC.png",
+      "sha256": "ea3fa579546a2f9be313297dafbad9d7d7c040fb4f9e515dd7fe244c9673e3a2",
+      "capturedAt": "2026-10-08T07:45:36.080Z",
+      "file": "se-cloud-06-offline-ea3fa579.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testOfflineAndRevokedExplainRecoveryWithoutFalseSyncedState()",
+      "stem": "cloud-07-revoked",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/6FAB8C72-190D-4196-99F9-6170BC602E75.png",
+      "sha256": "79a918820d066292352c05dce538ecc3dc5c1f2c251c4373266756236447c1f6",
+      "capturedAt": "2026-10-08T07:43:58.179Z",
+      "file": "pro-cloud-07-revoked-79a91882.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testOfflineAndRevokedExplainRecoveryWithoutFalseSyncedState()",
+      "stem": "cloud-07-revoked",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/5DCBF805-E9E5-48E1-8B5A-85A82C9111CC.png",
+      "sha256": "5485ad3f7d5d04b565d572288921293d5aaa15b926aa5c4bfdd31f845a27be69",
+      "capturedAt": "2026-10-08T07:45:46.516Z",
+      "file": "se-cloud-07-revoked-5485ad3f.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testSignedOutAndLargestTypeControlsRemainReachable()",
+      "stem": "cloud-08-signed-out-accessibility",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/BE69DD4E-42C1-442F-AF46-E207ACB54DC7.png",
+      "sha256": "f29d30891de869157f11aed79fca014fa6f3e894e5afe81a6bf42d919fd0af3a",
+      "capturedAt": "2026-10-08T07:44:43.855Z",
+      "file": "pro-cloud-08-signed-out-accessibility-f29d3089.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testSignedOutAndLargestTypeControlsRemainReachable()",
+      "stem": "cloud-08-signed-out-accessibility",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/293CD469-8C52-458A-AE55-EC6989A9FFB1.png",
+      "sha256": "3356a41f3dcb0fc9d59e08caf6d85b9fccc1e73a356961d09d28d65fbf61638c",
+      "capturedAt": "2026-10-08T07:46:33.785Z",
+      "file": "se-cloud-08-signed-out-accessibility-3356a41f.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testDarkAppearanceAndLargePermissionScreen()",
+      "stem": "cloud-09-dark-large",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/1BB2107E-3CDB-4A53-A389-7BF11C6D3C62.png",
+      "sha256": "8b3666e029193e53e52ca3e28010e4c8267f2543ec19b53f561beaf20f4fb829",
+      "capturedAt": "2026-10-08T07:42:48.240Z",
+      "file": "pro-cloud-09-dark-large-8b3666e0.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testDarkAppearanceAndLargePermissionScreen()",
+      "stem": "cloud-09-dark-large",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/278C5797-C780-4500-B299-0A77936C9366.png",
+      "sha256": "edf82abf86ff10bf50a06723346be9f42e4fad664bf2e6d93aabfe5cc4b06db2",
+      "capturedAt": "2026-10-08T07:44:35.355Z",
+      "file": "se-cloud-09-dark-large-edf82abf.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testDarkAppearanceAndLargePermissionScreen()",
+      "stem": "cloud-10-dark-members",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/E40E12DA-56D2-4A3A-9D96-043078B3F393.png",
+      "sha256": "40f4fc90360a0363ef3c0ee9972196b799707914815eba846d3e855c865dfb7a",
+      "capturedAt": "2026-10-08T07:42:49.071Z",
+      "file": "pro-cloud-10-dark-members-40f4fc90.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testDarkAppearanceAndLargePermissionScreen()",
+      "stem": "cloud-10-dark-members",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/84E4C356-C506-4223-B980-E2826FC8A86E.png",
+      "sha256": "b7460447280ec1effecce915f895ca9825f935dfaead32f8e19db0dd0e6802e9",
+      "capturedAt": "2026-10-08T07:44:39.173Z",
+      "file": "se-cloud-10-dark-members-b7460447.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+      "stem": "cloud-11-preserved-local-copy",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/820DAB18-F5DF-4E64-8B2F-CA0E5604360B.png",
+      "sha256": "2cedd20feeeb45a70abc65fe5aed0b22db968815f58ab9d65a60bc5ee9a33e90",
+      "capturedAt": "2026-10-08T07:42:34.653Z",
+      "file": "pro-cloud-11-preserved-local-copy-2cedd20f.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+      "stem": "cloud-11-preserved-local-copy",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/DDF33741-7172-43FE-88ED-8144A8FF95DE.png",
+      "sha256": "e2784affc52efc04d170f19a8ca82d46248217958c88df3cb273a631656be3db",
+      "capturedAt": "2026-10-08T07:44:19.197Z",
+      "file": "se-cloud-11-preserved-local-copy-e2784aff.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testLeaveCancelThenPreservesLocalCopyAndReturnsToBook()",
+      "stem": "cloud-12-local-copy-after-leave",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/DB47F84E-82C7-420C-A04B-0D5B6F80A834.png",
+      "sha256": "e957b0f34032163ad67f13bfc4e808353fa8d942d0034ad7bc3142ee11ffe604",
+      "capturedAt": "2026-10-08T07:43:35.324Z",
+      "file": "pro-cloud-12-local-copy-after-leave-e957b0f3.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testLeaveCancelThenPreservesLocalCopyAndReturnsToBook()",
+      "stem": "cloud-12-local-copy-after-leave",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/ECF9E6C2-C224-4AB2-8327-A3B60D387594.png",
+      "sha256": "4dfb6d3c0fc905bdef49e554b30c634e40f0f46c05214d79aa317b44718c6a7e",
+      "capturedAt": "2026-10-08T07:45:25.143Z",
+      "file": "se-cloud-12-local-copy-after-leave-4dfb6d3c.png"
+    },
+    {
+      "run": "cloud-pro-verified",
+      "device": "iPhone 18 Pro · iOS 27.0",
+      "test": "CloudSharingUITests/testSameSourceCancelThenExplicitCloudCopyPreservesOriginal()",
+      "stem": "cloud-13-independent-cloud-copy",
+      "source": "evidence/icloud-20261008/cloud-pro-verified/attachments-final/0EC73AF3-A57B-413C-9BDE-7AFDAE73F635.png",
+      "sha256": "f747d102adb9e28a6065cad27b677e2293a675f1c41d9987698a176f287a0f47",
+      "capturedAt": "2026-10-08T07:44:33.623Z",
+      "file": "pro-cloud-13-independent-cloud-copy-f747d102.png"
+    },
+    {
+      "run": "cloud-se-verified",
+      "device": "iPhone SE (3rd generation) · iOS 26.5",
+      "test": "CloudSharingUITests/testSameSourceCancelThenExplicitCloudCopyPreservesOriginal()",
+      "stem": "cloud-13-independent-cloud-copy",
+      "source": "evidence/icloud-20261008/cloud-se-verified/attachments-final/278FDBBB-2AA6-43F3-A15A-49512B181BB0.png",
+      "sha256": "1ed391e8d1334c83506c68e56825c2bbf278bdb0ce64545845d3d916de49e8ea",
+      "capturedAt": "2026-10-08T07:46:20.402Z",
+      "file": "se-cloud-13-independent-cloud-copy-1ed391e8.png"
+    }
+  ]
+}

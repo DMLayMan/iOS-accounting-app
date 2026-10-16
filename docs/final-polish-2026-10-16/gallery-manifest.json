@@ -1,0 +1,121 @@
+[
+  {
+    "id": "stats-before",
+    "title": "统计 · 调整前",
+    "file": "assets/stats-before.png",
+    "source": "evidence/ios17-voiceover-20261016/interaction-final-attachments/886A2125-2697-499D-8DFC-E84590ACB768.png",
+    "caption": "此前同源基线：人员独占一行，零退款公式重复占屏。"
+  },
+  {
+    "id": "stats-after",
+    "title": "统计 · 调整后",
+    "file": "assets/stats-after.png",
+    "source": "evidence/final-polish-20261016/after-pro-shots/24800E7B-D0ED-489B-874F-E06EE5909ADE.png",
+    "caption": "默认人员菜单并入摘要，图表标题上移 38pt。此度量仅对应当前机型、字号与数据。"
+  },
+  {
+    "id": "me-before",
+    "title": "我的 · 调整前",
+    "file": "assets/me-before.png",
+    "source": "evidence/final-polish-20261016/before/shots/F14F8489-694D-47F2-8044-D91E0385233B.png",
+    "caption": "单项分组较多，偏好被挤到页面下方。"
+  },
+  {
+    "id": "me-after",
+    "title": "我的 · 调整后",
+    "file": "assets/me-after.png",
+    "source": "evidence/final-polish-20261016/final-pro-shots/BCE16A23-5ABE-4546-8C36-603669CF0139.png",
+    "caption": "账本管理、偏好、数据与同步归组；支持开发者仍居首。"
+  },
+  {
+    "id": "feed-before",
+    "title": "流水 · 调整前",
+    "file": "assets/feed-before.png",
+    "source": "evidence/final-polish-20261016/before/shots/C72F5BDB-A920-4C1E-BA40-E68805CC8A5C.png",
+    "caption": "账户与备注挤在同一行，长备注难以扫读。"
+  },
+  {
+    "id": "feed-after",
+    "title": "流水 · 调整后",
+    "file": "assets/feed-after.png",
+    "source": "evidence/final-polish-20261016/final-pro-shots/0A6E49E2-5DB3-449A-95DF-33D3EC0A65C0.png",
+    "caption": "备注独立展示，金额与标题对齐。两图滚动位置不同，用于比较行结构。"
+  },
+  {
+    "id": "large-before",
+    "title": "最大字号 · 调整前",
+    "file": "assets/large-before.png",
+    "source": "evidence/final-polish-20261016/before/shots/66D5F123-8D8E-47F1-B116-37C55F25E4EC.png",
+    "caption": "图标挤占长名称；章节标题与操作横排拥挤。"
+  },
+  {
+    "id": "large-after",
+    "title": "最大字号 · 调整后",
+    "file": "assets/large-after.png",
+    "source": "evidence/final-polish-20261016/final-pro-shots/872089F3-4362-466F-9883-E25C431C5D0C.png",
+    "caption": "标题、操作分行；允许滚动阅读，不压小辅助功能字体。"
+  },
+  {
+    "id": "entry-expense",
+    "title": "记账 · 支出",
+    "file": "assets/entry-expense.png",
+    "source": "evidence/final-polish-20261016/after-pro-shots/B71E4E8F-CC96-4D14-B900-E13656C3CD47.png",
+    "caption": "保留两级分类与数字键盘，选中类型补充短线，统一金额字形。"
+  },
+  {
+    "id": "entry-income",
+    "title": "记账 · 收入",
+    "file": "assets/entry-income.png",
+    "source": "evidence/final-polish-20261016/after-pro-shots/5FC093C4-EEBB-4F16-84E5-6B6536154321.png",
+    "caption": "支出、收入继续使用不同语义色，不能只靠颜色识别选中状态。"
+  },
+  {
+    "id": "note-detail",
+    "title": "详情 · 长备注",
+    "file": "assets/note-detail.png",
+    "source": "evidence/final-polish-20261016/final-pro-shots/4472D5C2-3533-45FB-91F1-BA0623DCDC67.png",
+    "caption": "备注全宽左对齐；返回仍保留原流水期间。"
+  },
+  {
+    "id": "people",
+    "title": "统计 · 按人筛选",
+    "file": "assets/people.png",
+    "source": "evidence/final-polish-20261016/after-pro-shots/97EB7ECE-AC3D-4B52-923B-FB7B96AF516C.png",
+    "caption": "选中人员后保留完整名称、清除入口与统计口径，同页联动。这里使用模拟成员资料。"
+  },
+  {
+    "id": "category-dark",
+    "title": "分类 · 深色表单",
+    "file": "assets/category-dark.png",
+    "source": "evidence/final-polish-20261016/after-pro-shots/2338A465-FFB9-45C0-8018-553FC9EB8D9E.png",
+    "caption": "保留已确认的新增分类弹层、图标与文案输入动线。"
+  },
+  {
+    "id": "budget-dark",
+    "title": "预算 · 深色",
+    "file": "assets/budget-dark.png",
+    "source": "evidence/final-polish-20261016/final-pro-shots/44155405-8104-4870-8B5A-B705751D5234.png",
+    "caption": "预算表单回归，查看控件层次与取消入口。"
+  },
+  {
+    "id": "support",
+    "title": "支持页 · 模拟商品",
+    "file": "assets/support.png",
+    "source": "evidence/final-polish-20261016/final-pro-shots/848BD25B-4DBA-4668-A187-E16746E2B3F7.png",
+    "caption": "本图为本地预览商品，检查布局和可访问性；不代表真实支付价格问题解决。"
+  },
+  {
+    "id": "small-profile",
+    "title": "iPhone SE · 常用入口",
+    "file": "assets/small-profile.png",
+    "source": "evidence/final-polish-20261016/final-se-fixed-shots/B5967616-DDF0-42F9-B661-225A6E7BB16F.png",
+    "caption": "默认字号下外观入口完整位于底栏上方；修复了初次验收中 8.5pt 被遮挡的问题。"
+  },
+  {
+    "id": "ios17",
+    "title": "iOS 17.5 · 深色统计",
+    "file": "assets/ios17.png",
+    "source": "evidence/final-polish-20261016/ios17-dark-settled.png",
+    "caption": "iPhone 15 Pro 模拟器实际运行截图；保留相同期间组件。"
+  }
+]

@@ -8,6 +8,63 @@ import YujiCore
 
 @MainActor
 final class AppStateTests: XCTestCase {
+    func testCrossYearBackdateRequiresExplicitStartAdjustmentAndKeepsDraftOnFailure() throws {
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+        for opening: Int64 in [0, 10_000] {
+            let repository = Repository()
+            let today = Day(year: 2026, month: 10, day: 15)
+            let past = Day(year: 2025, month: 12, day: 31)
+            let state = AppState(repository: repository, clockDay: today)
+            let ledger = try XCTUnwrap(state.activeLedger)
+            let account = try XCTUnwrap(state.store.accounts(in: ledger.id).first)
+            let category = try XCTUnwrap(state.store.categories(in: ledger.id, kind: .expense).first(where: \.isLeaf))
+            XCTAssertTrue(state.perform { try state.store.updateAccountOpening(account.id, openingCents: opening, startDay: today) })
+            let draft = Draft(ledgerID: ledger.id, expression: "42", date: past, accountID: account.id, categoryID: category.id, note: "跨年补记")
+            XCTAssertTrue(state.saveDraft(draft))
+            XCTAssertFalse(state.addExpense(expression: "42", date: past, accountID: account.id, categoryID: category.id, tagIDs: [], note: draft.note, ledgerID: ledger.id, kind: .expense, amountCents: 4_200))
+            XCTAssertTrue(state.alertError?.contains("2026年10月15日") == true)
+            XCTAssertEqual(state.store.draft(for: ledger.id), draft)
+            let before = try encoder.encode(state.store.data)
+            repository.fails = true
+            XCTAssertFalse(state.perform { try state.store.updateAccountOpening(account.id, openingCents: opening, startDay: past) })
+            XCTAssertEqual(try encoder.encode(state.store.data), before)
+            repository.fails = false
+            XCTAssertTrue(state.perform { try state.store.updateAccountOpening(account.id, openingCents: opening, startDay: past) })
+            XCTAssertEqual(state.store.draft(for: ledger.id), draft)
+            XCTAssertEqual(state.currentBalance(accountID: account.id), opening)
+            XCTAssertTrue(state.addExpense(expression: "42", date: past, accountID: account.id, categoryID: category.id, tagIDs: [], note: draft.note, ledgerID: ledger.id, kind: .expense, amountCents: 4_200))
+            let reloaded = AppState(repository: repository, clockDay: today)
+            XCTAssertEqual(reloaded.store.account(account.id)?.startDay, past)
+            XCTAssertEqual(reloaded.store.account(account.id)?.openingBalanceCents, opening)
+            XCTAssertEqual(reloaded.currentBalance(accountID: account.id), opening - 4_200)
+            XCTAssertNil(reloaded.store.draft(for: ledger.id))
+            XCTAssertEqual(reloaded.store.data.transactions.count, 1)
+        }
+    }
+
+    func testAccountStartCannotMovePastSavedHistory() throws {
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
+        let today = Day(year: 2026, month: 10, day: 15)
+        let state = AppState(repository: Repository(), clockDay: today)
+        let ledger = try XCTUnwrap(state.activeLedger)
+        let account = try XCTUnwrap(state.store.accounts(in: ledger.id).first)
+        let category = try XCTUnwrap(state.store.categories(in: ledger.id, kind: .expense).first(where: \.isLeaf))
+        XCTAssertTrue(state.addExpense(expression: "10", date: today, accountID: account.id, categoryID: category.id, tagIDs: [], note: "已有记录", ledgerID: ledger.id, kind: .expense, amountCents: 1_000))
+        let before = try encoder.encode(state.store.data)
+        XCTAssertFalse(state.perform { try state.store.updateAccountOpening(account.id, openingCents: 0, startDay: today.nextDay) })
+        XCTAssertEqual(try encoder.encode(state.store.data), before)
+    }
+
+    func testCurrentBalanceUsesRefreshedBusinessDayAndFutureOpening() throws {
+        let today = Day(year: 2026, month: 10, day: 8)
+        let tomorrow = Day(year: 2026, month: 10, day: 9)
+        let state = AppState(repository: Repository(), clockDay: today, dayProvider: { tomorrow })
+        let ledger = try XCTUnwrap(state.activeLedger)
+        let account = try state.store.createAccount(ledgerID: ledger.id, name: "未来", openingBalanceCents: 10_000, startDay: tomorrow)
+        XCTAssertEqual(state.currentBalance(accountID: account.id), 0)
+        state.refreshToday()
+        XCTAssertEqual(state.currentBalance(accountID: account.id), 10_000)
+    }
     func testSharedPeriodSurvivesWritesAndOnlyResetsAfterSuccessfulLedgerSwitch() throws {
         let repository = Repository()
         let state = AppState(repository: repository)
@@ -173,6 +230,35 @@ final class AppStateTests: XCTestCase {
 
 @MainActor
 final class DiskPersistenceTests: XCTestCase {
+    func testRecoveryPointRemovalOnlyDeletesTheSelectedManagedCopy() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let repository = JSONFileRepository(url: directory.appendingPathComponent("ledger.json"))
+        let state = AppState(repository: repository)
+        let backup = try XCTUnwrap(state.exportBackup())
+        XCTAssertTrue(state.restoreBackup(backup)); XCTAssertTrue(state.restoreBackup(backup))
+        XCTAssertEqual(state.recoveryPoints.count, 2)
+        let old = try XCTUnwrap(state.recoveryPoints.first { $0.url != state.recoveryBackupURL })
+        let mainBytes = try Data(contentsOf: repository.url)
+        let latest = try XCTUnwrap(state.recoveryBackupURL)
+        XCTAssertTrue(state.removeRecoveryPoint(old))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: old.url.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: latest.path))
+        XCTAssertEqual(try Data(contentsOf: repository.url), mainBytes)
+        let fake = AppState.RecoveryPoint(url: repository.url, createdAt: Date(), bytes: 0, unreadable: false)
+        XCTAssertFalse(state.removeRecoveryPoint(fake))
+        let link = try XCTUnwrap(state.recoveryDirectory).appendingPathComponent(UUID().uuidString + ".json")
+        try FileManager.default.createSymbolicLink(at: link, withDestinationURL: repository.url)
+        XCTAssertEqual(state.recoveryPoints.count, 1, "A symlink cannot turn the current ledger into a managed recovery point")
+        let linked = AppState.RecoveryPoint(url: link, createdAt: Date(), bytes: 0, unreadable: false)
+        XCTAssertFalse(state.removeRecoveryPoint(linked))
+        XCTAssertEqual(try Data(contentsOf: repository.url), mainBytes)
+        let final = try XCTUnwrap(state.recoveryPoints.first)
+        XCTAssertTrue(state.removeRecoveryPoint(final))
+        XCTAssertTrue(state.recoveryPoints.isEmpty)
+        XCTAssertNil(AppState(repository: repository).recoveryBackupURL)
+    }
     func testBackupPreviewIsReadOnlyAndRestoreKeepsARecoverableSnapshot() throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)

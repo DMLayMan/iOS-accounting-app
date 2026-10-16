@@ -1,0 +1,16 @@
+[
+  {
+    "file": "shared-book.png",
+    "source": "evidence/dual-account-20261014/b-read-a-relaunch-attachments/948144B9-4678-405A-8AAD-9CD0D4B58C13.png",
+    "sha256": "7b7fe66db749b2e17aca2ce0d3f0ae7411e3eb6354e7d5d6b6c7ea0e13e610fe",
+    "manuallyReviewed": true,
+    "containsCredentialsOrInviteURL": false
+  },
+  {
+    "file": "accept-invitation.png",
+    "source": "evidence/dual-account-20261014/b-external-cold-attachments/21B85D43-AB61-416F-B303-A816ADAEFECB.png",
+    "sha256": "9209ef7cef3bb6cb1ff513529e51f687b31bbd9ea46db50e52dba11331444176",
+    "manuallyReviewed": true,
+    "containsCredentialsOrInviteURL": false
+  }
+]

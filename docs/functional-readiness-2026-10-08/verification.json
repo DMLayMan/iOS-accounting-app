@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-08",
+  "scope": "portable tests rerun; prior native cases checked for source applicability, not rerun",
+  "portable": {
+    "log": "evidence/functional-readiness-20261008/portable-tests.log",
+    "suites": [
+      {
+        "suite": "YujiCoreTests",
+        "tests": 113,
+        "failures": 0
+      },
+      {
+        "suite": "YujiAppStateTests",
+        "tests": 36,
+        "failures": 0
+      }
+    ],
+    "total": 149
+  },
+  "priorSourceComparison": {
+    "checked": 92,
+    "mismatches": [
+      {
+        "path": "ios-app/Yuji/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+        "expected": "2de6a73dc87b00408631147c4b811fc90a39a3a89102caf45351de5082273e67",
+        "actual": "887d3fc7cdf7cb1fbea375b39b428577d59a710d4e9dfb108ebacbe6dc3f27bf"
+      }
+    ]
+  },
+  "priorNativeCoverage": [
+    {
+      "family": "pro",
+      "expected": 103,
+      "passed": 103,
+      "missing": [],
+      "failed": []
+    },
+    {
+      "family": "se",
+      "expected": 103,
+      "passed": 103,
+      "missing": [],
+      "failed": []
+    }
+  ]
+}

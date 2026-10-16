@@ -3,6 +3,7 @@ import YujiCore
 
 func statsMoney(_ cents: Int64) -> String { "¥\(Money(cents).yuanDescription)" }
 func statsDayText(_ day: Day) -> String { String(format: "%04d.%02d.%02d", day.year, day.month, day.day) }
+func spokenDayText(_ day: Day) -> String { "\(day.year)年\(day.month)月\(day.day)日" }
 func statsRangeText(_ range: ClosedRange<Day>) -> String { "\(statsDayText(range.lowerBound))–\(statsDayText(range.upperBound))" }
 func statsComparisonReason(_ status: StatsEngine.Comparison.Status) -> String {
     switch status {
@@ -18,14 +19,12 @@ struct StatsRangeLabel: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     let range: ClosedRange<Day>
     var body: some View {
-        Group {
-            if typeSize.isAccessibilitySize {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(statsDayText(range.lowerBound))
-                    Text("至 " + statsDayText(range.upperBound))
-                }
-            } else { Text(statsRangeText(range)) }
-        }.font(.caption).foregroundStyle(.secondary).lineLimit(1).minimumScaleFactor(0.6)
+        Text(typeSize.isAccessibilitySize
+             ? "\(statsDayText(range.lowerBound))\n至 \(statsDayText(range.upperBound))"
+             : statsRangeText(range))
+            .font(.caption).foregroundStyle(Design.secondary)
+            .lineLimit(typeSize.isAccessibilitySize ? 2 : 1).minimumScaleFactor(0.6)
+            .accessibilityLabel("时间范围，\(spokenDayText(range.lowerBound))至\(spokenDayText(range.upperBound))")
     }
 }
 

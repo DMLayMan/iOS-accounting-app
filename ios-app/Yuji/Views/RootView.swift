@@ -4,6 +4,7 @@ import YujiCore
 
 struct RootView: View {
     @EnvironmentObject var state: AppState
+    @EnvironmentObject private var support: DeveloperSupportCoordinator
     @Environment(\.colorScheme) private var scheme
     @State private var tab: Tab = .ledger
     @State private var showEntry = false
@@ -13,7 +14,12 @@ struct RootView: View {
     private var selection: Binding<Tab> {
         Binding(get: { tab }, set: { next in
             if next == .entry {
-                if state.activeLedger?.archived == false { showEntry = true }
+                Task { @MainActor in
+                    if let book = state.activeLedger, !book.archived {
+                        if state.canEditLedger(book.id) { showEntry = true }
+                        else { state.alertError = "此账本当前仅可查看，请在同步与成员中检查权限或处理冲突。" }
+                    }
+                }
             } else { tab = next }
         })
     }
@@ -34,7 +40,12 @@ struct RootView: View {
                     }
                 }.navigationTitle("余记")
             }
-        } else { mainTabs }
+        } else {
+            mainTabs
+                .yujiSheet(item: $support.presentation, onDismiss: support.didDismiss) {
+                    YujiDeveloperSupportSheet(presentation: $0)
+                }
+        }
     }
 
     private var mainTabs: some View {
@@ -50,7 +61,10 @@ struct RootView: View {
             MeView().tabItem { Label("我的", systemImage: "person.crop.circle") }.tag(Tab.me)
         }
         .tint(Design.primary(scheme))
-        .environment(\.openLedgerEntry, { showEntry = true })
+        .environment(\.openLedgerEntry, {
+            if let book = state.activeLedger, state.canEditLedger(book.id) { showEntry = true }
+            else { state.alertError = "此账本当前仅可查看，请检查同步状态和成员权限。" }
+        })
         .onAppear {
             #if DEBUG
             if ProcessInfo.processInfo.environment["YUJI_UI_TEST_SESSION"] != nil { showEntry = true }
@@ -61,7 +75,7 @@ struct RootView: View {
             }
             #endif
         }
-        .sheet(isPresented: $showEntry) {
+        .yujiSheet(isPresented: $showEntry) {
             EntryContainerView()
         }
     }

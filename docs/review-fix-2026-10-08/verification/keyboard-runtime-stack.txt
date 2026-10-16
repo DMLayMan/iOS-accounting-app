@@ -1,0 +1,53 @@
+2026-10-08; isolated native debugger probe; iOS 26.5.
+Source: evidence/review-fix-20261008/runtime-callback-stack.log
+Runtime sizing issue stack; debugger timing is not a product test result.
+   * frame #0: 0x0000000107e74220 libsystem_trace.dylib`os_log_fault_default_callback
+     frame #1: 0x000000033002d9e0 XCTAutomationSupport`runtime_issue_os_log_fault_callback + 72
+     frame #2: 0x0000000107e7a420 libsystem_trace.dylib`_os_log_invoke_callback + 208
+     frame #3: 0x0000000107e79700 libsystem_trace.dylib`_os_log_impl_flatten_and_send + 9320
+     frame #4: 0x000000010411cf1c libswiftos.dylib`_swift_os_log + 228
+     frame #5: 0x000000010411d774 libswiftos.dylib`os_log(_:dso:log:_:_:) + 736
+     frame #6: 0x00000001486f4b58 SwiftUICore`specialized _FrameLayout.init(width:height:alignment:) + 400
+     frame #7: 0x00000001486f24c4 SwiftUICore`_FrameLayout.init(width:height:alignment:) + 28
+     frame #8: 0x000000011235ef6c SwiftUI`SwiftUI.InputAccessoryBar.body.getter : some + 172
+     frame #9: 0x000000014832f054 SwiftUICore`closure #1 in ViewBodyAccessor.updateBody(of:changed:) + 864
+     frame #10: 0x000000014832ecc4 SwiftUICore`ViewBodyAccessor.updateBody(of:changed:) + 180
+     frame #11: 0x000000014832f16c SwiftUICore`protocol witness for BodyAccessor.updateBody(of:changed:) in conformance ViewBodyAccessor<τ_0_0> + 12
+     frame #12: 0x0000000148454f14 SwiftUICore`closure #1 in StaticBody.updateValue() + 276
+     frame #13: 0x0000000148454b08 SwiftUICore`StaticBody.updateValue() + 592
+     frame #14: 0x00000001481d62d4 SwiftUICore`partial apply for implicit closure #1 in closure #1 in closure #1 in Attribute.init(_:) + 28
+     frame #15: 0x000000012a8e76c0 AttributeGraph`AG::Graph::UpdateStack::update() + 488
+     frame #16: 0x000000012a8e7da8 AttributeGraph`AG::Graph::update_attribute(AG::data::ptr<AG::Node>, unsigned int) + 352
+     frame #17: 0x000000012a8ef438 AttributeGraph`AG::Graph::input_value_ref_slow(AG::data::ptr<AG::Node>, AG::AttributeID, unsigned int, unsigned int, AGSwiftMetadata const*, unsigned char&, long) + 676
+     frame #18: 0x000000012a906aa4 AttributeGraph`AGGraphGetValue + 236
+     frame #19: 0x0000000148775400 SwiftUICore`specialized UnaryLayoutComputer.updateValue() + 80
+     frame #20: 0x000000014879af54 SwiftUICore`specialized implicit closure #1 in closure #1 in closure #1 in Attribute.init(_:) + 20
+     frame #21: 0x000000012a8e76c0 AttributeGraph`AG::Graph::UpdateStack::update() + 488
+     frame #22: 0x000000012a8e7da8 AttributeGraph`AG::Graph::update_attribute(AG::data::ptr<AG::Node>, unsigned int) + 352
+     frame #23: 0x000000012a8eeb48 AttributeGraph`AG::Graph::value_ref(AG::AttributeID, unsigned int, AGSwiftMetadata const*, unsigned char&) + 260
+     frame #24: 0x000000012a906de4 AttributeGraph`AGGraphGetWeakValue + 368
+     frame #25: 0x0000000148b13ea8 SwiftUICore`ViewGraph.sizeThatFits(_:) + 108
+     frame #26: 0x0000000148b11780 SwiftUICore`partial apply for closure #1 in ViewGraphRootValueUpdater._sizeThatFits(_:) + 68
+     frame #27: 0x0000000148b0e79c SwiftUICore`ViewGraphRootValueUpdater._updateViewGraph(body:) + 200
+     frame #28: 0x0000000148b0cd30 SwiftUICore`ViewGraphRootValueUpdater._sizeThatFits(_:) + 84
+     frame #29: 0x000000014c6f753c UIKitCore`___lldb_unnamed_symbol_153440 + 252
+     frame #30: 0x00000001125e3d84 SwiftUI`_UIHostingView._layoutSizeThatFits(_:fixedAxes:) + 52
+     frame #31: 0x00000001125e3ddc SwiftUI`@objc _UIHostingView._layoutSizeThatFits(_:fixedAxes:) + 52
+     frame #32: 0x000000014dcc4b34 UIKitCore`-[UIView(UIConstraintBasedLayout) intrinsicContentSize] + 68
+     frame #33: 0x000000011235ebb8 SwiftUI`@objc SwiftUI.InputAccessoryGenerator.RootUIView.intrinsicContentSize.getter : __C.CGSize + 28
+     frame #34: 0x000000014caefa78 UIKitCore`-[UIInputViewSet onscreenSizeOfViewsInSetIncludingIAV:] + 512
+     frame #35: 0x000000014d512504 UIKitCore`-[UIInputViewSetPlacement remoteIntrinsicContentSizeForInputViewInSet:includingIAV:] + 100
+     frame #36: 0x000000014d0f62fc UIKitCore`-[UIKeyboardSceneDelegate prepareToMoveKeyboardForInputViewSet:animationStyle:] + 484
+     frame #37: 0x000000014d0f4de4 UIKitCore`-[UIKeyboardSceneDelegate setKeyWindowSceneInputViews:animationStyle:] + 1496
+     frame #38: 0x000000014d0f47e0 UIKitCore`-[UIKeyboardSceneDelegate setInputViews:animationStyle:] + 188
+     frame #39: 0x000000033046cdb4 UIKit`-[UIKeyboardSceneDelegateAccessibility setInputViews:animationStyle:] + 120
+     frame #40: 0x000000014d0f5900 UIKitCore`-[UIKeyboardSceneDelegate setInputViews:animated:] + 76
+     frame #41: 0x000000014d0f5954 UIKitCore`-[UIKeyboardSceneDelegate setInputViews:] + 56
+     frame #42: 0x000000014d0f298c UIKitCore`__102-[UIKeyboardSceneDelegate _reloadInputViewsForKeyWindowSceneResponder:force:fromBecomeFirstResponder:]_block_invoke.568 + 32
+     frame #43: 0x000000014d5a4848 UIKitCore`__65-[UIPeripheralHost(UIKitInternal) queueDelayedTask:forKey:delay:]_block_invoke + 164
+     frame #44: 0x00000001070efe98 libdispatch.dylib`_dispatch_client_callout + 12
+     frame #45: 0x00000001070da068 libdispatch.dylib`_dispatch_continuation_pop + 776
+     frame #46: 0x00000001070ecf44 libdispatch.dylib`_dispatch_source_invoke + 1800
+     frame #47: 0x00000001070e4b24 libdispatch.dylib`_dispatch_main_queue_drain + 644
+     frame #48: 0x00000001070e4890 libdispatch.dylib`_dispatch_main_queue_callback_4CF + 40
+     frame #49: 0x00000001064bba94 CoreFoundation`__CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 12

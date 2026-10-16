@@ -1,0 +1,132 @@
+[
+  {
+    "name": "pro-storekit-coffee",
+    "path": "docs/developer-support-2026-10-08/assets/pro-storekit-coffee.png",
+    "batch": "pro-contrast",
+    "test": "DeveloperSupportUITests/testLocalStoreKitVerifiedPurchaseAndRelaunchDoNotCreateLedgerRecords()",
+    "attachment": "support-02-storekit-coffee-selected_0_1A10661B-2261-4142-B042-5781C6E91276.png",
+    "exportedFileName": "97F9B3C8-5730-4730-A695-4FC7F42F65E5.png",
+    "timestamp": 1791465681.91,
+    "sha256": "794fd238a877363d265ea0a0d1bba36d8136c15e97abd7633239f76b9b1f9d02"
+  },
+  {
+    "name": "pro-storekit-thanks",
+    "path": "docs/developer-support-2026-10-08/assets/pro-storekit-thanks.png",
+    "batch": "pro-contrast",
+    "test": "DeveloperSupportUITests/testLocalStoreKitVerifiedPurchaseAndRelaunchDoNotCreateLedgerRecords()",
+    "attachment": "support-03-storekit-verified-thanks_0_4427FFD6-0673-4ED8-8CD9-ED66F0FC9586.png",
+    "exportedFileName": "E0412F41-F624-43E2-9C47-ECAD716E230A.png",
+    "timestamp": 1791465684.283,
+    "sha256": "14836f4ffae48e9bb547e63407e001e90a5cf17d0e87ca5a9d98b9e91c78f01e"
+  },
+  {
+    "name": "pro-storekit-pending",
+    "path": "docs/developer-support-2026-10-08/assets/pro-storekit-pending.png",
+    "batch": "pro-contrast",
+    "test": "DeveloperSupportUITests/testLocalStoreKitPendingApprovalUpdatesAndColdRestartDoesNotReplayThanks()",
+    "attachment": "support-04-storekit-pending_0_4280B9E0-EB04-4714-BD87-F667CB63F1FF.png",
+    "exportedFileName": "AAAD295C-23DE-43F5-8C4B-A62CA374782C.png",
+    "timestamp": 1791465646.024,
+    "sha256": "a5df0f266d8a19d27e0e0c407fd9c39d3df8735f070cd514780b5bc9717713cb"
+  },
+  {
+    "name": "pro-uncertain",
+    "path": "docs/developer-support-2026-10-08/assets/pro-uncertain.png",
+    "batch": "pro-contrast",
+    "test": "DeveloperSupportUITests/testUncertainPurchaseCannotBeRepeatedAfterRelaunch()",
+    "attachment": "support-08-uncertain-no-repay_0_C5EB3171-0F90-4806-B7E6-6393DF2D5F3A.png",
+    "exportedFileName": "9FBD1CE6-86B0-4260-9C08-514C6B51A141.png",
+    "timestamp": 1791465850.255,
+    "sha256": "b82d1acd62bfdf6a9a5f5b8756cec2fdac1c3be95577e85597bfdb17e244a3b3"
+  },
+  {
+    "name": "pro-invitation",
+    "path": "docs/developer-support-2026-10-08/assets/pro-invitation.png",
+    "batch": "pro-contrast",
+    "test": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+    "attachment": "support-06-100-record-invitation_0_2EDBFFD3-E9DE-4416-B048-4A51DC5091D6.png",
+    "exportedFileName": "EDF26F29-983E-48C5-A950-E9D1E4BF1FBE.png",
+    "timestamp": 1791465529.9,
+    "sha256": "5064e11cb879b1456792ce39418eeed2acc603990bab69e67301efb69d920f87"
+  },
+  {
+    "name": "pro-invitation-largest",
+    "path": "docs/developer-support-2026-10-08/assets/pro-invitation-largest.png",
+    "batch": "pro-contrast",
+    "test": "DeveloperSupportUITests/testMaximumDynamicTypeInvitationStaysDismissible()",
+    "attachment": "support-13-maximum-type-invitation_0_56400014-6E58-47EF-A363-2E069DFDFD8A.png",
+    "exportedFileName": "17C82A81-221B-44F1-97F1-6E4A47A6FBC3.png",
+    "timestamp": 1791465766.267,
+    "sha256": "90fafaa775981912d9c67acdffd3ccf989236567cc84b05c14334ae187a7c9ee"
+  },
+  {
+    "name": "se-selection",
+    "path": "docs/developer-support-2026-10-08/assets/se-selection.png",
+    "batch": "se-contrast",
+    "test": "DeveloperSupportUITests/testCancellationReturnsQuietlyToSelection()",
+    "attachment": "support-09-cancelled-selection_0_E4F882ED-17E3-42D4-8A11-A8470EA4114D.png",
+    "exportedFileName": "760E70E2-C3F1-4BC1-82BF-FDF60349526C.png",
+    "timestamp": 1791465477.83,
+    "sha256": "1353e47c8e8b2f04efa1aca69e0040ab0c9755021ce47d5fcd49e45855bf6578"
+  },
+  {
+    "name": "se-dark-plum",
+    "path": "docs/developer-support-2026-10-08/assets/se-dark-plum.png",
+    "batch": "se-contrast",
+    "test": "DeveloperSupportUITests/testDarkThemeCarriesIntoSupportSheet()",
+    "attachment": "support-11-dark-plum_0_8BF84E73-E712-477C-821F-F5E2A452C970.png",
+    "exportedFileName": "04876AC2-261B-4758-9362-BAE6D0156ABE.png",
+    "timestamp": 1791465499.46,
+    "sha256": "febb4b26ad32265695b93c50ff7ffc94a3ac0098d8785422e1c191c85459c361"
+  },
+  {
+    "name": "se-purchase-largest",
+    "path": "docs/developer-support-2026-10-08/assets/se-purchase-largest.png",
+    "batch": "se-contrast",
+    "test": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+    "attachment": "support-12-maximum-type-payment_0_DCCB65B9-A26B-4EAB-B3E1-B92803599E54.png",
+    "exportedFileName": "D95914C2-934D-40A9-8C56-951749362220.png",
+    "timestamp": 1791465557.617,
+    "sha256": "8e037a03414cfd8727572a8a736795d5171c09456c7bf60a1ed2704c83277f89"
+  },
+  {
+    "name": "se-entry",
+    "path": "docs/developer-support-2026-10-08/assets/se-entry.png",
+    "batch": "se-contrast",
+    "test": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+    "attachment": "support-01-manual-entry_0_4D547903-189A-4F78-B5A1-30AAC963C70D.png",
+    "exportedFileName": "095C1ED2-9A6C-4E78-AEDB-A2AD6E260BB7.png",
+    "timestamp": 1791465452.363,
+    "sha256": "63d8fc944e5233d70cc1c43894b6d61327bd15722dfeeb37615c8b11aa7d3b9b"
+  },
+  {
+    "name": "se-invitation",
+    "path": "docs/developer-support-2026-10-08/assets/se-invitation.png",
+    "batch": "se-contrast",
+    "test": "DeveloperSupportUITests/test100thSuccessfulSaveInvitesOnceAfterEntryClosesAndNeverAgain()",
+    "attachment": "support-06-100-record-invitation_0_A24AA398-9B42-4E4C-B6BF-8953A64DC5FB.png",
+    "exportedFileName": "8F0F55A0-D72B-4638-A581-0F874FB2FD63.png",
+    "timestamp": 1791465428.475,
+    "sha256": "df9bf8c1e0bf9a4b0478f519f4a9543a1cac09951c3acaa9a61eaf4547c2b71f"
+  },
+  {
+    "name": "se-entry-largest",
+    "path": "docs/developer-support-2026-10-08/assets/se-entry-largest.png",
+    "batch": "se-contrast",
+    "test": "DeveloperSupportUITests/testMaximumDynamicTypeEntryAndPaymentStayReachable()",
+    "attachment": "support-01-manual-entry_0_98C104BD-479F-42DC-9158-724D1723756B.png",
+    "exportedFileName": "71E2968B-80A2-47C4-94CD-DAE01CFDA68D.png",
+    "timestamp": 1791465545.15,
+    "sha256": "971e7bea7f802ea40cb89b2a1f7fbe583e04f2fd0af68a30c6944205d89b8e16"
+  },
+  {
+    "name": "se-invitation-largest",
+    "path": "docs/developer-support-2026-10-08/assets/se-invitation-largest.png",
+    "test": "DeveloperSupportUITests/testMaximumDynamicTypeInvitationStaysDismissible()",
+    "attachment": "support-13-maximum-type-invitation_0_D07F80C2-08F8-4C62-9E2B-CCAAA2A36065.png",
+    "batch": "se-contrast",
+    "exportedFileName": "9E13EE13-99C4-44E7-92F4-B40EDB7A1C36.png",
+    "timestamp": 1791465584.5,
+    "sha256": "902e06bbc9bc8b4059eece810e6ac711414632845c6a4274e54f827cc87808fe"
+  }
+]

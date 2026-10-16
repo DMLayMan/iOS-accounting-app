@@ -12,8 +12,8 @@ var targets: [Target] = [
 // 同一 AppState 源码可在 macOS 上隔离验证持久化失败，不依赖模拟器测试宿主。
 targets += [
     .target(name: "YujiAppState", dependencies: ["YujiCore"], path: "ios-app/Yuji",
-            exclude: ["Assets.xcassets", "Info.plist", "Design.swift", "Views", "Components", "YujiApp.swift"],
-            sources: ["AppState.swift"]),
+            exclude: ["Assets.xcassets", "Info.plist", "PrivacyInfo.xcprivacy", "Design.swift", "Views", "Components", "Cloud", "Support", "YujiApp.swift"],
+            sources: ["AppState.swift", "CloudState.swift", "CloudPeopleState.swift", "RecordSupportInvitation.swift"]),
     .testTarget(name: "YujiAppStateTests", dependencies: ["YujiAppState", "YujiCore"],
                 path: "ios-app/YujiTests", exclude: ["Native"])
 ]

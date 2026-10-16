@@ -1,0 +1,245 @@
+{
+  "date": "2026-10-14",
+  "timezone": "Asia/Shanghai",
+  "readyToSubmit": false,
+  "branch": "codex/app-store-audit-20261003",
+  "head": "58aed2d526844739e13cdf2795800f83e869681d",
+  "dirtyWorktree": true,
+  "headReproducesApp": false,
+  "fixed": [
+    "Release default YES/Production/entitlements",
+    "privacy invitation recipient email and support receipt fields"
+  ],
+  "confirmedOpenUX": {
+    "id": "first-backdated-entry",
+    "priority": "P2",
+    "defaultAccountStart": "2026-10-14",
+    "defaultOpeningCents": 0,
+    "entryDate": "2026-10-13",
+    "error": "日期不能早于账户记账起点 10/14",
+    "mode": "in-memory-only",
+    "records": 0,
+    "saved": false,
+    "financialRulesChanged": false
+  },
+  "portable": {
+    "passed": 158,
+    "core": 113,
+    "appState": 45,
+    "failed": 0
+  },
+  "native": {
+    "model": "iPhone 18 Pro",
+    "os": "27.0",
+    "passed": 88,
+    "failed": 0,
+    "skipped": 5,
+    "runtimeWarnings": [],
+    "passedUnit": 49,
+    "passedUI": 39,
+    "scope": "All YujiTests and 4 selected UI suites; simulated cloud/local StoreKit"
+  },
+  "compact": {
+    "model": "iPhone SE (3rd generation)",
+    "os": "26.5",
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "runtimeWarnings": [],
+    "overlapsProCases": true
+  },
+  "skipped": {
+    "liveFixtureCleanup": 3,
+    "liveCloudService": 2,
+    "reason": "No opt-in live environment in ordinary regression"
+  },
+  "archive": {
+    "archiveCompiled": true,
+    "signed": false,
+    "bundle": "com.dmlayman.yuji",
+    "name": "余记账本",
+    "version": "1.0",
+    "build": "1",
+    "minimumOS": "17.0",
+    "sdk": "iphoneos27.0",
+    "cloudEnabled": "YES",
+    "cloudEnvironment": "Production",
+    "container": "iCloud.com.dmlayman.yuji",
+    "sharingSupported": true,
+    "fixturePresent": false,
+    "testMarkers": [],
+    "fakeSymbols": false,
+    "testPluginsPresent": false,
+    "policyMatchesSource": true,
+    "privacy": {
+      "NSPrivacyAccessedAPITypes": [
+        {
+          "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+          "NSPrivacyAccessedAPITypeReasons": [
+            "C617.1"
+          ]
+        }
+      ],
+      "NSPrivacyCollectedDataTypes": [],
+      "NSPrivacyTracking": false
+    },
+    "binarySHA256": "b376b8fa0f5e28f715f1e3b27fcc5d3f9ed5f14095809be987a066498f18e972",
+    "inputCount": 103
+  },
+  "packageGate": {
+    "passed": true,
+    "scope": "resources/configuration only; not signing or live acceptance",
+    "version": "1.0",
+    "build": "1",
+    "checks": {
+      "bundle": true,
+      "displayName": true,
+      "minimumOS": true,
+      "devicePlatform": true,
+      "cloudEnabled": true,
+      "cloudEnvironment": true,
+      "cloudContainer": true,
+      "sharing": true,
+      "noFixture": true,
+      "noTestFlags": true,
+      "noSimulatedClients": true,
+      "noNativeTests": true,
+      "offlinePolicyMatchesSource": true,
+      "noTracking": true
+    }
+  },
+  "oldArtifactNegativeCheck": {
+    "exitCode": 1,
+    "expectedRejection": true,
+    "passed": false,
+    "scope": "resources/configuration only; not signing or live acceptance",
+    "version": "0.1.0",
+    "build": "1",
+    "checks": {
+      "bundle": false,
+      "displayName": false,
+      "minimumOS": false,
+      "devicePlatform": true,
+      "cloudEnabled": false,
+      "cloudEnvironment": true,
+      "cloudContainer": false,
+      "sharing": true,
+      "noFixture": true,
+      "noTestFlags": true,
+      "noSimulatedClients": true,
+      "noNativeTests": true,
+      "offlinePolicyMatchesSource": false,
+      "noTracking": true
+    }
+  },
+  "productInputs": {
+    "count": 103,
+    "matchesFrozenInputs": true,
+    "manifest": "source-fingerprints.json"
+  },
+  "visualReview": {
+    "boundedRounds": 2,
+    "representativeImages": 5,
+    "hashesMatch": true,
+    "fullManualPageAudit": false,
+    "voiceOverVerified": false,
+    "storeMedia": false
+  },
+  "portal": {
+    "date": "2026-10-14",
+    "accountAndTeamConfirmed": true,
+    "appStatus": "1.0 preparing for submission",
+    "developerAgreement": {
+      "updated": true,
+      "requiresAccountHolder": true,
+      "portalDeadline": "2026-10-29",
+      "acceptedLatest": false,
+      "agentAccepted": false
+    },
+    "version": {
+      "descriptionCharacters": 0,
+      "keywordsCharacters": 0,
+      "supportURLCharacters": 0,
+      "copyrightCharacters": 0,
+      "reviewFirstNameCharacters": 0,
+      "reviewLastNameCharacters": 0,
+      "reviewNotesCharacters": 629,
+      "buildSelected": false,
+      "iphoneScreenshots": 0,
+      "manualRelease": true,
+      "reviewPhonePresent": false,
+      "reviewEmailPresent": false
+    },
+    "writesPerformed": false,
+    "notes": "Read actual field values; previous docs claiming saved description/keywords are not current evidence. Contact and contract left for human.",
+    "appPrivacy": {
+      "policyURLPresent": false,
+      "questionnaireStarted": false
+    },
+    "appInfo": {
+      "ageRatingComplete": false,
+      "contentRightsSet": false,
+      "icpNumberPresent": false
+    },
+    "iap": {
+      "products": [
+        {
+          "productID": "com.yuji.app.support.encourage",
+          "type": "consumable",
+          "status": "preparing for submission",
+          "reviewScreenshotPresent": false
+        },
+        {
+          "productID": "com.yuji.app.support.coffee",
+          "type": "consumable",
+          "status": "preparing for submission",
+          "reviewScreenshotPresent": false
+        },
+        {
+          "productID": "com.yuji.app.support.generous",
+          "type": "consumable",
+          "status": "preparing for submission",
+          "reviewScreenshotPresent": false
+        }
+      ],
+      "submitted": false
+    }
+  },
+  "publicSite": {
+    "candidate": "https://yuji.rush247tt.xyz/privacy.html",
+    "localCurlExitCode": 6,
+    "HTTP": "000",
+    "deployedByAgent": false,
+    "DNSChangedByAgent": false
+  },
+  "engineering": {
+    "sdkRevision": "aaa646c95d472243507c3c1062d6eb77f25ada74",
+    "sdkPR": "https://github.com/DMLayMan/ios-base/pull/4",
+    "sdkCI": "not started: account billing/spending-limit annotation",
+    "appPrivateDependencyCIAuthenticationConfigured": false,
+    "repoSecretsObserved": 0
+  },
+  "remaining": [
+    "first-backdated-entry UX",
+    "latest developer agreement and review contact/copyright",
+    "CN ICP number",
+    "Production schema/signing/share acceptance",
+    "latest TestFlight build",
+    "public privacy/support and App Privacy questionnaire",
+    "age/content rights",
+    "store/IAP screenshots and metadata",
+    "iOS 17 runtime",
+    "complete real-service failure matrix",
+    "source freeze and clean CI reproducibility"
+  ],
+  "actions": {
+    "newPhoneInstallation": false,
+    "newPurchase": false,
+    "personalLedgerWrites": false,
+    "portalWrites": false,
+    "productionDeployment": false,
+    "websiteDeployment": false,
+    "push": false,
+    "submit": false
+  }
+}

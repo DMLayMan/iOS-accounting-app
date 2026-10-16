@@ -1,0 +1,45 @@
+{
+  "pro": {
+    "passedTests": 10,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "totalTestCount": 10,
+    "finishTime": 1792052695.558
+  },
+  "se": {
+    "passedTests": 1,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "totalTestCount": 1,
+    "finishTime": 1792052695.142
+  },
+  "portable": {
+    "core": 115,
+    "appState": 57,
+    "failed": 0,
+    "log": "evidence/people-20261015/swift-frozen.log"
+  },
+  "release": {
+    "passed": true,
+    "scope": "resources/configuration only; not signing or live acceptance",
+    "version": "1.0",
+    "build": "7",
+    "checks": {
+      "bundle": true,
+      "displayName": true,
+      "minimumOS": true,
+      "devicePlatform": true,
+      "cloudEnabled": true,
+      "cloudEnvironment": true,
+      "cloudContainer": true,
+      "sharing": true,
+      "noFixture": true,
+      "noTestFlags": true,
+      "noSimulatedClients": true,
+      "noNativeTests": true,
+      "offlinePolicyMatchesSource": true,
+      "noTracking": true
+    }
+  },
+  "boundary": "Local isolated tests only; no Production nickname write, TestFlight upload or existing-device installation."
+}

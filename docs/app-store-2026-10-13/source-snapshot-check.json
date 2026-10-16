@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-13",
+  "archive": "evidence/app-store-20261013/source-snapshot-1.0.tar.gz",
+  "fileCount": 604,
+  "bytes": 63870629,
+  "sha256": "ebe3bf0fb44bbf703de7512ef2d83b2f21a4ce949d40c1253b1ecf32e61e9f8e",
+  "scope": "tracked and non-ignored untracked regular files; no evidence, build outputs, profiles or device identifiers; source 1.0 and prepared docs; no git commit",
+  "sourceFingerprints": "production-source-fingerprints.json",
+  "buildOverrides": {
+    "YUJI_CLOUDKIT_ENABLED": "YES",
+    "CODE_SIGN_ENTITLEMENTS": "Yuji/Cloud/Yuji.entitlements"
+  },
+  "historicalBeforeDisplayNameChange": true,
+  "currentNamedCandidateFingerprints": "named-production-source-fingerprints.json"
+}

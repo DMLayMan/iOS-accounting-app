@@ -14,6 +14,7 @@ struct EntryView: View {
     @EnvironmentObject var state: AppState
     @Environment(\.colorScheme) private var scheme
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var kind: TransactionKind = .expense
     @State private var expression: String = ""
@@ -26,6 +27,7 @@ struct EntryView: View {
     @State private var showCategoryPicker = false
     @State private var showAccountPicker = false
     @State private var showDatePicker = false
+    @State private var showAccountStartEditor = false
     @State private var showDiscardConfirm = false
     @State private var activeParentID: EntityID?
     @State private var categoryEditing = false
@@ -36,7 +38,9 @@ struct EntryView: View {
     @State private var orderUndo: (parentID: EntityID?, ids: [EntityID])?
     @State private var didLoad = false
     @State private var initialEntry: Draft?
+    @State private var beganWithDraft = false
     @FocusState private var noteFocused: Bool
+    @AccessibilityFocusState private var exitDecisionFocused: Bool
 
     init(ledger: Ledger, draft: Draft?, onDone: @escaping () -> Void, editing: YujiCore.Transaction? = nil, onSaved: @escaping () -> Void = {}) {
         self.ledger = ledger; self.draft = draft; self.onDone = onDone; self.editing = editing; self.onSaved = onSaved
@@ -51,6 +55,10 @@ struct EntryView: View {
         return state.store.categories(in: ledger.id, kind: kind, includeArchived: false).filter { $0.parentID == activeParentID }
     }
     private var accounts: [Account] { state.store.accounts(in: ledger.id, includeArchived: false) }
+    private var backdatedAccount: Account? {
+        guard let account = state.store.account(accountID), date < account.startDay else { return nil }
+        return account
+    }
 
     var body: some View {
         NavigationStack {
@@ -64,40 +72,59 @@ struct EntryView: View {
                         }.padding(.top, 8)
                         VStack(alignment: .leading, spacing: 3) {
                             Text(displayAmount)
-                                .font(typeSize.isAccessibilitySize ? .system(.largeTitle, design: .rounded).weight(.semibold) : .system(size: 46, weight: .semibold))
+                                .font(typeSize.isAccessibilitySize ? .system(.largeTitle, design: .rounded).weight(.semibold) : .system(size: 46, weight: .semibold, design: .rounded))
                                 .monospacedDigit().lineLimit(1).minimumScaleFactor(0.5)
                                 .foregroundColor(calcError == nil ? Design.money(kind) : .red)
                                 .frame(maxWidth: .infinity, minHeight: 58, alignment: .leading)
+                                .accessibilityLabel("\(kind.displayName)金额，\(displayAmount)")
                                 .accessibilityIdentifier("entry.amount")
                             if let calcError { Text(calcError).font(.caption).foregroundColor(.red) }
                         }
                         .contentShape(Rectangle()).onTapGesture { noteFocused = false }
                         .accessibilityHint("轻点编辑金额")
                         EntryBudgetHint(ledgerID: ledger.id, date: date, kind: kind, cents: resolvedCents, replacingID: editing?.id, categoryID: categoryID)
-                        HStack(spacing: 14) {
+                        accountDateLayout {
                             Button { noteFocused = false; showAccountPicker = true } label: {
-                                Label(accountName, systemImage: "creditcard").lineLimit(1).fixedSize(horizontal: true, vertical: false).frame(minHeight: 44)
+                                Label(accountName, systemImage: "creditcard")
+                                    .lineLimit(typeSize.isAccessibilitySize ? 2 : 1)
+                                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                             }
+                            .accessibilityLabel("账户，" + accountName)
                             .accessibilityIdentifier("entry.accountPicker")
-                            Divider().frame(height: 12)
                             Button { noteFocused = false; showDatePicker = true } label: {
                                 Label(shortDateText, systemImage: "calendar").lineLimit(1).fixedSize(horizontal: true, vertical: false).frame(minHeight: 44)
                             }
+                            .layoutPriority(1)
+                            .accessibilityLabel("记账日期，" + dateText)
                             .accessibilityIdentifier("entry.datePicker")
-                        }.font(.system(size: 12)).foregroundColor(.secondary).frame(minHeight: 44)
+                        }.font(.caption).foregroundColor(Design.secondary).frame(minHeight: 44)
+                        if let account = backdatedAccount {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(verbatim: "\(account.name)的记账起点是 \(account.startDay.year)年\(account.startDay.month)月\(account.startDay.day)日")
+                                    .font(.subheadline).fixedSize(horizontal: false, vertical: true)
+                                    .accessibilityIdentifier("entry.accountStartWarning")
+                                Text("这笔账的日期更早，调整起点后即可保存。")
+                                    .font(.caption).foregroundStyle(Design.secondary)
+                                Button("调整记账起点") { noteFocused = false; showAccountStartEditor = true }
+                                    .font(.subheadline.weight(.medium)).frame(minHeight: 44)
+                                    .disabled(!state.canEditLedger(ledger.id))
+                                    .accessibilityIdentifier("entry.adjustAccountStart")
+                            }.padding(.vertical, 4)
+                        }
                         categorySection
                         HStack(spacing: 8) {
-                            Image(systemName: "text.alignleft").font(.system(size: 14)).foregroundColor(.secondary)
+                            Image(systemName: "text.alignleft").font(.system(size: 14)).foregroundColor(Design.secondary)
                             TextField("备注（可选）", text: $note)
                                 .font(.body).focused($noteFocused).submitLabel(.done)
                                 .onSubmit { noteFocused = false }
                                 .accessibilityIdentifier("entry.note")
-                            if noteFocused { Button("完成") { noteFocused = false }.font(.system(size: 13)) }
-                        }.frame(minHeight: 42).overlay(alignment: .top) { Divider() }
+                            if noteFocused { Button("完成") { noteFocused = false }.font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("entry.noteDone") }
+                        }.frame(minHeight: 44).overlay(alignment: .top) { Divider() }
                     }.padding(.horizontal, 20).padding(.bottom, 4)
                 }
                 .accessibilityIdentifier("entry.form")
                 .disabled(showDiscardConfirm)
+                .accessibilityHidden(showDiscardConfirm)
                 }
                 if showDiscardConfirm {
                     if typeSize.isAccessibilitySize {
@@ -105,7 +132,7 @@ struct EntryView: View {
                     } else { exitDecision }
                 } else if !noteFocused && !showCategoryPicker && !showAccountPicker && !showDatePicker && categoryEditor == nil {
                     if editing == nil && !typeSize.isAccessibilitySize {
-                        Text("关闭自动保留草稿，保存后才记账").font(.caption2).foregroundStyle(.secondary).padding(.top, 4)
+                        Text("关闭或退后台保留草稿，保存后才记账").font(.caption2).foregroundStyle(Design.secondary).padding(.top, 4)
                     }
                     keypad.accessibilityElement(children: .contain).accessibilityIdentifier("entry.amountKeypad")
                 }
@@ -131,12 +158,15 @@ struct EntryView: View {
                 if let parent = state.store.category(id)?.parentID { activeParentID = parent }
             }
             .onChange(of: state.store.data.categories) { _ in reconcileCategorySelection() }
-            .interactiveDismissDisabled(hasChanges || showDiscardConfirm)
-            .sheet(isPresented: $showCategoryPicker) {
+            .onChange(of: scenePhase) { phase in
+                if phase == .background { checkpointDraft() }
+            }
+            .interactiveDismissDisabled((editing == nil ? needsDraftCheckpoint : hasChanges) || showDiscardConfirm)
+            .yujiSheet(isPresented: $showCategoryPicker) {
                 CategoryPickerView(ledgerID: ledger.id, kind: kind, selected: Binding(
                     get: { categoryID }, set: { categoryID = $0 }))
             }
-            .sheet(item: $categoryEditor) { context in
+            .yujiSheet(item: $categoryEditor) { context in
                 CategoryEditorView(ledgerID: ledger.id, kind: kind, context: context) { id in
                     orderUndo = nil
                     if let node = state.store.category(id), !node.archived {
@@ -146,11 +176,17 @@ struct EntryView: View {
                     reconcileCategorySelection()
                 }
             }
-            .sheet(isPresented: $showAccountPicker) {
+            .yujiSheet(isPresented: $showAccountPicker) {
                 AccountPickerView(accounts: accounts, selected: Binding(
                     get: { accountID }, set: { accountID = $0 }))
             }
-            .sheet(isPresented: $showDatePicker) { DatePickerSheet(date: $date) {} }
+            .yujiSheet(isPresented: $showDatePicker) { DatePickerSheet(date: $date) {} }
+            .navigationDestination(isPresented: $showAccountStartEditor) {
+                if let account = state.store.account(accountID) {
+                    AccountEditForm(ledgerID: ledger.id, account: account, proposedStartDay: date)
+                        .navigationBarBackButtonHidden(true)
+                }
+            }
 
         }
     }
@@ -161,10 +197,15 @@ struct EntryView: View {
             kind = value; categoryID = nil; activeParentID = parents.first?.id
             categoryEditing = false; orderUndo = nil
         } label: {
-            Text(title).font(.system(size: 14, weight: kind == value ? .semibold : .regular))
-                .foregroundColor(kind == value ? Design.money(value) : .secondary)
+            Text(title).font(.subheadline.weight(kind == value ? .semibold : .regular))
+                .foregroundColor(kind == value ? Design.money(value) : Design.secondary)
                 .accessibilityAddTraits(kind == value ? [.isSelected] : [])
-                .frame(minHeight: 44)
+                .minimumTouchTarget()
+                .overlay(alignment: .bottom) {
+                    if kind == value {
+                        Capsule().fill(Design.money(value)).frame(width: 18, height: 3).accessibilityHidden(true)
+                    }
+                }
         }.accessibilityIdentifier("entry.kind.\(value.rawValue)")
     }
 
@@ -174,6 +215,11 @@ struct EntryView: View {
            state.store.category(id)?.archived != false || state.store.category(state.store.category(id)?.parentID)?.archived != false {
             categoryID = nil
         }
+    }
+
+    private var accountDateLayout: AnyLayout {
+        typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading, spacing: 0))
+            : AnyLayout(HStackLayout(spacing: 14))
     }
 
     // MARK: - 金额展示
@@ -220,14 +266,15 @@ struct EntryView: View {
     private var inlineCategorySection: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 14) {
-                Text(categoryEditing ? "编辑分类" : "分类").font(.system(size: 13, weight: .medium)).foregroundColor(.secondary)
+                Text(categoryEditing ? "编辑分类" : "分类").font(.caption.weight(.medium)).foregroundColor(Design.secondary)
                 Spacer()
-                Button(categoryEditing ? "完成" : "编辑") { noteFocused = false; categoryEditing.toggle() }
-                    .frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("entry.editCategories")
+                Button { noteFocused = false; categoryEditing.toggle() } label: {
+                    Text(categoryEditing ? "完成" : "编辑").minimumTouchTarget()
+                }.accessibilityIdentifier("entry.editCategories")
                 Button { noteFocused = false; showCategoryPicker = true } label: {
                     Label("全部分类", systemImage: "magnifyingglass").frame(minHeight: 44)
                 }.accessibilityIdentifier("entry.allCategories")
-            }.font(.system(size: 12)).foregroundColor(Design.primary(scheme)).frame(minHeight: 44)
+            }.font(.caption).foregroundColor(Design.primary(scheme)).frame(minHeight: 44)
             ZStack(alignment: .trailing) {
                 InlineCategoryStrip(nodes: parents, parentStyle: true, selectedID: activeParentID, isEditing: categoryEditing,
                     hapticsEnabled: state.store.data.settings.hapticsEnabled, reduceMotion: state.store.data.settings.reduceMotion,
@@ -237,7 +284,7 @@ struct EntryView: View {
                     }, onReorder: { reorder($0, parentID: nil) },
                     onDragBegan: { noteFocused = false; categoryEditing = true })
                 if categoryEditing {
-                    Button { noteFocused = false; categoryEditor = CategoryEditorContext(isGroup: true) } label: { Image(systemName: "plus") }
+                    Button { noteFocused = false; categoryEditor = CategoryEditorContext(isGroup: true) } label: { Image(systemName: "plus").minimumTouchTarget() }
                         .frame(width: 44, height: 44).background(Design.background(scheme)).accessibilityLabel("新增一级分类")
                 }
             }.frame(height: 44)
@@ -253,14 +300,14 @@ struct EntryView: View {
                         onDragBegan: { noteFocused = false; categoryEditing = true },
                         onPageChange: { page, _ in if categoryPage != page { categoryPage = page } })
                         .id(activeParentID)
-                    if children.isEmpty { Text("点右侧新增分类").font(.system(size: 12)).foregroundColor(.secondary) }
+                    if children.isEmpty { Text("点右侧新增分类").font(.caption).foregroundColor(Design.secondary) }
                 }
                 VStack(spacing: 8) {
                     Button {
                         noteFocused = false
                         categoryEditor = CategoryEditorContext(parentID: activeParentID)
                     } label: {
-                        VStack(spacing: 7) { Image(systemName: "plus").font(.system(size: 21)); Text("新增").font(.system(size: 11)) }
+                        VStack(spacing: 7) { Image(systemName: "plus").font(.system(size: 21)); Text("新增").font(.caption2) }
                             .frame(width: 44, height: 60)
                             .background(RoundedRectangle(cornerRadius: 13).fill(Design.lightFill(scheme)))
                     }.disabled(activeParentID == nil).accessibilityLabel("新增二级分类").accessibilityIdentifier("entry.addCategory")
@@ -273,13 +320,13 @@ struct EntryView: View {
             if let categoryError { Text(categoryError).font(.caption).foregroundColor(.red) }
             HStack(spacing: 8) {
                 Text(categoryEditing ? "长按拖动排序 · 轻点编辑名称" : (categoryID == nil ? "请选择二级分类" : "已选 \(state.store.categoryPath(categoryID))"))
-                    .font(.caption2).foregroundColor(.secondary).lineLimit(1)
+                    .font(.caption2).foregroundColor(Design.secondary).lineLimit(1)
                     .accessibilityIdentifier("entry.selectedCategory")
                 Spacer(minLength: 0)
                 if orderUndo != nil {
-                    Button("撤销排序") { undoOrder() }.font(.system(size: 11)).accessibilityIdentifier("entry.undoOrder")
+                    Button { undoOrder() } label: { Text("撤销排序").minimumTouchTarget() }.font(.caption2).accessibilityIdentifier("entry.undoOrder")
                 } else if children.count > 8 {
-                    Text("\(categoryPage + 1) / \((children.count + 7) / 8)").font(.caption2).foregroundColor(.secondary)
+                    Text("\(categoryPage + 1) / \((children.count + 7) / 8)").font(.caption2).foregroundColor(Design.secondary)
                 }
             }.frame(minHeight: 24)
         }
@@ -315,19 +362,21 @@ struct EntryView: View {
         VStack(spacing: 4) {
             if let r = evalResult, r.needsRoundingConfirmation, calcError == nil {
                 Text("结果 \(r.exactDisplay)，将按 ¥\(r.roundedDisplay) 记账")
-                    .font(.system(size: Design.captionSmall)).foregroundColor(Design.primary(scheme))
+                    .font(.caption).foregroundColor(Design.primary(scheme))
             }
             HStack(spacing: 6) {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
                     ForEach(["1","2","3","4","5","6","7","8","9",".","0","-"], id: \.self) { key in
                         Button { tapKey(key) } label: {
-                            Text(key == "-" ? "−" : key).font(.system(size: 23)).frame(maxWidth: .infinity).frame(height: 46)
+                            Text(key == "-" ? "−" : key).font(.title2).lineLimit(1).minimumScaleFactor(0.5).frame(maxWidth: .infinity).frame(height: 46)
                                 .background(RoundedRectangle(cornerRadius: 11).fill(Design.lightFill(scheme)))
-                        }.buttonStyle(.plain).accessibilityIdentifier("entry.key.\(key)")
+                        }.buttonStyle(.plain)
+                            .accessibilityLabel(key == "." ? "小数点" : key == "-" ? "减号" : key)
+                            .accessibilityIdentifier("entry.key.\(key)")
                     }
                 }.frame(maxWidth: .infinity)
                 VStack(spacing: 6) {
-                    Button { tapKey("back") } label: { Image(systemName: "delete.left").frame(maxWidth: .infinity).frame(height: 46) }
+                    Button { tapKey("back") } label: { Image(systemName: "delete.left").font(.system(size: 22)).frame(maxWidth: .infinity).frame(height: 46) }
                         .background(RoundedRectangle(cornerRadius: 11).fill(Design.lightFill(scheme)))
                         .accessibilityLabel("删除一位")
                     Menu {
@@ -335,16 +384,17 @@ struct EntryView: View {
                         Button("乘 ×") { tapKey("×") }; Button("除 ÷") { tapKey("÷") }
                         Button("左括号 (") { tapKey("(") }; Button("右括号 )") { tapKey(")") }
                         Button("清空金额", role: .destructive) { tapKey("clear") }
-                    } label: { Text("+").font(.system(size: 23)).frame(maxWidth: .infinity).frame(height: 46) }
+                    } label: { Text("+").font(.title2).lineLimit(1).minimumScaleFactor(0.5).frame(maxWidth: .infinity).frame(height: 46) }
                     primaryAction: { tapKey("+") }
                     .background(RoundedRectangle(cornerRadius: 11).fill(Design.lightFill(scheme)))
                     .accessibilityLabel("加号，长按更多运算")
                     Button { save() } label: {
-                        VStack(spacing: 8) { Image(systemName: "checkmark").font(.system(size: 22)); Text(saveButtonTitle).font(typeSize.isAccessibilitySize ? .body : .caption).minimumScaleFactor(0.6) }
+                        VStack(spacing: 8) { Image(systemName: "checkmark").font(.system(size: 22)); Text(saveButtonTitle).font(.system(size: typeSize.isAccessibilitySize ? 20 : 13)).lineLimit(1).minimumScaleFactor(0.6) }
                             .frame(maxWidth: .infinity).frame(height: 98)
                             .background(RoundedRectangle(cornerRadius: 11).fill(canSave ? Design.primary(scheme) : Color(.tertiarySystemFill)))
                             .foregroundColor(canSave ? (scheme == .dark ? .black : .white) : .secondary)
-                    }.buttonStyle(.plain).disabled(!canSave).accessibilityIdentifier("entry.save")
+                    }.buttonStyle(.plain).disabled(!canSave)
+                        .accessibilityLabel(saveButtonTitle).accessibilityIdentifier("entry.save")
                 }.frame(width: 66)
             }.frame(maxWidth: .infinity)
         }.frame(maxWidth: .infinity).padding(.horizontal, 16).padding(.vertical, 8).background(Design.surface(scheme))
@@ -364,6 +414,7 @@ struct EntryView: View {
         if !Money(cents).isWithinPositiveProductRange { return false }
         if (kind == .expense || kind == .income) && categoryID == nil { return false }
         if accountID == nil { return false }
+        if backdatedAccount != nil { return false }
         return true
     }
 
@@ -443,6 +494,7 @@ struct EntryView: View {
         activeParentID = state.store.category(categoryID)?.parentID ?? parents.first?.id
         reconcileCategorySelection()
         initialEntry = entrySnapshot
+        beganWithDraft = draft != nil
     }
 
     // Ignore timestamps when checking whether the user actually changed a field.
@@ -452,33 +504,55 @@ struct EntryView: View {
               updatedAt: Date(timeIntervalSince1970: 0))
     }
     private var hasChanges: Bool { didLoad && initialEntry != entrySnapshot }
+    private var needsDraftCheckpoint: Bool {
+        guard didLoad, editing == nil else { return false }
+        guard var saved = state.store.draft(for: ledger.id) else { return hasChanges }
+        saved.updatedAt = Date(timeIntervalSince1970: 0)
+        return saved != entrySnapshot
+    }
 
     private var exitDecision: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text(editing == nil ? "清空这笔草稿？" : "放弃这次修改？").font(.headline)
                 .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader).accessibilityFocused($exitDecisionFocused)
+                .onAppear { exitDecisionFocused = true }
             Text(editing == nil ? "清空后无法恢复。" : "原记录保持不变。")
-                .font(.subheadline).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
-            Button("继续编辑") { showDiscardConfirm = false }
-                .font(.headline).frame(maxWidth: .infinity, minHeight: 48)
+                .font(.subheadline).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
+            Button { showDiscardConfirm = false } label: {
+                Text("继续编辑").font(.headline).frame(maxWidth: .infinity, minHeight: 48).contentShape(Rectangle())
+            }
                 .background(Design.primary(scheme), in: RoundedRectangle(cornerRadius: 14))
                 .foregroundStyle(scheme == .dark ? Color.black : Color.white).accessibilityIdentifier("entry.keepEditing")
-            Button(editing == nil ? "清空草稿" : "放弃修改", role: .destructive) { discardAndClose() }
-                .frame(maxWidth: .infinity, minHeight: 44).accessibilityIdentifier("entry.discard")
+            Button(role: .destructive, action: discardAndClose) {
+                Text(editing == nil ? "清空草稿" : "放弃修改").frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
+            }.accessibilityIdentifier("entry.discard")
         }.padding(20).background(Design.background(scheme))
             .overlay(alignment: .top) { Divider() }
             .accessibilityElement(children: .contain).accessibilityIdentifier("entry.exitDecision")
     }
 
     private func attemptClose() {
-        if !hasChanges { onDone() }
-        else if editing == nil { saveDraftAndClose() }
+        if editing == nil {
+            if needsDraftCheckpoint { saveDraftAndClose() } else { onDone() }
+        }
+        else if !hasChanges { onDone() }
         else { showDiscardConfirm = true }
     }
     private func saveDraftAndClose() {
+        if persistCurrentDraft(message: "草稿已保留，下次继续") { onDone() }
+    }
+    private func persistCurrentDraft(message: String? = nil) -> Bool {
+        if !beganWithDraft && entrySnapshot == initialEntry {
+            return state.clearDraft(ledgerID: ledger.id)
+        }
         var saved = entrySnapshot
         saved.updatedAt = Date()
-        if state.saveDraft(saved, message: "草稿已保留，下次继续") { onDone() }
+        return state.saveDraft(saved, message: message)
+    }
+    private func checkpointDraft() {
+        guard needsDraftCheckpoint else { return }
+        _ = persistCurrentDraft()
     }
     private func discardAndClose() {
         if editing != nil || state.clearDraft(ledgerID: ledger.id) { onDone() }

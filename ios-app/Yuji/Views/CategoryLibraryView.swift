@@ -47,7 +47,7 @@ struct CategoryLibraryContent: View {
         List {
             Section {
                 HStack {
-                    Image(systemName: "magnifyingglass").foregroundColor(.secondary)
+                    Image(systemName: "magnifyingglass").foregroundColor(Design.secondary)
                     TextField("搜索一级或二级分类", text: $query).focused($searching)
                         .submitLabel(.done).onSubmit { searching = false }
                         .accessibilityIdentifier("categories.search")
@@ -82,7 +82,7 @@ struct CategoryLibraryContent: View {
                         } label: { Label("新增二级分类", systemImage: "plus") }
                         .disabled(parent.archived)
                     } else if children(parent).isEmpty {
-                        Text("暂无二级分类").foregroundColor(.secondary)
+                        Text("暂无二级分类").foregroundColor(Design.secondary)
                     }
                 } header: {
                     HStack {
@@ -92,7 +92,7 @@ struct CategoryLibraryContent: View {
                     }
                 }
             }
-            if parents.isEmpty { Text("没有匹配的分类").foregroundColor(.secondary) }
+            if parents.isEmpty { Text("没有匹配的分类").foregroundColor(Design.secondary) }
             Section {
                 Button {
                     openEditor(CategoryEditorContext(name: text))
@@ -114,7 +114,7 @@ struct CategoryLibraryContent: View {
                 }
             }
         }
-        .sheet(item: $editor) { context in
+        .yujiSheet(item: $editor) { context in
             CategoryEditorView(ledgerID: ledgerID, kind: kind, context: context) { id in
                 if !isManaging, let node = state.store.category(id), node.isLeaf, !node.archived { selected = id; dismiss() }
             }
@@ -154,7 +154,7 @@ struct CategoryLibraryContent: View {
                         Text(node.name).foregroundColor(node.archived ? .secondary : .primary)
                         if isManaging {
                             Text(node.archived ? "已归档" : "\(state.store.categoryReferenceCount(node.id)) 处引用（含预算）")
-                                .font(.caption).foregroundColor(.secondary)
+                                .font(.caption).foregroundColor(Design.secondary)
                         }
                     }
                     Spacer(minLength: 0)
@@ -235,17 +235,19 @@ struct CategoryEditorView: View {
                         Image(systemName: symbol).font(.system(size: 28, weight: .medium))
                             .foregroundStyle(Design.primary(scheme)).frame(width: 64, height: 64)
                             .background(Design.selectedFill(scheme), in: RoundedRectangle(cornerRadius: 20))
-                            .accessibilityIdentifier("categories.iconPreview").accessibilityLabel(symbol)
+                            .accessibilityIdentifier("categories.iconPreview")
+                            .accessibilityLabel("当前图标：" + CategorySymbol.accessibilityName(for: symbol))
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("分类名称").font(.caption).foregroundStyle(.secondary)
+                            Text("分类名称").font(.caption).foregroundStyle(Design.secondary)
                             TextField("例如：周末早午餐", text: $name).font(.title3.weight(.medium))
                                 .focused($nameFocused).submitLabel(.done).onSubmit { nameFocused = false }
+                                .accessibilityLabel("分类名称")
                                 .accessibilityIdentifier("categories.name")
                         }
                     }.padding(.top, 8)
                     if !context.isGroup {
                         fieldLayout {
-                            Text("所属一级分类").font(.subheadline).foregroundStyle(.secondary)
+                            Text("所属一级分类").font(.subheadline).foregroundStyle(Design.secondary)
                             if !typeSize.isAccessibilitySize { Spacer() }
                             Picker("所属一级分类", selection: $parentID) {
                                 Text("请选择").tag(EntityID?.none)
@@ -259,8 +261,8 @@ struct CategoryEditorView: View {
                         fieldLayout {
                             Text("选择图标").font(.subheadline.weight(.semibold))
                             if !typeSize.isAccessibilitySize { Spacer() }
-                            Button("自动匹配") { symbolName = nil; nameFocused = false }
-                                .font(.caption).frame(minHeight: 44)
+                            Button { symbolName = nil; nameFocused = false } label: { Text("自动匹配").minimumTouchTarget() }
+                                .font(.caption)
                                 .accessibilityIdentifier("categories.icon.auto")
                         }
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: typeSize.isAccessibilitySize ? 64 : 44), spacing: 8)], spacing: 10) {
@@ -281,11 +283,12 @@ struct CategoryEditorView: View {
                     }
                     if context.node != nil {
                         Text("改名和调整归属会同步到历史账单，金额不变。")
-                            .font(.caption).foregroundStyle(.secondary)
+                            .font(.caption).foregroundStyle(Design.secondary)
                     }
                     if let error { Text(error).font(.subheadline).foregroundStyle(.red).accessibilityIdentifier("categories.error") }
                 }.padding(.horizontal, 24).padding(.bottom, 16)
-            }.scrollDismissesKeyboard(.interactively)
+            }.accessibilityIdentifier("categories.editor.scroll")
+                .scrollDismissesKeyboard(.interactively)
                 .background(Color(.systemBackground))
                 .safeAreaInset(edge: .bottom) {
                     Button(context.node == nil ? "创建分类" : "保存修改", action: save)

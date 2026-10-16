@@ -20,12 +20,12 @@ struct TransactionDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showEdit) {
+        .yujiSheet(isPresented: $showEdit) {
             if let t = state.store.transaction(transactionID), let ledger = state.store.ledger(t.ledgerID) {
                 EntryView(ledger: ledger, draft: nil, onDone: { showEdit = false }, editing: t)
             }
         }
-        .sheet(isPresented: $showRefund) {
+        .yujiSheet(isPresented: $showRefund) {
             if let t = state.store.transaction(transactionID) {
                 RefundView(original: t)
             }
@@ -63,7 +63,19 @@ struct TransactionDetailView: View {
                 if !t.tagIDs.isEmpty {
                     row("历史附加信息", t.tagIDs.compactMap { state.store.tag($0)?.name }.joined(separator: "、"))
                 }
-                if !t.note.isEmpty { row("备注", t.note) }
+                if !t.note.isEmpty {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("备注").foregroundStyle(Design.secondary)
+                        Text(t.note).fixedSize(horizontal: false, vertical: true)
+                            .accessibilityIdentifier("detail.note")
+                    }.padding(.vertical, 2)
+                }
+                if t.authorID != nil || state.cloudLink(for: t.ledgerID) != nil {
+                    row("记账人", state.personName(t.authorID, ledgerID: t.ledgerID, marksSelf: true))
+                    if let editor = t.lastEditorID, editor != t.authorID {
+                        row("最后修改", state.personName(editor, ledgerID: t.ledgerID, marksSelf: true))
+                    }
+                }
                 if let expr = t.expression, !expr.isEmpty { row("计算式", expr) }
             }
 
@@ -77,7 +89,7 @@ struct TransactionDetailView: View {
                     if refunded < t.amountCents && t.isActive {
                         Button { showRefund = true } label: {
                             Label("记一笔退款", systemImage: "arrow.uturn.backward")
-                        }
+                        }.disabled(!state.canEditLedger(t.ledgerID))
                     }
                     let refunds = state.store.data.transactions.filter {
                         $0.isActive && $0.kind == .refund && $0.originalExpenseID == t.id
@@ -90,7 +102,7 @@ struct TransactionDetailView: View {
                                 HStack {
                                     Text("退款 · \(statsDayText(r.date))")
                                     Spacer()
-                                    Text("¥\(Money(r.amountCents).yuanDescription)").foregroundStyle(.tint)
+                                    Text("¥\(Money(r.amountCents).yuanDescription)").foregroundStyle(Design.refund)
                                 }
                             }
                         }
@@ -105,7 +117,7 @@ struct TransactionDetailView: View {
                         HStack {
                             Text("原支出 · \(statsDayText(orig.date))")
                             Spacer()
-                            Text("¥\(Money(orig.amountCents).yuanDescription)").foregroundColor(.secondary)
+                            Text("¥\(Money(orig.amountCents).yuanDescription)").foregroundStyle(Design.expense)
                         }
                     }
                 }
@@ -119,14 +131,14 @@ struct TransactionDetailView: View {
                     Button(role: .destructive) { showDeleteConfirm = true } label: {
                         Label("删除", systemImage: "trash")
                     }
-                }
+                }.disabled(!state.canEditLedger(t.ledgerID))
             } else {
                 Section {
                     Button { state.restore(t.id) } label: { Label("恢复", systemImage: "arrow.uturn.right") }
                     Button(role: .destructive) { showPurgeConfirm = true } label: {
                         Label("永久删除", systemImage: "trash.fill")
                     }
-                }
+                }.disabled(!state.canEditLedger(t.ledgerID))
             }
         }
         .navigationTitle(titleText(t))
@@ -211,7 +223,7 @@ struct RefundView: View {
                 Section("此次退款") {
                     TextField("退款金额（可算式）", text: $expression).focused($focused)
                         .keyboardType(.numbersAndPunctuation).accessibilityIdentifier("refund.amount")
-                        .font(.system(size: 22, weight: .semibold))
+                        .font(.title2.weight(.semibold))
                     if let r = result {
                         Text("将记录 ¥\(r.roundedDisplay)").foregroundColor(.secondary)
                     }

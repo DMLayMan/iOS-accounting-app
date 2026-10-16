@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-08",
+  "scope": "hosted state/disk/color tests overlap portable state tests; do not sum them as independent coverage",
+  "runs": [
+    {
+      "run": "final-pro27",
+      "source": "evidence/review-fix-20261008/final-pro27/native.log",
+      "unitPassed": 20,
+      "unitFailed": [],
+      "invalidFrameWarnings": 0
+    },
+    {
+      "run": "final-se26",
+      "source": "evidence/review-fix-20261008/final-se26/native.log",
+      "unitPassed": 20,
+      "unitFailed": [],
+      "invalidFrameWarnings": 0
+    },
+    {
+      "run": "final-hosted17",
+      "source": "evidence/review-fix-20261008/final-hosted17/native.log",
+      "unitPassed": 20,
+      "unitFailed": [],
+      "invalidFrameWarnings": 0
+    }
+  ],
+  "uiRuntimeRuns": [
+    {
+      "run": "final-input-pro27",
+      "source": "evidence/review-fix-20261008/final-input-pro27/native.log",
+      "completed": true,
+      "invalidFrameWarnings": 0
+    },
+    {
+      "run": "final-input-se26",
+      "source": "evidence/review-fix-20261008/final-input-se26/native.log",
+      "completed": true,
+      "invalidFrameWarnings": 0
+    }
+  ],
+  "toolchainWarning": "AppIntents metadata extraction is skipped because this app does not link AppIntents; current test bundles target 17 to match XCTest while the product targets 16."
+}

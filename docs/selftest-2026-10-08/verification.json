@@ -1,0 +1,919 @@
+{
+  "date": "2026-10-08",
+  "scope": "Fresh release-independent tests; simulated cloud only; hosted and portable cases overlap",
+  "buildSucceeded": true,
+  "portable": {
+    "log": "evidence/selftest-20261008/portable/core.log",
+    "suites": [
+      {
+        "suite": "YujiCoreTests.xctest",
+        "tests": 113,
+        "failures": 0
+      },
+      {
+        "suite": "YujiAppStateTests.xctest",
+        "tests": 36,
+        "failures": 0
+      }
+    ],
+    "total": 149
+  },
+  "runs": [
+    {
+      "run": "pro",
+      "log": "evidence/selftest-20261008/pro/native.log",
+      "resultBundle": "evidence/selftest-20261008/pro/results.xcresult",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C456E5DC-1377-43E9-871E-394439D7DAF0",
+        "deviceName": "iPhone 18 Pro",
+        "modelName": "iPhone 18 Pro",
+        "osBuildNumber": "24A434",
+        "osVersion": "27.0",
+        "platform": "iOS Simulator"
+      },
+      "result": "Passed",
+      "counts": {
+        "expected": 103,
+        "hosted": 37,
+        "ui": 66,
+        "passed": 103,
+        "failed": 0,
+        "skipped": 0
+      },
+      "runtimeWarnings": [],
+      "missing": [],
+      "unexpected": [],
+      "failed": [],
+      "duplicateIdentities": [],
+      "cases": [
+        {
+          "id": "YujiTests.AppStateRecoveryTests/testRecoveryPreservesUnreadableOriginalBeforeReplacingIt()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateRecoveryTests/testTransferKeepsExpenseDraftAndThemeFailureRollsBack()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateRecoveryTests/testUnreadableFileBlocksWritesAndCanBeRetriedWithoutRenamingIt()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testBudgetsRollBackWithCreateAndPersistWithRestore()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testCategoryReorderRollsBackOnDiskFailureAndReloadsOnSuccess()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testCreateAndSwitchLedgerIsAtomicAndReloadsSelection()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testCurrentBalanceUsesRefreshedBusinessDayAndFutureOpening()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testDayRefreshIncludesNewDayTransactionsWithoutRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testDraftSaveAndClearReturnFailureWithoutLosingPreviousDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testPartialActionRollsBackWhenLaterOperationFails()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testRetryAfterFailurePersistsAndReloads()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testSharedPeriodSurvivesWritesAndOnlyResetsAfterSuccessfulLedgerSwitch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testWholeAndCategoryBudgetsRollBackTogetherOnDiskFailure()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testWriteFailureDoesNotReportSuccessOrChangeLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testAccountSwitchHidesPreviousCacheAndDoesNotUploadIt()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testCompareAndSwapRetryAndInFlightLocalWriteArePreserved()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testConflictPersistsAndResolutionKeepsBothVersions()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testDiskFailureDoesNotAdvanceAncestorOrLoseOutbox()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testLeaveSerializesAndPreservesUnsentCopyBeforeRemoteMembershipChanges()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testLostAcknowledgementRetryDoesNotDuplicateTransaction()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testOldAccountResponseCannotBeInstalledAfterIdentityChanges()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testPauseStopsAutomaticSyncButExplicitRefreshStillWorks()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testPortableBackupDoesNotReactivateCloudBindingsOrExportOtherAccountCache()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testReadOnlyGuardBlocksAllBusinessWritesButAllowsPersonalDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testRemoteDeletionKeepsStaleDraftAndCopyPreservesItsText()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testRestoredCloudSourceRequiresExplicitIndependentCopyWithoutOverwritingOriginal()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testRevocationFreezesPendingWorkAndPreservesLocalCopy()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testSameAccountSecondDeviceDiscoversOnlySelectedBook()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testTemporarilyUnavailableAccountKeepsConfirmedCacheAndStopsNetworkWrites()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testTwoAccountsOnOneDeviceKeepSeparatePendingCachesForTheSameSharedBook()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testTwoDifferentAccountsOfflineEntriesConvergeAfterRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testActualDiskSaveReplacementAndReload()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testBackupPreviewIsReadOnlyAndRestoreKeepsARecoverableSnapshot()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testFailedMainWritePreservesThePreviousRecoveryPoint()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testRecoveryPointRemovalOnlyDeletesTheSelectedManagedCopy()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testRestoreStopsIfRecoveryFileCannotBeWritten()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.ThemeRenderingTests/testSemanticColorsRemainReadableInBothAppearances()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testCenterActionAndLastRecordStayReachable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testCreateBudgetsDraftPreviewSaveAndAnnualBalance()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testDarkBudgetAndEntry()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testExistingBudgetInvalidInputClearAndLedgerIsolation()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testLargestTextBudgetEditorAndFloatingAction()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testDarkCategoryBudgetAndEditor()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testLargestTextCategoryBudgetAndEditor()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testRuleCRUDDuplicateAndPersistence()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testDarkAppearanceAndLargePermissionScreen()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testEnableCancelPauseAndRelaunchPreservesCloudBinding()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testLeaveCancelThenPreservesLocalCopyAndReturnsToBook()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testOfflineAndRevokedExplainRecoveryWithoutFalseSyncedState()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testReadOnlyEntryBlockedAndPermissionVisible()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testSameSourceCancelThenExplicitCloudCopyPreservesOriginal()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testSignedOutAndLargestTypeControlsRemainReachable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testBackupReviewCancelAndRecoverableRestore()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testDarkCategorySheetAndEverySymbolAvailable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testEntryPickersSearchAndChangedCategoryCancel()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testLargeTypeCategoryAndSupportPages()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testDarkAndLargestTypeKeepControlsReachable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testRangeCancelAllEmptyAndFutureDoNotChangeMeaning()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testVisiblePreviousNextAndSharedMonthYear()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testLongPressReorderUndoAndPersistence()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testParentReorderAndCrossPageDrag()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testRowMajorLayoutSingleRowAndQuickCreate()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testSearchLocatesSecondPage()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testCumulativeOverviewCreateSwitchAndRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testDarkBookAndTimePicker()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testLargestTextHasReachableBookAndDateActions()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testMonthJumpRangeAndSearchKeepContext()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testMonthNavigationEmptyRecoveryAndSwitcherCreation()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LifecycleUITests/testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LifecycleUITests/testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LifecycleUITests/testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testAccountAndAmountFiltersApplyValidateCancelAndClear()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testBackgroundCheckpointRestoresUnsubmittedEntryWithoutChangingTotals()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testBackgroundDraftCanReturnToOriginalEmptyValues()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testBackupAndCSVOpenShareAndImportCancelPreservesLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testIncomeExpenseRefundTransferAndRelaunchConserveBalance()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testLongAccountNameKeepsEntryDateOnScreen()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testNoUsableAccountExplainsRecoveryAndKeepsDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testOfflinePrivacyAndHelpAreReadable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testRecoveryPointPreviewAndConfirmedCleanupKeepCurrentLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testEditCancelUsesInlineDecisionAndProtectsOtherDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testFeedSearchPreservesQueryAndEmptyFilterCanBeCleared()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testFiveYearDateJumpNegativeRefundAndEmptyMonth()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testNewDraftClosesWithoutPopupAndRestoresAfterRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testRankingDrilldownSortingAndBackPreservesContext()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testRefundDeletionCancelAndUndoRestoreAmount()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testYearChartComparisonAndIncome()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testCustomEditorAppliesOnlyWhenFinished()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testDarkThemeAndLargestText()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testThemeAcrossPagesEntryAndRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testDarkAppearanceAndLargestTypeHaveReachableDateAndEntry()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testMonthJumpSharesRangeAndCancelLeavesAppliedDate()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testYearCustomFutureAndComparisonFlow()",
+          "result": "passed"
+        }
+      ],
+      "ideDebuggerLookupLines": 99
+    },
+    {
+      "run": "se",
+      "log": "evidence/selftest-20261008/se/native.log",
+      "resultBundle": "evidence/selftest-20261008/se/results.xcresult",
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "E6119632-E5BB-48F2-93C5-ECA03C60092F",
+        "deviceName": "Yuji-Compact-Stats",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23F77",
+        "osVersion": "26.5",
+        "platform": "iOS Simulator"
+      },
+      "result": "Passed",
+      "counts": {
+        "expected": 103,
+        "hosted": 37,
+        "ui": 66,
+        "passed": 103,
+        "failed": 0,
+        "skipped": 0
+      },
+      "runtimeWarnings": [],
+      "missing": [],
+      "unexpected": [],
+      "failed": [],
+      "duplicateIdentities": [],
+      "cases": [
+        {
+          "id": "YujiTests.AppStateRecoveryTests/testRecoveryPreservesUnreadableOriginalBeforeReplacingIt()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateRecoveryTests/testTransferKeepsExpenseDraftAndThemeFailureRollsBack()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateRecoveryTests/testUnreadableFileBlocksWritesAndCanBeRetriedWithoutRenamingIt()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testBudgetsRollBackWithCreateAndPersistWithRestore()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testCategoryReorderRollsBackOnDiskFailureAndReloadsOnSuccess()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testCreateAndSwitchLedgerIsAtomicAndReloadsSelection()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testCurrentBalanceUsesRefreshedBusinessDayAndFutureOpening()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testDayRefreshIncludesNewDayTransactionsWithoutRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testDraftSaveAndClearReturnFailureWithoutLosingPreviousDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testPartialActionRollsBackWhenLaterOperationFails()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testRetryAfterFailurePersistsAndReloads()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testSharedPeriodSurvivesWritesAndOnlyResetsAfterSuccessfulLedgerSwitch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testWholeAndCategoryBudgetsRollBackTogetherOnDiskFailure()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.AppStateTests/testWriteFailureDoesNotReportSuccessOrChangeLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testAccountSwitchHidesPreviousCacheAndDoesNotUploadIt()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testCompareAndSwapRetryAndInFlightLocalWriteArePreserved()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testConflictPersistsAndResolutionKeepsBothVersions()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testDiskFailureDoesNotAdvanceAncestorOrLoseOutbox()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testLeaveSerializesAndPreservesUnsentCopyBeforeRemoteMembershipChanges()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testLostAcknowledgementRetryDoesNotDuplicateTransaction()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testOldAccountResponseCannotBeInstalledAfterIdentityChanges()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testPauseStopsAutomaticSyncButExplicitRefreshStillWorks()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testPortableBackupDoesNotReactivateCloudBindingsOrExportOtherAccountCache()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testReadOnlyGuardBlocksAllBusinessWritesButAllowsPersonalDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testRemoteDeletionKeepsStaleDraftAndCopyPreservesItsText()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testRestoredCloudSourceRequiresExplicitIndependentCopyWithoutOverwritingOriginal()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testRevocationFreezesPendingWorkAndPreservesLocalCopy()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testSameAccountSecondDeviceDiscoversOnlySelectedBook()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testTemporarilyUnavailableAccountKeepsConfirmedCacheAndStopsNetworkWrites()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testTwoAccountsOnOneDeviceKeepSeparatePendingCachesForTheSameSharedBook()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.CloudStateTests/testTwoDifferentAccountsOfflineEntriesConvergeAfterRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testActualDiskSaveReplacementAndReload()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testBackupPreviewIsReadOnlyAndRestoreKeepsARecoverableSnapshot()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testFailedMainWritePreservesThePreviousRecoveryPoint()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testRecoveryPointRemovalOnlyDeletesTheSelectedManagedCopy()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.DiskPersistenceTests/testRestoreStopsIfRecoveryFileCannotBeWritten()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiTests.ThemeRenderingTests/testSemanticColorsRemainReadableInBothAppearances()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testCenterActionAndLastRecordStayReachable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testCreateBudgetsDraftPreviewSaveAndAnnualBalance()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testDarkBudgetAndEntry()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testExistingBudgetInvalidInputClearAndLedgerIsolation()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.BudgetEntryUITests/testLargestTextBudgetEditorAndFloatingAction()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testDarkCategoryBudgetAndEditor()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testLargestTextCategoryBudgetAndEditor()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testOverrunsFoldAndEntryPreview()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CategoryBudgetUITests/testRuleCRUDDuplicateAndPersistence()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testConflictCompareAndPreserveCopyAdoptsRemote()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testDarkAppearanceAndLargePermissionScreen()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testEnableCancelPauseAndRelaunchPreservesCloudBinding()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testLeaveCancelThenPreservesLocalCopyAndReturnsToBook()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testOfflineAndRevokedExplainRecoveryWithoutFalseSyncedState()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testReadOnlyEntryBlockedAndPermissionVisible()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testSameSourceCancelThenExplicitCloudCopyPreservesOriginal()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.CloudSharingUITests/testSignedOutAndLargestTypeControlsRemainReachable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testBackupReviewCancelAndRecoverableRestore()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testCategoryIconSheetCreateCancelAndPersistence()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testDarkCategorySheetAndEverySymbolAvailable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testEntryPickersSearchAndChangedCategoryCancel()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testEverySupportPageTourAndAccountValidation()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.DesignQualityUITests/testLargeTypeCategoryAndSupportPages()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testBothTabsShareHeaderGeometryAndModeTransitions()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testDarkAndLargestTypeKeepControlsReachable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testRangeCancelAllEmptyAndFutureDoNotChangeMeaning()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ICostTimeUITests/testVisiblePreviousNextAndSharedMonthYear()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testLongPressReorderUndoAndPersistence()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testParentReorderAndCrossPageDrag()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testRowMajorLayoutSingleRowAndQuickCreate()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.InlineCategoryUITests/testSearchLocatesSecondPage()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testCumulativeOverviewCreateSwitchAndRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testDarkBookAndTimePicker()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testLargestTextHasReachableBookAndDateActions()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testMonthJumpRangeAndSearchKeepContext()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LedgerFeedUITests/testMonthNavigationEmptyRecoveryAndSwitcherCreation()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LifecycleUITests/testEmptyLedgerDeleteRequiresConfirmationAndKeepsLastLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LifecycleUITests/testFirstLaunchAnchorsLedgerAndEmptyEntryCanClose()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.LifecycleUITests/testUnreadableStoreOffersRecoveryWithoutEnteringEmptyLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testAccountAndAmountFiltersApplyValidateCancelAndClear()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testBackgroundCheckpointRestoresUnsubmittedEntryWithoutChangingTotals()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testBackgroundDraftCanReturnToOriginalEmptyValues()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testBackupAndCSVOpenShareAndImportCancelPreservesLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testIncomeExpenseRefundTransferAndRelaunchConserveBalance()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testLongAccountNameKeepsEntryDateOnScreen()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testNoUsableAccountExplainsRecoveryAndKeepsDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testOfflinePrivacyAndHelpAreReadable()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ReleaseReadinessUITests/testRecoveryPointPreviewAndConfirmedCleanupKeepCurrentLedger()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testDonutSelectionAndEditingRefresh()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testEditCancelUsesInlineDecisionAndProtectsOtherDraft()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testFeedSearchPreservesQueryAndEmptyFilterCanBeCleared()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testFiveYearDateJumpNegativeRefundAndEmptyMonth()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testInlineFiltersLinkTotalsWithoutModalAndKeepContext()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testLargeTextDarkAppearanceAndReachableRanking()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testNewDraftClosesWithoutPopupAndRestoresAfterRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testRankingDrilldownSortingAndBackPreservesContext()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testRefundDeletionCancelAndUndoRestoreAmount()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.StatsStressUITests/testYearChartComparisonAndIncome()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testCustomEditorAppliesOnlyWhenFinished()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testDarkThemeAndLargestText()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testSheetExitDecisionKeepsSelectedTheme()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.ThemeUITests/testThemeAcrossPagesEntryAndRelaunch()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testCenterActionKeepsOriginAndDraftThroughKeyboardAndSave()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testDarkAppearanceAndLargestTypeHaveReachableDateAndEntry()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testMonthJumpSharesRangeAndCancelLeavesAppliedDate()",
+          "result": "passed"
+        },
+        {
+          "id": "YujiUITests.TimeNavigationUITests/testYearCustomFutureAndComparisonFlow()",
+          "result": "passed"
+        }
+      ],
+      "ideDebuggerLookupLines": 99
+    }
+  ],
+  "integrity": {
+    "sourceFiles": 92,
+    "fixtureFiles": 2,
+    "changed": []
+  },
+  "performance": {
+    "concurrent": "evidence/selftest-20261008/performance.json",
+    "afterNative": "evidence/selftest-20261008/performance-after-native.json",
+    "environment": "macOS host swiftc -O, median of 3; not physical iPhone; second run after these two native suites ended"
+  }
+}

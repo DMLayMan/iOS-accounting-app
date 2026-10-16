@@ -4,7 +4,10 @@ import Foundation
 /// 视图层不直接改数据，只调用这里的方法；所有变更在内存中完成后由 repository 原子落盘。
 /// 规则来源：PRD §3–§7、§10。
 public final class LedgerStore {
-    public internal(set) var data: LedgerData
+    public internal(set) var data: LedgerData {
+        didSet { transactionOffsets = nil }
+    }
+    private var transactionOffsets: [EntityID: Int]?
 
     public init(data: LedgerData = LedgerData()) {
         self.data = data
@@ -16,7 +19,15 @@ public final class LedgerStore {
     public func account(_ id: EntityID?) -> Account? { id.flatMap { id in data.accounts.first { $0.id == id } } }
     public func category(_ id: EntityID?) -> CategoryNode? { id.flatMap { id in data.categories.first { $0.id == id } } }
     public func tag(_ id: EntityID?) -> TagNode? { id.flatMap { id in data.tags.first { $0.id == id } } }
-    public func transaction(_ id: EntityID) -> Transaction? { data.transactions.first { $0.id == id } }
+    public func transaction(_ id: EntityID) -> Transaction? {
+        // Refund analysis otherwise performs a full scan for every original
+        // expense. Invalidate on every data mutation, including nested edits.
+        if transactionOffsets == nil {
+            transactionOffsets = Dictionary(data.transactions.enumerated().map { ($0.element.id, $0.offset) },
+                                            uniquingKeysWith: { first, _ in first })
+        }
+        return transactionOffsets?[id].map { data.transactions[$0] }
+    }
 
     public var activeLedger: Ledger? {
         if let id = data.activeLedgerID, let l = ledger(id) { return l }
@@ -207,6 +218,8 @@ public final class LedgerStore {
     /// 当前余额 = 期初 + 收入 − 支出 + 退款 + 转入 − 转出（PRD §3.2）。期初/转账不进收支统计。
     public func balance(accountID: EntityID, upTo day: Day? = nil) -> Int64 {
         guard let acc = account(accountID) else { return 0 }
+        // A future opening is not money available at the requested date.
+        if let day, acc.startDay > day { return 0 }
         var bal = acc.openingBalanceCents
         for t in data.transactions where t.isActive && t.date <= (day ?? Day(year: 9999, month: 12, day: 31)) {
             if t.kind == .income && t.accountID == accountID { bal += t.amountCents }
@@ -264,7 +277,7 @@ public final class LedgerStore {
             }
             // 发生日不早于账户起点
             if t.date < acc.startDay {
-                throw DomainError.dateBeforeAccountStart("日期不能早于账户记账起点 \(acc.startDay.month)/\(acc.startDay.day)")
+                throw DomainError.dateBeforeAccountStart("\(acc.name)的记账起点是 \(acc.startDay.year)年\(acc.startDay.month)月\(acc.startDay.day)日，请调整账户记账起点或选择该日或之后的日期。")
             }
 
         case .transfer:

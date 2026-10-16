@@ -5,6 +5,11 @@ struct RestorePreview: Identifiable {
     let id = UUID()
     let bytes: Data
     let backup: BackupService.BackupFile
+    static func validated(_ bytes: Data) throws -> RestorePreview {
+        let backup = try BackupService.decode(bytes)
+        _ = try BackupService.validate(backup: backup)
+        return RestorePreview(bytes: bytes, backup: backup)
+    }
 }
 
 struct BackupRestoreReview: View {
