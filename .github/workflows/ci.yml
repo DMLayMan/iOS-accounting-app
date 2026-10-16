@@ -32,7 +32,6 @@ jobs:
           brew install xcodegen
           xcodegen generate --spec ios-app/project.yml
       - name: Build app and native tests
-        run: >-
-          xcodebuild build-for-testing -project ios-app/Yuji.xcodeproj -scheme Yuji
-          -destination 'generic/platform=iOS Simulator' -derivedDataPath .build-ci
-          CODE_SIGNING_ALLOWED=NO
+        env:
+          IOS_BASE_DEPLOY_KEY: ${{ secrets.IOS_BASE_READONLY_DEPLOY_KEY }}
+        run: bash scripts/build-ci.sh
