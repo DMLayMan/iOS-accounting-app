@@ -13,3 +13,5 @@
 该权限允许受信任的 App 仓库工作流读取整个 `ios-base` 仓库，因此启用需要明确许可。仓库写权限持有人可能修改工作流使用凭据，应只让可信维护者提交/运行。Deploy Key 无自动到期时间；不再需要时同时撤销 SDK Deploy Key 和 App Actions Secret。
 
 依据：[GitHub 官方 Deploy Key 文档](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys)。
+
+最终提交 `a89d78e` 的 [run 38849387409](https://github.com/DMLayMan/iOS-accounting-app/actions/runs/38849387409) 已回读 Core 与 iOS build 均为 success。该 run 包含最终产品代码及主机元数据请求修正；SDK 自身的计费限制仍未解除。

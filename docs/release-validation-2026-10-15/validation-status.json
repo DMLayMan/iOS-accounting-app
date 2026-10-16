@@ -1,6 +1,6 @@
 {
-  "verifiedAtUTC": "2026-10-16T02:54:44.283163+00:00",
-  "candidate": "1.0 (13) in implementation and validation; last installed and verified TestFlight is 12",
+  "verifiedAtUTC": "2026-10-16T04:27:47.139Z",
+  "candidate": "1.0 (13) available in internal TestFlight; last installed and verified build is 12",
   "appReviewSubmitted": false,
   "fullRegression": {
     "passed": 135,
@@ -21,21 +21,20 @@
     "realTestflight": false
   },
   "sdk": {
-    "revision": "de43e661585e4e01d1aff2ae05dc3146bb32c686",
+    "revision": "97f38bb1b9aa31cae0f469a58a37e1641aa8870f",
     "pushed": true,
     "pullRequest": "https://github.com/DMLayMan/ios-base/pull/4",
-    "swiftTests": 48,
-    "nativeProPassed": 11,
-    "nativeSEPassed": 2,
-    "nativeUniqueMethods": 11,
-    "remoteCI": "Run 38728984622 unsuccessful; Relay annotation confirms account billing/spending limit",
+    "swiftTests": 51,
+    "nativePassed": 3,
+    "releaseCompilePassed": true,
+    "remoteCI": "Run 38845806630 did not start due account billing/spending limit",
     "merged": false,
     "tagged": false
   },
   "testflight": {
     "version": "1.0",
-    "build": "12",
-    "buildID": "e304abb5-b353-44f3-a145-56ca7cc714d0",
+    "build": "13",
+    "buildID": "6c16b010-a17f-4eb2-8bd2-d7cfb3e9210b",
     "uploaded": true,
     "processed": true,
     "internalGroup": "首发验收",
@@ -44,9 +43,9 @@
     "groupAssigned": true,
     "notesSaved": true,
     "notesAndGroupReloadVerified": true,
-    "installedOnIPhone12": true,
+    "installedOnIPhone12": false,
     "lastVerifiedInstalledBuild": "12",
-    "installedVersionVerifiedInAppAndDevice": true,
+    "installedVersionVerifiedInAppAndDevice": false,
     "localAppStoreIPAExportVerified": true
   },
   "production": {
@@ -261,7 +260,7 @@
     "remoteCI": "not started: account billing or spending limit; annotations verified all four checks",
     "remoteRun": "https://github.com/DMLayMan/ios-base/actions/runs/38693970346"
   },
-  "verificationScope": "Build 12 is production-equivalent to 11 except build number; new archive and actual App Store export signatures independently checked. Phone remains last verified 10; updated install not yet confirmed. Prior real cloud and stats results retain their build/device scope.",
+  "verificationScope": "Build 13 local tests, final signed archive/export, remote App CI and TestFlight availability are verified independently. Phone last verified installed build is 12; build 13 upgrade and real price/nickname abnormal scenarios remain pending. Prior real CloudKit evidence retains its tested build/device scope.",
   "candidateBuild8": {
     "delivery": "../shared-nickname-2026-10-15/live-testflight8.md",
     "liveReceipt": "../shared-nickname-2026-10-15/live-verification.json",
@@ -434,22 +433,23 @@
     "source Git snapshot review and SDK CI billing"
   ],
   "remaining": [
-    "USD catalog vs CNY receipt inconsistency remains unresolved",
-    "Same-account multi-device nickname and real offline nickname not verified",
+    "Build 13 physical TestFlight upgrade/data protection and live quote recheck",
+    "USD catalog vs CNY receipt inconsistency remains unresolved; user confirms China mainland purchase country",
+    "Same-account multi-device nickname and real offline nickname recovery not verified",
     "iOS 17 actual runtime and human VoiceOver",
+    "SDK repository own CI blocked by account billing/spending limit; App CI private dependency build now passes",
     "ICP filing pending; no operations this batch",
-    "Final human App Review submission authorization",
-    "Git source snapshot review, clean-runner dependency setup, SDK CI billing limitation"
+    "Final human App Review submission authorization"
   ],
   "reviewDraft": {
     "appVersion": "1.0",
-    "build": "12",
+    "build": "13",
     "iapCount": 3,
     "itemCount": 4,
     "state": "Ready for Review in draft submission",
     "submitted": false,
     "manualRelease": true,
-    "proof": "evidence/reissue12-20261016/review-draft12.jpg",
+    "proof": "evidence/ux13-20261016/review-draft13-reloaded.jpg",
     "reloadVerified": true
   },
   "cloudFinal10": {
@@ -542,7 +542,7 @@
     "newAgreementNoticeAbsent": true
   },
   "candidate12": {
-    "status": "installed and verified on iPhone 12; current review draft candidate",
+    "status": "historical installed baseline; review draft now selects 13",
     "reason": "user requested new TestFlight build after build 11 install stall",
     "productionDiffFrom11": "build number only",
     "sdk": "de43e661585e4e01d1aff2ae05dc3146bb32c686",
@@ -601,10 +601,86 @@
     "sdkSwiftPassed": 51,
     "sdkNativePassed": 3,
     "sdkReleasePassed": true,
-    "appNative": "in progress; first batch 12 passed and 2 failures retained for verification",
-    "uploaded": false,
+    "appNative": {
+      "proMainPassed": 37,
+      "compactPassed": 4,
+      "focusedNicknameKeyboardPassed": 3,
+      "compactBudgetFixPassed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "countsAreExecutionsNotUniqueCases": true
+    },
+    "uploaded": true,
     "priceRootCauseFixed": false,
     "purchaseAccountCountryUserConfirmed": "China mainland",
-    "appReviewSubmitted": false
+    "appReviewSubmitted": false,
+    "productSource": "e0a6cc2706ae5c62460f0384136736e2e33fe07a",
+    "sourcePullRequest": "https://github.com/DMLayMan/iOS-accounting-app/pull/3",
+    "deliverySource": "a89d78e5d96e29294eefec6b820792c1775e439d",
+    "storeCapturePassed": 2,
+    "archiveResourceChecks": 14,
+    "archiveStrictSignature": true,
+    "distributionIPA": {
+      "verified": true,
+      "sha256": "071740dcf69b00b1d65c00db9df83592809e38c1adb782e3ba511a5c621c7801"
+    },
+    "processed": true,
+    "buildID": "6c16b010-a17f-4eb2-8bd2-d7cfb3e9210b",
+    "internalGroup": "首发验收",
+    "testers": 1,
+    "notesAndGroupReloadVerified": true,
+    "installedOnIPhone12": false,
+    "remoteCI": {
+      "run": 38849387409,
+      "source": "a89d78e",
+      "core": "success",
+      "iosBuild": "success",
+      "readOnlyDependencyKey": true
+    },
+    "storeScreenshots": 5,
+    "storeScreenshotReloadVerified": true,
+    "reviewDraftUpdated": true,
+    "reviewNotesReloadVerified": true,
+    "productCodeMatchesArchive": true
+  },
+  "previousTestflightBuild12": {
+    "version": "1.0",
+    "build": "12",
+    "buildID": "e304abb5-b353-44f3-a145-56ca7cc714d0",
+    "uploaded": true,
+    "processed": true,
+    "internalGroup": "首发验收",
+    "groupID": "f8122c0b-5bc8-4b78-ab6c-c407840ab8f3",
+    "testers": 1,
+    "groupAssigned": true,
+    "notesSaved": true,
+    "notesAndGroupReloadVerified": true,
+    "installedOnIPhone12": true,
+    "lastVerifiedInstalledBuild": "12",
+    "installedVersionVerifiedInAppAndDevice": true,
+    "localAppStoreIPAExportVerified": true
+  },
+  "previousSDKPriceVisibility": {
+    "revision": "de43e661585e4e01d1aff2ae05dc3146bb32c686",
+    "pushed": true,
+    "pullRequest": "https://github.com/DMLayMan/ios-base/pull/4",
+    "swiftTests": 48,
+    "nativeProPassed": 11,
+    "nativeSEPassed": 2,
+    "nativeUniqueMethods": 11,
+    "remoteCI": "Run 38728984622 unsuccessful; Relay annotation confirms account billing/spending limit",
+    "merged": false,
+    "tagged": false
+  },
+  "previousReviewDraft12": {
+    "appVersion": "1.0",
+    "build": "12",
+    "iapCount": 3,
+    "itemCount": 4,
+    "state": "Ready for Review in draft submission",
+    "submitted": false,
+    "manualRelease": true,
+    "proof": "evidence/reissue12-20261016/review-draft12.jpg",
+    "reloadVerified": true
   }
 }
