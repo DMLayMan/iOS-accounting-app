@@ -195,6 +195,7 @@ struct EntryBudgetHint: View {
     let replacingID: EntityID?
     let categoryID: EntityID?
     @EnvironmentObject private var state: AppState
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var expanded = false
     var body: some View {
         let preview = cents.flatMap { Money($0).isWithinPositiveProductRange ? BudgetEntryPreview(kind: kind, cents: $0, date: date, replacingID: replacingID, categoryID: categoryID) : nil }
@@ -211,6 +212,22 @@ struct EntryBudgetHint: View {
                 } else {
                     let values = [("\(date.month) 月", month.remaining), ("\(String(date.year)) 年", year.remaining)]
                     Button { expanded.toggle() } label: {
+                        if typeSize.isAccessibilitySize,
+                           let focused = values.first(where: { ($0.1 ?? 0) < 0 }) ?? values.first(where: { $0.1 != nil }),
+                           let left = focused.1 {
+                            VStack(alignment: .leading, spacing: 2) {
+                                HStack(alignment: .firstTextBaseline) {
+                                    Text("\(preview != nil ? "保存后 · " : "")\(focused.0)预算\(left < 0 ? "超出" : "剩余")")
+                                        .foregroundStyle(.secondary)
+                                    Spacer(minLength: 4)
+                                    Image(systemName: expanded ? "chevron.up" : "chevron.down").font(.caption2).foregroundStyle(.secondary)
+                                }
+                                Text(statsMoney(abs(left))).monospacedDigit()
+                                    .foregroundStyle(left < 0 ? Color.red : Color.secondary)
+                                    .lineLimit(1).minimumScaleFactor(0.65)
+                                    .accessibilityIdentifier("entry.budgetSummaryAmount")
+                            }.font(.caption).frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                        } else {
                         HStack(alignment: .firstTextBaseline, spacing: 6) {
                             Text(preview != nil ? "保存后" : "预算").foregroundStyle(.secondary)
                             let visible = values.compactMap { period, left -> String? in
@@ -222,6 +239,7 @@ struct EntryBudgetHint: View {
                                 .fixedSize(horizontal: false, vertical: true)
                             Image(systemName: expanded ? "chevron.up" : "chevron.down").font(.caption2).foregroundStyle(.secondary)
                         }.font(.caption).frame(minHeight: 44, alignment: .leading)
+                        }
                     }.buttonStyle(.plain).accessibilityIdentifier("entry.budgetMore")
                         .accessibilityLabel(values.compactMap { period, left in left.map { "\(period)预算\($0 < 0 ? "超出" : "剩余") \(statsMoney(abs($0)))" } }.joined(separator: "，"))
                         .accessibilityHint(expanded ? "收起预算详情" : "展开预算详情")
