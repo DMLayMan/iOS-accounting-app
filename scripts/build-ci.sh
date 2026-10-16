@@ -16,7 +16,11 @@ printf '%s\n' "$IOS_BASE_DEPLOY_KEY" > "$task_ssh_dir/key"
 unset IOS_BASE_DEPLOY_KEY
 ssh-keygen -y -f "$task_ssh_dir/key" > /dev/null
 # Fetch host keys over authenticated TLS instead of trusting ssh-keyscan output.
-curl --fail --silent --show-error https://api.github.com/meta > "$task_ssh_dir/meta.json"
+# The job's existing read-only token avoids shared-runner anonymous API limits.
+curl --fail --silent --show-error --connect-timeout 10 --max-time 30 \
+  -H "Authorization: Bearer ${GH_TOKEN:?Missing read-only job token}" \
+  https://api.github.com/meta > "$task_ssh_dir/meta.json"
+unset GH_TOKEN
 node - "$task_ssh_dir/meta.json" "$task_ssh_dir/known_hosts" <<'NODE'
 const fs = require('fs');
 const keys = JSON.parse(fs.readFileSync(process.argv[2], 'utf8')).ssh_keys;

@@ -8,6 +8,8 @@
 
 工作流只在构建步骤暴露凭据，使用临时 0700 目录，结束后清理；通过 HTTPS 取得 GitHub 官方 host key，SSH 严格校验，系统 Git 拉取固定提交。Fork PR 不接收 Secret、原生构建明确失败，不能把未执行写成成功；不使用 `pull_request_target`。
 
+后续 `e0a6cc2` 的 macOS run 在匿名读取 GitHub `/meta` 时返回 HTTP 403，尚未执行原生编译。该请求改为使用工作流已有的 `contents: read` 临时 token，避免共享 runner 的匿名 API 限额；不扩大 token 权限。保留 SSH 主机校验，不以关闭校验绕过网络失败。
+
 该权限允许受信任的 App 仓库工作流读取整个 `ios-base` 仓库，因此启用需要明确许可。仓库写权限持有人可能修改工作流使用凭据，应只让可信维护者提交/运行。Deploy Key 无自动到期时间；不再需要时同时撤销 SDK Deploy Key 和 App Actions Secret。
 
 依据：[GitHub 官方 Deploy Key 文档](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys)。

@@ -34,4 +34,5 @@ jobs:
       - name: Build app and native tests
         env:
           IOS_BASE_DEPLOY_KEY: ${{ secrets.IOS_BASE_READONLY_DEPLOY_KEY }}
+          GH_TOKEN: ${{ github.token }}
         run: bash scripts/build-ci.sh

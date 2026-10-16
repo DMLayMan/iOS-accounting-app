@@ -78,6 +78,13 @@ final class AppStoreCaptureUITests: XCTestCase {
         XCTAssertTrue(element("feed.count").waitForExistence(timeout: 5))
         capture("appstore-05-feed")
         app.tabBars.buttons["记账"].tap()
+        // This fixture-only capture may be rerun after a draft-preserving close.
+        if app.buttons["entry.clearDraft"].exists {
+            app.buttons["entry.clearDraft"].tap()
+            app.buttons["entry.discard"].tap()
+            XCTAssertTrue(app.tabBars.buttons["记账"].waitForExistence(timeout: 5))
+            app.tabBars.buttons["记账"].tap()
+        }
         XCTAssertTrue(element("category.child.正餐").waitForExistence(timeout: 5))
         element("category.child.正餐").tap()
         for key in "38.5" { app.buttons["entry.key.\(key)"].tap() }
