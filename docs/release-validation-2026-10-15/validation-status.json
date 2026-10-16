@@ -1,6 +1,6 @@
 {
-  "verifiedAtUTC": "2026-10-16T07:16:32.692754+00:00",
-  "candidate": "1.0 (15) distributed to original internal group after build 14 installation stalled; installation and physical VoiceOver pending; App Review draft remains build 13",
+  "verifiedAtUTC": "2026-10-16T07:39:59.034813+00:00",
+  "candidate": "1.0 (15) installed and verified on iPhone 12; data preservation, Production sync and statistics people filtering passed; physical VoiceOver listening pending; App Review draft remains build 13",
   "appReviewSubmitted": false,
   "fullRegression": {
     "passed": 135,
@@ -43,11 +43,11 @@
     "groupAssigned": true,
     "notesSaved": true,
     "notesAndGroupReloadVerified": true,
-    "installedOnIPhone12": false,
-    "lastVerifiedInstalledBuild": "13",
-    "installedVersionVerifiedInAppAndDevice": false,
+    "installedOnIPhone12": true,
+    "lastVerifiedInstalledBuild": "15",
+    "installedVersionVerifiedInAppAndDevice": true,
     "localAppStoreIPAExportVerified": true,
-    "actualInstalledBuild": "13"
+    "actualInstalledBuild": "15"
   },
   "production": {
     "differentAccountInvitationAccepted": true,
@@ -851,7 +851,7 @@
     "exportPassed": true,
     "uploaded": true,
     "processed": true,
-    "installed": false,
+    "installed": true,
     "productionFilesCompared": 70,
     "onlyBuildNumberChanged": true,
     "reusesBuild14Tests": true,
@@ -863,6 +863,40 @@
     "notesAndGroupReloadVerified": true,
     "backupFiles": 3,
     "backupIdenticalToBeforeBuild14": true,
-    "installationStallRootCause": "unresolved; bounded device log does not identify a Yuji install failure"
+    "installationStallRootCause": "unresolved; bounded device log does not identify a Yuji install failure",
+    "deviceAndInAppVersionVerified": true,
+    "upgradeDataProtectionChecks": 8,
+    "liveUniquePassedTests": 2,
+    "liveSkippedTests": 0,
+    "liveInitialProbeFailures": 1,
+    "productionSyncVerified": true,
+    "statisticsPeopleVerified": true,
+    "postTestDataUnchangedExceptLastSync": true,
+    "physicalVoiceOverListening": "pending human first round"
+  },
+  "build15LiveVerification": {
+    "report": "build15-reissue.md",
+    "financialOrNicknameWritesPerformed": false,
+    "independentRunnerNoAUTInstallPath": true,
+    "selfCount": 4,
+    "selfCents": 61589,
+    "peerCount": 4,
+    "peerCents": 5110,
+    "combinedCount": 8,
+    "combinedCents": 66699,
+    "voiceOverBefore": "disabled",
+    "humanListeningRequested": [
+      "transaction semantics",
+      "statistics person filter selected state and amount",
+      "entry fields and keypad"
+    ],
+    "humanListeningPassed": false,
+    "remainingVoiceOver": [
+      "exit-dialog focus",
+      "category rotor actions",
+      "keyboard switching",
+      "announcement timing",
+      "undo discoverability and completion"
+    ]
   }
 }
