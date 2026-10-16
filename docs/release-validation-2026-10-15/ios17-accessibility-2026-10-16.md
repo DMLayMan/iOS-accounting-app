@@ -1,6 +1,6 @@
 # iOS 17 与无障碍补验（2026-10-16）
 
-状态：本地专项验证完成，构建 14 准备中。手机最后验证版本仍为 1.0（13）；本轮修改尚未安装到手机，不能沿用构建 13 的真机结果证明新修改。
+状态：本地专项验证完成，TestFlight 1.0（14）已上传、处理完成并分发到原「首发验收」内部组（1 人），测试说明刷新回读一致。手机最后回读仍为 1.0（13），新包实际安装及真机旁白待本人配合。未提交 App Review。
 
 ## 环境与边界
 
@@ -68,7 +68,18 @@
 
 iOS 17.5 最终定向批次 `ios17-final2.xcresult` 2/2，通过本地 StoreKit fixture 报价校验、连续两次模拟支持、冷启动后重新打开与不新增账目；小屏分类最终 `se-final2.xcresult` 1/1。统计分页实际点击区修复由 `ios17-last.xcresult` 和 `se-signed.xcresult` 对应用例通过。共用表单取消路径 `ios17-form-exit.xcresult` 1/1。
 
-本地 StoreKit 成功不证明 TestFlight 美元目录问题解决；真实价格问题仍等待 Apple Feedback `FB25209457`。本轮没有真实购买、云写入或替换手机 App。
+本地 StoreKit 成功不证明 TestFlight 美元目录问题解决；真实价格问题仍等待 Apple Feedback `FB25209457`。本轮没有真实购买、云写入或替换手机 App；已只读备份手机 3 个 JSON 文件并校验解析和 SHA-256。
+
+## 源码、分发与材料
+
+- 产品提交 `1e1c2034bdaa496b641a456fd7074a4e3886a6de` 已推送 [PR #3](https://github.com/DMLayMan/iOS-accounting-app/pull/3)，SDK 仍固定 `97f38bb1b9aa31cae0f469a58a37e1641aa8870f`。
+- 从 Git 提交干净导出归档；70 个产品源码/配置文件哈希与冻结目录一致，实际 Package.resolved 与 SDK 固定值一致。
+- 1.0（14）归档、App Store IPA 导出、严格签名、14 项资源检查及 dSYM UUID 对应通过。MinimumOSVersion 17.0；指定团队 `7S626H9YL4`、原 Bundle ID、Production CloudKit 容器，分发包 `get-task-allow=false`。
+- IPA 4,330,510 字节，SHA-256 `51631cc938949fc074d4103fa6d65410a4d77be940de45f82e342ec7a07792cf`。本地私有证据 `evidence/a11y14-20261016/`。
+- [提交 1e1c203 的 CI](https://github.com/DMLayMan/iOS-accounting-app/actions/runs/38863442646) Core 与 iOS build 均成功；不能替代 SDK 自身受计费限制的 CI。
+- TestFlight build ID `628d7a66-7e94-4ee5-8c86-b34f282d6a20`，原群组 `f8122c0b-5bc8-4b78-ab6c-c407840ab8f3`；后台说明明确要求真机旁白验收，未宣称已全部通过。
+- PRD、UI-SPEC、ARCHITECTURE 与 AGENTS 已同步。商店审核草稿仍保留构建 13 与三档 IAP、手动发布；未替换为尚未真机验证的 14，不变更辅助功能公开声明。
+- 隐私/支持 HTTPS 网页本轮回读 200；当前后台审核联系人、说明与商店素材保持现有内容。Apple 反馈与备案按要求等待。
 
 ## 真机 VoiceOver 待验路径
 
