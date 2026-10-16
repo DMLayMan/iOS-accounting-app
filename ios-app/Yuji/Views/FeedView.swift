@@ -50,18 +50,18 @@ struct FeedView: View {
             PeriodNavigation(prefix: "feed")
             VStack(alignment: .leading, spacing: 6) {
                 if case .custom(let range) = period, !typeSize.isAccessibilitySize {
-                    Text(statsRangeText(range)).font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("feed.customRange")
+                    Text(statsRangeText(range)).font(.caption).foregroundStyle(Design.secondary).accessibilityIdentifier("feed.customRange")
                 }
                 HStack(alignment: .firstTextBaseline, spacing: 8) {
                     if !typeSize.isAccessibilitySize {
                         (Text("净支出 \(statsMoney(totals.netExpense))").foregroundColor(Design.netExpense(totals.netExpense))
-                         + Text(" · ").foregroundColor(.secondary)
+                         + Text(" · ").foregroundColor(Design.secondary)
                          + Text("收入 \(statsMoney(totals.income))").foregroundColor(Design.income))
-                            .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                            .font(.caption).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
                             .accessibilityIdentifier("feed.totals")
                         Spacer(minLength: 0)
                     }
-                    Text("\(records.count) 笔").font(.caption).foregroundStyle(.secondary)
+                    Text("\(records.count) 笔").font(.caption).foregroundStyle(Design.secondary)
                         .fixedSize().accessibilityIdentifier("feed.count")
                 }
                 if let filter {
@@ -78,7 +78,7 @@ struct FeedView: View {
     @ViewBuilder private func recordList(_ records: [YujiCore.Transaction]) -> some View {
         if records.isEmpty {
             VStack(spacing: 12) {
-                Text("这段时间没有符合条件的记录").font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                Text("这段时间没有符合条件的记录").font(.subheadline).foregroundStyle(Design.secondary).multilineTextAlignment(.center)
                     .accessibilityIdentifier("feed.empty")
                 Button("查看全部流水") { filter = nil; state.browsingPeriod = .all }.frame(minHeight: 44).accessibilityIdentifier("feed.resetAll")
             }.frame(maxWidth: .infinity, maxHeight: .infinity).padding(20)
@@ -96,6 +96,7 @@ struct FeedView: View {
                     } header: {
                         HStack {
                             Text(statsDayText(day)).font(.caption)
+                                .accessibilityLabel(spokenDayText(day))
                             Spacer()
                             if !typeSize.isAccessibilitySize {
                                 Text("结余 \(statsMoney(TransactionTotals(items).surplus))").font(.caption)

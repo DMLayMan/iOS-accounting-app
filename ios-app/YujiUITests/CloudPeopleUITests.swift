@@ -39,8 +39,8 @@ final class CloudPeopleUITests: XCTestCase {
         capture("people-save-feedback")
         app.terminate(); app.launch()
         app.tabBars.buttons["流水"].tap()
-        let own = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "咖啡同学（我）")).firstMatch
-        let other = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "小满")).firstMatch
+        let own = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'feed.transaction.' AND label CONTAINS %@", "咖啡同学（我）")).firstMatch
+        let other = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'feed.transaction.' AND label CONTAINS %@", "小满")).firstMatch
         XCTAssertTrue(own.waitForExistence(timeout: 6)); XCTAssertTrue(other.exists)
         capture("people-02-shared-feed")
         other.tap(); XCTAssertTrue(app.staticTexts["记账人"].waitForExistence(timeout: 5)); XCTAssertTrue(app.staticTexts["小满"].exists)

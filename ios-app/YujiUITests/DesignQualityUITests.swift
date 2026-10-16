@@ -17,12 +17,18 @@ final class DesignQualityUITests: XCTestCase {
         for _ in 0..<22 {
             let entry = app.scrollViews["entry.form"].exists ? app.scrollViews["entry.form"] : app.scrollViews["ledger.scroll"]
             let stats = app.scrollViews["stats.scroll"]
-            let viewport = entry.exists && entry.isHittable ? entry.frame : (stats.exists && stats.isHittable ? stats.frame : app.frame)
+            let editor = app.scrollViews["categories.editor.scroll"]
+            let viewport = editor.exists ? editor.frame : (entry.exists && entry.isHittable ? entry.frame : (stats.exists && stats.isHittable ? stats.frame : app.frame))
 
             let rootAction = e("root.newEntry")
-            let bottom = rootAction.exists && rootAction.isHittable ? rootAction.frame.minY - 6 : min(viewport.maxY - 8, app.frame.height - 30)
+            var bottom = rootAction.exists && rootAction.isHittable ? rootAction.frame.minY - 6 : min(viewport.maxY - 8, app.frame.height - 30)
+            let categorySave = e("categories.save")
+            if id != "categories.save", categorySave.exists, categorySave.isHittable { bottom = min(bottom, categorySave.frame.minY) }
+            let keypad = e("entry.amountKeypad")
+            if keypad.exists { bottom = min(bottom, keypad.frame.minY) }
+            if app.keyboards.firstMatch.exists { bottom = min(bottom, app.keyboards.firstMatch.frame.minY) }
             let top = max(viewport.minY + 8, app.scrollContentTop)
-            if target.exists && target.isHittable && target.frame.midY > top && target.frame.midY < bottom { return target }
+            if target.exists && target.isHittable && target.frame.minY >= top && target.frame.maxY <= bottom - 8 { return target }
             let above = target.exists && target.frame.midY < top
             let upper = top + (bottom - top) * 0.22
             let lower = top + (bottom - top) * 0.78
@@ -50,7 +56,7 @@ final class DesignQualityUITests: XCTestCase {
         XCTAssertFalse(e("categories.save").isEnabled)
         capture("30-category-create-sheet")
         e("categories.icon.cup.and.saucer").tap()
-        XCTAssertEqual(e("categories.iconPreview").label, "cup.and.saucer")
+        XCTAssertEqual(e("categories.iconPreview").label, "当前图标：咖啡")
         e("categories.name").tap(); e("categories.name").typeText("周末早午餐\n")
         capture("31-category-icon-name")
         e("categories.save").tap()
@@ -64,7 +70,7 @@ final class DesignQualityUITests: XCTestCase {
         let created = app.cells.matching(NSPredicate(format: "label CONTAINS %@", "周末早午餐")).firstMatch
         XCTAssertTrue(created.waitForExistence(timeout: 5)); created.tap()
         XCTAssertTrue(e("categories.iconPreview").waitForExistence(timeout: 5))
-        XCTAssertEqual(e("categories.iconPreview").label, "cup.and.saucer")
+        XCTAssertEqual(e("categories.iconPreview").label, "当前图标：咖啡")
         capture("33-category-edit-restored")
         e("categories.cancel").tap()
         e("entry.close").tap()
@@ -159,7 +165,7 @@ final class DesignQualityUITests: XCTestCase {
         e("entry.addCategory").tap()
         XCTAssertTrue(e("categories.name").waitForExistence(timeout: 5)); capture("61-dark-category")
         reveal("categories.icon.gift").tap()
-        XCTAssertEqual(e("categories.iconPreview").label, "gift")
+        XCTAssertEqual(e("categories.iconPreview").label, "当前图标：礼物")
     }
 
     func testLargeTypeCategoryAndSupportPages() {
@@ -174,5 +180,29 @@ final class DesignQualityUITests: XCTestCase {
         XCTAssertTrue(e("categories.save").isHittable)
         e("categories.cancel").tap(); e("entry.close").tap()
         app.tabBars.buttons["我的"].tap(); capture("73-large-me")
+    }
+
+    func testLargestTypeCategoryCreateWithKeyboardAndIcon() {
+        app.terminate()
+        app.launchArguments += ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]
+        app.launch()
+        e("root.newEntry").tap()
+        reveal("entry.addCategory").tap()
+        let name = e("categories.name")
+        XCTAssertTrue(name.waitForExistence(timeout: 5))
+        name.tap(); name.typeText("周末早午餐与咖啡\n")
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        let icon = reveal("categories.icon.cup.and.saucer")
+        capture("74-largest-category-icon-visible")
+        icon.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        XCTAssertTrue(icon.isSelected)
+        let save = e("categories.save")
+        XCTAssertTrue(save.isHittable); XCTAssertTrue(save.isEnabled)
+        capture("74-largest-category-can-save")
+        save.tap()
+        XCTAssertTrue(e("entry.amount").waitForExistence(timeout: 5))
+        reveal("entry.allCategories")
+        XCTAssertTrue(e("entry.allCategories").label.contains("周末早午餐与咖啡"))
+        capture("75-largest-category-selected")
     }
 }

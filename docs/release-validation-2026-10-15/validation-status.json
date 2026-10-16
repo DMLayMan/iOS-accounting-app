@@ -1,5 +1,5 @@
 {
-  "verifiedAtUTC": "2026-10-16T05:38:34.084Z",
+  "verifiedAtUTC": "2026-10-16T06:48:40.928449+00:00",
   "candidate": "1.0 (13) installed and verified; real price inconsistency remains open",
   "appReviewSubmitted": false,
   "fullRegression": {
@@ -260,7 +260,7 @@
     "remoteCI": "not started: account billing or spending limit; annotations verified all four checks",
     "remoteRun": "https://github.com/DMLayMan/ios-base/actions/runs/38693970346"
   },
-  "verificationScope": "Build 13 signed/exported/distributed/installed, upgrade data protection and native visible-price refresh/reopen verified. Real radio-offline nickname save/cold restart/reconnect, distinct Production peer readback and original nickname restoration passed; no financial or author field changes. Current USD catalog vs historical CNY receipts remains unresolved. Same-account multiple physical devices and minimum iOS17 actual runtime remain unverified.",
+  "verificationScope": "Build 13 signed/exported/distributed/installed, upgrade data protection and native visible-price refresh/reopen verified. Real radio-offline nickname save/cold restart/reconnect, distinct Production peer readback and original nickname restoration passed; no financial or author field changes. Current USD catalog vs historical CNY receipts remains unresolved. Same-account multiple physical devices and physical VoiceOver remain unverified; iOS17.5 simulator now passed (not exact 17.0 or physical iOS17).",
   "candidateBuild8": {
     "delivery": "../shared-nickname-2026-10-15/live-testflight8.md",
     "liveReceipt": "../shared-nickname-2026-10-15/live-verification.json",
@@ -750,5 +750,28 @@
     "manualRelease": true,
     "proof": "evidence/reissue12-20261016/review-draft12.jpg",
     "reloadVerified": true
+  },
+  "ios17Accessibility": {
+    "report": "ios17-accessibility-2026-10-16.md",
+    "sourceBase": "3ae2a4cc0da19a996b2b482129b6b813ea14ae1d",
+    "minimumDeclared": "17.0",
+    "actualRuntime": "iOS 17.5 (21F79)",
+    "physicalIOS17": false,
+    "portablePassed": 181,
+    "ios17UniqueNativePassed": 3,
+    "ios17UniqueUIPassed": 30,
+    "ios17Skipped": 0,
+    "se265NativePassed": 3,
+    "se265UniqueUIPassed": 8,
+    "se265LocalStoreKit": "failed: SKTestSession configuration injection Code=3; retained, not counted as pass",
+    "fullAuditInitialIssues": 115,
+    "fullAuditFirstFixIssues": 59,
+    "fullAuditAllPassed": false,
+    "physicalVoiceOverPassed": false,
+    "sourceCandidateBuild": 14,
+    "uploaded": false,
+    "personalPhoneModified": false,
+    "realCloudWrites": false,
+    "realPurchases": false
   }
 }

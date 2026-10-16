@@ -40,6 +40,7 @@ struct EntryView: View {
     @State private var initialEntry: Draft?
     @State private var beganWithDraft = false
     @FocusState private var noteFocused: Bool
+    @AccessibilityFocusState private var exitDecisionFocused: Bool
 
     init(ledger: Ledger, draft: Draft?, onDone: @escaping () -> Void, editing: YujiCore.Transaction? = nil, onSaved: @escaping () -> Void = {}) {
         self.ledger = ledger; self.draft = draft; self.onDone = onDone; self.editing = editing; self.onSaved = onSaved
@@ -75,6 +76,7 @@ struct EntryView: View {
                                 .monospacedDigit().lineLimit(1).minimumScaleFactor(0.5)
                                 .foregroundColor(calcError == nil ? Design.money(kind) : .red)
                                 .frame(maxWidth: .infinity, minHeight: 58, alignment: .leading)
+                                .accessibilityLabel("\(kind.displayName)金额，\(displayAmount)")
                                 .accessibilityIdentifier("entry.amount")
                             if let calcError { Text(calcError).font(.caption).foregroundColor(.red) }
                         }
@@ -93,15 +95,16 @@ struct EntryView: View {
                                 Label(shortDateText, systemImage: "calendar").lineLimit(1).fixedSize(horizontal: true, vertical: false).frame(minHeight: 44)
                             }
                             .layoutPriority(1)
+                            .accessibilityLabel("记账日期，" + dateText)
                             .accessibilityIdentifier("entry.datePicker")
-                        }.font(.caption).foregroundColor(.secondary).frame(minHeight: 44)
+                        }.font(.caption).foregroundColor(Design.secondary).frame(minHeight: 44)
                         if let account = backdatedAccount {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(verbatim: "\(account.name)的记账起点是 \(account.startDay.year)年\(account.startDay.month)月\(account.startDay.day)日")
                                     .font(.subheadline).fixedSize(horizontal: false, vertical: true)
                                     .accessibilityIdentifier("entry.accountStartWarning")
                                 Text("这笔账的日期更早，调整起点后即可保存。")
-                                    .font(.caption).foregroundStyle(.secondary)
+                                    .font(.caption).foregroundStyle(Design.secondary)
                                 Button("调整记账起点") { noteFocused = false; showAccountStartEditor = true }
                                     .font(.subheadline.weight(.medium)).frame(minHeight: 44)
                                     .disabled(!state.canEditLedger(ledger.id))
@@ -110,7 +113,7 @@ struct EntryView: View {
                         }
                         categorySection
                         HStack(spacing: 8) {
-                            Image(systemName: "text.alignleft").font(.system(size: 14)).foregroundColor(.secondary)
+                            Image(systemName: "text.alignleft").font(.system(size: 14)).foregroundColor(Design.secondary)
                             TextField("备注（可选）", text: $note)
                                 .font(.body).focused($noteFocused).submitLabel(.done)
                                 .onSubmit { noteFocused = false }
@@ -121,6 +124,7 @@ struct EntryView: View {
                 }
                 .accessibilityIdentifier("entry.form")
                 .disabled(showDiscardConfirm)
+                .accessibilityHidden(showDiscardConfirm)
                 }
                 if showDiscardConfirm {
                     if typeSize.isAccessibilitySize {
@@ -128,7 +132,7 @@ struct EntryView: View {
                     } else { exitDecision }
                 } else if !noteFocused && !showCategoryPicker && !showAccountPicker && !showDatePicker && categoryEditor == nil {
                     if editing == nil && !typeSize.isAccessibilitySize {
-                        Text("关闭或退后台保留草稿，保存后才记账").font(.caption2).foregroundStyle(.secondary).padding(.top, 4)
+                        Text("关闭或退后台保留草稿，保存后才记账").font(.caption2).foregroundStyle(Design.secondary).padding(.top, 4)
                     }
                     keypad.accessibilityElement(children: .contain).accessibilityIdentifier("entry.amountKeypad")
                 }
@@ -194,9 +198,9 @@ struct EntryView: View {
             categoryEditing = false; orderUndo = nil
         } label: {
             Text(title).font(.subheadline.weight(kind == value ? .semibold : .regular))
-                .foregroundColor(kind == value ? Design.money(value) : .secondary)
+                .foregroundColor(kind == value ? Design.money(value) : Design.secondary)
                 .accessibilityAddTraits(kind == value ? [.isSelected] : [])
-                .frame(minHeight: 44)
+                .minimumTouchTarget()
         }.accessibilityIdentifier("entry.kind.\(value.rawValue)")
     }
 
@@ -257,10 +261,11 @@ struct EntryView: View {
     private var inlineCategorySection: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 14) {
-                Text(categoryEditing ? "编辑分类" : "分类").font(.caption.weight(.medium)).foregroundColor(.secondary)
+                Text(categoryEditing ? "编辑分类" : "分类").font(.caption.weight(.medium)).foregroundColor(Design.secondary)
                 Spacer()
-                Button(categoryEditing ? "完成" : "编辑") { noteFocused = false; categoryEditing.toggle() }
-                    .frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("entry.editCategories")
+                Button { noteFocused = false; categoryEditing.toggle() } label: {
+                    Text(categoryEditing ? "完成" : "编辑").minimumTouchTarget()
+                }.accessibilityIdentifier("entry.editCategories")
                 Button { noteFocused = false; showCategoryPicker = true } label: {
                     Label("全部分类", systemImage: "magnifyingglass").frame(minHeight: 44)
                 }.accessibilityIdentifier("entry.allCategories")
@@ -274,7 +279,7 @@ struct EntryView: View {
                     }, onReorder: { reorder($0, parentID: nil) },
                     onDragBegan: { noteFocused = false; categoryEditing = true })
                 if categoryEditing {
-                    Button { noteFocused = false; categoryEditor = CategoryEditorContext(isGroup: true) } label: { Image(systemName: "plus") }
+                    Button { noteFocused = false; categoryEditor = CategoryEditorContext(isGroup: true) } label: { Image(systemName: "plus").minimumTouchTarget() }
                         .frame(width: 44, height: 44).background(Design.background(scheme)).accessibilityLabel("新增一级分类")
                 }
             }.frame(height: 44)
@@ -290,7 +295,7 @@ struct EntryView: View {
                         onDragBegan: { noteFocused = false; categoryEditing = true },
                         onPageChange: { page, _ in if categoryPage != page { categoryPage = page } })
                         .id(activeParentID)
-                    if children.isEmpty { Text("点右侧新增分类").font(.caption).foregroundColor(.secondary) }
+                    if children.isEmpty { Text("点右侧新增分类").font(.caption).foregroundColor(Design.secondary) }
                 }
                 VStack(spacing: 8) {
                     Button {
@@ -310,13 +315,13 @@ struct EntryView: View {
             if let categoryError { Text(categoryError).font(.caption).foregroundColor(.red) }
             HStack(spacing: 8) {
                 Text(categoryEditing ? "长按拖动排序 · 轻点编辑名称" : (categoryID == nil ? "请选择二级分类" : "已选 \(state.store.categoryPath(categoryID))"))
-                    .font(.caption2).foregroundColor(.secondary).lineLimit(1)
+                    .font(.caption2).foregroundColor(Design.secondary).lineLimit(1)
                     .accessibilityIdentifier("entry.selectedCategory")
                 Spacer(minLength: 0)
                 if orderUndo != nil {
-                    Button("撤销排序") { undoOrder() }.font(.caption2).frame(minHeight: 44).accessibilityIdentifier("entry.undoOrder")
+                    Button { undoOrder() } label: { Text("撤销排序").minimumTouchTarget() }.font(.caption2).accessibilityIdentifier("entry.undoOrder")
                 } else if children.count > 8 {
-                    Text("\(categoryPage + 1) / \((children.count + 7) / 8)").font(.caption2).foregroundColor(.secondary)
+                    Text("\(categoryPage + 1) / \((children.count + 7) / 8)").font(.caption2).foregroundColor(Design.secondary)
                 }
             }.frame(minHeight: 24)
         }
@@ -358,9 +363,11 @@ struct EntryView: View {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
                     ForEach(["1","2","3","4","5","6","7","8","9",".","0","-"], id: \.self) { key in
                         Button { tapKey(key) } label: {
-                            Text(key == "-" ? "−" : key).font(.system(size: 23)).frame(maxWidth: .infinity).frame(height: 46)
+                            Text(key == "-" ? "−" : key).font(.title2).lineLimit(1).minimumScaleFactor(0.5).frame(maxWidth: .infinity).frame(height: 46)
                                 .background(RoundedRectangle(cornerRadius: 11).fill(Design.lightFill(scheme)))
-                        }.buttonStyle(.plain).accessibilityIdentifier("entry.key.\(key)")
+                        }.buttonStyle(.plain)
+                            .accessibilityLabel(key == "." ? "小数点" : key == "-" ? "减号" : key)
+                            .accessibilityIdentifier("entry.key.\(key)")
                     }
                 }.frame(maxWidth: .infinity)
                 VStack(spacing: 6) {
@@ -372,7 +379,7 @@ struct EntryView: View {
                         Button("乘 ×") { tapKey("×") }; Button("除 ÷") { tapKey("÷") }
                         Button("左括号 (") { tapKey("(") }; Button("右括号 )") { tapKey(")") }
                         Button("清空金额", role: .destructive) { tapKey("clear") }
-                    } label: { Text("+").font(.system(size: 23)).frame(maxWidth: .infinity).frame(height: 46) }
+                    } label: { Text("+").font(.title2).lineLimit(1).minimumScaleFactor(0.5).frame(maxWidth: .infinity).frame(height: 46) }
                     primaryAction: { tapKey("+") }
                     .background(RoundedRectangle(cornerRadius: 11).fill(Design.lightFill(scheme)))
                     .accessibilityLabel("加号，长按更多运算")
@@ -381,7 +388,8 @@ struct EntryView: View {
                             .frame(maxWidth: .infinity).frame(height: 98)
                             .background(RoundedRectangle(cornerRadius: 11).fill(canSave ? Design.primary(scheme) : Color(.tertiarySystemFill)))
                             .foregroundColor(canSave ? (scheme == .dark ? .black : .white) : .secondary)
-                    }.buttonStyle(.plain).disabled(!canSave).accessibilityIdentifier("entry.save")
+                    }.buttonStyle(.plain).disabled(!canSave)
+                        .accessibilityLabel(saveButtonTitle).accessibilityIdentifier("entry.save")
                 }.frame(width: 66)
             }.frame(maxWidth: .infinity)
         }.frame(maxWidth: .infinity).padding(.horizontal, 16).padding(.vertical, 8).background(Design.surface(scheme))
@@ -502,14 +510,18 @@ struct EntryView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text(editing == nil ? "清空这笔草稿？" : "放弃这次修改？").font(.headline)
                 .fixedSize(horizontal: false, vertical: true)
+                .accessibilityAddTraits(.isHeader).accessibilityFocused($exitDecisionFocused)
+                .onAppear { exitDecisionFocused = true }
             Text(editing == nil ? "清空后无法恢复。" : "原记录保持不变。")
-                .font(.subheadline).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
-            Button("继续编辑") { showDiscardConfirm = false }
-                .font(.headline).frame(maxWidth: .infinity, minHeight: 48)
+                .font(.subheadline).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
+            Button { showDiscardConfirm = false } label: {
+                Text("继续编辑").font(.headline).frame(maxWidth: .infinity, minHeight: 48).contentShape(Rectangle())
+            }
                 .background(Design.primary(scheme), in: RoundedRectangle(cornerRadius: 14))
                 .foregroundStyle(scheme == .dark ? Color.black : Color.white).accessibilityIdentifier("entry.keepEditing")
-            Button(editing == nil ? "清空草稿" : "放弃修改", role: .destructive) { discardAndClose() }
-                .frame(maxWidth: .infinity, minHeight: 44).accessibilityIdentifier("entry.discard")
+            Button(role: .destructive, action: discardAndClose) {
+                Text(editing == nil ? "清空草稿" : "放弃修改").frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
+            }.accessibilityIdentifier("entry.discard")
         }.padding(20).background(Design.background(scheme))
             .overlay(alignment: .top) { Divider() }
             .accessibilityElement(children: .contain).accessibilityIdentifier("entry.exitDecision")

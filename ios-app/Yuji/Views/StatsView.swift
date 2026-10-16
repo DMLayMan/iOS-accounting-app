@@ -24,7 +24,7 @@ struct StatsView: View {
                             VStack(spacing: 12) {
                                 Text("这段时间尚未发生").font(.headline).accessibilityIdentifier("stats.futurePeriod")
                                 Text("统计只计算截至今天的收支。未来日期的记录可在流水中查看。")
-                                    .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                                    .font(.subheadline).foregroundStyle(Design.secondary).multilineTextAlignment(.center)
                                 Button("回到本月") { state.browsingPeriod = .currentMonth }
                                     .frame(minHeight: 44).accessibilityIdentifier("stats.resetPeriod")
                             }.padding(24).frame(maxWidth: .infinity)
@@ -54,7 +54,7 @@ struct StatsView: View {
                                 day: range.lowerBound, cutoff: range.upperBound)
             } else if authorFilter != .all {
                 Text("预算按整个账本计算，选择「全部记账人」查看。")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(.caption).foregroundStyle(Design.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             if let month {
@@ -67,7 +67,7 @@ struct StatsView: View {
                 MonthBarChart(months: year.months) { month in state.browsingPeriod = .month(month) }
             } else {
                 Text("预算与同环比按月或年查看。当前图表和明细按所选范围汇总。")
-                    .font(.caption).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.caption).foregroundStyle(Design.secondary).frame(maxWidth: .infinity, alignment: .leading)
             }
             if let selectedComparison, let cmp = comparison(stats) {
                 comparisonPanel(selectedComparison, cmp)
@@ -112,7 +112,7 @@ struct StatsView: View {
         return VStack(alignment: .leading, spacing: 4) {
             if typeSize.isAccessibilitySize {
                 HStack(alignment: .firstTextBaseline) {
-                    Text("记账人").font(.caption).foregroundStyle(.secondary)
+                    Text("记账人").font(.caption).foregroundStyle(Design.secondary)
                     Spacer(minLength: 12)
                     if authorFilter != .all { clearAuthorButton }
                 }
@@ -143,7 +143,7 @@ struct StatsView: View {
             }
             if authorFilter != .all {
                 Text("按记录创建人统计，不代表实际付款人。")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(.caption).foregroundStyle(Design.secondary)
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -173,28 +173,29 @@ struct StatsView: View {
             }
             Text(cmp.status == .baseNotCovered ? "基期记录范围不足" : (cmp.delta == 0 ? "全部分类净支出持平" : "全部分类净支出\(cmp.delta > 0 ? "增加" : "减少") \(statsMoney(abs(cmp.delta)))"))
                 .font(.subheadline).accessibilityIdentifier("stats.changeConclusion")
-            Text(statsComparisonReason(cmp.status)).font(.caption).foregroundStyle(.secondary)
+            Text(statsComparisonReason(cmp.status)).font(.caption).foregroundStyle(Design.secondary)
             Picker("对比时期", selection: $basePeriod) {
                 Text("本期").tag(false); Text("基期").tag(true)
             }.pickerStyle(.segmented).accessibilityIdentifier("stats.comparisonPeriod")
             if let range = basePeriod ? cmp.baseRange : cmp.currentRange { StatsRangeLabel(range: range) }
             Text("下方图表与明细随时期、分类一起切换。")
-                .font(.caption).foregroundStyle(.secondary)
+                .font(.caption).foregroundStyle(Design.secondary)
         }.padding(.vertical, 8)
     }
 
     private func summaryHeader(_ s: PeriodSummary) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             adaptiveLayout {
-                Text("净支出").font(.subheadline).foregroundStyle(.secondary)
+                Text("净支出").font(.subheadline).foregroundStyle(Design.secondary)
                 if !typeSize.isAccessibilitySize { Spacer() }
                 StatsRangeLabel(range: s.range)
             }
             Text(statsMoney(s.netExpense)).font(.system(.largeTitle, design: .rounded).weight(.semibold))
                 .foregroundStyle(Design.netExpense(s.netExpense))
+                .accessibilityLabel("净支出，" + statsMoney(s.netExpense))
                 .monospacedDigit().minimumScaleFactor(0.5).lineLimit(1).accessibilityIdentifier("stats.net")
             Text("支出 \(statsMoney(s.expense)) − 退款 \(statsMoney(s.refund))")
-                .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                .font(.caption).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
             adaptiveLayout {
                 summaryValue("收入", s.income, color: Design.income)
                 if !typeSize.isAccessibilitySize { Spacer() }
@@ -207,10 +208,10 @@ struct StatsView: View {
     }
     private func summaryValue(_ title: String, _ amount: Int64, color: Color = .primary) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(title).font(.caption).foregroundStyle(.secondary)
+            Text(title).font(.caption).foregroundStyle(Design.secondary)
             Text(statsMoney(amount)).font(.headline).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
                 .foregroundStyle(color)
-        }
+        }.accessibilityElement(children: .ignore).accessibilityLabel("\(title)，\(statsMoney(amount))")
     }
     private func comparisonLink(_ title: String, _ cmp: StatsEngine.Comparison, _ ledgerID: EntityID) -> some View {
         Button {
@@ -218,14 +219,14 @@ struct StatsView: View {
             basePeriod = false
         } label: {
             VStack(alignment: .leading, spacing: 7) {
-                HStack { Text(title).font(.caption); Spacer(); Image(systemName: selectedComparison == title ? "chevron.up" : "chevron.down").font(.caption2) }.foregroundStyle(.secondary)
+                HStack { Text(title).font(.caption); Spacer(); Image(systemName: selectedComparison == title ? "chevron.up" : "chevron.down").font(.caption2) }.foregroundStyle(Design.secondary)
                 if let percent = cmp.percent {
                     Text(String(format: "%+.1f%%", percent)).font(.title3.weight(.semibold)).foregroundStyle(.primary)
                     Text("\(cmp.delta >= 0 ? "增加" : "减少") \(statsMoney(abs(cmp.delta)))")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(Design.secondary)
                 } else {
                     Text(statsComparisonReason(cmp.status))
-                        .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                        .font(.caption).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
                 }
             }.padding(.vertical, 8).frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
         }.buttonStyle(.plain).accessibilityIdentifier("stats.compare.\(title)")
@@ -239,7 +240,7 @@ struct MonthBarChart: View {
         let sorted = months.keys.sorted()
         VStack(alignment: .leading, spacing: 12) {
             Text("逐月净支出").font(.headline)
-            Text("金额单位：元 · 负值表示退款多于支出").font(.caption).foregroundStyle(.secondary)
+            Text("金额单位：元 · 负值表示退款多于支出").font(.caption).foregroundStyle(Design.secondary)
             Chart {
                 ForEach(sorted, id: \.self) { month in
                 BarMark(x: .value("月份", month.month), y: .value("净支出（元）", Double(months[month]!.netExpense) / 100))

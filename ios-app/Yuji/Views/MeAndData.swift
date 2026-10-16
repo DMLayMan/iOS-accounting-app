@@ -53,13 +53,13 @@ struct MeView: View {
                     HStack {
                         Label("数据位置", systemImage: "internaldrive")
                         Spacer()
-                        Text(state.currentCloudLinks.isEmpty ? "本机本地" : "本机与 iCloud").foregroundColor(.secondary)
+                        Text(state.currentCloudLinks.isEmpty ? "本机本地" : "本机与 iCloud").foregroundColor(Design.secondary)
                     }
                     if let t = state.store.data.lastBackupAt {
                         HStack {
                             Label("最近生成备份", systemImage: "clock.arrow.circlepath")
                             Spacer()
-                            Text(t, format: .dateTime.year().month().day().hour().minute()).foregroundColor(.secondary)
+                            Text(t, format: .dateTime.year().month().day().hour().minute()).foregroundColor(Design.secondary)
                         }
                     }
                 }
@@ -87,7 +87,7 @@ struct LedgerSwitcherView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(ledger.name).foregroundColor(.primary)
-                                if ledger.archived { Text("已归档").font(.caption).foregroundColor(.secondary) }
+                                if ledger.archived { Text("已归档").font(.caption).foregroundColor(Design.secondary) }
                             }
                             Spacer()
                             if state.activeLedgerID == ledger.id {
@@ -129,7 +129,7 @@ struct LedgerManageView: View {
                         VStack(alignment: .leading) {
                             Text(ledger.name)
                             Text(ledger.archived ? "已归档 · 可查看导出，不能新增" : "可用")
-                                .font(.caption).foregroundColor(.secondary)
+                                .font(.caption).foregroundColor(Design.secondary)
                         }
                         Spacer()
                         Menu {
@@ -145,7 +145,7 @@ struct LedgerManageView: View {
                                 }
                             }
                         } label: {
-                            Image(systemName: "ellipsis").foregroundStyle(.secondary).frame(minWidth: 44, minHeight: 44)
+                            Image(systemName: "ellipsis").foregroundStyle(Design.secondary).frame(minWidth: 44, minHeight: 44)
                         }.accessibilityLabel("管理 " + ledger.name)
                     }
                 }
@@ -192,14 +192,14 @@ struct TrashView: View {
                     List {
                         Section {
                             Text("删除的记录保留在此，恢复时会重新检查退款额度与关联。")
-                                .font(.caption).foregroundColor(.secondary)
+                                .font(.caption).foregroundColor(Design.secondary)
                         }
                         ForEach(items) { t in
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text(state.store.category(t.categoryID)?.name ?? t.kind.displayName)
                                     Text("\(statsDayText(t.date)) · ¥\(Money(t.amountCents).yuanDescription)")
-                                        .font(.caption).foregroundColor(.secondary)
+                                        .font(.caption).foregroundColor(Design.secondary)
                                 }
                                 Spacer()
                                 Button("恢复") { state.restore(t.id) }.buttonStyle(.bordered)
@@ -236,7 +236,7 @@ struct DataManagementView: View {
         List {
             Section("完整备份") {
                 Text("完整保存全部账本、账户、分类、草稿与历史流水。请把生成的文件存到安全的位置。")
-                    .font(.caption).foregroundColor(.secondary)
+                    .font(.caption).foregroundColor(Design.secondary)
                 Button {
                     if let data = state.exportBackup(), let url = writeTemp(data, name: "yuji-backup.json") {
                         state.markBackupGenerated(); exportURL = url; showShare = true
@@ -277,7 +277,7 @@ struct DataManagementView: View {
                 Section("状态") {
                     Text("最近生成：\(t.formatted())").font(.caption)
                     Text("生成后请在分享面板中存储文件。这里的时间不代表已保存到外部位置。")
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundStyle(Design.secondary)
                 }
             }
         }
@@ -490,7 +490,7 @@ struct TransferView: View {
                         TextField("金额（可算式）", text: $expression).focused($focused)
                             .keyboardType(.numbersAndPunctuation)
                             .font(.title2.weight(.semibold))
-                        if let r = result { Text("¥\(r.roundedDisplay)").foregroundColor(.secondary) }
+                        if let r = result { Text("¥\(r.roundedDisplay)").foregroundColor(Design.secondary) }
                         if let e = error { Text(e).foregroundColor(.red).font(.caption) }
                         DatePicker("日期", selection: Binding(get: { date.date() },
                             set: { date = Day(from: $0) }), displayedComponents: .date)
@@ -500,7 +500,7 @@ struct TransferView: View {
                         Section("影响预览") {
                             Text("转出账户余额 −¥\(Money(c).yuanDescription)")
                             Text("转入账户余额 +¥\(Money(c).yuanDescription)")
-                            Text("收入、支出、预算均不变化").foregroundColor(.secondary).font(.caption)
+                            Text("收入、支出、预算均不变化").foregroundColor(Design.secondary).font(.caption)
                         }
                     }
                 }

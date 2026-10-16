@@ -47,18 +47,27 @@ final class DeveloperSupportUITests: XCTestCase {
 
     private func openSupport() {
         app.tabBars.buttons["我的"].tap()
-        let entry = e("me.developerSupport")
+        let entry = app.buttons["me.developerSupport"]
         XCTAssertTrue(entry.waitForExistence(timeout: 5))
         XCTAssertTrue(entry.isHittable, "Support entry must be reachable on the initial viewport without scrolling")
-        XCTAssertGreaterThanOrEqual(entry.frame.minY, app.navigationBars.firstMatch.frame.maxY)
-        XCTAssertLessThan(entry.frame.midY, app.tabBars.firstMatch.frame.minY)
+        let entryFrame = entry.frame
+        let top = app.navigationBars.firstMatch.frame.maxY
+        let bottom = app.tabBars.firstMatch.frame.minY
+        XCTAssertGreaterThanOrEqual(entryFrame.minY, top)
+        XCTAssertLessThan(entryFrame.midY, bottom)
         if !app.launchArguments.contains("UICTContentSizeCategoryAccessibilityXXXL") {
-            XCTAssertLessThanOrEqual(entry.frame.maxY, app.tabBars.firstMatch.frame.minY)
+            XCTAssertLessThanOrEqual(entryFrame.maxY, bottom)
         }
         XCTAssertEqual(entry.label, "好用，请开发者喝杯☕吧")
         capture("support-01-manual-entry")
         entry.tap()
         XCTAssertTrue(e("support.heading").waitForExistence(timeout: 10))
+        if session != nil {
+            let coffee = e("support.offer.coffee")
+            XCTAssertTrue(coffee.waitForExistence(timeout: 10))
+            XCTAssertTrue(coffee.label.contains("¥18") || coffee.label.contains("￥18"),
+                          "Local StoreKit fixture did not load; stop before purchase. Actual offer: \(coffee.label)")
+        }
     }
 
     private func record() {

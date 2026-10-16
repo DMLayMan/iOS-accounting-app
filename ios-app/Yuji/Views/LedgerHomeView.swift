@@ -49,18 +49,18 @@ struct LedgerHomeView: View {
                     }
                     if state.cloudLink(for: ledger.id) != nil {
                         Text(state.cloudBookStatus(ledger.id))
-                            .font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("ledger.cloudStatus")
+                            .font(.caption).foregroundStyle(Design.secondary).accessibilityIdentifier("ledger.cloudStatus")
                     }
                     actionLayout {
-                        Button { showLedgerSwitch = true } label: { Label("切换账本", systemImage: "arrow.left.arrow.right") }
+                        Button { showLedgerSwitch = true } label: { Label("切换账本", systemImage: "arrow.left.arrow.right").minimumTouchTarget() }
                             .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
                             .frame(minHeight: 44).accessibilityIdentifier("ledger.switch")
-                        Button { showCreateLedger = true } label: { Label("新建账本", systemImage: "plus") }
+                        Button { showCreateLedger = true } label: { Label("新建账本", systemImage: "plus").minimumTouchTarget() }
                             .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
                             .frame(minHeight: 44).accessibilityIdentifier("ledger.create")
                     }.font(.subheadline).frame(minHeight: 44)
                     if ledger.archived {
-                        Text("已归档 · 可以查看和导出历史记录").font(.caption).foregroundStyle(.secondary)
+                        Text("已归档 · 可以查看和导出历史记录").font(.caption).foregroundStyle(Design.secondary)
                     }
                 }
                 Divider()
@@ -69,14 +69,16 @@ struct LedgerHomeView: View {
                         Text("累计收支").font(.headline)
                         Spacer()
                         if !ledger.archived {
-                            Button("预算") { showBudget = true }.font(.subheadline).frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("ledger.budget")
+                            Button { showBudget = true } label: { Text("预算").minimumTouchTarget() }
+                                .font(.subheadline).accessibilityIdentifier("ledger.budget")
                                 .disabled(!state.canEditLedger(ledger.id))
                         }
-                        Button("看统计", action: openStats).font(.subheadline).frame(minHeight: 44)
+                        Button(action: openStats) { Text("看统计").minimumTouchTarget() }.font(.subheadline)
                     }
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("累计结余").font(.subheadline).foregroundStyle(.secondary)
+                        Text("累计结余").font(.subheadline).foregroundStyle(Design.secondary)
                         AmountText(text: statsMoney(overview.totals.surplus), size: 38, weight: .semibold)
+                            .accessibilityLabel("累计结余，" + statsMoney(overview.totals.surplus))
                             .accessibilityIdentifier("ledger.surplus")
                     }
                     LazyVGrid(columns: columns, alignment: .leading, spacing: 18) {
@@ -84,26 +86,26 @@ struct LedgerHomeView: View {
                         metric("累计净支出", cents: overview.totals.netExpense, id: "ledger.netExpense", color: Design.netExpense(overview.totals.netExpense))
                     }
                     Text("支出 \(statsMoney(overview.totals.expense)) · 退款 \(statsMoney(overview.totals.refund))")
-                        .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                        .font(.caption).foregroundStyle(Design.secondary).fixedSize(horizontal: false, vertical: true)
                     Text(overview.firstRecord.map { "首笔 \(statsDayText($0)) · 截至 \(statsDayText(state.today))" } ?? "还没有记录，记下第一笔后开始累计。")
-                        .font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("ledger.coverage")
+                        .font(.caption).foregroundStyle(Design.secondary).accessibilityIdentifier("ledger.coverage")
                 }
                 Divider()
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
                         Text("账户余额").font(.headline)
                         Spacer()
-                        NavigationLink("管理", destination: AccountListView()).font(.subheadline).frame(minWidth: 44, minHeight: 44)
+                        NavigationLink { AccountListView() } label: { Text("管理").minimumTouchTarget() }.font(.subheadline)
                     }
                     metric("合计（含期初余额）", cents: overview.balance, id: "ledger.balance")
                     ForEach(overview.balances) { item in
                         HStack(alignment: .firstTextBaseline) {
                             Text(item.account.name + (item.account.archived ? " · 已归档" : ""))
-                                .font(.subheadline).foregroundStyle(.secondary)
+                                .font(.subheadline).foregroundStyle(Design.secondary)
                             Spacer(minLength: 12)
                             Text(statsMoney(item.cents)).font(.subheadline.monospacedDigit())
                                 .lineLimit(1).minimumScaleFactor(0.6)
-                        }.padding(.vertical, 4)
+                        }.padding(.vertical, 4).accessibilityElement(children: .combine)
                     }
                     if overview.balances.isEmpty {
                         NavigationLink("新增账户", destination: AccountListView()).frame(minHeight: 44)
@@ -119,12 +121,12 @@ struct LedgerHomeView: View {
                     HStack {
                         Text("记录概况").font(.headline)
                         Spacer()
-                        Button("查看流水", action: openFeed).font(.subheadline).frame(minHeight: 44).accessibilityIdentifier("ledger.openFeed")
+                        Button(action: openFeed) { Text("查看流水").minimumTouchTarget() }.font(.subheadline).accessibilityIdentifier("ledger.openFeed")
                     }
                     Text("\(overview.recordCount) 笔记录 · \(overview.recordedDays) 个记账日")
                         .font(.subheadline).accessibilityIdentifier("ledger.recordCount")
                     if let latest = overview.lastRecord {
-                        Text("最近记账 \(statsDayText(latest))").font(.caption).foregroundStyle(.secondary)
+                        Text("最近记账 \(statsDayText(latest))").font(.caption).foregroundStyle(Design.secondary)
                     }
                 }
                 if state.store.draft(for: ledger.id) != nil && !ledger.archived {
@@ -139,7 +141,7 @@ struct LedgerHomeView: View {
     }
     private func metric(_ title: String, cents: Int64, id: String, color: Color = .primary) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(title).font(.caption).foregroundStyle(.secondary)
+            Text(title).font(.caption).foregroundStyle(Design.secondary)
             AmountText(text: statsMoney(cents), size: 23, weight: .semibold, color: color)
         }.accessibilityElement(children: .ignore).accessibilityLabel("\(title) \(statsMoney(cents))").accessibilityIdentifier(id)
     }
@@ -150,7 +152,7 @@ struct QuietEmptyView: View {
     var body: some View {
         HStack {
             Spacer()
-            Text(message).font(.subheadline).foregroundColor(.secondary)
+            Text(message).font(.subheadline).foregroundColor(Design.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.vertical, 32)
             Spacer()
@@ -166,7 +168,7 @@ struct EmptyLedgerView: View {
             Spacer()
             Text((state.store.data.cloudLinks ?? []).isEmpty ? "还没有账本" : "云端账本等待账号确认").font(.title3.weight(.semibold))
             Text((state.store.data.cloudLinks ?? []).isEmpty ? "创建账本，开始记录你的收支。" : state.cloudStatus)
-                .font(.subheadline).foregroundColor(.secondary).multilineTextAlignment(.center)
+                .font(.subheadline).foregroundColor(Design.secondary).multilineTextAlignment(.center)
             if !(state.store.data.cloudLinks ?? []).isEmpty {
                 Button("检查 iCloud") { Task { await state.refreshCloudAccount(); await state.synchronizeCloud() } }.frame(minHeight: 44)
             }

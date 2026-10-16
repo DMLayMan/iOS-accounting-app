@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import YujiCore
 
 struct CloudNicknameView: View {
@@ -82,10 +83,20 @@ struct CloudNicknameView: View {
             }
         }
         .onSubmit { focused = false }
+        .onChange(of: saveAnnouncement) { _, message in
+            if let message { UIAccessibility.post(notification: .announcement, argument: message) }
+        }
         .onAppear { if !loaded { nickname = state.myCloudPerson?.person.nickname ?? ""; loaded = true } }
         .task { await state.refreshCloudAccount(); await state.synchronizePeople(force: true)
             if !edited { nickname = state.myCloudPerson?.person.nickname ?? "" }
         }
+    }
+    private var saveAnnouncement: String? {
+        guard saved else { return nil }
+        if let issue = state.cloudPeopleIssue { return issue }
+        if state.myCloudPerson?.pending == true { return "昵称已保存在本机，待同步到 iCloud。" }
+        guard state.cloudAccountReady, state.myCloudPerson != nil else { return nil }
+        return state.cloudPeopleBusy ? "昵称已保存，正在同步共享账本。" : "昵称已同步。"
     }
     private var isValid: Bool { (try? CloudPerson.normalizedNickname(nickname)) != nil || nickname.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
 }

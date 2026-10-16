@@ -208,7 +208,7 @@ struct CloudConflictView: View {
         VStack(alignment: .leading, spacing: 3) {
             Text(side).font(.caption).foregroundStyle(.secondary)
             if isSymbol, UIImage(systemName: text) != nil {
-                Image(systemName: text).font(.title2).accessibilityLabel("分类图标：" + text)
+                Image(systemName: text).font(.title2).accessibilityLabel("分类图标：" + CategorySymbol.accessibilityName(for: text))
             } else {
                 Text(text).font(.subheadline).textSelection(.enabled)
                     .fixedSize(horizontal: false, vertical: true)

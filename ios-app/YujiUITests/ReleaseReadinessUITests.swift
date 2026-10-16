@@ -93,7 +93,7 @@ final class ReleaseReadinessUITests: XCTestCase {
         XCTAssertTrue(element("ledger.balance").label.contains("42.00"))
         app.tabBars.buttons["流水"].tap()
         XCTAssertEqual(element("feed.count").label, "1 笔")
-        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "backdate keep")).firstMatch.exists)
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'feed.transaction.' AND label CONTAINS %@", "backdate keep")).firstMatch.exists)
     }
 
     func testLargestTypeDarkBackdateRecoveryKeepsActionsReachable() {
@@ -101,6 +101,7 @@ final class ReleaseReadinessUITests: XCTestCase {
         app.buttons["entry.close"].tap()
         XCTAssertTrue(app.tabBars.buttons["账本"].waitForExistence(timeout: 5))
         app.tabBars.buttons["我的"].tap()
+        reveal(app.buttons["外观与反馈"])
         app.buttons["外观与反馈"].tap()
         app.segmentedControls["theme.appearance"].buttons["深色"].tap()
         XCTAssertTrue(app.segmentedControls["theme.appearance"].buttons["深色"].isSelected)
@@ -128,7 +129,7 @@ final class ReleaseReadinessUITests: XCTestCase {
         record("income", amount: "120", category: "工资")
         record("expense", amount: "30", category: "早餐")
         app.tabBars.buttons["流水"].tap()
-        let expense = app.cells.containing(.staticText, identifier: "早餐").firstMatch
+        let expense = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'feed.transaction.' AND label CONTAINS %@", "早餐")).firstMatch
         XCTAssertTrue(expense.waitForExistence(timeout: 5)); expense.tap()
         reveal(app.buttons["记一笔退款"]); app.buttons["记一笔退款"].tap()
         let amount = app.textFields["refund.amount"]
@@ -300,7 +301,7 @@ final class ReleaseReadinessUITests: XCTestCase {
         XCTAssertTrue(app.wait(for: .runningBackground, timeout: 8))
         app.terminate(); app.launch()
         app.tabBars.buttons["记账"].tap()
-        XCTAssertEqual(element("entry.amount").label, "¥0")
+        XCTAssertEqual(element("entry.amount").label, "支出金额，¥0")
         XCTAssertEqual(element("entry.selectedCategory").label, "请选择二级分类")
         capture("review-background-reverted-draft")
     }
@@ -368,7 +369,7 @@ final class ReleaseReadinessUITests: XCTestCase {
         capture("review-no-usable-account")
         app.buttons["取消"].tap(); app.buttons["entry.close"].tap()
         app.tabBars.buttons["记账"].tap()
-        XCTAssertEqual(element("entry.amount").label, "¥12.00")
+        XCTAssertEqual(element("entry.amount").label, "支出金额，¥12.00")
         XCTAssertFalse(app.buttons["entry.save"].isEnabled)
     }
 }

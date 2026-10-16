@@ -231,3 +231,11 @@ CloudKit 真实服务补充：参与者当前用户的 CKCurrentUserDefaultName 
 余记宿主统一显式使用 `SupportPricePresentation.localized`，不再按分发收据隐藏价格，移除旧 Debug 确认模式开关。金额来自 `Product.displayPrice`，不添加客户端价目表；当次目录复核、交易验签与收据持久化、重复支持和关闭重开保留。公共 SDK 的可选模式仍存在，但余记不调用。
 
 恢复价格展示不代表美元问题修复。已安装构建 9 保留原行为，只作历史测试产物，不能用于送审；本地修改尚未分发。真实 TestFlight 商品报价与系统页/交易币种的一致性继续作为独立未关闭门槛，见 [价格方案撤回记录](release-validation-2026-10-15/price-transparency.md)。
+
+## 2026-10-16：无障碍基础组件边界
+
+`View.minimumTouchTarget()` 作用于控件 label 内部；单纯外层 frame 仅改变布局，不作为命中区证据。`Design.secondary` 为 SwiftUI 的主要辅助文字提供浅/深色不透明颜色，比例由 SwiftUI `Color.resolve(in:)` 在指定浅/深色 EnvironmentValues 中解析后测试。iOS 17 上先桥接 UIColor 可能冻结当前外观，不能据此误判深色 token。
+
+`TransactionRow` 统一视觉行与整条朗读句，`CategorySymbol.accessibilityName` 统一分类编辑和云差异的中文图标名，`spokenDayText` 与 `StatsRangeLabel` 保留完整年月日读屏语义。不得在流水/统计各自复制一套金额、作者或日期口径。显示字符与辅助技术标签允许不同，UI 测试应断言完整业务含义，而非强制英文 SF Symbol 或单一标点。
+
+`FormExitGuard` 与记账的草稿确认分别管理自己的焦点请求和非活动表单隐藏；不新增全局焦点协调器。XCTest 审计、颜色比例、真实尺寸与动态字号回归是不同门槛，均不能替代物理设备 VoiceOver。详见 [专项验收](release-validation-2026-10-15/ios17-accessibility-2026-10-16.md)。

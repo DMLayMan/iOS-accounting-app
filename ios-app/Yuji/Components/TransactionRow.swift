@@ -20,7 +20,7 @@ struct TransactionRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.body).lineLimit(2).foregroundColor(.primary)
                 if let sub = subtitle, !sub.isEmpty {
-                    Text(sub).font(.caption).foregroundColor(.secondary)
+                    Text(sub).font(.caption).foregroundColor(Design.secondary)
                         .lineLimit(1)
                 }
             }
@@ -31,6 +31,19 @@ struct TransactionRow: View {
         }
         .padding(.vertical, 10)
         .contentShape(Rectangle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+    }
+
+    private var accessibilitySummary: String {
+        var parts = [t.kind.displayName, title, "人民币 \(Money(t.amountCents).yuanDescription) 元", spokenDayText(t.date)]
+        if let account = state.store.account(t.accountID) { parts.append("账户 " + account.name) }
+        if let destination = state.store.account(t.transferToAccountID) { parts.append("转入 " + destination.name) }
+        if state.cloudLink(for: t.ledgerID) != nil {
+            parts.append("记账人 " + state.personName(t.authorID, ledgerID: t.ledgerID, marksSelf: true))
+        }
+        if !t.note.isEmpty { parts.append("备注 " + t.note) }
+        return parts.joined(separator: "，")
     }
 
     private var rowLayout: AnyLayout {

@@ -196,12 +196,15 @@ struct ToastView: View {
                 .foregroundColor(.white)
                 .accessibilityIdentifier("app.toast")
             if toast.message == "已删除" {
-                Button("撤销") { onUndo() }
-                    .font(.subheadline.weight(.semibold)).frame(minHeight: 44)
+                Button(action: onUndo) { Text("撤销").minimumTouchTarget() }
+                    .font(.subheadline.weight(.semibold))
                     .foregroundColor(.white).underline()
             }
         }
         .padding(.horizontal, 16).padding(.vertical, 10)
         .background(Capsule().fill(Color.black.opacity(0.82)))
+        .onChange(of: toast.message, initial: true) { _, message in
+            UIAccessibility.post(notification: .announcement, argument: message)
+        }
     }
 }

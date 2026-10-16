@@ -12,7 +12,9 @@ enum Design {
     static func background(_ scheme: ColorScheme) -> Color { Color(.systemBackground) }
     static func surface(_ scheme: ColorScheme) -> Color { Color(.systemBackground) }
     static func primaryText(_ scheme: ColorScheme) -> Color { .primary }
-    static func secondaryText(_ scheme: ColorScheme) -> Color { .secondary }
+    static func secondaryText(_ scheme: ColorScheme) -> Color { secondary }
+    /// Opaque text colors retain 4.5:1 contrast on the app's grouped and plain surfaces.
+    static let secondary = semantic(light: 0x62666B, dark: 0xB8BAC0)
     static func separator(_ scheme: ColorScheme) -> Color { Color(.separator) }
     static func lightFill(_ scheme: ColorScheme) -> Color { Color(.secondarySystemBackground) }
     static func selectedFill(_ scheme: ColorScheme) -> Color { .accentColor.opacity(scheme == .dark ? 0.16 : 0.10) }
@@ -25,7 +27,7 @@ enum Design {
         case .expense: return expense
         case .income: return income
         case .refund: return refund
-        case .transfer: return .secondary
+        case .transfer: return secondary
         }
     }
     static func netExpense(_ cents: Int64) -> Color { cents == 0 ? .primary : (cents < 0 ? refund : expense) }
@@ -47,6 +49,13 @@ enum Design {
     static let keyHeight: CGFloat = 47
     static let categoryRowHeight: CGFloat = 60
     static let saveHeight: CGFloat = 47
+}
+
+extension View {
+    /// Apply to the content inside a Button/NavigationLink, not outside the control.
+    func minimumTouchTarget() -> some View {
+        frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+    }
 }
 
 /// 等宽金额文本。
@@ -112,18 +121,21 @@ struct FormExitGuard: ViewModifier {
     @Binding var requested: Bool
     @Environment(\.dismiss) private var dismiss
     @Environment(\.dynamicTypeSize) private var typeSize
+    @AccessibilityFocusState private var decisionFocused: Bool
     func body(content: Content) -> some View {
-        content.disabled(requested).interactiveDismissDisabled(isDirty)
+        content.disabled(requested).accessibilityHidden(requested).interactiveDismissDisabled(isDirty)
             .safeAreaInset(edge: .bottom) {
                 if requested {
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("放弃这次修改？").font(.headline)
+                        Text("放弃这次修改？").font(.headline).accessibilityAddTraits(.isHeader)
+                            .accessibilityFocused($decisionFocused).onAppear { decisionFocused = true }
                         Text("已保存的内容不会改变。").font(.subheadline).foregroundStyle(.secondary)
                         actionsLayout {
                             Button("继续编辑") { requested = false }
                                 .buttonStyle(SolidActionStyle()).accessibilityIdentifier("form.keepEditing")
-                            Button("放弃修改", role: .destructive) { dismiss() }
-                                .font(.body).frame(maxWidth: .infinity, minHeight: 50)
+                            Button(role: .destructive) { dismiss() } label: {
+                                Text("放弃修改").font(.body).frame(maxWidth: .infinity, minHeight: 50).contentShape(Rectangle())
+                            }
                                 .accessibilityIdentifier("form.discard")
                         }
                     }.padding(20).background(Color(.systemBackground))

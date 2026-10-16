@@ -36,9 +36,9 @@ final class StatsPeopleUITests: XCTestCase {
     }
     func testPersonFilterLinksSummaryRefundChartAndRecords() {
         launch()
-        XCTAssertEqual(item("stats.net").label, "¥35.00")
+        XCTAssertEqual(item("stats.net").label, "净支出，¥35.00")
         select("小满")
-        XCTAssertEqual(item("stats.net").label, "¥15.00")
+        XCTAssertEqual(item("stats.net").label, "净支出，¥15.00")
         capture("stats-people-selected")
         let record = item("stats.transaction.stats-person-b"); reveal(record)
         XCTAssertTrue(record.exists)
@@ -53,9 +53,9 @@ final class StatsPeopleUITests: XCTestCase {
         XCTAssertFalse(item("stats.detailClearAuthor").exists)
         XCTAssertTrue(allSummary.label.contains("35.00"))
         for _ in 0..<8 { if item("stats.authorFilter").isHittable { break }; app.swipeDown() }
-        select("未知记账人"); XCTAssertEqual(item("stats.net").label, "¥8.00")
-        item("stats.clearAuthor").tap(); XCTAssertEqual(item("stats.net").label, "¥35.00")
-        select("小余（我）"); XCTAssertEqual(item("stats.net").label, "¥12.00")
+        select("未知记账人"); XCTAssertEqual(item("stats.net").label, "净支出，¥8.00")
+        item("stats.clearAuthor").tap(); XCTAssertEqual(item("stats.net").label, "净支出，¥35.00")
+        select("小余（我）"); XCTAssertEqual(item("stats.net").label, "净支出，¥12.00")
         capture("stats-people-own")
     }
     func testDarkLargestTypeFilterRemainsReachable() {

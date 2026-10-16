@@ -61,7 +61,7 @@ struct CategoryAnalysisView: View {
                 }
             }
             if rows.isEmpty {
-                Text("这段时间没有\(kind.displayName)记录").font(.subheadline).foregroundStyle(.secondary)
+                Text("这段时间没有\(kind.displayName)记录").font(.subheadline).foregroundStyle(Design.secondary)
                     .frame(maxWidth: .infinity, minHeight: 100).accessibilityIdentifier("stats.empty")
             } else {
                 chartLayout {
@@ -77,19 +77,21 @@ struct CategoryAnalysisView: View {
                 }
                 HStack {
                     if rows.count > 4 && !typeSize.isAccessibilitySize {
-                        Button(showAllCategories ? "收起分类" : "全部 \(rows.count) 类") { showAllCategories.toggle() }
+                        Button { showAllCategories.toggle() } label: {
+                            Text(showAllCategories ? "收起分类" : "全部 \(rows.count) 类").minimumTouchTarget()
+                        }
                             .accessibilityIdentifier("stats.moreCategories")
                     }
                     if rows.count <= 4 {
                         Text(kind == .expense ? "占比按支出 · 退款单列" : "占比按收入 · 不含转账")
-                            .font(.caption).foregroundStyle(.secondary)
+                            .font(.caption).foregroundStyle(Design.secondary)
                     }
                     Spacer()
                     Menu {
                         ForEach(StatsEngine.CategorySort.allCases.filter { kind == .expense || $0 != .refund }, id: \.self) { option in
                             Button("按\(option.rawValue)排序") { sort = option }.accessibilityIdentifier("stats.sort.\(option.rawValue)")
                         }
-                    } label: { Label(sort.rawValue + "排序", systemImage: "arrow.down") }
+                    } label: { Label(sort.rawValue + "排序", systemImage: "arrow.down").minimumTouchTarget() }
                     .accessibilityIdentifier("stats.sort")
                 }.font(.caption).frame(minHeight: 44)
             }
@@ -98,7 +100,7 @@ struct CategoryAnalysisView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack(spacing: 8) {
                         Text("收支明细").font(.headline)
-                        Text("\(visibleRecords.count) 条").font(.caption).foregroundStyle(.secondary)
+                        Text("\(visibleRecords.count) 条").font(.caption).foregroundStyle(Design.secondary)
                     }
                     if let authorLabel {
                         Button(action: clearAuthor) {
@@ -119,7 +121,7 @@ struct CategoryAnalysisView: View {
                     .font(.caption).accessibilityIdentifier("stats.transactionSort")
                     .accessibilityLabel(largestFirst ? "金额从高到低" : "时间从新到旧")
                     if categoryID != nil {
-                        Button("全部") { categoryID = nil }.font(.subheadline).frame(minWidth: 44, minHeight: 44)
+                        Button { categoryID = nil } label: { Text("全部").minimumTouchTarget() }.font(.subheadline)
                             .accessibilityLabel("全部分类").accessibilityIdentifier("stats.resetFilters")
                     }
                 }
@@ -137,7 +139,7 @@ struct CategoryAnalysisView: View {
             recordsSummary(visibleRecords)
             if visibleRecords.isEmpty {
                 Text("当前筛选没有记录，试试其他时间、记账人或分类。")
-                    .font(.subheadline).foregroundStyle(.secondary).padding(.vertical, 20)
+                    .font(.subheadline).foregroundStyle(Design.secondary).padding(.vertical, 20)
                     .accessibilityIdentifier("stats.drilldownEmpty")
             }
             // The surrounding statistics scroll already uses a lazy stack. A second
@@ -153,8 +155,10 @@ struct CategoryAnalysisView: View {
                     Divider()
                 }
                 if visibleRecords.count > limit {
-                    Button("再显示 \(min(20, visibleRecords.count - limit)) 条 · 还有 \(visibleRecords.count - limit) 条") { limit += 20 }
-                        .font(.subheadline).frame(maxWidth: .infinity, minHeight: 48).accessibilityIdentifier("stats.loadMore")
+                    Button { limit += 20 } label: {
+                        Text("再显示 \(min(20, visibleRecords.count - limit)) 条 · 还有 \(visibleRecords.count - limit) 条")
+                            .frame(maxWidth: .infinity, minHeight: 48).contentShape(Rectangle())
+                    }.font(.subheadline).accessibilityIdentifier("stats.loadMore")
                 }
             }
         }
@@ -182,14 +186,16 @@ struct CategoryAnalysisView: View {
                     Text(sort == .count ? "\(item.count) 笔" : statsMoney(sort == .refund ? item.refund : item.expense))
                         .font(.caption).monospacedDigit().lineLimit(1).minimumScaleFactor(0.65)
                     Spacer(minLength: 0)
-                    if total > 0 { Text(String(format: "%.0f%%", Double(item.expense) * 100 / Double(total))).font(.caption2).foregroundStyle(.secondary) }
+                    if total > 0 { Text(String(format: "%.0f%%", Double(item.expense) * 100 / Double(total))).font(.caption2).foregroundStyle(Design.secondary) }
                 }
             }.foregroundStyle(parentID == item.id ? Design.primary(scheme) : .primary)
                 .padding(.horizontal, 8).padding(.vertical, 7).frame(minHeight: 48)
                 .background(parentID == item.id ? Design.selectedFill(scheme) : .clear, in: RoundedRectangle(cornerRadius: 10))
                 .contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityIdentifier("stats.category.\(item.id.raw)")
-            .accessibilityLabel("第 \(rank) 名，\(item.name)，\(statsMoney(item.expense))，\(item.count) 笔，退款 \(statsMoney(item.refund))")
+            .accessibilityLabel("第 \(rank) 名，\(item.name)，\(kind.displayName) \(statsMoney(item.expense))，\(item.count) 笔"
+                + (kind == .expense ? "，退款 \(statsMoney(item.refund))" : ""))
+            .accessibilityHint(parentID == item.id ? "取消分类筛选，展示全部明细" : "筛选下方明细")
             .accessibilityAddTraits(parentID == item.id ? [.isSelected] : [])
     }
     private func filterChip(_ title: String, id: EntityID, prefix: String = "stats.filter") -> some View {
@@ -214,7 +220,7 @@ struct CategoryAnalysisView: View {
                     .lineLimit(1).minimumScaleFactor(0.5)
             }
             if kind == .expense && refund > 0 {
-                Text("退款 \(statsMoney(refund)) · 净支出 \(statsMoney(gross - refund))").font(.caption).foregroundStyle(.secondary)
+                Text("退款 \(statsMoney(refund)) · 净支出 \(statsMoney(gross - refund))").font(.caption).foregroundStyle(Design.secondary)
             }
             StatsRangeLabel(range: range)
         }.accessibilityElement(children: .ignore)
@@ -250,18 +256,22 @@ private struct DistributionRing: View {
                         .fill(statsCategoryColor(row.id).opacity(selected == nil || selected == row.id ? 1 : 0.25))
                         .onTapGesture { selected = selected == row.id ? nil : row.id }
                         .accessibilityElement().accessibilityLabel("\(row.name)，\(statsMoney(row.expense))，占比 \(String(format: "%.1f", Double(row.expense) * 100 / Double(total))) 百分比")
-                        .accessibilityAddTraits(.isButton).accessibilityAction { selected = row.id }
+                        .accessibilityAddTraits(selected == row.id ? [.isButton, .isSelected] : [.isButton])
+                        .accessibilityHint(selected == row.id ? "取消分类筛选" : "筛选下方明细")
+                        .accessibilityAction { selected = selected == row.id ? nil : row.id }
                         .accessibilityIdentifier("stats.slice.\(row.id.raw)")
                 }
             }
             VStack(spacing: 5) {
-                Text(chosen?.name ?? "合计").font(.caption).foregroundStyle(.secondary)
+                Text(chosen?.name ?? "合计").font(.caption).foregroundStyle(Design.secondary)
                 Text(statsMoney(chosen?.expense ?? total)).font(.system(size: 17, weight: .semibold, design: .rounded)).monospacedDigit().minimumScaleFactor(0.5).lineLimit(1)
                     .foregroundStyle(Design.money(kind))
                 if let chosen = chosen {
                     Text(String(format: "%.1f%%", Double(chosen.expense) * 100 / Double(total))).font(.caption)
-                    Button("全部") { selected = nil }.font(.caption2).frame(minWidth: 44, minHeight: 32).accessibilityIdentifier("stats.clearSlice")
-                } else { Text("点选联动明细").font(.caption2).foregroundStyle(.secondary) }
+                    Button { selected = nil } label: {
+                        Text("全部").font(.caption2).frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                    }.accessibilityLabel("清除分类筛选").accessibilityIdentifier("stats.clearSlice")
+                } else { Text("点选联动明细").font(.caption2).foregroundStyle(Design.secondary) }
             }.frame(width: 106)
         }.frame(width: 156, height: 156)
     }

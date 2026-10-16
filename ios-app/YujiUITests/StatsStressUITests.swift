@@ -208,7 +208,7 @@ final class StatsStressUITests: XCTestCase {
         element("entry.clearDraft").tap(); element("entry.discard").tap()
         app.tabBars.buttons["记账"].tap()
         XCTAssertTrue(element("entry.amount").waitForExistence(timeout: 5))
-        XCTAssertEqual(element("entry.amount").label, "¥0")
+        XCTAssertEqual(element("entry.amount").label, "支出金额，¥0")
         element("entry.close").tap()
     }
 

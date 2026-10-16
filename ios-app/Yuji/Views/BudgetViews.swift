@@ -25,7 +25,7 @@ struct BudgetFields: View {
         return layout {
             HStack(spacing: 8) {
                 Text(title).fixedSize()
-                if typeSize.isAccessibilitySize { Text("元").font(.caption).foregroundStyle(.secondary) }
+                if typeSize.isAccessibilitySize { Text("元").font(.caption).foregroundStyle(Design.secondary) }
             }
             HStack(spacing: 4) {
                 TextField("未设置", text: value).keyboardType(.decimalPad)
@@ -33,9 +33,9 @@ struct BudgetFields: View {
                     .frame(minHeight: 44).contentShape(Rectangle())
                     .multilineTextAlignment(typeSize.isAccessibilitySize ? .leading : .trailing)
                     .accessibilityLabel(title + "，元").accessibilityIdentifier(id)
-                if !typeSize.isAccessibilitySize { Text("元").foregroundStyle(.secondary) }
+                if !typeSize.isAccessibilitySize { Text("元").foregroundStyle(Design.secondary) }
                 if !value.wrappedValue.isEmpty {
-                    Button { value.wrappedValue = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 17)).foregroundStyle(.secondary).frame(width: 44, height: 44) }
+                    Button { value.wrappedValue = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 17)).foregroundStyle(Design.secondary).frame(width: 44, height: 44) }
                         .buttonStyle(.plain).accessibilityLabel("清除" + title).accessibilityIdentifier(id + ".clear")
                 }
             }
@@ -75,7 +75,7 @@ struct LedgerBudgetEditor: View {
                         Button { endEditing(); editingRule = rule } label: {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(state.store.categoryPath(rule.categoryID)).foregroundStyle(.primary)
-                                Text("\(rule.period == .month ? "每月" : "每年") · \(rule.amount) 元").font(.caption).foregroundStyle(.secondary)
+                                Text("\(rule.period == .month ? "每月" : "每年") · \(rule.amount) 元").font(.caption).foregroundStyle(Design.secondary)
                             }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                         }.accessibilityIdentifier("budget.category.edit.\(rule.period.rawValue).\(rule.categoryID?.raw ?? "")")
                             .swipeActions { Button("移除", role: .destructive) { categoryRules.removeAll { $0.id == rule.id } } }
@@ -88,7 +88,7 @@ struct LedgerBudgetEditor: View {
                 Section {
                     Text("月预算从 \(String(state.today.year)) 年 \(state.today.month) 月起生效，年预算从 \(String(state.today.year)) 年起生效。以后沿用，历史周期保持原额度。")
                     Text("净支出占用预算，退款返还额度；收入与转账不占用。超预算仍可保存记账。")
-                }.font(.caption).foregroundStyle(.secondary)
+                }.font(.caption).foregroundStyle(Design.secondary)
                 if let error { Text(error).foregroundStyle(.red).accessibilityIdentifier("budget.saveError") }
             }
             .navigationTitle("账本预算").navigationBarTitleDisplayMode(.inline)
@@ -159,13 +159,15 @@ struct StatsBudgetView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 if snapshot.limit == nil && categories.isEmpty {
-                    Text("未设置预算").font(.subheadline).foregroundStyle(.secondary).accessibilityIdentifier("stats.budgetUnset")
+                    Text("未设置预算").font(.subheadline).foregroundStyle(Design.secondary).accessibilityIdentifier("stats.budgetUnset")
                 } else {
                     Text(period == .month ? "\(String(day.year)) 年 \(day.month) 月预算" : "\(String(day.year)) 年预算").font(.subheadline.weight(.semibold))
                 }
                 Spacer(minLength: 8)
                 if state.activeLedger?.archived == false {
-                    Button(snapshot.limit == nil && categories.isEmpty ? "设置预算" : "管理") { showEditor = true }.font(.subheadline).frame(minWidth: 44, minHeight: 44).accessibilityIdentifier("stats.budgetManage")
+                    Button { showEditor = true } label: {
+                        Text(snapshot.limit == nil && categories.isEmpty ? "设置预算" : "管理").minimumTouchTarget()
+                    }.font(.subheadline).accessibilityIdentifier("stats.budgetManage")
                 }
             }
             if let remaining = snapshot.remaining, let limit = snapshot.limit {
@@ -175,10 +177,10 @@ struct StatsBudgetView: View {
                 ProgressView(value: snapshot.progress).tint(remaining < 0 ? .red : Design.primary(scheme))
                     .accessibilityLabel("预算使用进度").accessibilityValue("净支出 \(statsMoney(snapshot.spent))，预算 \(statsMoney(limit))")
                 Text("预算 \(statsMoney(limit)) · 已用 \(statsMoney(snapshot.spent))")
-                    .font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("stats.budgetAmounts")
-                Text("账本总预算 · 按净支出计算").font(.caption2).foregroundStyle(.secondary)
+                    .font(.caption).foregroundStyle(Design.secondary).accessibilityIdentifier("stats.budgetAmounts")
+                Text("账本总预算 · 按净支出计算").font(.caption2).foregroundStyle(Design.secondary)
             } else if !categories.isEmpty {
-                Text("未设置账本总预算").font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("stats.budgetUnset")
+                Text("未设置账本总预算").font(.caption).foregroundStyle(Design.secondary).accessibilityIdentifier("stats.budgetUnset")
             }
             CategoryBudgetSummary(rows: categories, prefix: "stats.categoryBudget")
                 .id("\(ledgerID.raw)-\(period)-\(day)")
@@ -208,7 +210,7 @@ struct EntryBudgetHint: View {
         if month.limit != nil || year.limit != nil {
             VStack(alignment: .leading, spacing: 0) {
                 if kind == .income && replacingID == nil {
-                    Text("收入不占用预算").font(.caption).foregroundStyle(.secondary)
+                    Text("收入不占用预算").font(.caption).foregroundStyle(Design.secondary)
                 } else {
                     let values = [("\(date.month) 月", month.remaining), ("\(String(date.year)) 年", year.remaining)]
                     Button { expanded.toggle() } label: {
@@ -218,9 +220,9 @@ struct EntryBudgetHint: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 HStack(alignment: .firstTextBaseline) {
                                     Text("\(preview != nil ? "保存后 · " : "")\(focused.0)预算\(left < 0 ? "超出" : "剩余")")
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(Design.secondary)
                                     Spacer(minLength: 4)
-                                    Image(systemName: expanded ? "chevron.up" : "chevron.down").font(.caption2).foregroundStyle(.secondary)
+                                    Image(systemName: expanded ? "chevron.up" : "chevron.down").font(.caption2).foregroundStyle(Design.secondary)
                                 }
                                 Text(statsMoney(abs(left))).monospacedDigit()
                                     .foregroundStyle(left < 0 ? Color.red : Color.secondary)
@@ -229,7 +231,7 @@ struct EntryBudgetHint: View {
                             }.font(.caption).frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                         } else {
                         HStack(alignment: .firstTextBaseline, spacing: 6) {
-                            Text(preview != nil ? "保存后" : "预算").foregroundStyle(.secondary)
+                            Text(preview != nil ? "保存后" : "预算").foregroundStyle(Design.secondary)
                             let visible = values.compactMap { period, left -> String? in
                                 guard let left else { return nil }
                                 return "\(period)\(left < 0 ? "超" : "余") \(statsMoney(abs(left)))"
@@ -237,7 +239,7 @@ struct EntryBudgetHint: View {
                             Text(visible.joined(separator: " · "))
                                 .foregroundStyle((month.remaining ?? 0) < 0 || (year.remaining ?? 0) < 0 ? Color.red : Color.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
-                            Image(systemName: expanded ? "chevron.up" : "chevron.down").font(.caption2).foregroundStyle(.secondary)
+                            Image(systemName: expanded ? "chevron.up" : "chevron.down").font(.caption2).foregroundStyle(Design.secondary)
                         }.font(.caption).frame(minHeight: 44, alignment: .leading)
                         }
                     }.buttonStyle(.plain).accessibilityIdentifier("entry.budgetMore")

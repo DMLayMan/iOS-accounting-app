@@ -271,7 +271,7 @@ private final class InlineCategoryCell: UICollectionViewCell {
         accessibilityLabel = node.name
         accessibilityIdentifier = "category.\(parent ? "parent" : "child").\(node.name)"
         accessibilityTraits = selected ? [.button, .selected] : [.button]
-        accessibilityHint = "轻点\(editing ? "编辑" : "选择")，长按拖动排序"
+        accessibilityHint = "双击\(editing ? "编辑" : "选择")。通过操作中的向前移动或向后移动调整顺序。"
         setNeedsLayout()
     }
     override func layoutSubviews() {
