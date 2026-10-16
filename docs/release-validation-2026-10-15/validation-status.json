@@ -1,6 +1,6 @@
 {
-  "verifiedAtUTC": "2026-10-16T07:39:59.034813+00:00",
-  "candidate": "1.0 (15) installed and verified on iPhone 12; data preservation, Production sync and statistics people filtering passed; physical VoiceOver listening pending; App Review draft remains build 13",
+  "verifiedAtUTC": "2026-10-16T07:44:10.191657+00:00",
+  "candidate": "1.0 (15) installed and verified on iPhone 12; data preservation, Production sync and statistics people filtering passed; physical VoiceOver listening deferred by user and unverified; App Review draft remains build 13",
   "appReviewSubmitted": false,
   "fullRegression": {
     "passed": 135,
@@ -436,7 +436,8 @@
   "remaining": [
     "Build 13 app US$0.99 vs human-observed Apple confirmation CNY6 confirmed; root cause unresolved, no new purchase",
     "Same-account multi-physical-device nickname not verified",
-    "iOS 17 actual runtime and human VoiceOver",
+    "Exact iOS 17.0 / physical minimum-system device not verified; iOS 17.5 simulator already passed",
+    "Physical VoiceOver listening deferred by user; automated AX checks are not a substitute; full AX audit still has untriaged warnings",
     "SDK repository own CI blocked by account billing/spending limit; App CI private dependency build passes",
     "ICP filing pending; no operations this batch",
     "Final human App Review submission authorization"
@@ -781,7 +782,8 @@
     "sourceCI": "https://github.com/DMLayMan/iOS-accounting-app/actions/runs/38863442646",
     "sourceCIPassed": true,
     "backupBeforeUpdateFiles": 3,
-    "backupJSONParsePassed": true
+    "backupJSONParsePassed": true,
+    "physicalVoiceOverStatus": "deferred by user; not verified"
   },
   "previousTestflightBuild13": {
     "version": "1.0",
@@ -872,7 +874,7 @@
     "productionSyncVerified": true,
     "statisticsPeopleVerified": true,
     "postTestDataUnchangedExceptLastSync": true,
-    "physicalVoiceOverListening": "pending human first round"
+    "physicalVoiceOverListening": "deferred by user; not verified"
   },
   "build15LiveVerification": {
     "report": "build15-reissue.md",
@@ -897,6 +899,8 @@
       "keyboard switching",
       "announcement timing",
       "undo discoverability and completion"
-    ]
+    ],
+    "humanListeningStatus": "deferred_by_user",
+    "humanListeningReason": "User is temporarily unavailable for listening"
   }
 }
